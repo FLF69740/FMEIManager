@@ -2,27 +2,30 @@ package com.example.fmeimanager.controllers.activities;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.base.BaseActivity;
-import com.example.fmeimanager.controllers.fragments.FmeiDashboardFragment;
+import com.example.fmeimanager.controllers.fragments.ProcessDashboardFragment;
 
-public class FmeiDashboard extends BaseActivity implements FmeiDashboardFragment.ItemClickedListener{
+public class ProcessDashboard extends BaseActivity implements ProcessDashboardFragment.ItemClickedListener {
+
 
     @Override
     protected Fragment getFirstFragment() {
-        return FmeiDashboardFragment.newInstance();
+        return ProcessDashboardFragment.newInstance();
     }
 
     @Override
     protected int getContentView() {
-        return R.layout.activity_fmei_dashboard;
+        return R.layout.activity_process_dashboard;
     }
 
     @Override
     protected int getFragmentLayout() {
-        return R.id.frame_layout_fmei_dashboard;
+        return R.id.frame_layout_process_dashboard;
     }
 
     @Override
@@ -37,11 +40,11 @@ public class FmeiDashboard extends BaseActivity implements FmeiDashboardFragment
 
     @Override
     protected boolean isAChildActivity() {
-        return false;
+        return true;
     }
 
     @Override
-    public void fmeiDashBoard_To_ProcessDashboard(View view) {
-        startActivity(new Intent(this, ProcessDashboard.class));
+    public void processDashBoard_To_RiskFile(View view) {
+        startActivity(new Intent(this, RiskFile.class));
     }
 }
