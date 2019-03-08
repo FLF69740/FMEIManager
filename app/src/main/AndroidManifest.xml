@@ -11,7 +11,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.activities.TeamFmeiBuilder"
+        <activity android:name=".controllers.activities.About"
+            android:label="@string/About_title"/>
+        <activity android:name=".controllers.activities.Help"
+            android:label="@string/Help_title"/>
+        <activity android:name=".controllers.activities.Settings"
+            android:label="@string/Settings_title"/>
+        <activity android:name=".controllers.activities.ExportDatas"
+            android:label="@string/Export_datas_title"/>
+        <activity
+            android:name=".controllers.activities.Profile"
+            android:label="@string/profile_title"
+            android:parentActivityName=".controllers.activities.ProfileSection">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controllers.activities.ProfileSection" />
+        </activity>
+        <activity
+            android:name=".controllers.activities.ProfileSection"
+            android:label="@string/profile_section_title" />
+        <activity
+            android:name=".controllers.activities.TeamFmeiBuilder"
             android:label="@string/team_fmei_builder_title"
             android:parentActivityName=".controllers.activities.TeamFmei">
             <meta-data

@@ -38,4 +38,21 @@
     <string name="team_fmei_dashboard_title">TEAM FMEI</string>
     <string name="team_fmei_builder_title">CONFIGURATION TEAM FMEI</string>
 
+    <!-- PROFILE SECTION -->
+    <string name="profile_section_title">PROFILE SECTION</string>
+    <string name="profile_title">PROFILE</string>
+
+    <!-- EXPORT DATAS -->
+    <string name="Export_datas_title">EXPORT DATAS</string>
+
+    <!-- SETTINGS -->
+    <string name="Settings_title">SETTINGS</string>
+
+    <!-- HELP -->
+    <string name="Help_title">HELP</string>
+
+    <!-- ABOUT -->
+    <string name="About_title">ABOUT</string>
+
+
 </resources>

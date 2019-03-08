@@ -16,4 +16,10 @@
     <string name="Navigation_drawer_profile_section">SECTION PROFIL</string>
     <string name="team_fmei_dashboard_title">EQUIPE FMEI</string>
     <string name="team_fmei_builder_title">CONFIGURATION TEAM FMEI</string>
+    <string name="profile_section_title">SECTION PROFIL</string>
+    <string name="profile_title">PROFIL</string>
+    <string name="Export_datas_title">EXPORTER DONNEES</string>
+    <string name="Settings_title">REGLAGES</string>
+    <string name="Help_title">AIDE</string>
+    <string name="About_title">AU SUJET DE</string>
 </resources>
