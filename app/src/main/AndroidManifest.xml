@@ -11,12 +11,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.activities.CorrectiveAction"
+        <activity android:name=".controllers.activities.TeamFmeiBuilder"
+            android:label="@string/team_fmei_builder_title"
+            android:parentActivityName=".controllers.activities.TeamFmei">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controllers.activities.TeamFmei" />
+        </activity>
+        <activity
+            android:name=".controllers.activities.TeamFmei"
+            android:label="@string/team_fmei_dashboard_title" />
+        <activity
+            android:name=".controllers.activities.CorrectiveAction"
             android:label="@string/Risk_file_corrective_action_title"
             android:parentActivityName=".controllers.activities.ProcessDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.activities.ProcessDashboard"/>
+                android:value=".controllers.activities.ProcessDashboard" />
         </activity>
         <activity
             android:name=".controllers.activities.RiskFile"
@@ -24,7 +35,7 @@
             android:parentActivityName=".controllers.activities.ProcessDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.activities.ProcessDashboard"/>
+                android:value=".controllers.activities.ProcessDashboard" />
         </activity>
         <activity
             android:name=".controllers.activities.ProcessDashboard"

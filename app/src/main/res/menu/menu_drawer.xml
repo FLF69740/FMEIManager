@@ -8,10 +8,7 @@
             android:id="@+id/drawer_item_fmei_dashboard"
             android:icon="@mipmap/baseline_chrome_reader_mode_white_24"
             android:title="@string/Navigation_drawer_fmei_dashboard" />
-        <item
-            android:id="@+id/drawer_item_team_fmei"
-            android:icon="@mipmap/baseline_group_white_24"
-            android:title="@string/Navigation_drawer_team_fmei" />
+
         <item
             android:id="@+id/drawer_item_export_datas"
             android:icon="@mipmap/baseline_get_app_white_24"
@@ -28,6 +25,25 @@
             android:id="@+id/drawer_item_about"
             android:icon="@mipmap/baseline_comment_white_24"
             android:title="@string/Navigation_drawer_about" />
+
+        <item android:title="@string/Navigation_drawer_human_resources">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/drawer_item_team_fmei"
+                        android:icon="@mipmap/baseline_group_white_24"
+                        android:title="@string/Navigation_drawer_team_fmei" />
+                    <item
+                        android:id="@+id/drawer_item_section_profile"
+                        android:icon="@mipmap/baseline_how_to_reg_white_24"
+                        android:title="@string/Navigation_drawer_profile_section" />
+                </group>
+            </menu>
+        </item>
+
+
+
+
     </group>
 
 </menu>

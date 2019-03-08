@@ -30,6 +30,7 @@ android {
                     [
                             'src/main/res/layouts/fmei_dashboard',
                             'src/main/res/layouts/process_dashboard',
+                            'src/main/res/layouts/team_fmei',
                             'src/main/res/layouts/risk_file',
                             'src/main/res/layouts/start',
                             'src/main/res/layouts',

@@ -12,4 +12,8 @@
     <string name="Navigation_drawer_settings">REGLAGES</string>
     <string name="Navigation_drawer_help">AIDE</string>
     <string name="Navigation_drawer_about">AU SUJET DE</string>
+    <string name="Navigation_drawer_human_resources">RESSOURCES HUMAINES</string>
+    <string name="Navigation_drawer_profile_section">SECTION PROFIL</string>
+    <string name="team_fmei_dashboard_title">EQUIPE FMEI</string>
+    <string name="team_fmei_builder_title">CONFIGURATION TEAM FMEI</string>
 </resources>

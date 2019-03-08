@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
@@ -41,6 +42,12 @@ public class CorrectiveAction extends BaseActivity implements CorrectiveActionFr
 
     @Override
     protected boolean isAChildActivity() {
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu_photo_single, menu);
         return true;
     }
 

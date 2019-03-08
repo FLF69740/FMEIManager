@@ -2,6 +2,7 @@ package com.example.fmeimanager.controllers.activities;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.view.Menu;
 import android.view.View;
 
 import com.example.fmeimanager.R;
@@ -38,6 +39,14 @@ public class FmeiDashboard extends BaseActivity implements FmeiDashboardFragment
     @Override
     protected boolean isAChildActivity() {
         return false;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (getFirstFragment() instanceof FmeiDashboardFragment && findViewById(getSecondFragmentLayout()) == null){
+            getMenuInflater().inflate(R.menu.toolbar_menu_add_single, menu);
+        }
+        return true;
     }
 
     @Override

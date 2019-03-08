@@ -7,12 +7,15 @@
     <string name="Toolbar_SEARCH" translatable="false">SEARCH</string>
     <string name="Toolbar_NEW_RISK" translatable="false">NEW RISK</string>
     <string name="Toolbar_PHOTO" translatable="false">PHOTO</string>
+    <string name="Toolbar_SAVE" translatable="false">SAVE</string>
     
     <!-- NAVIGATION DRAWER -->
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="Navigation_drawer_fmei_dashboard">FMEI DASHBOARD</string>
+    <string name="Navigation_drawer_human_resources">HUMAN RESOURCES</string>
     <string name="Navigation_drawer_team_fmei">TEAM FMEI</string>
+    <string name="Navigation_drawer_profile_section">PROFILE SECTION</string>
     <string name="Navigation_drawer_export_data">EXPORT DATAS</string>
     <string name="Navigation_drawer_settings">SETTINGS</string>
     <string name="Navigation_drawer_help">HELP</string>
@@ -30,4 +33,9 @@
     <!-- RISK FILE -->
     <string name="Risk_file_description_title">RISK DESCRIPTION</string>
     <string name="Risk_file_corrective_action_title">CORRECTIVE ACTION</string>
+
+    <!-- TEAM FMEI -->
+    <string name="team_fmei_dashboard_title">TEAM FMEI</string>
+    <string name="team_fmei_builder_title">CONFIGURATION TEAM FMEI</string>
+
 </resources>

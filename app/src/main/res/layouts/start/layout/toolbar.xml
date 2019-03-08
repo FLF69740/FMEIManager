@@ -7,4 +7,5 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimaryDark"
     android:minHeight="?attr/actionBarSize"
-    app:titleTextColor="@android:color/white"/>
+    android:theme="@style/ToolbarTheme"
+    app:titleTextAppearance="@style/Toolbar.TitleText"/>

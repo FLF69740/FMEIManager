@@ -1,5 +1,6 @@
 package com.example.fmeimanager.base;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fmeimanager.R;
+import com.example.fmeimanager.controllers.activities.FmeiDashboard;
+import com.example.fmeimanager.controllers.activities.TeamFmei;
 import com.example.fmeimanager.controllers.fragments.CorrectiveActionFragment;
 import com.example.fmeimanager.controllers.fragments.FmeiDashboardFragment;
 import com.example.fmeimanager.controllers.fragments.ProcessDashboardFragment;
@@ -73,20 +76,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        if (getFirstFragment() instanceof FmeiDashboardFragment && findViewById(getSecondFragmentLayout()) == null){
-            getMenuInflater().inflate(R.menu.toolbar_menu_add_single, menu);
-        } else if (getFirstFragment() instanceof ProcessDashboardFragment){
-            getMenuInflater().inflate(R.menu.toolbar_menu_newrisk_search_single, menu);
-        } else if (getFirstFragment() instanceof RiskFileDescriptionFragment || getFirstFragment() instanceof CorrectiveActionFragment){
-            getMenuInflater().inflate(R.menu.toolbar_menu_photo_single, menu);
-        }
-
-        return true;
-    }
-
     /**
      *  NAVIGATION DRAWER
      */
@@ -136,10 +125,15 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         int id = item.getItemId();
         switch (id){
             case R.id.drawer_item_fmei_dashboard :
+                startActivity(new Intent(this, FmeiDashboard.class));
                 Toast.makeText(this, getString(R.string.Navigation_drawer_fmei_dashboard), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.drawer_item_team_fmei:
+                startActivity(new Intent(this, TeamFmei.class));
                 Toast.makeText(this, getString(R.string.Navigation_drawer_team_fmei), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.drawer_item_section_profile:
+                Toast.makeText(this, getString(R.string.Navigation_drawer_profile_section), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.drawer_item_export_datas:
                 Toast.makeText(this, getString(R.string.Navigation_drawer_export_data), Toast.LENGTH_SHORT).show();
