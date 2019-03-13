@@ -1,0 +1,41 @@
+package com.example.fmeimanager.repositories;
+
+import android.arch.lifecycle.LiveData;
+
+import com.example.fmeimanager.database.dao.RiskDao;
+import com.example.fmeimanager.models.Risk;
+
+import java.util.List;
+
+public class RiskDataRepository {
+
+    private final RiskDao mRiskDao;
+
+    public RiskDataRepository(RiskDao RiskDao) {mRiskDao = RiskDao;}
+
+
+
+    //CREATE
+    public void createRisk(Risk Risk) {mRiskDao.insertRisk(Risk);}
+
+
+    //READ
+    public LiveData<List<Risk>> getAllRisk() {return this.mRiskDao.getAllRisk();}
+    public LiveData<Risk> getRisk(long id) {return this.mRiskDao.getRisk(id);}
+
+    public LiveData<List<Risk>> getRisksListForParticipant(long participantId) {
+        return this.mRiskDao.getRiskAboutParticipantId(participantId);
+    }
+
+    public LiveData<List<Risk>> getRisksListForProcessus(long riskId) {
+        return this.mRiskDao.getRiskAboutProcessusId(riskId);
+    }
+
+
+    //UPDATE
+    public void updateRisk(Risk Risk) {mRiskDao.updateRisk(Risk);}
+
+
+    //DELETE
+    public void deleteRisk(long RiskId) {mRiskDao.deleteRisk(RiskId);}
+}

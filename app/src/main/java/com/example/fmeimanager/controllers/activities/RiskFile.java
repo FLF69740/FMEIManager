@@ -2,11 +2,8 @@ package com.example.fmeimanager.controllers.activities;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.base.BaseActivity;
@@ -53,6 +50,6 @@ public class RiskFile extends BaseActivity implements RiskFileDescriptionFragmen
 
     @Override
     public void riskFile_To_CorrectiveAction(View view) {
-        startActivity(new Intent(this, CorrectiveAction.class));
+        startActivity(new Intent(this, CorrectiveActionFile.class));
     }
 }

@@ -33,16 +33,16 @@
         <activity
             android:name=".controllers.activities.TeamFmeiBuilder"
             android:label="@string/team_fmei_builder_title"
-            android:parentActivityName=".controllers.activities.TeamFmei">
+            android:parentActivityName=".controllers.activities.TeamFmeiDashBoard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.activities.TeamFmei" />
+                android:value=".controllers.activities.TeamFmeiDashBoard" />
         </activity>
         <activity
-            android:name=".controllers.activities.TeamFmei"
+            android:name=".controllers.activities.TeamFmeiDashBoard"
             android:label="@string/team_fmei_dashboard_title" />
         <activity
-            android:name=".controllers.activities.CorrectiveAction"
+            android:name=".controllers.activities.CorrectiveActionFile"
             android:label="@string/Risk_file_corrective_action_title"
             android:parentActivityName=".controllers.activities.ProcessDashboard">
             <meta-data

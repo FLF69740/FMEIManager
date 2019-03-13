@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controllers.activities.CorrectiveAction"
+    tools:context=".controllers.activities.CorrectiveActionFile"
     android:background="@color/colorPrimary">
 
     <include

@@ -21,7 +21,7 @@ import com.example.fmeimanager.controllers.activities.FmeiDashboard;
 import com.example.fmeimanager.controllers.activities.Help;
 import com.example.fmeimanager.controllers.activities.ProfileSection;
 import com.example.fmeimanager.controllers.activities.Settings;
-import com.example.fmeimanager.controllers.activities.TeamFmei;
+import com.example.fmeimanager.controllers.activities.TeamFmeiDashBoard;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -127,7 +127,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 startActivity(new Intent(this, FmeiDashboard.class));
                 break;
             case R.id.drawer_item_team_fmei:
-                startActivity(new Intent(this, TeamFmei.class));
+                startActivity(new Intent(this, TeamFmeiDashBoard.class));
                 break;
             case R.id.drawer_item_section_profile:
                 startActivity(new Intent(this, ProfileSection.class));

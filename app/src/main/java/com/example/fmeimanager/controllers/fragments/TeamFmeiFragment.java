@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.controllers.activities.TeamFmei;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
