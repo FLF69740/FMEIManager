@@ -7,12 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewOutlineProvider;
+import android.widget.Toast;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.base.BaseActivity;
 import com.example.fmeimanager.controllers.fragments.FmeiDashboardFragment;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
+import com.example.fmeimanager.models.Participant;
 import com.example.fmeimanager.viewmodels.GeneralViewModel;
 
 public class FmeiDashboard extends BaseActivity implements FmeiDashboardFragment.ItemClickedListener{
@@ -53,6 +55,7 @@ public class FmeiDashboard extends BaseActivity implements FmeiDashboardFragment
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.configureViewModel();
+        this.getAdministrator(1);
     }
 
     // TOOLBAR
@@ -79,5 +82,20 @@ public class FmeiDashboard extends BaseActivity implements FmeiDashboardFragment
         this.mGeneralViewModel = ViewModelProviders.of(this, viewModelFactory).get(GeneralViewModel.class);
         this.mGeneralViewModel.init(1);
     }
+
+    private void getAdministrator(long id){
+        this.mGeneralViewModel.getParticipant(id).observe(this, this::updateAdministrator);
+    }
+
+    /**
+     *  UI
+     */
+
+    private void updateAdministrator(Participant participant){
+        Toast.makeText(this, participant.getForname() + " " + participant.getName(), Toast.LENGTH_SHORT).show();
+        this.updateHeader(participant);
+    }
+
+
 
 }

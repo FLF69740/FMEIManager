@@ -22,6 +22,7 @@ import com.example.fmeimanager.controllers.activities.Help;
 import com.example.fmeimanager.controllers.activities.ProfileSection;
 import com.example.fmeimanager.controllers.activities.Settings;
 import com.example.fmeimanager.controllers.activities.TeamFmeiDashBoard;
+import com.example.fmeimanager.models.Participant;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -107,8 +108,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     }
 
     //Update header
-    protected void updateHeader(){
-        mNavUserName.setText("MON PROFIL");
+    protected void updateHeader(Participant participant){
+        String completeName = participant.getName() + " " + participant.getForname();
+        mNavUserName.setText(completeName);
      /*   mNavUserName.setText(user.getUsername());
         BitmapStorage.showImageInformations(this, user.getUrlPicture());
         if (!user.getUrlPicture().equals(User.EMPTY_CASE) && BitmapStorage.isFileExist(this, user.getUrlPicture())) {
