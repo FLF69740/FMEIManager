@@ -27,8 +27,8 @@ public class RiskDataRepository {
         return this.mRiskDao.getRiskAboutParticipantId(participantId);
     }
 
-    public LiveData<List<Risk>> getRisksListForProcessus(long riskId) {
-        return this.mRiskDao.getRiskAboutProcessusId(riskId);
+    public LiveData<List<Risk>> getRisksListForProcessus(long processusId) {
+        return this.mRiskDao.getRiskAboutProcessusId(processusId);
     }
 
 
