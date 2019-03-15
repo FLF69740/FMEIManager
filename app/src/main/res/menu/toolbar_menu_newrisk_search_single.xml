@@ -1,13 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/toolbar_fmei_dashboard_new_risk"
+        android:id="@+id/toolbar_dashboard_new_slot_1"
+        android:icon="@mipmap/baseline_view_list_white_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/Toolbar_NEW_PROCESSUS">
+    </item>
+    <item
+        android:id="@+id/toolbar_dashboard_new_slot_2"
         android:icon="@mipmap/baseline_file_copy_white_24"
         app:showAsAction="ifRoom"
         android:title="@string/Toolbar_NEW_RISK">
     </item>
     <item
-        android:id="@+id/toolbar_fmei_dashboard_search"
+        android:id="@+id/toolbar_search"
         android:icon="@mipmap/baseline_search_white_24"
         app:showAsAction="ifRoom"
         android:title="@string/Toolbar_SEARCH">

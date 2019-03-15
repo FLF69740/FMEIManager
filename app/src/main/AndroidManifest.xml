@@ -11,62 +11,62 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.activities.About"
+        <activity android:name=".controllers.navigationPackage5.AboutActivity"
             android:label="@string/About_title"/>
-        <activity android:name=".controllers.activities.Help"
+        <activity android:name=".controllers.navigationPackage4.HelpActivity"
             android:label="@string/Help_title"/>
-        <activity android:name=".controllers.activities.Settings"
+        <activity android:name=".controllers.navigationPackage3.SettingsActivity"
             android:label="@string/Settings_title"/>
-        <activity android:name=".controllers.activities.ExportDatas"
+        <activity android:name=".controllers.navigationPackage2.ExportDatasActivity"
             android:label="@string/Export_datas_title"/>
         <activity
-            android:name=".controllers.activities.Profile"
+            android:name=".controllers.navigationPackage7.ProfileActivity"
             android:label="@string/profile_title"
-            android:parentActivityName=".controllers.activities.ProfileSection">
+            android:parentActivityName=".controllers.navigationPackage7.ProfileSectionActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.activities.ProfileSection" />
+                android:value=".controllers.navigationPackage7.ProfileSectionActivity" />
         </activity>
         <activity
-            android:name=".controllers.activities.ProfileSection"
+            android:name=".controllers.navigationPackage7.ProfileSectionActivity"
             android:label="@string/profile_section_title" />
         <activity
-            android:name=".controllers.activities.TeamFmeiBuilder"
+            android:name=".controllers.navigationPackage6.TeamFmeiBuilderActivity"
             android:label="@string/team_fmei_builder_title"
-            android:parentActivityName=".controllers.activities.TeamFmeiDashBoard">
+            android:parentActivityName=".controllers.navigationPackage6.TeamFmeiDashBoardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.activities.TeamFmeiDashBoard" />
+                android:value=".controllers.navigationPackage6.TeamFmeiDashBoardActivity" />
         </activity>
         <activity
-            android:name=".controllers.activities.TeamFmeiDashBoard"
+            android:name=".controllers.navigationPackage6.TeamFmeiDashBoardActivity"
             android:label="@string/team_fmei_dashboard_title" />
         <activity
-            android:name=".controllers.activities.CorrectiveActionFile"
+            android:name=".controllers.navigationPackage1.correctiveActionTheme.CorrectiveActionFileActivity"
             android:label="@string/Risk_file_corrective_action_title"
-            android:parentActivityName=".controllers.activities.ProcessDashboard">
+            android:parentActivityName=".controllers.navigationPackage1.processusTheme.ProcessDashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.activities.ProcessDashboard" />
+                android:value=".controllers.navigationPackage1.processusTheme.ProcessDashboardActivity" />
         </activity>
         <activity
-            android:name=".controllers.activities.RiskFile"
+            android:name=".controllers.navigationPackage1.riskTheme.RiskFileActivity"
             android:label="@string/Risk_file_description_title"
-            android:parentActivityName=".controllers.activities.ProcessDashboard">
+            android:parentActivityName=".controllers.navigationPackage1.processusTheme.ProcessDashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.activities.ProcessDashboard" />
+                android:value=".controllers.navigationPackage1.processusTheme.ProcessDashboardActivity" />
         </activity>
         <activity
-            android:name=".controllers.activities.ProcessDashboard"
+            android:name=".controllers.navigationPackage1.processusTheme.ProcessDashboardActivity"
             android:label="@string/Process_dashboard_title"
-            android:parentActivityName=".controllers.activities.FmeiDashboard">
+            android:parentActivityName=".controllers.navigationPackage1.fmeiTheme.FmeiDashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.activities.FmeiDashboard" />
+                android:value=".controllers.navigationPackage1.fmeiTheme.FmeiDashboardActivity" />
         </activity>
         <activity
-            android:name=".controllers.activities.FmeiDashboard"
+            android:name=".controllers.navigationPackage1.fmeiTheme.FmeiDashboardActivity"
             android:label="@string/Fmei_dashboard_title" />
         <activity android:name=".MainActivity">
             <intent-filter>

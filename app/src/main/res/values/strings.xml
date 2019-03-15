@@ -5,6 +5,7 @@
     <!-- TOOLBAR -->
     <string name="Toolbar_ADD" translatable="false">ADD</string>
     <string name="Toolbar_SEARCH" translatable="false">SEARCH</string>
+    <string name="Toolbar_NEW_PROCESSUS" translatable="false">NEW PROCESSUS</string>
     <string name="Toolbar_NEW_RISK" translatable="false">NEW RISK</string>
     <string name="Toolbar_PHOTO" translatable="false">PHOTO</string>
     <string name="Toolbar_SAVE" translatable="false">SAVE</string>
@@ -28,7 +29,7 @@
     <string name="Fmei_dashboard_title">FMEI DASHBOARD</string>
 
     <!-- PROCESS DASHBOARD -->
-    <string name="Process_dashboard_title">PROCESS DASHBOARD</string>
+    <string name="Process_dashboard_title">PROCESS</string>
 
     <!-- RISK FILE -->
     <string name="Risk_file_description_title">RISK DESCRIPTION</string>

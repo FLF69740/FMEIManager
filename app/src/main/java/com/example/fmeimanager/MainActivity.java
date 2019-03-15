@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
-import com.example.fmeimanager.controllers.activities.FmeiDashboard;
+import com.example.fmeimanager.controllers.navigationPackage1.fmeiTheme.FmeiDashboardActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +20,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startFirstActivity(){
-        startActivity(new Intent(this, FmeiDashboard.class));
+        startActivity(new Intent(this, FmeiDashboardActivity.class));
     }
 }

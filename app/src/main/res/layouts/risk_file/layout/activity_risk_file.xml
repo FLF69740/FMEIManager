@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controllers.activities.RiskFile"
+    tools:context=".controllers.navigationPackage1.riskTheme.RiskFileActivity"
     android:background="@color/colorPrimary">
 
     <include

@@ -15,13 +15,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.controllers.activities.About;
-import com.example.fmeimanager.controllers.activities.ExportDatas;
-import com.example.fmeimanager.controllers.activities.FmeiDashboard;
-import com.example.fmeimanager.controllers.activities.Help;
-import com.example.fmeimanager.controllers.activities.ProfileSection;
-import com.example.fmeimanager.controllers.activities.Settings;
-import com.example.fmeimanager.controllers.activities.TeamFmeiDashBoard;
+import com.example.fmeimanager.controllers.navigationPackage5.AboutActivity;
+import com.example.fmeimanager.controllers.navigationPackage2.ExportDatasActivity;
+import com.example.fmeimanager.controllers.navigationPackage1.fmeiTheme.FmeiDashboardActivity;
+import com.example.fmeimanager.controllers.navigationPackage4.HelpActivity;
+import com.example.fmeimanager.controllers.navigationPackage7.ProfileSectionActivity;
+import com.example.fmeimanager.controllers.navigationPackage3.SettingsActivity;
+import com.example.fmeimanager.controllers.navigationPackage6.TeamFmeiDashBoardActivity;
 import com.example.fmeimanager.models.Participant;
 
 
@@ -126,25 +126,25 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         int id = item.getItemId();
         switch (id){
             case R.id.drawer_item_fmei_dashboard :
-                startActivity(new Intent(this, FmeiDashboard.class));
+                startActivity(new Intent(this, FmeiDashboardActivity.class));
                 break;
             case R.id.drawer_item_team_fmei:
-                startActivity(new Intent(this, TeamFmeiDashBoard.class));
+                startActivity(new Intent(this, TeamFmeiDashBoardActivity.class));
                 break;
             case R.id.drawer_item_section_profile:
-                startActivity(new Intent(this, ProfileSection.class));
+                startActivity(new Intent(this, ProfileSectionActivity.class));
                 break;
             case R.id.drawer_item_export_datas:
-                startActivity(new Intent(this, ExportDatas.class));
+                startActivity(new Intent(this, ExportDatasActivity.class));
                 break;
             case R.id.drawer_item_settings:
-                startActivity(new Intent(this, Settings.class));
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
             case R.id.drawer_item_help:
-                startActivity(new Intent(this, Help.class));
+                startActivity(new Intent(this, HelpActivity.class));
                 break;
             case R.id.drawer_item_about:
-                startActivity(new Intent(this, About.class));
+                startActivity(new Intent(this, AboutActivity.class));
                 break;
             default:
                 break;
