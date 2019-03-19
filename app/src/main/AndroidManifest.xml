@@ -11,14 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.navigationPackage5.AboutActivity"
-            android:label="@string/About_title"/>
-        <activity android:name=".controllers.navigationPackage4.HelpActivity"
-            android:label="@string/Help_title"/>
-        <activity android:name=".controllers.navigationPackage3.SettingsActivity"
-            android:label="@string/Settings_title"/>
-        <activity android:name=".controllers.navigationPackage2.ExportDatasActivity"
-            android:label="@string/Export_datas_title"/>
+        <activity android:name=".controllers.navigationPackage1.processusTheme.ViewPagerInsertRiskActivity"></activity>
+        <activity
+            android:name=".controllers.navigationPackage5.AboutActivity"
+            android:label="@string/About_title" />
+        <activity
+            android:name=".controllers.navigationPackage4.HelpActivity"
+            android:label="@string/Help_title" />
+        <activity
+            android:name=".controllers.navigationPackage3.SettingsActivity"
+            android:label="@string/Settings_title" />
+        <activity
+            android:name=".controllers.navigationPackage2.ExportDatasActivity"
+            android:label="@string/Export_datas_title" />
         <activity
             android:name=".controllers.navigationPackage7.ProfileActivity"
             android:label="@string/profile_title"

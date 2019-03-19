@@ -30,6 +30,7 @@
 
     <!-- PROCESS DASHBOARD -->
     <string name="Process_dashboard_title">PROCESS</string>
+    <string name="Process_viewpager_close" translatable="false">X</string>
 
     <!-- RISK FILE -->
     <string name="Risk_file_description_title">RISK DESCRIPTION</string>

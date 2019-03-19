@@ -52,11 +52,11 @@ public class RiskAndCorrectiveActionDaoTest {
     private static Fmei FMEI_DEMO_2(){return new Fmei(FMEI_2_NAME);}
 
     //PROCESSUS
-    private static Processus PROCESSUS_DEMO_1(){return new Processus("processus_step_1", ID_1);}
-    private static Processus PROCESSUS_DEMO_2(){return new Processus("processus_step_2", ID_1);}
-    private static Processus PROCESSUS_DEMO_3(){return new Processus("processus_step_3", ID_1);}
-    private static Processus PROCESSUS_DEMO_4(){return new Processus("processus_step_4", ID_2);}
-    private static Processus PROCESSUS_DEMO_5(){return new Processus("processus_step_5", ID_1);}
+    private static Processus PROCESSUS_DEMO_1(){return new Processus("processus_step_1", ID_1, 1);}
+    private static Processus PROCESSUS_DEMO_2(){return new Processus("processus_step_2", ID_1, 2);}
+    private static Processus PROCESSUS_DEMO_3(){return new Processus("processus_step_3", ID_1, 2);}
+    private static Processus PROCESSUS_DEMO_4(){return new Processus("processus_step_4", ID_2, 3);}
+    private static Processus PROCESSUS_DEMO_5(){return new Processus("processus_step_5", ID_1, 3);}
 
     //RISK
     private static Risk RISK_DEMO_1(){return new Risk("12/02/2019", "Parts_One", "100145XD", "risk_one", ID_1, ID_1);}

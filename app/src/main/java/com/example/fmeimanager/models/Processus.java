@@ -9,21 +9,25 @@ import android.arch.persistence.room.PrimaryKey;
 public class Processus {
 
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "processus_id") private long mId;
+    private int mStep;
     private String mName;
     @ColumnInfo(name = "processus_fmeiId") private long mFmeiId;
 
-    public Processus(String name, long fmeiId) {
+    public Processus(String name, long fmeiId, int step) {
         mName = name;
         mFmeiId = fmeiId;
+        mStep = step;
     }
 
     //GETTER
     public long getId() {return mId;}
     public String getName() {return mName;}
     public long getFmeiId() {return mFmeiId;}
+    public int getStep() {return mStep;}
 
     //SETTER
     public void setId(long id) {mId = id;}
     public void setName(String name) {mName = name;}
     public void setFmeiId(long fmeiId) {mFmeiId = fmeiId;}
+    public void setStep(int step) {mStep = step;}
 }
