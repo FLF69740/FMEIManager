@@ -2,7 +2,6 @@ package com.example.fmeimanager.controllers.navigationPackage1.processusTheme;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,23 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.controllers.navigationPackage1.fmeiTheme.FmeiDashboardFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProcessusIdPageFragment extends Fragment implements View.OnClickListener {
+public class InsertRiskPageFragment extends Fragment implements View.OnClickListener {
 
     private static final String KEY_POSITION = "KEY_POSITION";
     private static final String KEY_PROCESSUS_ID_LIST  = "KEY_PROCESSUS_ID_LIST";
 
-    public ProcessusIdPageFragment() {}
+    public InsertRiskPageFragment() {}
 
-    public static ProcessusIdPageFragment newInstance(String stringList, int position){
-        ProcessusIdPageFragment processusIdPageFragment = new ProcessusIdPageFragment();
+    public static InsertRiskPageFragment newInstance(String stringList, int position){
+        InsertRiskPageFragment processusIdPageFragment = new InsertRiskPageFragment();
         Bundle bundle = new Bundle();
         bundle.putString(KEY_PROCESSUS_ID_LIST, stringList);
         bundle.putInt(KEY_POSITION, position);

@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.adapters.FmeiListAdapter;
+import com.example.fmeimanager.controllers.navigationPackage1.fmeiTheme.adapters.FmeiListAdapter;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.models.CorrectiveAction;
@@ -29,7 +29,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.

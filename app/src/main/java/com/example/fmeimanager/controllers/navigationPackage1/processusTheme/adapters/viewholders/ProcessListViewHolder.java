@@ -1,4 +1,4 @@
-package com.example.fmeimanager.adapters.viewholders;
+package com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.viewholders;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

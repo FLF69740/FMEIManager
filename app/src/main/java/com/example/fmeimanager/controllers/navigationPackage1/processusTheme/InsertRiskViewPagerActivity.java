@@ -6,11 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.fmeimanager.R;
+import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.InsertRiskPageAdapter;
 
-public class ViewPagerInsertRiskActivity extends AppCompatActivity implements ProcessusIdPageFragment.RiskViewPagerItemClickedListener{
+public class InsertRiskViewPagerActivity extends AppCompatActivity implements InsertRiskPageFragment.RiskViewPagerItemClickedListener{
 
     public static final String BUNDLE_RISK_PROCESSUS_ID = "BUNDLE_RISK_PROCESSUS_ID";
 
@@ -24,7 +24,7 @@ public class ViewPagerInsertRiskActivity extends AppCompatActivity implements Pr
         int size = stringList.split("/").length;
 
         ViewPager viewPager = findViewById(R.id.viewPagerProcessusId);
-        viewPager.setAdapter(new PageAdapterInsertRisk(getSupportFragmentManager(), size, stringList));
+        viewPager.setAdapter(new InsertRiskPageAdapter(getSupportFragmentManager(), size, stringList));
 
         TextView textView = findViewById(R.id.closeViewPager);
         textView.setOnClickListener(v -> finish());

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dip">
+
+    <TextView
+        android:id="@+id/fragment_processus_builder_processus_step_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_processus_builder_item_more"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/fragment_processus_builder_item_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@mipmap/baseline_arrow_drop_up_white_24"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_processus_builder_processus_step_title"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_processus_builder_item_less"
+        app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_processus_step_title" />
+
+    <ImageButton
+        android:id="@+id/fragment_processus_builder_item_less"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@mipmap/baseline_arrow_drop_down_white_24"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_processus_builder_item_more"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_processus_builder_item_writte"
+        app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_item_more" />
+
+    <ImageButton
+        android:id="@+id/fragment_processus_builder_item_writte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@mipmap/baseline_font_download_white_24"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_processus_builder_item_less"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_item_less" />
+
+</android.support.constraint.ConstraintLayout>

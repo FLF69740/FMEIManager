@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.adapters.viewholders.ProcessListAdapter;
+import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.ProcessListAdapter;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.models.CorrectiveAction;
@@ -24,6 +24,7 @@ import com.example.fmeimanager.models.Participant;
 import com.example.fmeimanager.models.Processus;
 import com.example.fmeimanager.models.Risk;
 import com.example.fmeimanager.utils.RecyclerItemClickSupport;
+import com.example.fmeimanager.utils.Utils;
 import com.example.fmeimanager.viewmodels.ProcessusViewModel;
 
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public class ProcessDashboardFragment extends Fragment {
 
     private static final String BUNDLE_FMEI_ID = "BUNDLE_FMEI_ID";
     private static final int CREATE_RISK_REQUEST_CODE = 110;
+
+    public static final String BUNDLE_KEY_LIST_PROCESSUS_ID = "BUNDLE_KEY_LIST_PROCESSUS_ID";
 
     private View mView;
     private ProcessusViewModel mProcessusViewModel;
@@ -107,6 +110,7 @@ public class ProcessDashboardFragment extends Fragment {
     // interface for button clicked
     public interface ItemClickedListener{
         void processDashBoard_To_RiskFile(View view, long riskId, long parentId);
+        void processDashBoard_To_ProcessusBuilder(View view, long parentId);
     }
 
     //callback for button clicked
@@ -151,30 +155,32 @@ public class ProcessDashboardFragment extends Fragment {
         this.mProcessusViewModel.getAllCorrectiveAction().observe(this, this::updateCorrectiveActionList);
     }
 
-    //CREATE PROCESSUS
-    public void createProcessus(){
-        Toast.makeText(getContext(), " CREATE PROCESSUS : " + String.valueOf(mProcessusList.size() + 1), Toast.LENGTH_SHORT).show();
-        simulationCreateProcessus();
-    }
 
-    public static final String BUNDLE_KEY_LIST_PROCESSUS_ID = "BUNDLE_KEY_LIST_PROCESSUS_ID";
+
+    //LAUNCH PROCESSUS BUILDER
+    public void createProcessus(){
+    //    simulationCreateProcessus();
+        mCallback.processDashBoard_To_ProcessusBuilder(mView, mFmeiId);
+    }
 
     //CREATE RISK
     public void createRisk(){
         if (mProcessusList != null) {
-            Intent intent = new Intent(getActivity(), ViewPagerInsertRiskActivity.class);
+            Intent intent = new Intent(getActivity(), InsertRiskViewPagerActivity.class);
             if (!mProcessusList.isEmpty()) {
                 String listString = BusinnessProcessusTheme.getProcessusListId(mProcessusList);
                 intent.putExtra(BUNDLE_KEY_LIST_PROCESSUS_ID, listString);
+                startActivityForResult(intent, CREATE_RISK_REQUEST_CODE);
+            } else {
+                Toast.makeText(getContext(), "PAS DE PROCESSUS", Toast.LENGTH_SHORT).show();
             }
-            startActivityForResult(intent, CREATE_RISK_REQUEST_CODE);
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (CREATE_RISK_REQUEST_CODE == requestCode && RESULT_OK == resultCode){
-            long processusId = data.getLongExtra(ViewPagerInsertRiskActivity.BUNDLE_RISK_PROCESSUS_ID, 0);
+            long processusId = data.getLongExtra(InsertRiskViewPagerActivity.BUNDLE_RISK_PROCESSUS_ID, 0);
             if (processusId != 0){
                     simulationCreateRisk(processusId);
             }
@@ -217,7 +223,7 @@ public class ProcessDashboardFragment extends Fragment {
             mRiskList.clear();
             mTitleProcessSingle.clear();
             for (int i = 0 ; i < mProcessusList.size() ; i++){
-                Log.i("ee" , String.valueOf(i));
+                Log.i(Utils.INFORMATION_LOG, String.valueOf(i));
                 mStepProcessusList.add(mProcessusList.get(i).getStep());
                 mRiskList.add(new Risk());
                 mTitleProcessSingle.add(true);

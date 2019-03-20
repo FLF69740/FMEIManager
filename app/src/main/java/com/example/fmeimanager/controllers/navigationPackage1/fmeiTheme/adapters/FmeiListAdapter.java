@@ -1,4 +1,4 @@
-package com.example.fmeimanager.adapters;
+package com.example.fmeimanager.controllers.navigationPackage1.fmeiTheme.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.adapters.viewholders.FmeiListViewHolder;
+import com.example.fmeimanager.controllers.navigationPackage1.fmeiTheme.adapters.viewholders.FmeiListViewHolder;
 import com.example.fmeimanager.models.Fmei;
 
 import java.util.List;

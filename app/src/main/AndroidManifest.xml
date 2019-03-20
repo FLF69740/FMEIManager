@@ -11,7 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.navigationPackage1.processusTheme.ViewPagerInsertRiskActivity"></activity>
+        <activity
+            android:name=".controllers.navigationPackage1.processusTheme.ProcessusBuilderActivity"
+            android:label="@string/Process_builder_title"
+            android:parentActivityName=".controllers.navigationPackage1.processusTheme.ProcessDashboardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controllers.navigationPackage1.processusTheme.ProcessDashboardActivity" />
+        </activity>
+
+        <activity android:name=".controllers.navigationPackage1.processusTheme.InsertRiskViewPagerActivity" />
         <activity
             android:name=".controllers.navigationPackage5.AboutActivity"
             android:label="@string/About_title" />
@@ -35,6 +44,8 @@
         <activity
             android:name=".controllers.navigationPackage7.ProfileSectionActivity"
             android:label="@string/profile_section_title" />
+
+
         <activity
             android:name=".controllers.navigationPackage6.TeamFmeiBuilderActivity"
             android:label="@string/team_fmei_builder_title"
@@ -43,6 +54,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controllers.navigationPackage6.TeamFmeiDashBoardActivity" />
         </activity>
+
+
         <activity
             android:name=".controllers.navigationPackage6.TeamFmeiDashBoardActivity"
             android:label="@string/team_fmei_dashboard_title" />

@@ -15,6 +15,7 @@ import com.example.fmeimanager.controllers.navigationPackage1.fmeiTheme.FmeiDash
 public class ProcessDashboardActivity extends BaseActivity implements ProcessDashboardFragment.ItemClickedListener {
 
     public static final String RISK_ID_TO_RISK_DASHBOARD = "RISK_ID_TO_RISK_DASHBOARD";
+    public static final String PROCESS_DASHBOARD_TO_PROCESS_BUILDER = "PROCESS_DASHBOARD_TO_PROCESS_BUILDER";
 
     private static final String SHARED_ID = "SHARED_ID";
     private static final String BUNDLE_RESTORE_PARENT_ID = "BUNDLE_RESTORE_PARENT_ID";
@@ -77,13 +78,27 @@ public class ProcessDashboardActivity extends BaseActivity implements ProcessDas
         }
     }
 
+    //save sharedPreferences long about fmei Id
+    private void saveSharedPreferences(long parentId){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_ID, MODE_PRIVATE);
+        sharedPreferences.edit().putLong(BUNDLE_RESTORE_PARENT_ID, parentId).apply();
+    }
+
     // BUTTON FRAGMENT
     @Override
     public void processDashBoard_To_RiskFile(View view, long riskId, long parentId) {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_ID, MODE_PRIVATE);
-        sharedPreferences.edit().putLong(BUNDLE_RESTORE_PARENT_ID, parentId).apply();
+        saveSharedPreferences(parentId);
         Intent intent = new Intent(this, RiskFileActivity.class);
         intent.putExtra(RISK_ID_TO_RISK_DASHBOARD, riskId);
+        startActivity(intent);
+    }
+
+    // BUTTON PROCESSUS BUILDER
+    @Override
+    public void processDashBoard_To_ProcessusBuilder(View view, long parentId) {
+        saveSharedPreferences(parentId);
+        Intent intent = new Intent(this, ProcessusBuilderActivity.class);
+        intent.putExtra(PROCESS_DASHBOARD_TO_PROCESS_BUILDER, parentId);
         startActivity(intent);
     }
 

@@ -29,7 +29,7 @@ public class BusinnessProcessusTheme {
         StringBuilder result = new StringBuilder();
 
         for (int i = 0 ; i < processusList.size() ; i++){
-            result.append(processusList.get(i).getId() + "/");
+            result.append(processusList.get(i).getStep() + "/");
         }
 
         Log.i(Utils.INFORMATION_LOG, result.toString());

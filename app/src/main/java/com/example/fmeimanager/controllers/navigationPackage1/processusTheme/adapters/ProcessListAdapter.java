@@ -1,4 +1,4 @@
-package com.example.fmeimanager.adapters.viewholders;
+package com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.fmeimanager.R;
+import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.viewholders.ProcessListViewHolder;
 import com.example.fmeimanager.models.Risk;
 
 import java.util.List;
