@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 import com.example.fmeimanager.R;
+import com.example.fmeimanager.models.Processus;
 import com.example.fmeimanager.models.Risk;
 
 import butterknife.BindView;
@@ -23,13 +24,13 @@ public class ProcessListViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, mItemView);
     }
 
-    public void updateWithAdapterInformation(Risk risk, int processusStep, boolean single){
+    public void updateWithAdapterInformation(Risk risk, Processus processus, boolean single){
         if (single) {
-            String processusTitle = "PROCESSUS " + String.valueOf(processusStep);
+            String processusTitle = processus.getName();
             mProcessIdTitle.setText(processusTitle);
             mRiskIdTitle.setVisibility(View.GONE);
         } else {
-            String processusTitle = "PROCESSUS " + String.valueOf(processusStep);
+            String processusTitle = processus.getName();
             mProcessIdTitle.setVisibility(View.GONE);
             String riskTitle = "RISK " + String.valueOf(risk.getId());
             mRiskIdTitle.setText(riskTitle);

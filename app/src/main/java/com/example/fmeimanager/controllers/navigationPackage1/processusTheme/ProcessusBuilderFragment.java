@@ -2,6 +2,7 @@ package com.example.fmeimanager.controllers.navigationPackage1.processusTheme;
 
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,11 +28,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.app.Activity.RESULT_OK;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProcessusBuilderFragment extends Fragment {
+public class ProcessusBuilderFragment extends Fragment implements ProcessusBuilderAdapter.Listener{
 
     private View mView;
     private long mFmeiId;
@@ -39,6 +42,9 @@ public class ProcessusBuilderFragment extends Fragment {
     private List<Processus> mProcessusList = new ArrayList<>();
     private ProcessusBuilderAdapter mAdapter;
 
+    public static final String BUNDLE_KEY_PROCESSUS_NAME = "BUNDLE_KEY_PROCESSUS_NAME";
+    public static final String BUNDLE_KEY_PROCESSUS_POSITION = "BUNDLE_KEY_PROCESSUS_POSITION";
+    private static final int REQUEST_CODE_WRITE_ACTIVITY  = 10023;
 
     @BindView(R.id.fragment_processus_builder_recycler_view) RecyclerView mRecyclerView;
     @BindView(R.id.processus_builder_fmei_indicator_number) TextView mFmeiIndicator;
@@ -68,7 +74,7 @@ public class ProcessusBuilderFragment extends Fragment {
 
     //configure recyclerView
     private void configureRecyclerView(){
-        this.mAdapter = new ProcessusBuilderAdapter(this.mProcessusList);
+        this.mAdapter = new ProcessusBuilderAdapter(this.mProcessusList, this);
         this.mRecyclerView.setAdapter(mAdapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -105,10 +111,17 @@ public class ProcessusBuilderFragment extends Fragment {
 
     public void saveBuilder() {
         Log.i(Utils.INFORMATION_LOG, "PROCESSUS BUILDER SAVE - FMEI ID = " + mFmeiId);
+        for (int i = 0 ; i < mProcessusList.size() ; i++){
+            this.mProcessusViewModel.updateProcessus(mProcessusList.get(i));
+        }
+        getActivity().finish();
     }
 
+    //ADD a new Processus
     public void addProcessus() {
-        Log.i(Utils.INFORMATION_LOG, "PROCESSUS BUILDER ADD - PROCESSUS ID = ");
+        Log.i(Utils.INFORMATION_LOG, "PROCESSUS BUILDER ADD - PROCESSUS STEP = " + String.valueOf(mProcessusList.size()+1));
+        Processus processus = new Processus("processus_" + String.valueOf(mProcessusList.size()+1), mFmeiId, mProcessusList.size()+1);
+        this.mProcessusViewModel.createProcessus(processus);
     }
 
     /**
@@ -137,5 +150,50 @@ public class ProcessusBuilderFragment extends Fragment {
         mFmeiIndicator.setText(string);
     }
 
+    @Override
+    public void onClickUpButton(int position) {
+        Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) UP " + position);
+        if (position != 0){
+            mProcessusList.get(position).setStep(position);
+            mProcessusList.get(position-1).setStep(position+1);
+            mProcessusList = BusinnessProcessusTheme.getProcessusByStepLadder(mProcessusList);
+            this.updateRecycler(mProcessusList);
+        }else {
+            Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) NO " + position);
+        }
+    }
 
+    @Override
+    public void onClickDownButton(int position) {
+        Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) DOWN " + position + "PROCESSUS LIST : " + mProcessusList.size());
+        if (position != mProcessusList.size()-1){
+            mProcessusList.get(position).setStep(position+2);
+            mProcessusList.get(position+1).setStep(position+1);
+            mProcessusList = BusinnessProcessusTheme.getProcessusByStepLadder(mProcessusList);
+            this.updateRecycler(mProcessusList);
+        }else {
+            Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) NO " + position);
+        }
+    }
+
+    @Override
+    public void onClickWritteButton(int position) {
+        Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) WRITTE " + position);
+        Intent intent = new Intent(getActivity(), WriteFromProcessusBuilderActivity.class);
+        intent.putExtra(BUNDLE_KEY_PROCESSUS_NAME, mProcessusList.get(position).getName());
+        intent.putExtra(BUNDLE_KEY_PROCESSUS_POSITION, position);
+        startActivityForResult(intent,REQUEST_CODE_WRITE_ACTIVITY);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (REQUEST_CODE_WRITE_ACTIVITY == requestCode && RESULT_OK == resultCode){
+            String name = data.getStringExtra(WriteFromProcessusBuilderActivity.BUNDLE_WRITE_ACTIVITY_PROCESSUS_NAME);
+            int position = data.getIntExtra(WriteFromProcessusBuilderActivity.BUNDLE_WRITE_ACTIVITY_PROCESSUS_POSITION, 100000);
+            if (name != null && position != 100000){
+                mProcessusList.get(position).setName(name);
+            }
+            this.updateRecycler(mProcessusList);
+        }
+    }
 }

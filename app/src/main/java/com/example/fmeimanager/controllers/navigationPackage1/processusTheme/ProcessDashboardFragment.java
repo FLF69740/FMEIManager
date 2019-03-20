@@ -82,14 +82,14 @@ public class ProcessDashboardFragment extends Fragment {
 
     //configure recyclerView
     private void configureRecyclerView(){
-        this.mAdapter = new ProcessListAdapter(this.mRiskList, this.mStepProcessusList);
+        this.mAdapter = new ProcessListAdapter(this.mRiskList, this.mProcessusList);
         this.mRecyclerView.setAdapter(mAdapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     //update recyclerView after other thread finalisation
-    private void updateRecycler(List<Risk> riskList, List<Integer> processusStepList, List<Boolean> singleTitleList){
-        mAdapter.setProcessusList(riskList, processusStepList, singleTitleList);
+    private void updateRecycler(List<Risk> riskList, List<Processus> processusList, List<Boolean> singleTitleList){
+        mAdapter.setProcessusList(riskList, processusList, singleTitleList);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -219,23 +219,26 @@ public class ProcessDashboardFragment extends Fragment {
     //RECORD all risk INTO OBJECT
     private void updateRiskList(List<Risk> risks) {
         if (risks != null) {
-            mStepProcessusList.clear();
+      //      mStepProcessusList.clear();
+            List<Processus> processusList = new ArrayList<>();
             mRiskList.clear();
             mTitleProcessSingle.clear();
             for (int i = 0 ; i < mProcessusList.size() ; i++){
                 Log.i(Utils.INFORMATION_LOG, String.valueOf(i));
-                mStepProcessusList.add(mProcessusList.get(i).getStep());
+        //        mStepProcessusList.add(mProcessusList.get(i).getStep());
+                processusList.add(mProcessusList.get(i));
                 mRiskList.add(new Risk());
                 mTitleProcessSingle.add(true);
                 for (int j = 0 ; j < risks.size() ; j++) {
                     if (risks.get(j).getProcessusId() == mProcessusList.get(i).getId()) {
                         mRiskList.add(risks.get(j));
-                        mStepProcessusList.add(mProcessusList.get(i).getStep());
+                     //   mStepProcessusList.add(mProcessusList.get(i).getStep());
+                        processusList.add(mProcessusList.get(i));
                         mTitleProcessSingle.add(false);
                     }
                 }
             }
-            this.updateRecycler(mRiskList, mStepProcessusList, mTitleProcessSingle);
+            this.updateRecycler(mRiskList, processusList, mTitleProcessSingle);
         }
     }
 

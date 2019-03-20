@@ -19,33 +19,35 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_processus_builder_item_more"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_processus_builder_item_up"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/fragment_processus_builder_item_more"
+        android:id="@+id/fragment_processus_builder_item_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:tag="UP"
         android:src="@mipmap/baseline_arrow_drop_up_white_24"
         android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_processus_builder_processus_step_title"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_processus_builder_item_less"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_processus_builder_item_down"
         app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_processus_step_title" />
 
     <ImageButton
-        android:id="@+id/fragment_processus_builder_item_less"
+        android:id="@+id/fragment_processus_builder_item_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:tag="DOWN"
         android:src="@mipmap/baseline_arrow_drop_down_white_24"
         android:background="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_processus_builder_item_more"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_processus_builder_item_up"
         app:layout_constraintEnd_toStartOf="@+id/fragment_processus_builder_item_writte"
-        app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_item_more" />
+        app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_item_up" />
 
     <ImageButton
         android:id="@+id/fragment_processus_builder_item_writte"
@@ -53,10 +55,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:tag="WRITTE"
         android:src="@mipmap/baseline_font_download_white_24"
         android:background="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_processus_builder_item_less"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_processus_builder_item_down"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_item_less" />
+        app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_item_down" />
 
 </android.support.constraint.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.viewholders.ProcessListViewHolder;
+import com.example.fmeimanager.models.Processus;
 import com.example.fmeimanager.models.Risk;
 
 import java.util.List;
@@ -15,16 +16,16 @@ import java.util.List;
 public class ProcessListAdapter extends RecyclerView.Adapter<ProcessListViewHolder>{
 
     private List<Risk> mRiskList;
-    private List<Integer> mProcessusStepList;
+    private List<Processus> mProcessusList;
     private List<Boolean> mStepSingleTitle;
 
-    public ProcessListAdapter(List<Risk> riskList, List<Integer> processusList) {
-        mProcessusStepList = processusList;
+    public ProcessListAdapter(List<Risk> riskList, List<Processus> processusList) {
+        mProcessusList = processusList;
         mRiskList = riskList;
     }
 
-    public void setProcessusList(List<Risk> riskList, List<Integer> processusList, List<Boolean> stepSingleTitle){
-        mProcessusStepList = processusList;
+    public void setProcessusList(List<Risk> riskList, List<Processus> processusList, List<Boolean> stepSingleTitle){
+        mProcessusList = processusList;
         mRiskList = riskList;
         mStepSingleTitle = stepSingleTitle;
     }
@@ -41,7 +42,7 @@ public class ProcessListAdapter extends RecyclerView.Adapter<ProcessListViewHold
     @Override
     public void onBindViewHolder(@NonNull ProcessListViewHolder processListViewHolder, int i) {
         processListViewHolder.setIsRecyclable(false);
-        processListViewHolder.updateWithAdapterInformation(this.mRiskList.get(i), this.mProcessusStepList.get(i), this.mStepSingleTitle.get(i));
+        processListViewHolder.updateWithAdapterInformation(this.mRiskList.get(i), this.mProcessusList.get(i), this.mStepSingleTitle.get(i));
     }
 
     @Override

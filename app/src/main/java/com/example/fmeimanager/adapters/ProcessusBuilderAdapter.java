@@ -16,8 +16,16 @@ import java.util.List;
 public class ProcessusBuilderAdapter extends RecyclerView.Adapter<ProcessusBuilderViewHolder> {
 
     private List<Processus> mProcessusList;
+    private final Listener mCallback;
 
-    public ProcessusBuilderAdapter(List<Processus> processusList) {
+    public interface Listener{
+        void onClickUpButton(int position);
+        void onClickDownButton(int position);
+        void onClickWritteButton(int position);
+    }
+
+    public ProcessusBuilderAdapter(List<Processus> processusList, Listener callback) {
+        mCallback = callback;
         mProcessusList = processusList;
     }
 
@@ -36,7 +44,7 @@ public class ProcessusBuilderAdapter extends RecyclerView.Adapter<ProcessusBuild
 
     @Override
     public void onBindViewHolder(@NonNull ProcessusBuilderViewHolder processusBuilderViewHolder, int i) {
-        processusBuilderViewHolder.updateWithAdapterInformation(this.mProcessusList.get(i));
+        processusBuilderViewHolder.updateWithAdapterInformation(this.mProcessusList.get(i), this.mCallback);
     }
 
     @Override

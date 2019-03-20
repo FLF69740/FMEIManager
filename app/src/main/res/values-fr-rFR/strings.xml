@@ -23,4 +23,10 @@
     <string name="Help_title">AIDE</string>
     <string name="About_title">AU SUJET DE</string>
     <string name="Process_builder_title">ORGANISATION PROCESSUS</string>
+    <string name="Process_builder_button_write_title">RENOMMER</string>
+    <string name="writte_activity_advertising_first_paragraph">Vous souhaitez renommer l\'étape de processus appelée</string>
+    <string name="writte_activity_advertising_second_paragraph">par</string>
+    <string name="VALIDATE_Btn">VALIDER</string>
+    <string name="CANCEL_Btn">ANNULER</string>
+    <string name="writte_activity_editext_hint">Nouveau nom</string>
 </resources>
