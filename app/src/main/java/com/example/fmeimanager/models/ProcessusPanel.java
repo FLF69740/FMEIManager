@@ -9,6 +9,7 @@ public class ProcessusPanel {
     private int mRiskId;
     private String mTitleRisk;
     private String mCreationDateRisk;
+    private long mResponsableRiskId;
     private String mResponsableRisk;
     private int mIPR;
     private int mGravivity;
@@ -24,6 +25,7 @@ public class ProcessusPanel {
         mProcessusStep = processusStep;
         mProcessusName = processusName;
         mIsATittle = isATittle;
+        mCorrectiveIndicator = 0;
         mProcessusEditFull = false;
         mRiskEditFull = false;
         mCorrectiveEditFull = false;
@@ -44,6 +46,7 @@ public class ProcessusPanel {
     public int getDetectability() {return mDetectability;}
     public int getCorrectiveIndicator() {return mCorrectiveIndicator;}
     public String getProcessusName() {return mProcessusName;}
+    public long getResponsableRiskId() {return mResponsableRiskId;}
     public boolean isProcessusEditFull() {return mProcessusEditFull;}
     public boolean isRiskEditFull() {return mRiskEditFull;}
     public boolean isCorrectiveEditFull() {return mCorrectiveEditFull;}
@@ -63,6 +66,7 @@ public class ProcessusPanel {
     public void setDetectability(int detectability) {mDetectability = detectability;}
     public void setCorrectiveIndicator(int correctiveIndicator) {mCorrectiveIndicator = correctiveIndicator;}
     public void setProcessusName(String processusName) {mProcessusName = processusName;}
+    public void setResponsableRiskId(long responsableRiskId) {mResponsableRiskId = responsableRiskId;}
     public void setProcessusEditFull(boolean processusEditFull) {mProcessusEditFull = processusEditFull;}
     public void setRiskEditFull(boolean riskEditFull) {mRiskEditFull = riskEditFull;}
     public void setCorrectiveEditFull(boolean correctiveEditFull) {mCorrectiveEditFull = correctiveEditFull;}

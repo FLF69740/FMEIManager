@@ -50,7 +50,6 @@ public class ProcessDashboardFragment extends Fragment {
     private ProcessusViewModel mProcessusViewModel;
     private long mFmeiId;
     private List<Processus> mProcessusList = new ArrayList<>();
-    private List<CorrectiveAction> mCorrectiveActionList = new ArrayList<>();
     private ProcessListAdapter mAdapter;
     private List<ProcessusPanel> mProcessusPanels = new ArrayList<>();
 
@@ -81,17 +80,13 @@ public class ProcessDashboardFragment extends Fragment {
 
     //configure recyclerView
     private void configureRecyclerView(){
-    //    this.mAdapter = new ProcessListAdapter(this.mRiskList, this.mProcessusList);
         this.mAdapter = new ProcessListAdapter(this.mProcessusPanels);
         this.mRecyclerView.setAdapter(mAdapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    //update recyclerView after other thread finalisation
- //   private void updateRecycler(List<Risk> riskList, List<Processus> processusList, List<Boolean> singleTitleList){
     private void updateRecycler(List<ProcessusPanel> processusPanelList){
-     //   mAdapter.setProcessusList(riskList, processusList, singleTitleList);
-        mAdapter.setProcessusList(mProcessusPanels);
+        mAdapter.setProcessusList(processusPanelList);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -157,11 +152,15 @@ public class ProcessDashboardFragment extends Fragment {
         this.mProcessusViewModel.getAllCorrectiveAction().observe(this, this::updateCorrectiveActionList);
     }
 
+    //GET all Participant
+    private void getAllParticipant(){
+        this.mProcessusViewModel.getAllParticipant().observe(this, this::updateParticipantList);
+    }
+
 
 
     //LAUNCH PROCESSUS BUILDER
     public void createProcessus(){
-    //    simulationCreateProcessus();
         mCallback.processDashBoard_To_ProcessusBuilder(mView, mFmeiId);
     }
 
@@ -209,7 +208,7 @@ public class ProcessDashboardFragment extends Fragment {
     }
 
     //RECORD all processus about the FMEI Id
-    private void updateProcessusList(List<Processus> processuses) {
+    private void updateProcessusList(List<Processus> processuses){
         updateFragmentScreen(mFmeiId);
         if (processuses != null && processuses.size() != 0){
             mProcessusList = BusinnessProcessusTheme.getProcessusByStepLadder(processuses);
@@ -219,7 +218,7 @@ public class ProcessDashboardFragment extends Fragment {
     }
 
     //RECORD all risk INTO PANEL
-    private void updateRiskList(List<Risk> risks) {
+    private void updateRiskList(List<Risk> risks){
         if (risks != null) {
             mProcessusPanels = new ArrayList<>();
 
@@ -239,23 +238,39 @@ public class ProcessDashboardFragment extends Fragment {
                     }
                 }
             }
-            this.updateRecycler(mProcessusPanels);
+            getAllCorrectiveActions();
+        }
+    }
+
+    //RECORD all corrective action INTO PANEL
+    private void updateCorrectiveActionList(List<CorrectiveAction> correctiveActions){
+        if (correctiveActions != null) {
+            for (int i = 0 ; i < mProcessusPanels.size() ; i++){
+                for (int j = 0 ; j < correctiveActions.size() ; j++){
+                    if (correctiveActions.get(j).getRiskId() == mProcessusPanels.get(i).getRiskId()){
+                        mProcessusPanels.get(i).setCorrectiveIndicator(correctiveActions.get(j).getNewGravity() *
+                                correctiveActions.get(j).getNewDetectability() * correctiveActions.get(j).getNewFrequencies());
+                        mProcessusPanels.get(i).setCorrectiveEditFull(true);
+                    }
+                }
+            }
+            getAllParticipant();
         }
     }
 
     //RECORD participant INTO PANEL
-
-
-
-
-
-
-    //RECORD all corrective action INTO PANEL
-    private void updateCorrectiveActionList(List<CorrectiveAction> correctiveActions) {
-        if (correctiveActions != null) {
-            mCorrectiveActionList = correctiveActions;
+    private void updateParticipantList(List<Participant> participants){
+        if (participants != null){
+            for (int i = 0 ; i < mProcessusPanels.size() ; i++){
+                for (int j = 0 ; j < participants.size() ; j++){
+                    if (participants.get(j).getId() == mProcessusPanels.get(i).getResponsableRiskId()){
+                        mProcessusPanels.get(i).setResponsableRisk(participants.get(j).getName());
+                        mProcessusPanels.get(i).setParticipantEditFull(true);
+                    }
+                }
+            }
+            this.updateRecycler(mProcessusPanels);
         }
-       // Toast.makeText(getContext(), "CO  : " + String.valueOf(mCorrectiveActionList.size()), Toast.LENGTH_SHORT).show();
     }
 
     /**

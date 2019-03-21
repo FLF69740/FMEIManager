@@ -2,6 +2,7 @@ package com.example.fmeimanager.controllers.navigationPackage1.processusTheme;
 
 import android.util.Log;
 
+import com.example.fmeimanager.models.CorrectiveAction;
 import com.example.fmeimanager.models.Processus;
 import com.example.fmeimanager.models.ProcessusPanel;
 import com.example.fmeimanager.models.Risk;
@@ -43,8 +44,9 @@ public class BusinnessProcessusTheme {
      */
 
     public static ProcessusPanel incubeProcessusintoPanel(Processus processus, boolean isATitle){
-        ProcessusPanel processusPanel = new ProcessusPanel(processus.getStep(),processus.getName(), isATitle);
+        ProcessusPanel processusPanel = new ProcessusPanel(processus.getStep(), processus.getName(), isATitle);
         processusPanel.setProcessusVisible(processus.isVisible());
+        processusPanel.setProcessusEditFull(true);
         return processusPanel;
     }
 
@@ -56,6 +58,7 @@ public class BusinnessProcessusTheme {
         processusPanel.setGravivity(risk.getGravity());
         processusPanel.setFrequencies(risk.getFrequencies());
         processusPanel.setDetectability(risk.getDetectability());
+        processusPanel.setResponsableRiskId(risk.getParticipantId());
         processusPanel.setRiskEditFull(true);
         return processusPanel;
     }
