@@ -1,4 +1,4 @@
-package com.example.fmeimanager.adapters;
+package com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.adapters.viewholders.ProcessusBuilderViewHolder;
+import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.viewholders.ProcessusBuilderViewHolder;
 import com.example.fmeimanager.models.Processus;
 
 import java.util.List;

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.models.Processus;
+import com.example.fmeimanager.models.ProcessusPanel;
 import com.example.fmeimanager.models.Risk;
 
 import butterknife.BindView;
@@ -23,7 +24,7 @@ public class ProcessListViewHolder extends RecyclerView.ViewHolder {
         mItemView = itemView;
         ButterKnife.bind(this, mItemView);
     }
-
+/*
     public void updateWithAdapterInformation(Risk risk, Processus processus, boolean single){
         if (processus.isVisible()) {
             if (single) {
@@ -40,6 +41,22 @@ public class ProcessListViewHolder extends RecyclerView.ViewHolder {
             mProcessIdTitle.setVisibility(View.GONE);
         }
     }
-
+*/
+    public void updateWithAdapterInformation(ProcessusPanel processusPanel){
+        if (processusPanel.isProcessusVisible()){
+            if (processusPanel.isATittle()) {
+                String processusTitle = processusPanel.getProcessusName();
+                mProcessIdTitle.setText(processusTitle);
+                mRiskIdTitle.setVisibility(View.GONE);
+            } else {
+                mProcessIdTitle.setVisibility(View.GONE);
+                String riskTitle = "RISK " + String.valueOf(processusPanel.getRiskId());
+                mRiskIdTitle.setText(riskTitle);
+            }
+        }else {
+                mRiskIdTitle.setVisibility(View.GONE);
+                mProcessIdTitle.setVisibility(View.GONE);
+        }
+    }
 
 }

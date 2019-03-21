@@ -8,26 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.viewholders.ProcessListViewHolder;
-import com.example.fmeimanager.models.Processus;
-import com.example.fmeimanager.models.Risk;
+import com.example.fmeimanager.models.ProcessusPanel;
 
 import java.util.List;
 
 public class ProcessListAdapter extends RecyclerView.Adapter<ProcessListViewHolder>{
 
-    private List<Risk> mRiskList;
-    private List<Processus> mProcessusList;
-    private List<Boolean> mStepSingleTitle;
+    private List<ProcessusPanel> mProcessusPanelList;
 
-    public ProcessListAdapter(List<Risk> riskList, List<Processus> processusList) {
-        mProcessusList = processusList;
-        mRiskList = riskList;
+    public ProcessListAdapter(List<ProcessusPanel> processusPanelList) {
+        mProcessusPanelList = processusPanelList;
     }
 
-    public void setProcessusList(List<Risk> riskList, List<Processus> processusList, List<Boolean> stepSingleTitle){
-        mProcessusList = processusList;
-        mRiskList = riskList;
-        mStepSingleTitle = stepSingleTitle;
+    public void setProcessusList(List<ProcessusPanel> processusPanelList){
+        mProcessusPanelList = processusPanelList;
     }
 
     @NonNull
@@ -42,16 +36,16 @@ public class ProcessListAdapter extends RecyclerView.Adapter<ProcessListViewHold
     @Override
     public void onBindViewHolder(@NonNull ProcessListViewHolder processListViewHolder, int i) {
         processListViewHolder.setIsRecyclable(false);
-        processListViewHolder.updateWithAdapterInformation(this.mRiskList.get(i), this.mProcessusList.get(i), this.mStepSingleTitle.get(i));
+        processListViewHolder.updateWithAdapterInformation(this.mProcessusPanelList.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return mRiskList.size();
+        return mProcessusPanelList.size();
     }
 
-    public Risk getProcessus(int position) {
-        return  mRiskList.get(position);
+    public ProcessusPanel getProcessusPanel(int position){
+        return mProcessusPanelList.get(position);
     }
 
 

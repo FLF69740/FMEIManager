@@ -1,4 +1,4 @@
-package com.example.fmeimanager.adapters.viewholders;
+package com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.viewholders;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,9 +7,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.bumptech.glide.request.target.ThumbnailImageViewTarget;
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.adapters.ProcessusBuilderAdapter;
+import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.ProcessusBuilderAdapter;
 import com.example.fmeimanager.models.Processus;
 import com.example.fmeimanager.utils.Utils;
 

@@ -22,6 +22,7 @@ import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.models.CorrectiveAction;
 import com.example.fmeimanager.models.Participant;
 import com.example.fmeimanager.models.Processus;
+import com.example.fmeimanager.models.ProcessusPanel;
 import com.example.fmeimanager.models.Risk;
 import com.example.fmeimanager.utils.RecyclerItemClickSupport;
 import com.example.fmeimanager.utils.Utils;
@@ -49,11 +50,9 @@ public class ProcessDashboardFragment extends Fragment {
     private ProcessusViewModel mProcessusViewModel;
     private long mFmeiId;
     private List<Processus> mProcessusList = new ArrayList<>();
-    private List<Integer> mStepProcessusList = new ArrayList<>();
-    private List<Risk> mRiskList = new ArrayList<>();
-    private List<Boolean> mTitleProcessSingle = new ArrayList<>();
     private List<CorrectiveAction> mCorrectiveActionList = new ArrayList<>();
     private ProcessListAdapter mAdapter;
+    private List<ProcessusPanel> mProcessusPanels = new ArrayList<>();
 
     @BindView(R.id.fragment_process_recycler_view) RecyclerView mRecyclerView;
     @BindView(R.id.process_fmei_indicator_number) TextView mFmeiIndicator;
@@ -82,14 +81,17 @@ public class ProcessDashboardFragment extends Fragment {
 
     //configure recyclerView
     private void configureRecyclerView(){
-        this.mAdapter = new ProcessListAdapter(this.mRiskList, this.mProcessusList);
+    //    this.mAdapter = new ProcessListAdapter(this.mRiskList, this.mProcessusList);
+        this.mAdapter = new ProcessListAdapter(this.mProcessusPanels);
         this.mRecyclerView.setAdapter(mAdapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     //update recyclerView after other thread finalisation
-    private void updateRecycler(List<Risk> riskList, List<Processus> processusList, List<Boolean> singleTitleList){
-        mAdapter.setProcessusList(riskList, processusList, singleTitleList);
+ //   private void updateRecycler(List<Risk> riskList, List<Processus> processusList, List<Boolean> singleTitleList){
+    private void updateRecycler(List<ProcessusPanel> processusPanelList){
+     //   mAdapter.setProcessusList(riskList, processusList, singleTitleList);
+        mAdapter.setProcessusList(mProcessusPanels);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -97,8 +99,8 @@ public class ProcessDashboardFragment extends Fragment {
     private void configureOnClickRecyclerView(){
         RecyclerItemClickSupport.addTo(mRecyclerView, R.layout.fragment_process_recyclerview_item)
                 .setOnItemClickListener((recyclerView, position, v) -> {
-                    if (mRiskList.get(position).getId() != 0) {
-                        mCallback.processDashBoard_To_RiskFile(mView, mRiskList.get(position).getId(), mFmeiId);
+                    if (mProcessusPanels.get(position).getRiskId() != 0) {
+                        mCallback.processDashBoard_To_RiskFile(mView, mProcessusPanels.get(position).getRiskId(), mFmeiId);
                     }
                 });
     }
@@ -216,33 +218,39 @@ public class ProcessDashboardFragment extends Fragment {
         }
     }
 
-    //RECORD all risk INTO OBJECT
+    //RECORD all risk INTO PANEL
     private void updateRiskList(List<Risk> risks) {
         if (risks != null) {
-      //      mStepProcessusList.clear();
-            List<Processus> processusList = new ArrayList<>();
-            mRiskList.clear();
-            mTitleProcessSingle.clear();
+            mProcessusPanels = new ArrayList<>();
+
             for (int i = 0 ; i < mProcessusList.size() ; i++){
-                Log.i(Utils.INFORMATION_LOG, String.valueOf(i));
-        //        mStepProcessusList.add(mProcessusList.get(i).getStep());
-                processusList.add(mProcessusList.get(i));
-                mRiskList.add(new Risk());
-                mTitleProcessSingle.add(true);
+                mProcessusPanels.add(BusinnessProcessusTheme.incubeProcessusintoPanel(mProcessusList.get(i), true));
+
+                Log.i(Utils.INFORMATION_LOG, mProcessusPanels.get(
+                        mProcessusPanels.size()-1).getProcessusName() + " " + String.valueOf(mProcessusPanels.get(mProcessusPanels.size()-1).isATittle()));
+
                 for (int j = 0 ; j < risks.size() ; j++) {
+
                     if (risks.get(j).getProcessusId() == mProcessusList.get(i).getId()) {
-                        mRiskList.add(risks.get(j));
-                     //   mStepProcessusList.add(mProcessusList.get(i).getStep());
-                        processusList.add(mProcessusList.get(i));
-                        mTitleProcessSingle.add(false);
+
+                        mProcessusPanels.add(BusinnessProcessusTheme.incubeRiskIntoPanel(
+                                BusinnessProcessusTheme.incubeProcessusintoPanel(mProcessusList.get(i),false),
+                                risks.get(j)));
                     }
                 }
             }
-            this.updateRecycler(mRiskList, processusList, mTitleProcessSingle);
+            this.updateRecycler(mProcessusPanels);
         }
     }
 
-    //RECORD all corrective action INTO OBJECT
+    //RECORD participant INTO PANEL
+
+
+
+
+
+
+    //RECORD all corrective action INTO PANEL
     private void updateCorrectiveActionList(List<CorrectiveAction> correctiveActions) {
         if (correctiveActions != null) {
             mCorrectiveActionList = correctiveActions;

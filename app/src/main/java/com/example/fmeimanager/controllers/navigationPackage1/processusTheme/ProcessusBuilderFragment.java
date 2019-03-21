@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.adapters.ProcessusBuilderAdapter;
+import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.ProcessusBuilderAdapter;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.models.Participant;
