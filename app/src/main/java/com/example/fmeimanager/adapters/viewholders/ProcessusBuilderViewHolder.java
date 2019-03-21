@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.target.ThumbnailImageViewTarget;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.adapters.ProcessusBuilderAdapter;
 import com.example.fmeimanager.models.Processus;
@@ -26,6 +27,8 @@ public class ProcessusBuilderViewHolder extends RecyclerView.ViewHolder implemen
     @BindView(R.id.fragment_processus_builder_item_up) ImageButton mImageButtonUp;
     @BindView(R.id.fragment_processus_builder_item_down) ImageButton mImageButtonDown;
     @BindView(R.id.fragment_processus_builder_item_writte) ImageButton mImageButtonWritte;
+    @BindView(R.id.fragment_processus_builder_item_invisible) ImageButton mImageButtonInvisible;
+    @BindView(R.id.fragment_processus_builder_item_visible) ImageButton mImageButtonVisible;
 
     public ProcessusBuilderViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -38,9 +41,19 @@ public class ProcessusBuilderViewHolder extends RecyclerView.ViewHolder implemen
         this.mImageButtonDown.setOnClickListener(this);
         this.mImageButtonUp.setOnClickListener(this);
         this.mImageButtonWritte.setOnClickListener(this);
+        this.mImageButtonVisible.setOnClickListener(this);
+        this.mImageButtonInvisible.setOnClickListener(this);
         this.mProcessusTitle.setText(processusTitle);
 
-        this.mCallbackWeakRef = new WeakReference<ProcessusBuilderAdapter.Listener>(callback);
+        this.mCallbackWeakRef = new WeakReference<>(callback);
+
+        if (processus.isVisible()){
+            mImageButtonVisible.setVisibility(View.VISIBLE);
+            mImageButtonInvisible.setVisibility(View.INVISIBLE);
+        }else {
+            mImageButtonVisible.setVisibility(View.INVISIBLE);
+            mImageButtonInvisible.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -59,6 +72,18 @@ public class ProcessusBuilderViewHolder extends RecyclerView.ViewHolder implemen
             case "DOWN":
                 Log.i(Utils.INFORMATION_LOG,"DOWN");
                 if (callback != null) callback.onClickDownButton(getAdapterPosition());
+                break;
+            case "VISIBLE":
+                Log.i(Utils.INFORMATION_LOG,"VISIBLE");
+             //   mImageButtonVisible.setVisibility(View.INVISIBLE);
+             //   mImageButtonInvisible.setVisibility(View.VISIBLE);
+                if (callback != null) callback.onClickVisibleButton(getAdapterPosition());
+                break;
+            case "INVISIBLE":
+                Log.i(Utils.INFORMATION_LOG,"INVISIBLE");
+             //   mImageButtonVisible.setVisibility(View.VISIBLE);
+             //   mImageButtonInvisible.setVisibility(View.INVISIBLE);
+                if (callback != null) callback.onClickInvisibleButton(getAdapterPosition());
                 break;
         }
     }

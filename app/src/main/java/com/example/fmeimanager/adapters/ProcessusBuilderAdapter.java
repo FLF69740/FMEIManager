@@ -22,6 +22,8 @@ public class ProcessusBuilderAdapter extends RecyclerView.Adapter<ProcessusBuild
         void onClickUpButton(int position);
         void onClickDownButton(int position);
         void onClickWritteButton(int position);
+        void onClickVisibleButton(int position);
+        void onClickInvisibleButton(int position);
     }
 
     public ProcessusBuilderAdapter(List<Processus> processusList, Listener callback) {

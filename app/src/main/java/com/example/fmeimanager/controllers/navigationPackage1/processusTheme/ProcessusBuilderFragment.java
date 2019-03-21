@@ -186,6 +186,24 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
     }
 
     @Override
+    public void onClickVisibleButton(int position) {
+        Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) INVISIBLE " + position);
+        mProcessusList.get(position).setVisible(false);
+        this.updateRecycler(mProcessusList);
+    }
+
+    @Override
+    public void onClickInvisibleButton(int position) {
+        Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) VISIBLE " + position);
+        mProcessusList.get(position).setVisible(true);
+        this.updateRecycler(mProcessusList);
+    }
+
+    /**
+     *  ACTIVITY FOR RESULT
+     */
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (REQUEST_CODE_WRITE_ACTIVITY == requestCode && RESULT_OK == resultCode){
             String name = data.getStringExtra(WriteFromProcessusBuilderActivity.BUNDLE_WRITE_ACTIVITY_PROCESSUS_NAME);

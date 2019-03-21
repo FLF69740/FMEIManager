@@ -25,15 +25,19 @@ public class ProcessListViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void updateWithAdapterInformation(Risk risk, Processus processus, boolean single){
-        if (single) {
-            String processusTitle = processus.getName();
-            mProcessIdTitle.setText(processusTitle);
-            mRiskIdTitle.setVisibility(View.GONE);
+        if (processus.isVisible()) {
+            if (single) {
+                String processusTitle = processus.getName();
+                mProcessIdTitle.setText(processusTitle);
+                mRiskIdTitle.setVisibility(View.GONE);
+            } else {
+                mProcessIdTitle.setVisibility(View.GONE);
+                String riskTitle = "RISK " + String.valueOf(risk.getId());
+                mRiskIdTitle.setText(riskTitle);
+            }
         } else {
-            String processusTitle = processus.getName();
+            mRiskIdTitle.setVisibility(View.GONE);
             mProcessIdTitle.setVisibility(View.GONE);
-            String riskTitle = "RISK " + String.valueOf(risk.getId());
-            mRiskIdTitle.setText(riskTitle);
         }
     }
 

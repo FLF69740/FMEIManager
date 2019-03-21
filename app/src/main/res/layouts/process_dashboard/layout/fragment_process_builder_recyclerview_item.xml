@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -55,11 +54,35 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:tag="WRITTE"
-        android:src="@mipmap/baseline_font_download_white_24"
         android:background="@color/colorPrimary"
+        android:src="@mipmap/baseline_font_download_white_24"
+        android:tag="WRITTE"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_processus_builder_item_down"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_processus_builder_item_visible"
         app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_item_down" />
+
+    <ImageButton
+        android:id="@+id/fragment_processus_builder_item_visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorPrimary"
+        android:src="@mipmap/baseline_visibility_white_24"
+        android:tag="VISIBLE"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_processus_builder_item_writte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_item_writte" />
+
+    <ImageButton
+        android:id="@+id/fragment_processus_builder_item_invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:src="@mipmap/baseline_visibility_off_white_24"
+        android:tag="INVISIBLE"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_processus_builder_item_visible"
+        app:layout_constraintStart_toStartOf="@+id/fragment_processus_builder_item_visible"
+        app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_item_visible" />
 
 </android.support.constraint.ConstraintLayout>
