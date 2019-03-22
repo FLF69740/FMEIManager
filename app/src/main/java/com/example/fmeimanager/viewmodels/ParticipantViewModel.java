@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.Nullable;
 
-import com.example.fmeimanager.models.Participant;
+import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.repositories.ParticipantDataRepository;
 
 import java.util.List;

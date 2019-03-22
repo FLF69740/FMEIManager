@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackage1.fmeiTheme.adapters.viewholders.FmeiListViewHolder;
-import com.example.fmeimanager.models.Fmei;
+import com.example.fmeimanager.database.Fmei;
 
 import java.util.List;
 

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
-import com.example.fmeimanager.models.Participant;
+import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.viewmodels.ParticipantViewModel;
 
 import butterknife.ButterKnife;

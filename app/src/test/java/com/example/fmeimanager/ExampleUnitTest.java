@@ -1,7 +1,7 @@
 package com.example.fmeimanager;
 
 import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.BusinnessProcessusTheme;
-import com.example.fmeimanager.models.Processus;
+import com.example.fmeimanager.database.Processus;
 
 import org.junit.Test;
 

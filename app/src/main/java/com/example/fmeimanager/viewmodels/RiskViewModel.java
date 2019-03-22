@@ -4,9 +4,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.Nullable;
 
-import com.example.fmeimanager.models.CorrectiveAction;
-import com.example.fmeimanager.models.Participant;
-import com.example.fmeimanager.models.Risk;
+import com.example.fmeimanager.database.CorrectiveAction;
+import com.example.fmeimanager.database.Participant;
+import com.example.fmeimanager.database.Risk;
 import com.example.fmeimanager.repositories.CorrectiveActionDataRepository;
 import com.example.fmeimanager.repositories.ParticipantDataRepository;
 import com.example.fmeimanager.repositories.RiskDataRepository;

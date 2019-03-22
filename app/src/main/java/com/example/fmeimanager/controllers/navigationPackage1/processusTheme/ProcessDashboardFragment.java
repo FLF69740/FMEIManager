@@ -1,6 +1,5 @@
 package com.example.fmeimanager.controllers.navigationPackage1.processusTheme;
 
-
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -14,44 +13,42 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.ProcessListAdapter;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
-import com.example.fmeimanager.models.CorrectiveAction;
-import com.example.fmeimanager.models.Participant;
-import com.example.fmeimanager.models.Processus;
+import com.example.fmeimanager.database.CorrectiveAction;
+import com.example.fmeimanager.database.Participant;
+import com.example.fmeimanager.database.Processus;
 import com.example.fmeimanager.models.ProcessusPanel;
-import com.example.fmeimanager.models.Risk;
+import com.example.fmeimanager.models.ProcessusPanelCreator;
+import com.example.fmeimanager.database.Risk;
 import com.example.fmeimanager.utils.RecyclerItemClickSupport;
 import com.example.fmeimanager.utils.Utils;
 import com.example.fmeimanager.viewmodels.ProcessusViewModel;
-
+import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 import static android.app.Activity.RESULT_OK;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ProcessDashboardFragment extends Fragment {
 
     private static final String BUNDLE_FMEI_ID = "BUNDLE_FMEI_ID";
     private static final int CREATE_RISK_REQUEST_CODE = 110;
+    private static final int UPDATE_PROCESSUS_LIST_REQUEST_CODE = 120;
 
     public static final String BUNDLE_KEY_LIST_PROCESSUS_ID = "BUNDLE_KEY_LIST_PROCESSUS_ID";
+    public static final String BUNDLE_KEY_LIST_PROCESSUS_STEP = "BUNDLE_KEY_LIST_PROCESSUS_STEP";
 
     private View mView;
     private ProcessusViewModel mProcessusViewModel;
+
+    private long mAdministratorId;
     private long mFmeiId;
-    private List<Processus> mProcessusList = new ArrayList<>();
+    private ProcessusPanelCreator mProcessusPanelCreator;
     private ProcessListAdapter mAdapter;
-    private List<ProcessusPanel> mProcessusPanels = new ArrayList<>();
 
     @BindView(R.id.fragment_process_recycler_view) RecyclerView mRecyclerView;
     @BindView(R.id.process_fmei_indicator_number) TextView mFmeiIndicator;
@@ -64,12 +61,12 @@ public class ProcessDashboardFragment extends Fragment {
         return processDashboardFragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_process_dashboard, container, false);
         ButterKnife.bind(this, mView);
         mFmeiId = getArguments().getLong(BUNDLE_FMEI_ID);
+        mProcessusPanelCreator = new ProcessusPanelCreator();
         this.configureRecyclerView();
         this.configureOnClickRecyclerView();
         this.configureViewModel();
@@ -80,7 +77,7 @@ public class ProcessDashboardFragment extends Fragment {
 
     //configure recyclerView
     private void configureRecyclerView(){
-        this.mAdapter = new ProcessListAdapter(this.mProcessusPanels);
+        this.mAdapter = new ProcessListAdapter(this.mProcessusPanelCreator.getProcessusPanels());
         this.mRecyclerView.setAdapter(mAdapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -94,8 +91,8 @@ public class ProcessDashboardFragment extends Fragment {
     private void configureOnClickRecyclerView(){
         RecyclerItemClickSupport.addTo(mRecyclerView, R.layout.fragment_process_recyclerview_item)
                 .setOnItemClickListener((recyclerView, position, v) -> {
-                    if (mProcessusPanels.get(position).getRiskId() != 0) {
-                        mCallback.processDashBoard_To_RiskFile(mView, mProcessusPanels.get(position).getRiskId(), mFmeiId);
+                    if (this.mProcessusPanelCreator.getProcessusPanels().get(position).getRiskId() != 0) {
+                        mCallback.processDashBoard_To_RiskFile(mView, this.mProcessusPanelCreator.getProcessusPanels().get(position).getRiskId(), mFmeiId);
                     }
                 });
     }
@@ -133,44 +130,37 @@ public class ProcessDashboardFragment extends Fragment {
         this.mProcessusViewModel.init(1);
     }
 
-    private void getAdministrator(long id){
-        this.mProcessusViewModel.getParticipant(id).observe(this, this::updateAdministrator);
-    }
+    private void getAdministrator(long id){ this.mProcessusViewModel.getParticipant(id).observe(this, this::updateAdministrator); }
 
     //GET all processus for FMEI Id
-    private void getProcessusAboutFMEI(long fmeiId){
-        this.mProcessusViewModel.getProcessussListForFmei(fmeiId).observe(this, this::updateProcessusList);
-    }
+    private void getProcessusAboutFMEI(long fmeiId){ this.mProcessusViewModel.getProcessussListForFmei(fmeiId).observe(this, this::updateProcessusList); }
 
     //GET all risk
-    private void getAllRisk(){
-        this.mProcessusViewModel.getAllRisk().observe(this, this::updateRiskList);
-    }
+    private void getAllRisk(){ this.mProcessusViewModel.getAllRisk().observe(this, this::updateRiskList); }
 
     //GET all corrective action
-    private void getAllCorrectiveActions(){
-        this.mProcessusViewModel.getAllCorrectiveAction().observe(this, this::updateCorrectiveActionList);
-    }
+    private void getAllCorrectiveActions(){ this.mProcessusViewModel.getAllCorrectiveAction().observe(this, this::updateCorrectiveActionList); }
 
     //GET all Participant
-    private void getAllParticipant(){
-        this.mProcessusViewModel.getAllParticipant().observe(this, this::updateParticipantList);
-    }
-
-
+    private void getAllParticipant(){ this.mProcessusViewModel.getAllParticipant().observe(this, this::updateParticipantList); }
 
     //LAUNCH PROCESSUS BUILDER
     public void createProcessus(){
         mCallback.processDashBoard_To_ProcessusBuilder(mView, mFmeiId);
+        Intent intent = new Intent(getActivity(), ProcessusBuilderActivity.class);
+        intent.putExtra(ProcessDashboardActivity.PROCESS_DASHBOARD_TO_PROCESS_BUILDER, mFmeiId);
+        startActivityForResult(intent, UPDATE_PROCESSUS_LIST_REQUEST_CODE);
     }
 
     //CREATE RISK
-    public void createRisk(){
-        if (mProcessusList != null) {
-            Intent intent = new Intent(getActivity(), InsertRiskViewPagerActivity.class);
-            if (!mProcessusList.isEmpty()) {
-                String listString = BusinnessProcessusTheme.getProcessusListId(mProcessusList);
-                intent.putExtra(BUNDLE_KEY_LIST_PROCESSUS_ID, listString);
+    public void startCreateRisk(){
+        if (mProcessusPanelCreator.getProcessusPanels() != null) {
+            if (!mProcessusPanelCreator.getProcessusPanels().isEmpty()) {
+                Intent intent = new Intent(getActivity(), InsertRiskViewPagerActivity.class);
+                ArrayList<String> listProcessusId = BusinnessProcessusTheme.getProcessusListId(mProcessusPanelCreator.getProcessusPanels());
+                ArrayList<String> listProcessusStep = BusinnessProcessusTheme.getProcessusListStep(mProcessusPanelCreator.getProcessusPanels());
+                intent.putStringArrayListExtra(BUNDLE_KEY_LIST_PROCESSUS_ID, listProcessusId);
+                intent.putStringArrayListExtra(BUNDLE_KEY_LIST_PROCESSUS_STEP, listProcessusStep);
                 startActivityForResult(intent, CREATE_RISK_REQUEST_CODE);
             } else {
                 Toast.makeText(getContext(), "PAS DE PROCESSUS", Toast.LENGTH_SHORT).show();
@@ -178,24 +168,9 @@ public class ProcessDashboardFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (CREATE_RISK_REQUEST_CODE == requestCode && RESULT_OK == resultCode){
-            long processusId = data.getLongExtra(InsertRiskViewPagerActivity.BUNDLE_RISK_PROCESSUS_ID, 0);
-            if (processusId != 0){
-                    simulationCreateRisk(processusId);
-            }
-        }
-    }
-
-    //******* TEMP *******
-    private void simulationCreateProcessus(){
-        Processus processus = new Processus("processus_" + String.valueOf(mProcessusList.size()+1), mFmeiId, mProcessusList.size()+1);
-        this.mProcessusViewModel.createProcessus(processus);
-    }
-
-    private void simulationCreateRisk(long processusId){
-        Risk risk = new Risk("date_creation","parts_1","XC747","explosion", processusId,1);
+    private void CreateRiskFinalisation(long processusId){
+        DateTime dt = new DateTime();
+        Risk risk = new Risk(dt.toString("dd/MM/yyyy"), Utils.EMPTY, Utils.EMPTY, Utils.EMPTY, processusId,mAdministratorId);
         this.mProcessusViewModel.createRisk(risk);
     }
 
@@ -204,73 +179,34 @@ public class ProcessDashboardFragment extends Fragment {
      */
 
     private void updateAdministrator(Participant participant){
-        //    Toast.makeText(this, participant.getForname() + " " + participant.getName(), Toast.LENGTH_SHORT).show();
+        mAdministratorId = participant.getId();
     }
 
     //RECORD all processus about the FMEI Id
     private void updateProcessusList(List<Processus> processuses){
         updateFragmentScreen(mFmeiId);
-        if (processuses != null && processuses.size() != 0){
-            mProcessusList = BusinnessProcessusTheme.getProcessusByStepLadder(processuses);
-            getAllRisk();
-            getAllCorrectiveActions();
-        }
+        mProcessusPanelCreator.clear();
+        mProcessusPanelCreator.updateProcessusList(processuses);
+        getAllRisk();
     }
 
     //RECORD all risk INTO PANEL
     private void updateRiskList(List<Risk> risks){
-        if (risks != null) {
-            mProcessusPanels = new ArrayList<>();
-
-            for (int i = 0 ; i < mProcessusList.size() ; i++){
-                mProcessusPanels.add(BusinnessProcessusTheme.incubeProcessusintoPanel(mProcessusList.get(i), true));
-
-                Log.i(Utils.INFORMATION_LOG, mProcessusPanels.get(
-                        mProcessusPanels.size()-1).getProcessusName() + " " + String.valueOf(mProcessusPanels.get(mProcessusPanels.size()-1).isATittle()));
-
-                for (int j = 0 ; j < risks.size() ; j++) {
-
-                    if (risks.get(j).getProcessusId() == mProcessusList.get(i).getId()) {
-
-                        mProcessusPanels.add(BusinnessProcessusTheme.incubeRiskIntoPanel(
-                                BusinnessProcessusTheme.incubeProcessusintoPanel(mProcessusList.get(i),false),
-                                risks.get(j)));
-                    }
-                }
-            }
-            getAllCorrectiveActions();
-        }
+        mProcessusPanelCreator.clear();
+        mProcessusPanelCreator.updateRiskList(risks);
+        getAllCorrectiveActions();
     }
 
     //RECORD all corrective action INTO PANEL
     private void updateCorrectiveActionList(List<CorrectiveAction> correctiveActions){
-        if (correctiveActions != null) {
-            for (int i = 0 ; i < mProcessusPanels.size() ; i++){
-                for (int j = 0 ; j < correctiveActions.size() ; j++){
-                    if (correctiveActions.get(j).getRiskId() == mProcessusPanels.get(i).getRiskId()){
-                        mProcessusPanels.get(i).setCorrectiveIndicator(correctiveActions.get(j).getNewGravity() *
-                                correctiveActions.get(j).getNewDetectability() * correctiveActions.get(j).getNewFrequencies());
-                        mProcessusPanels.get(i).setCorrectiveEditFull(true);
-                    }
-                }
-            }
-            getAllParticipant();
-        }
+        mProcessusPanelCreator.updateCorrectiveActionList(correctiveActions);
+        getAllParticipant();
     }
 
     //RECORD participant INTO PANEL
     private void updateParticipantList(List<Participant> participants){
-        if (participants != null){
-            for (int i = 0 ; i < mProcessusPanels.size() ; i++){
-                for (int j = 0 ; j < participants.size() ; j++){
-                    if (participants.get(j).getId() == mProcessusPanels.get(i).getResponsableRiskId()){
-                        mProcessusPanels.get(i).setResponsableRisk(participants.get(j).getName());
-                        mProcessusPanels.get(i).setParticipantEditFull(true);
-                    }
-                }
-            }
-            this.updateRecycler(mProcessusPanels);
-        }
+        mProcessusPanelCreator.updateParticipantList(participants);
+        this.updateRecycler(mProcessusPanelCreator.getProcessusPanels());
     }
 
     /**
@@ -280,5 +216,23 @@ public class ProcessDashboardFragment extends Fragment {
     private void updateFragmentScreen(long fmeiId){
         String string = "FMEI " + String.valueOf(fmeiId);
         mFmeiIndicator.setText(string);
+    }
+
+    /**
+     *  On activity result
+     */
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (CREATE_RISK_REQUEST_CODE == requestCode && RESULT_OK == resultCode){
+            long processusId = data.getIntExtra(InsertRiskViewPagerActivity.BUNDLE_RISK_PROCESSUS_ID, 0);
+            Log.i(Utils.INFORMATION_LOG, ""+processusId);
+            if (processusId != 0){
+                CreateRiskFinalisation(processusId);
+            }
+        }
+        if (UPDATE_PROCESSUS_LIST_REQUEST_CODE == requestCode && RESULT_OK == resultCode){
+            Log.i(Utils.INFORMATION_LOG, ""+data.getLongExtra(ProcessusBuilderActivity.BUNDLE_PROCESSUS_BUILDER_FMEI_ID, 0));
+        }
     }
 }

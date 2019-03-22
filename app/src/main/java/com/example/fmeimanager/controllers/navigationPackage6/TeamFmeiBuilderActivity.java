@@ -12,7 +12,7 @@ import com.example.fmeimanager.R;
 import com.example.fmeimanager.base.BaseActivity;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
-import com.example.fmeimanager.models.Participant;
+import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.viewmodels.TeamViewModel;
 
 public class TeamFmeiBuilderActivity extends BaseActivity implements TeamFmeiBuilderFragment.TeamFmeiBuilderItemClickedListener{

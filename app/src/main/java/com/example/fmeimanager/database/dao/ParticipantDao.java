@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.example.fmeimanager.models.Participant;
+import com.example.fmeimanager.database.Participant;
 
 import java.util.List;
 

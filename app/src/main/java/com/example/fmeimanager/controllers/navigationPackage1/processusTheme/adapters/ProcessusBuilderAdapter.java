@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.viewholders.ProcessusBuilderViewHolder;
-import com.example.fmeimanager.models.Processus;
+import com.example.fmeimanager.database.Processus;
 
 import java.util.List;
 

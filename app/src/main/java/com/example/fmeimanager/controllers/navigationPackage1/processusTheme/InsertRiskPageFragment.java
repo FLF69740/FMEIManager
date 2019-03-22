@@ -22,17 +22,17 @@ public class InsertRiskPageFragment extends Fragment implements View.OnClickList
 
     public InsertRiskPageFragment() {}
 
-    public static InsertRiskPageFragment newInstance(String stringList, int position){
+    public static InsertRiskPageFragment newInstance(String processusStep, int position){
         InsertRiskPageFragment processusIdPageFragment = new InsertRiskPageFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(KEY_PROCESSUS_ID_LIST, stringList);
+        bundle.putString(KEY_PROCESSUS_ID_LIST, processusStep);
         bundle.putInt(KEY_POSITION, position);
         processusIdPageFragment.setArguments(bundle);
 
         return processusIdPageFragment;
     }
 
-    private String mProcessusIdTitle;
+    private int mPosition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,13 +41,9 @@ public class InsertRiskPageFragment extends Fragment implements View.OnClickList
         TextView textView = view.findViewById(R.id.risk_viewpager_title_process_id);
 
         assert getArguments() != null;
-        int position = getArguments().getInt(KEY_POSITION, 0);
-        String oneStringList = getArguments().getString(KEY_PROCESSUS_ID_LIST, null);
-
-        String[] parts = oneStringList.split("/");
-
-        mProcessusIdTitle = parts[position];
-        String title = "PROCESSUS " + mProcessusIdTitle;
+        String processusIdTitle = getArguments().getString(KEY_PROCESSUS_ID_LIST, null);
+        String title = "PROCESSUS " + processusIdTitle;
+        mPosition = getArguments().getInt(KEY_POSITION, 0);
         textView.setText(title);
 
         ImageView imageView = view.findViewById(R.id.risk_insert_pager_click);
@@ -58,7 +54,7 @@ public class InsertRiskPageFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        mCallback.processsusIdPageFragment_To_ViewPagerInsertRiskActivity(v, Long.valueOf(mProcessusIdTitle));
+        mCallback.processsusIdPageFragment_To_ViewPagerInsertRiskActivity(v, mPosition);
     }
 
     /**
@@ -67,7 +63,7 @@ public class InsertRiskPageFragment extends Fragment implements View.OnClickList
 
     // interface for button clicked
     public interface RiskViewPagerItemClickedListener{
-        void processsusIdPageFragment_To_ViewPagerInsertRiskActivity(View view, long processusId);
+        void processsusIdPageFragment_To_ViewPagerInsertRiskActivity(View view, int processusId);
     }
 
     //callback for button clicked

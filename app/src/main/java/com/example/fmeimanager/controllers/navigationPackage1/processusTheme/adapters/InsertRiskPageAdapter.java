@@ -6,12 +6,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.InsertRiskPageFragment;
 
+import java.util.List;
+
 public class InsertRiskPageAdapter extends FragmentPagerAdapter {
 
     private int mSize;
-    private String mListString;
+    private List<String> mListString;
 
-    public InsertRiskPageAdapter(FragmentManager fm, int size, String listString) {
+    public InsertRiskPageAdapter(FragmentManager fm, int size, List<String> listString) {
         super(fm);
         this.mSize = size;
         this.mListString = listString;
@@ -19,7 +21,7 @@ public class InsertRiskPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        return InsertRiskPageFragment.newInstance(mListString, i);
+        return InsertRiskPageFragment.newInstance(mListString.get(i), i);
     }
 
     @Override

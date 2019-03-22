@@ -6,11 +6,11 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.example.fmeimanager.database.FmeiManagerDatabase;
-import com.example.fmeimanager.models.CorrectiveAction;
-import com.example.fmeimanager.models.Fmei;
-import com.example.fmeimanager.models.Participant;
-import com.example.fmeimanager.models.Processus;
-import com.example.fmeimanager.models.Risk;
+import com.example.fmeimanager.database.CorrectiveAction;
+import com.example.fmeimanager.database.Fmei;
+import com.example.fmeimanager.database.Participant;
+import com.example.fmeimanager.database.Processus;
+import com.example.fmeimanager.database.Risk;
 
 import org.junit.After;
 import org.junit.Before;

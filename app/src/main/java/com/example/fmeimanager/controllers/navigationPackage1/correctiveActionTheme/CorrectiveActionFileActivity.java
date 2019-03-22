@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.base.BaseActivity;
 import com.example.fmeimanager.controllers.navigationPackage1.riskTheme.RiskFileActivity;
@@ -53,6 +56,20 @@ public class CorrectiveActionFileActivity extends BaseActivity implements Correc
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu_photo_single, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.toolbar_photo:
+                Toast.makeText(this, "SEARCH", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.toolbar_save:
+                Toast.makeText(this, "SAVE", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     //BUTTON FRAGMENT

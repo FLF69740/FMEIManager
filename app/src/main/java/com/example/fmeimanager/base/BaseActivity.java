@@ -22,7 +22,7 @@ import com.example.fmeimanager.controllers.navigationPackage4.HelpActivity;
 import com.example.fmeimanager.controllers.navigationPackage7.ProfileSectionActivity;
 import com.example.fmeimanager.controllers.navigationPackage3.SettingsActivity;
 import com.example.fmeimanager.controllers.navigationPackage6.TeamFmeiDashBoardActivity;
-import com.example.fmeimanager.models.Participant;
+import com.example.fmeimanager.database.Participant;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

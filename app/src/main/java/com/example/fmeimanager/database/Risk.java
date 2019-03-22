@@ -1,10 +1,9 @@
-package com.example.fmeimanager.models;
+package com.example.fmeimanager.database;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
-
 import com.example.fmeimanager.utils.Utils;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;

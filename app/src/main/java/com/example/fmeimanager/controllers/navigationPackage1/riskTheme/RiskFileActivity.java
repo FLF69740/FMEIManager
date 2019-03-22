@@ -58,6 +58,9 @@ public class RiskFileActivity extends BaseActivity implements RiskFileDescriptio
             case R.id.toolbar_photo:
                 Toast.makeText(this, "SEARCH", Toast.LENGTH_SHORT).show();
                 return true;
+            case R.id.toolbar_save:
+                Toast.makeText(this, "SAVE", Toast.LENGTH_SHORT).show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

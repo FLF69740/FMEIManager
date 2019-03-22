@@ -16,11 +16,11 @@ import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackage1.fmeiTheme.adapters.FmeiListAdapter;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
-import com.example.fmeimanager.models.CorrectiveAction;
-import com.example.fmeimanager.models.Fmei;
-import com.example.fmeimanager.models.Participant;
-import com.example.fmeimanager.models.Processus;
-import com.example.fmeimanager.models.Risk;
+import com.example.fmeimanager.database.CorrectiveAction;
+import com.example.fmeimanager.database.Fmei;
+import com.example.fmeimanager.database.Participant;
+import com.example.fmeimanager.database.Processus;
+import com.example.fmeimanager.database.Risk;
 import com.example.fmeimanager.utils.RecyclerItemClickSupport;
 import com.example.fmeimanager.viewmodels.GeneralViewModel;
 

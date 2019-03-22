@@ -15,12 +15,6 @@ import com.example.fmeimanager.database.dao.ParticipantDao;
 import com.example.fmeimanager.database.dao.ProcessusDao;
 import com.example.fmeimanager.database.dao.RiskDao;
 import com.example.fmeimanager.database.dao.TeamFmeiDao;
-import com.example.fmeimanager.models.CorrectiveAction;
-import com.example.fmeimanager.models.Fmei;
-import com.example.fmeimanager.models.Participant;
-import com.example.fmeimanager.models.Processus;
-import com.example.fmeimanager.models.Risk;
-import com.example.fmeimanager.models.TeamFmei;
 
 @Database(entities = {
         Fmei.class,

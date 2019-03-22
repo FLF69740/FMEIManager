@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.example.fmeimanager.models.Risk;
+import com.example.fmeimanager.database.Risk;
 
 import java.util.List;
 

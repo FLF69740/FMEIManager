@@ -9,7 +9,7 @@ import android.view.View;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.base.BaseActivity;
 import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.ProcessDashboardActivity;
-import com.example.fmeimanager.models.Participant;
+import com.example.fmeimanager.database.Participant;
 
 public class FmeiDashboardActivity extends BaseActivity implements FmeiDashboardFragment.ItemClickedListener {
 

@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData;
 
 
 import com.example.fmeimanager.database.dao.CorrectiveActionDao;
-import com.example.fmeimanager.models.CorrectiveAction;
+import com.example.fmeimanager.database.CorrectiveAction;
 
 import java.util.List;
 

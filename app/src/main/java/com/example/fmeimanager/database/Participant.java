@@ -1,4 +1,4 @@
-package com.example.fmeimanager.models;
+package com.example.fmeimanager.database;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

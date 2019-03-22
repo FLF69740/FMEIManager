@@ -2,6 +2,7 @@ package com.example.fmeimanager.controllers.navigationPackage1.processusTheme;
 
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,8 +18,8 @@ import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.ProcessusBuilderAdapter;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
-import com.example.fmeimanager.models.Participant;
-import com.example.fmeimanager.models.Processus;
+import com.example.fmeimanager.database.Participant;
+import com.example.fmeimanager.database.Processus;
 import com.example.fmeimanager.utils.Utils;
 import com.example.fmeimanager.viewmodels.ProcessusViewModel;
 
@@ -37,6 +38,7 @@ import static android.app.Activity.RESULT_OK;
 public class ProcessusBuilderFragment extends Fragment implements ProcessusBuilderAdapter.Listener{
 
     private View mView;
+    private long mAdministratorId;
     private long mFmeiId;
     private ProcessusViewModel mProcessusViewModel;
     private List<Processus> mProcessusList = new ArrayList<>();
@@ -65,7 +67,6 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
         ButterKnife.bind(this, mView);
         mFmeiId = getArguments().getLong("MA KEY");
         this.configureRecyclerView();
-        this.configureOnClickRecyclerView();
         this.configureViewModel();
         this.getAdministrator(1);
         this.getProcessusAboutFMEI(mFmeiId);
@@ -85,8 +86,27 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
         mAdapter.notifyDataSetChanged();
     }
 
-    //itemView click from RecyclerView
-    private void configureOnClickRecyclerView(){}
+    /**
+     *  Callback
+     */
+
+    // interface for button clicked
+    public interface ProcessBuilderItemClickedListener{
+        void processusBuilder_To_ProcessDashBoard(long fmeiId);
+    }
+
+    //callback for button clicked
+    private ProcessBuilderItemClickedListener mCallback;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mCallback = (ProcessBuilderItemClickedListener) getActivity();
+        } catch (ClassCastException e){
+            throw new ClassCastException(e.toString() + " must implement ItemClickedListener");
+        }
+    }
 
 
         /**
@@ -110,11 +130,10 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
 
 
     public void saveBuilder() {
-        Log.i(Utils.INFORMATION_LOG, "PROCESSUS BUILDER SAVE - FMEI ID = " + mFmeiId);
         for (int i = 0 ; i < mProcessusList.size() ; i++){
             this.mProcessusViewModel.updateProcessus(mProcessusList.get(i));
         }
-        getActivity().finish();
+        mCallback.processusBuilder_To_ProcessDashBoard(mFmeiId);
     }
 
     //ADD a new Processus
@@ -129,7 +148,7 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
      */
 
     private void updateAdministrator(Participant participant){
-        //    Toast.makeText(this, participant.getForname() + " " + participant.getName(), Toast.LENGTH_SHORT).show();
+        mAdministratorId = participant.getId();
     }
 
     //RECORD all processus about the FMEI Id

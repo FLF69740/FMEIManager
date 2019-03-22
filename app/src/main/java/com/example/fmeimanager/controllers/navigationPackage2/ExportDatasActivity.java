@@ -1,16 +1,9 @@
 package com.example.fmeimanager.controllers.navigationPackage2;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.base.BaseActivity;
-import com.example.fmeimanager.injection.Injection;
-import com.example.fmeimanager.injection.ViewModelFactory;
-import com.example.fmeimanager.models.Participant;
-import com.example.fmeimanager.viewmodels.ParticipantViewModel;
 
 public class ExportDatasActivity extends BaseActivity {
 

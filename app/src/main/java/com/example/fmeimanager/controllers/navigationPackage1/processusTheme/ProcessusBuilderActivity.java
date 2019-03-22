@@ -1,16 +1,21 @@
 package com.example.fmeimanager.controllers.navigationPackage1.processusTheme;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.base.BaseActivity;
+import com.example.fmeimanager.utils.Utils;
 
-public class ProcessusBuilderActivity extends BaseActivity {
+public class ProcessusBuilderActivity extends BaseActivity implements ProcessusBuilderFragment.ProcessBuilderItemClickedListener{
+
+    public static final String BUNDLE_PROCESSUS_BUILDER_FMEI_ID = "BUNDLE_PROCESSUS_BUILDER_FMEI_ID";
 
     @Override
     protected Fragment getFirstFragment() {
@@ -63,5 +68,12 @@ public class ProcessusBuilderActivity extends BaseActivity {
         }
     }
 
-
+    @Override
+    public void processusBuilder_To_ProcessDashBoard(long fmeiId) {
+        Log.i(Utils.INFORMATION_LOG, "PROCESSUS BUILDER SAVE - FMEI ID = " + fmeiId);
+        Intent intent = new Intent();
+        intent.putExtra(BUNDLE_PROCESSUS_BUILDER_FMEI_ID, fmeiId);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 }

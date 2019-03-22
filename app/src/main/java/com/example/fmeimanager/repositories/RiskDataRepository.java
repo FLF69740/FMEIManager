@@ -3,7 +3,7 @@ package com.example.fmeimanager.repositories;
 import android.arch.lifecycle.LiveData;
 
 import com.example.fmeimanager.database.dao.RiskDao;
-import com.example.fmeimanager.models.Risk;
+import com.example.fmeimanager.database.Risk;
 
 import java.util.List;
 

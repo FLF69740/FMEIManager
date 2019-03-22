@@ -10,9 +10,14 @@ import android.widget.TextView;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.adapters.InsertRiskPageAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InsertRiskViewPagerActivity extends AppCompatActivity implements InsertRiskPageFragment.RiskViewPagerItemClickedListener{
 
     public static final String BUNDLE_RISK_PROCESSUS_ID = "BUNDLE_RISK_PROCESSUS_ID";
+
+    private List<String> mListProcessusId = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +25,12 @@ public class InsertRiskViewPagerActivity extends AppCompatActivity implements In
         setContentView(R.layout.activity_view_pager_insert_risk);
 
         Intent intent = getIntent();
-        String stringList = intent.getStringExtra(ProcessDashboardFragment.BUNDLE_KEY_LIST_PROCESSUS_ID);
-        int size = stringList.split("/").length;
+        mListProcessusId = intent.getStringArrayListExtra(ProcessDashboardFragment.BUNDLE_KEY_LIST_PROCESSUS_ID);
+        List<String> listProcessusStep = intent.getStringArrayListExtra(ProcessDashboardFragment.BUNDLE_KEY_LIST_PROCESSUS_STEP);
+        int size = mListProcessusId.size();
 
         ViewPager viewPager = findViewById(R.id.viewPagerProcessusId);
-        viewPager.setAdapter(new InsertRiskPageAdapter(getSupportFragmentManager(), size, stringList));
+        viewPager.setAdapter(new InsertRiskPageAdapter(getSupportFragmentManager(), size, listProcessusStep));
 
         TextView textView = findViewById(R.id.closeViewPager);
         textView.setOnClickListener(v -> finish());
@@ -32,9 +38,9 @@ public class InsertRiskViewPagerActivity extends AppCompatActivity implements In
     }
 
     @Override
-    public void processsusIdPageFragment_To_ViewPagerInsertRiskActivity(View view, long processusId) {
+    public void processsusIdPageFragment_To_ViewPagerInsertRiskActivity(View view, int position) {
         Intent intent = new Intent();
-        intent.putExtra(BUNDLE_RISK_PROCESSUS_ID, processusId);
+        intent.putExtra(BUNDLE_RISK_PROCESSUS_ID, Integer.valueOf(mListProcessusId.get(position)));
         setResult(RESULT_OK, intent);
         finish();
     }

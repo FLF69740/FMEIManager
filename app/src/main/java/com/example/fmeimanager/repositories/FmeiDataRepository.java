@@ -3,7 +3,7 @@ package com.example.fmeimanager.repositories;
 import android.arch.lifecycle.LiveData;
 
 import com.example.fmeimanager.database.dao.FmeiDao;
-import com.example.fmeimanager.models.Fmei;
+import com.example.fmeimanager.database.Fmei;
 
 import java.util.List;
 

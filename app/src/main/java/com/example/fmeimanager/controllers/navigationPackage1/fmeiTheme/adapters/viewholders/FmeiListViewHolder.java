@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.models.Fmei;
+import com.example.fmeimanager.database.Fmei;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -4,16 +4,14 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.Nullable;
 
-import com.example.fmeimanager.models.CorrectiveAction;
-import com.example.fmeimanager.models.Participant;
-import com.example.fmeimanager.models.Processus;
-import com.example.fmeimanager.models.Risk;
+import com.example.fmeimanager.database.CorrectiveAction;
+import com.example.fmeimanager.database.Participant;
+import com.example.fmeimanager.database.Processus;
+import com.example.fmeimanager.database.Risk;
 import com.example.fmeimanager.repositories.CorrectiveActionDataRepository;
-import com.example.fmeimanager.repositories.FmeiDataRepository;
 import com.example.fmeimanager.repositories.ParticipantDataRepository;
 import com.example.fmeimanager.repositories.ProcessusDataRepository;
 import com.example.fmeimanager.repositories.RiskDataRepository;
-import com.example.fmeimanager.repositories.TeamFmeiDataRepository;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -96,8 +94,8 @@ public class ProcessusViewModel extends ViewModel {
     public LiveData<List<Processus>> getAllProcessus() {return mProcessusDataRepository.getAllProcessus();}
     public LiveData<Processus> getProcessus(long id) {return mProcessusDataRepository.getProcessus(id);}
 
-    public LiveData<List<Processus>> getProcessussListForFmei(long participantId) {
-        return mProcessusDataRepository.getProcessussListForFmei(participantId);
+    public LiveData<List<Processus>> getProcessussListForFmei(long fmeiId) {
+        return mProcessusDataRepository.getProcessussListForFmei(fmeiId);
     }
 
     public void createProcessus(Processus Processus){

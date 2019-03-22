@@ -3,6 +3,7 @@ package com.example.fmeimanager.models;
 public class ProcessusPanel {
 
     private boolean mIsATittle;
+    private long mProcessusId;
     private int mProcessusStep;
     private String mProcessusName;
     private boolean mProcessusVisible;
@@ -21,7 +22,8 @@ public class ProcessusPanel {
     private boolean mCorrectiveEditFull;
     private boolean mParticipantEditFull;
 
-    public ProcessusPanel(int processusStep, String processusName, boolean isATittle) {
+    public ProcessusPanel(long processusId, int processusStep, String processusName, boolean isATittle) {
+        mProcessusId = processusId;
         mProcessusStep = processusStep;
         mProcessusName = processusName;
         mIsATittle = isATittle;
@@ -34,6 +36,7 @@ public class ProcessusPanel {
 
     //GETTER
     public boolean isATittle() {return mIsATittle;}
+    public long getProcessusId() {return mProcessusId;}
     public int getProcessusStep() {return mProcessusStep;}
     public boolean isProcessusVisible() {return mProcessusVisible;}
     public int getRiskId() {return mRiskId;}

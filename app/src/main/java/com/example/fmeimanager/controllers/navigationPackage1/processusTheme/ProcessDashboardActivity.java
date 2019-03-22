@@ -24,7 +24,7 @@ public class ProcessDashboardActivity extends BaseActivity implements ProcessDas
     protected Fragment getFirstFragment() {
         return ProcessDashboardFragment.newInstance(
                 getIntent().getLongExtra(FmeiDashboardActivity.FMEI_ID_TO_PROCESSUS_DASHBOARD,
-                getSharedPreferences(SHARED_ID, MODE_PRIVATE).getLong(BUNDLE_RESTORE_PARENT_ID, 1000000000)));
+                getSharedPreferences(SHARED_ID, MODE_PRIVATE).getLong(BUNDLE_RESTORE_PARENT_ID, 1000)));
     }
 
     @Override
@@ -68,7 +68,7 @@ public class ProcessDashboardActivity extends BaseActivity implements ProcessDas
                 ((ProcessDashboardFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).createProcessus();
                 return true;
             case R.id.toolbar_dashboard_new_slot_2:
-                ((ProcessDashboardFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).createRisk();
+                ((ProcessDashboardFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).startCreateRisk();
                 return true;
             case R.id.toolbar_search:
                 Toast.makeText(this, "SEARCH", Toast.LENGTH_SHORT).show();
@@ -97,9 +97,6 @@ public class ProcessDashboardActivity extends BaseActivity implements ProcessDas
     @Override
     public void processDashBoard_To_ProcessusBuilder(View view, long parentId) {
         saveSharedPreferences(parentId);
-        Intent intent = new Intent(this, ProcessusBuilderActivity.class);
-        intent.putExtra(PROCESS_DASHBOARD_TO_PROCESS_BUILDER, parentId);
-        startActivity(intent);
     }
 
 }
