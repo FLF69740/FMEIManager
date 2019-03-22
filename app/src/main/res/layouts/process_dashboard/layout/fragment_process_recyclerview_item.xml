@@ -30,15 +30,114 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
         android:layout_weight="1"
         android:background="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_process_correctiveItem_title"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_process_riskItem_id"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_process_processItem_title" />
+
+    <TextView
+        android:id="@+id/fragment_process_riskItem_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_process_riskItem_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragment_process_riskItem_title"
+        app:layout_constraintTop_toTopOf="@+id/fragment_process_riskItem_title" />
+
+    <TextView
+        android:id="@+id/fragment_process_creation_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_process_ipr"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_process_participantItem_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_process_riskItem_title" />
+
+    <TextView
+        android:id="@+id/fragment_process_participantItem_title"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="1"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_process_creation_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragment_process_creation_date"
+        app:layout_constraintTop_toTopOf="@+id/fragment_process_creation_date" />
+
+    <TextView
+        android:id="@+id/fragment_process_ipr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_process_gravity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_process_creation_date" />
+
+    <TextView
+        android:id="@+id/fragment_process_gravity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_process_ipr"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_process_frequency"
+        app:layout_constraintStart_toEndOf="@+id/fragment_process_ipr"
+        app:layout_constraintTop_toTopOf="@+id/fragment_process_ipr" />
+
+    <TextView
+        android:id="@+id/fragment_process_frequency"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_process_gravity"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_process_detectability"
+        app:layout_constraintStart_toEndOf="@+id/fragment_process_gravity"
+        app:layout_constraintTop_toTopOf="@+id/fragment_process_gravity" />
+
+    <TextView
+        android:id="@+id/fragment_process_detectability"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_process_frequency"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragment_process_frequency"
+        app:layout_constraintTop_toTopOf="@+id/fragment_process_frequency" />
 
     <TextView
         android:id="@+id/fragment_process_correctiveItem_title"
@@ -46,24 +145,7 @@
         android:layout_height="19dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:background="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_process_participantItem_title"
-        app:layout_constraintStart_toEndOf="@+id/fragment_process_riskItem_title"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_process_processItem_title" />
-
-    <TextView
-        android:id="@+id/fragment_process_participantItem_title"
-        android:layout_width="0dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
@@ -71,8 +153,7 @@
         android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fragment_process_correctiveItem_title"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_process_processItem_title" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_process_ipr" />
 
 </android.support.constraint.ConstraintLayout>
