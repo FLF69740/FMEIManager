@@ -41,8 +41,8 @@ public class TeamFmeiDaoTest {
     private static final long ID_5 = 5;
 
     //FMEI
-    private static Fmei FMEI_DEMO_1(){return new Fmei(FMEI_1_NAME);}
-    private static Fmei FMEI_DEMO_2(){return new Fmei(FMEI_2_NAME);}
+    private static Fmei FMEI_DEMO_1(){return new Fmei(FMEI_1_NAME, 1);}
+    private static Fmei FMEI_DEMO_2(){return new Fmei(FMEI_2_NAME, 1);}
 
     //PARTICIPANT
     private static Participant PARTICIPANT_DEMO_1(){return new Participant(PARTICIPANT_1_NAME, PARTICIPANT_1_FORNAME);}

@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="20dip">
@@ -15,13 +16,163 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/colorAccentDark"
+        android:gravity="center"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/colorAccentDark"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+
+        android:id="@+id/fragment_fmei_team_Leader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_fmei_risk_amount_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_fmei_processus_number" />
+
+    <TextView
+        android:id="@+id/fragment_fmei_processus_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_fmei_team_Leader"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_fmei_participant_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_fmei_item_title" />
+
+    <TextView
+        android:id="@+id/fragment_fmei_participant_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_fmei_team_Leader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragment_fmei_processus_number"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_fmei_item_title" />
+
+    <TextView
+        android:id="@+id/fragment_fmei_risk_amount_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/colorAccent"
+        android:gravity="start"
+        android:text="@string/Fmei_dashboard_risks_amount"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_fmei_ipr_max_title"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_fmei_average_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_fmei_team_Leader" />
+
+    <TextView
+        android:id="@+id/fragment_fmei_average_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorAccent"
+        android:gravity="start"
+        android:text="@string/Fmei_dashboard_risks_average"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_fmei_high_risk_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragment_fmei_risk_amount_title"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_fmei_team_Leader" />
+
+    <TextView
+        android:id="@+id/fragment_fmei_ipr_max_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/colorAccent"
+        android:gravity="start"
+        android:text="@string/Fmei_dashboard_risk_max"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_fmei_medium_risk_title"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_fmei_high_risk_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_fmei_risk_amount_title" />
+
+    <TextView
+        android:id="@+id/fragment_fmei_high_risk_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/colorAccent"
+        android:gravity="start"
+        android:text="@string/Fmei_dashboard_high_risk_amount"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_fmei_low_risk_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragment_fmei_ipr_max_title"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_fmei_average_title" />
+
+    <TextView
+        android:id="@+id/fragment_fmei_medium_risk_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/colorAccent"
+        android:gravity="start"
+        android:text="@string/Fmei_dashboard_medium_risk_amount"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_fmei_low_risk_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_fmei_ipr_max_title" />
+
+    <TextView
+        android:id="@+id/fragment_fmei_low_risk_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorAccent"
+        android:gravity="start"
+        android:text="@string/Fmei_dashboard_low_risk_amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragment_fmei_medium_risk_title"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_fmei_high_risk_title" />
 
 
 </android.support.constraint.ConstraintLayout>

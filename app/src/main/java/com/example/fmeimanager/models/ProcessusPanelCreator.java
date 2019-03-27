@@ -4,7 +4,7 @@ package com.example.fmeimanager.models;
 
 import android.util.Log;
 
-import com.example.fmeimanager.controllers.navigationPackage1.processusTheme.BusinnessProcessusTheme;
+import com.example.fmeimanager.controllers.navigationPackageA.processusTheme.BusinnessProcessusTheme;
 import com.example.fmeimanager.database.CorrectiveAction;
 import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.database.Processus;
@@ -34,8 +34,6 @@ public class ProcessusPanelCreator {
     //RECORD all risk INTO PANEL
     public void updateRiskList(List<Risk> risks){
         if (risks != null) {
-    //        mProcessusPanels = new ArrayList<>();
-
             for (int i = 0 ; i < mProcessusList.size() ; i++){
                 mProcessusPanels.add(BusinnessProcessusTheme.incubeProcessusintoPanel(mProcessusList.get(i), true));
 
@@ -81,7 +79,6 @@ public class ProcessusPanelCreator {
                     }
                 }
             }
-         //   this.updateRecycler(mProcessusPanels);
         }
     }
 

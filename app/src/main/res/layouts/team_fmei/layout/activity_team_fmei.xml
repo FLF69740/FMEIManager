@@ -13,7 +13,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".controllers.navigationPackage6.TeamFmeiDashBoardActivity"
+        tools:context=".controllers.navigationPackageF.TeamFmeiDashBoardActivity"
         android:background="@color/colorPrimary">
 
         <include

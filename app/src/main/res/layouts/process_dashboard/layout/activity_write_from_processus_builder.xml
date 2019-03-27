@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dip"
-    tools:context=".controllers.navigationPackage1.processusTheme.WriteFromProcessusBuilderActivity"
+    tools:context=".controllers.navigationPackageA.processusTheme.WriteFromProcessusBuilderActivity"
     android:background="@color/colorPrimaryDark">
 
     <TextView

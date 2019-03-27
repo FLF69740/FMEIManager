@@ -15,8 +15,6 @@ public class Participant {
     private String mUrlPicture;
     private String mMail;
     private String mTel;
-    private Boolean mIsATeamLeader;
-    private String mLeadList;
 
     public Participant() {}
 
@@ -27,8 +25,6 @@ public class Participant {
         mUrlPicture = Utils.EMPTY;
         mMail = Utils.EMPTY;
         mTel = Utils.EMPTY;
-        mIsATeamLeader = false;
-        mLeadList = Utils.EMPTY;
     }
 
     // GETTER
@@ -39,8 +35,6 @@ public class Participant {
     public String getUrlPicture() {return mUrlPicture;}
     public String getMail() {return mMail;}
     public String getTel() {return mTel;}
-    public Boolean isATeamLeader() {return mIsATeamLeader;}
-    public String getLeadList() {return mLeadList;}
 
     // SETTER
     public void setId(long id) {mId = id;}
@@ -50,6 +44,4 @@ public class Participant {
     public void setUrlPicture(String urlPicture) {mUrlPicture = urlPicture;}
     public void setMail(String mail) {mMail = mail;}
     public void setTel(String tel) {mTel = tel;}
-    public void setIsATeamLeader(Boolean ATeamLeader) {mIsATeamLeader = ATeamLeader;}
-    public void setLeadList(String leadList) {mLeadList = leadList;}
 }

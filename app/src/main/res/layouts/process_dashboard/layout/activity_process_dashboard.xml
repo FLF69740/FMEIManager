@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controllers.navigationPackage1.fmeiTheme.FmeiDashboardActivity"
+    tools:context=".controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity"
     android:background="@color/colorPrimary">
 
     <include

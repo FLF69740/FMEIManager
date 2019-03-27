@@ -9,18 +9,22 @@ public class Fmei {
 
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "fmei_id") private long mId;
     private String mName;
+    private long mTeamLeader;
 
     public Fmei(){}
 
-    public Fmei(String name) {
+    public Fmei(String name, long teamLeader) {
         mName = name;
+        mTeamLeader = teamLeader;
     }
 
     // GETTER
     public long getId() {return mId;}
     public String getName() {return mName;}
+    public long getTeamLeader() {return mTeamLeader;}
 
     // SETTER
     public void setId(long id) {mId = id;}
     public void setName(String name) {mName = name;}
+    public void setTeamLeader(long teamLeader) {mTeamLeader = teamLeader;}
 }

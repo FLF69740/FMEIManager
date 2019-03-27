@@ -29,4 +29,13 @@
     <string name="VALIDATE_Btn">VALIDER</string>
     <string name="CANCEL_Btn">ANNULER</string>
     <string name="writte_activity_editext_hint">Nouveau nom</string>
+    <string name="Fmei_dashboard_processus_number">PROCESSUS :</string>
+    <string name="Fmei_dashboard_team_leader">LEADER :</string>
+    <string name="Fmei_dashboard_participant_amount">PARTICIPANT :</string>
+    <string name="Fmei_dashboard_risks_amount">RISQUES :</string>
+    <string name="Fmei_dashboard_risks_average">MOYENNE :</string>
+    <string name="Fmei_dashboard_risk_max">MAX :</string>
+    <string name="Fmei_dashboard_high_risk_amount">RISQUE GRAVE :</string>
+    <string name="Fmei_dashboard_medium_risk_amount">RISQUE MOYEN :</string>
+    <string name="Fmei_dashboard_low_risk_amount">RISQUE FAIBLE :</string>
 </resources>

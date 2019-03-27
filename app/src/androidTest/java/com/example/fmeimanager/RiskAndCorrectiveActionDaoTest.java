@@ -48,8 +48,8 @@ public class RiskAndCorrectiveActionDaoTest {
     private static final long ID_5 = 5;
 
     //FMEI
-    private static Fmei FMEI_DEMO_1(){return new Fmei(FMEI_1_NAME);}
-    private static Fmei FMEI_DEMO_2(){return new Fmei(FMEI_2_NAME);}
+    private static Fmei FMEI_DEMO_1(){return new Fmei(FMEI_1_NAME, 1);}
+    private static Fmei FMEI_DEMO_2(){return new Fmei(FMEI_2_NAME, 1);}
 
     //PROCESSUS
     private static Processus PROCESSUS_DEMO_1(){return new Processus("processus_step_1", ID_1, 1);}

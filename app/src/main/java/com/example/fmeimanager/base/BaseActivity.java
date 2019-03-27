@@ -15,13 +15,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.controllers.navigationPackage5.AboutActivity;
-import com.example.fmeimanager.controllers.navigationPackage2.ExportDatasActivity;
-import com.example.fmeimanager.controllers.navigationPackage1.fmeiTheme.FmeiDashboardActivity;
-import com.example.fmeimanager.controllers.navigationPackage4.HelpActivity;
-import com.example.fmeimanager.controllers.navigationPackage7.ProfileSectionActivity;
-import com.example.fmeimanager.controllers.navigationPackage3.SettingsActivity;
-import com.example.fmeimanager.controllers.navigationPackage6.TeamFmeiDashBoardActivity;
+import com.example.fmeimanager.controllers.navigationPackageE.AboutActivity;
+import com.example.fmeimanager.controllers.navigationPackageB.ExportDatasActivity;
+import com.example.fmeimanager.controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity;
+import com.example.fmeimanager.controllers.navigationPackageD.HelpActivity;
+import com.example.fmeimanager.controllers.navigationPackageG.ProfileSectionActivity;
+import com.example.fmeimanager.controllers.navigationPackageC.SettingsActivity;
+import com.example.fmeimanager.controllers.navigationPackageF.TeamFmeiDashBoardActivity;
 import com.example.fmeimanager.database.Participant;
 
 

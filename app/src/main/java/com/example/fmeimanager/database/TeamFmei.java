@@ -22,7 +22,6 @@ public class TeamFmei {
     public long getFmeiId() {return mFmeiId;}
 
     // SETTER
-
     public void setTeamFmeiId(long teamFmeiId) {mTeamFmeiId = teamFmeiId;}
     public void setFmeiId(long fmeiId) {mFmeiId = fmeiId;}
     public void setParticipantId(long participantId) {mParticipantId = participantId;}
