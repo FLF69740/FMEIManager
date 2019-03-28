@@ -1,6 +1,5 @@
 package com.example.fmeimanager.controllers.navigationPackageA.riskTheme;
 
-
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
@@ -11,18 +10,18 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.fmeimanager.R;
+import com.example.fmeimanager.database.CorrectiveAction;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.database.Risk;
 import com.example.fmeimanager.viewmodels.RiskViewModel;
 
+import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class RiskFileDescriptionFragment extends Fragment {
 
     private static final String BUNDLE_RISK_ID = "BUNDLE_RISK_ID";
@@ -30,6 +29,7 @@ public class RiskFileDescriptionFragment extends Fragment {
     private View mView;
     private RiskViewModel mRiskViewModel;
     private long mRiskId;
+    private Participant mParticipant;
     private Risk mRisk;
 
     public RiskFileDescriptionFragment() {}
@@ -104,6 +104,21 @@ public class RiskFileDescriptionFragment extends Fragment {
         this.mRiskViewModel.getRisk(riskId).observe(this, this::updateRisk);
     }
 
+    //GET participant attached to selected risk
+    private void getRiskParticipant(long id){
+        this.mRiskViewModel.getParticipant(id).observe(this, this::updateParticipant);
+    }
+
+    //GET corrective action attached to selected risk
+    private void getRiskCorrectiveAction(){
+        this.mRiskViewModel.getAllCorrectiveAction().observe(this, this::updateCorrectiveAction);
+    }
+
+    //UPDATE risk
+    private void SaveRiskSelected(Risk risk){
+        this.mRiskViewModel.updateRisk(risk);
+    }
+
 
     /**
      *  UI
@@ -117,8 +132,29 @@ public class RiskFileDescriptionFragment extends Fragment {
     private void updateRisk(Risk risk) {
         if (risk != null) {
             mRisk = risk;
-//            Toast.makeText(getContext(), "RISKS  : " + String.valueOf(mRisk.getId()), Toast.LENGTH_SHORT).show();
+            getRiskParticipant(risk.getParticipantId());
+            getRiskCorrectiveAction();
         }
+    }
+
+    //RECORD participant
+    private void updateParticipant(Participant participant){
+        if (participant != null){
+            mParticipant = participant;
+
+        }
+    }
+
+    //RECORD corrective action
+    private void updateCorrectiveAction(List<CorrectiveAction> correctiveActionList){
+        if (correctiveActionList != null){
+        //    for (int)
+
+        }
+    }
+
+    //BUILD IHM
+    private void updateInformations(){
 
     }
 

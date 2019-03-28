@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FMEI Manager</string>
+    <string name="app_name">FMEA Manager</string>
     <string name="touch_screen">TOUCHER L\'ECRAN</string>
-    <string name="Fmei_dashboard_title">FMEI TdB</string>
+    <string name="Fmei_dashboard_title">AMDEC TdB</string>
     <string name="Process_dashboard_title">PROCESS TdB</string>
     <string name="Risk_file_description_title">DESCRIPTION DU RISQUE</string>
     <string name="Risk_file_corrective_action_title">ACTION CORRECTIVE</string>
-    <string name="Navigation_drawer_fmei_dashboard">FMEI TdB</string>
+    <string name="Navigation_drawer_fmei_dashboard">AMDEC TdB</string>
     <string name="Navigation_drawer_export_data">EXPORTER DONNEES</string>
-    <string name="Navigation_drawer_team_fmei">TEAM FMEI</string>
+    <string name="Navigation_drawer_team_fmei">TEAM AMDEC</string>
     <string name="Navigation_drawer_settings">REGLAGES</string>
     <string name="Navigation_drawer_help">AIDE</string>
     <string name="Navigation_drawer_about">AU SUJET DE</string>
     <string name="Navigation_drawer_human_resources">RESSOURCES HUMAINES</string>
     <string name="Navigation_drawer_profile_section">SECTION PROFIL</string>
-    <string name="team_fmei_dashboard_title">EQUIPE FMEI</string>
-    <string name="team_fmei_builder_title">CONFIGURATION TEAM FMEI</string>
+    <string name="team_fmei_dashboard_title">EQUIPE AMDEC</string>
+    <string name="team_fmei_builder_title">CONFIGURATION TEAM AMDEC</string>
     <string name="profile_section_title">SECTION PROFIL</string>
     <string name="profile_title">PROFIL</string>
     <string name="Export_datas_title">EXPORTER DONNEES</string>
@@ -38,4 +38,16 @@
     <string name="Fmei_dashboard_high_risk_amount">RISQUE GRAVE :</string>
     <string name="Fmei_dashboard_medium_risk_amount">RISQUE MOYEN :</string>
     <string name="Fmei_dashboard_low_risk_amount">RISQUE FAIBLE :</string>
+    <string name="Risk_file_corrective_ask_btn">DEMANDER RETOUR AC</string>
+    <string name="Risk_file_corrective_detection">DETECTION</string>
+    <string name="Risk_file_corrective_probability">PROBABILITE</string>
+    <string name="Risk_file_corrective_severity">GRAVITE</string>
+    <string name="Risk_file_corrective_ipr_level">NIVEAU IPR</string>
+    <string name="Risk_file_corrective_root_cause">Cause racine…</string>
+    <string name="Risk_file_corrective_how_to_detect">Comment détecter…</string>
+    <string name="Risk_file_corrective_effect">Effet…</string>
+    <string name="Risk_file_corrective_failing_title">TITRE DU DEFAUT</string>
+    <string name="Risk_file_corrective_part">PIECE</string>
+    <string name="Risk_file_corrective_identification">Identification</string>
+    <string name="Risk_file_corrective_processus_step">Etape processus</string>
 </resources>

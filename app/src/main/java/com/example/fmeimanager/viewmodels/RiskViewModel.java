@@ -52,7 +52,7 @@ public class RiskViewModel extends ViewModel {
         return mCorrectiveActionDataRepository.getCorrectiveActionsListForParticipant(participantId);
     }
 
-    public LiveData<List<CorrectiveAction>> getCorrectiveActionsListForRisk(long riskId) {
+    public LiveData<CorrectiveAction> getCorrectiveActionsListForRisk(long riskId) {
         return mCorrectiveActionDataRepository.getCorrectiveActionsListForRisk(riskId);
     }
 

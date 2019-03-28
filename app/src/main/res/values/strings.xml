@@ -1,6 +1,6 @@
 <resources>
     <!-- GENERAL STRINGS -->
-    <string name="app_name">FMEI Manager</string>
+    <string name="app_name">FMEA Manager</string>
 
     <!-- TOOLBAR -->
     <string name="Toolbar_ADD" translatable="false">ADD</string>
@@ -15,7 +15,7 @@
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="Navigation_drawer_fmei_dashboard">FMEI DASHBOARD</string>
     <string name="Navigation_drawer_human_resources">HUMAN RESOURCES</string>
-    <string name="Navigation_drawer_team_fmei">TEAM FMEI</string>
+    <string name="Navigation_drawer_team_fmei">TEAM FMEA</string>
     <string name="Navigation_drawer_profile_section">PROFILE SECTION</string>
     <string name="Navigation_drawer_export_data">EXPORT DATAS</string>
     <string name="Navigation_drawer_settings">SETTINGS</string>
@@ -30,7 +30,7 @@
     <string name="touch_screen">TOUCH SCREEN</string>
 
     <!-- FMEI DASHBOARD -->
-    <string name="Fmei_dashboard_title">FMEI DASHBOARD</string>
+    <string name="Fmei_dashboard_title">FMEA DASHBOARD</string>
     <string name="Fmei_dashboard_processus_number">PROCESSUS :</string>
     <string name="Fmei_dashboard_team_leader">LEADER :</string>
     <string name="Fmei_dashboard_participant_amount">PARTICIPANT :</string>
@@ -53,10 +53,24 @@
     <!-- RISK FILE -->
     <string name="Risk_file_description_title">RISK DESCRIPTION</string>
     <string name="Risk_file_corrective_action_title">CORRECTIVE ACTION</string>
+    <string name="Risk_file_corrective_ask_btn">ASK CORRECTIVE ACTION RESULTS</string>
+    <string name="Risk_file_corrective_default_score" translatable="false">10</string>
+    <string name="Risk_file_corrective_detection">DETECTECTION</string>
+    <string name="Risk_file_corrective_probability">PROBABILITY</string>
+    <string name="Risk_file_corrective_severity">SEVERITY</string>
+    <string name="Risk_file_corrective_default_ipr_score" translatable="false">1000</string>
+    <string name="Risk_file_corrective_ipr_level">IPR LEVEL</string>
+    <string name="Risk_file_corrective_root_cause">Root cause…</string>
+    <string name="Risk_file_corrective_how_to_detect">How to detect…</string>
+    <string name="Risk_file_corrective_effect">Effect…</string>
+    <string name="Risk_file_corrective_failing_title">FAILING TITLE</string>
+    <string name="Risk_file_corrective_part">PART</string>
+    <string name="Risk_file_corrective_identification">Identification</string>
+    <string name="Risk_file_corrective_processus_step">Processus step</string>
 
     <!-- TEAM FMEI -->
-    <string name="team_fmei_dashboard_title">TEAM FMEI</string>
-    <string name="team_fmei_builder_title">CONFIGURATION TEAM FMEI</string>
+    <string name="team_fmei_dashboard_title">TEAM FMEA</string>
+    <string name="team_fmei_builder_title">CONFIGURATION TEAM FMEA</string>
 
     <!-- PROFILE SECTION -->
     <string name="profile_section_title">PROFILE SECTION</string>

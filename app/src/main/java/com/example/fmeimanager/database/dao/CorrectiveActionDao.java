@@ -23,7 +23,7 @@ public interface CorrectiveActionDao {
     LiveData<List<CorrectiveAction>> getCorrectiveActionAboutParticipantId(long participantId);
 
     @Query("SELECT * FROM CorrectiveAction WHERE corrective_riskId = :riskId")
-    LiveData<List<CorrectiveAction>> getCorrectiveActionAboutRiskId(long riskId);
+    LiveData<CorrectiveAction> getCorrectiveActionAboutRiskId(long riskId);
 
     @Insert
     long insertCorrectiveAction(CorrectiveAction correctiveAction);

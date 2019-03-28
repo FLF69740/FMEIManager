@@ -45,6 +45,7 @@ public abstract class FmeiManagerDatabase extends RoomDatabase {
         if (INSTANCE == null){
             synchronized (FmeiManagerDatabase.class){
                 if (INSTANCE == null){
+                 //   context.getApplicationContext().deleteDatabase("StartDatabase");
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             FmeiManagerDatabase.class, "StartDatabase")
                             .addCallback(prepopulateDatabase())

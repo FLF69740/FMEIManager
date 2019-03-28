@@ -28,7 +28,7 @@ public class CorrectiveActionDataRepository {
         return this.mCorrectiveActionDao.getCorrectiveActionAboutParticipantId(participantId);
     }
 
-    public LiveData<List<CorrectiveAction>> getCorrectiveActionsListForRisk(long riskId) {
+    public LiveData<CorrectiveAction> getCorrectiveActionsListForRisk(long riskId) {
         return this.mCorrectiveActionDao.getCorrectiveActionAboutRiskId(riskId);
     }
 

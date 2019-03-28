@@ -39,7 +39,7 @@ public class FmeiPanelCreator {
             for (int i = 0 ; i < mFmeiPanels.size() ; i++){
                 List<Processus> listProcessusBuild = new ArrayList<>();
                 for (int j = 0 ; j < processusList.size() ; j++){
-                    if (processusList.get(j).getFmeiId() == mFmeiPanels.get(i).getFmeiId()){
+                    if (processusList.get(j).getFmeiId() == mFmeiPanels.get(i).getFmeiId() && processusList.get(j).isVisible()){
                         listProcessusBuild.add(processusList.get(j));
                     }
                 }

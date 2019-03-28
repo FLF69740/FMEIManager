@@ -46,12 +46,6 @@ public class FmeiDashboardFragment extends Fragment {
     private List<Fmei> mFmeiList = new ArrayList<>();
     private long mAdministratorId;
     private FmeiPanelCreator mFmeiPanelCreator;
-
-    private List<Processus> mProcessusList = new ArrayList<>();
-    private List<Risk> mRiskList = new ArrayList<>();
-    private List<CorrectiveAction> mCorrectiveActionList = new ArrayList<>();
-
-
     private FmeiListAdapter mAdapter;
 
     @BindView(R.id.fragment_fmei_recycler_view) RecyclerView mRecyclerView;
@@ -186,7 +180,6 @@ public class FmeiDashboardFragment extends Fragment {
     //RECORD all fmei information INTO panel
     private void updateFmeiList(List<Fmei> fmeis) {
         if (fmeis != null && fmeis.size() != 0) {
-      //      mFmeiList = fmeis;
             mFmeiPanelCreator.clear();
             mFmeiPanelCreator.setFmeiList(fmeis);
             this.getAllProcessus();
@@ -196,35 +189,29 @@ public class FmeiDashboardFragment extends Fragment {
     //RECORD all processus information INTO panel
     private void updateProcessusList(List<Processus> processus) {
         if (processus != null) {
-        //    mProcessusList = processus;
             mFmeiPanelCreator.updateProcessusList(processus);
             this.getAllRisk();
         }
-        //   Toast.makeText(this, "PROCESSUS  : " + String.valueOf(mProcessusList.size()), Toast.LENGTH_SHORT).show();
     }
 
     //RECORD all risk information INTO panel
     private void updateRiskList(List<Risk> risks) {
         if (risks != null) {
-        //    mRiskList = risks;
             mFmeiPanelCreator.updateRiskList(risks);
             getAllTeamFmei();
         }
-        //    Toast.makeText(this, "RISKS  : " + String.valueOf(mRiskList.size()), Toast.LENGTH_SHORT).show();
     }
 
     //RECORD all team fmei information INTO panel
     private void updateTeamFmeiList(List<TeamFmei> teams) {
         mFmeiPanelCreator.updateTeamFmeiList(teams);
         getAllParticipant();
-    //    Toast.makeText(this, "CO  : " + String.valueOf(mCorrectiveActionList.size()), Toast.LENGTH_SHORT).show();
     }
 
     //RECORD all participant information INTO panel
     private void updateParticipantList(List<Participant> participants) {
         mFmeiPanelCreator.updateParticipantList(participants);
         this.updateRecycler(mFmeiPanelCreator.getFmeiPanels());
-        //    Toast.makeText(this, "CO  : " + String.valueOf(mCorrectiveActionList.size()), Toast.LENGTH_SHORT).show();
     }
 
 }
