@@ -49,5 +49,7 @@
     <string name="Risk_file_corrective_failing_title">TITRE DU DEFAUT</string>
     <string name="Risk_file_corrective_part">PIECE</string>
     <string name="Risk_file_corrective_identification">Identification</string>
-    <string name="Risk_file_corrective_processus_step">Etape processus</string>
+    <string name="Risk_file_corrective_processus_step">ETAPE</string>
+    <string name="Risk_file_corrective_delete">EFFACER</string>
+    <string name="Risk_file_corrective_save">DATAS SAUVEGARDEES</string>
 </resources>

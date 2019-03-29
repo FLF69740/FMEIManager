@@ -17,7 +17,8 @@ public class CorrectiveActionFileActivity extends BaseActivity implements Correc
 
     @Override
     protected Fragment getFirstFragment() {
-        return CorrectiveActionFragment.newInstance(getIntent().getLongExtra(RiskFileActivity.RISK_ID_TO_CORRECTIVE_ACTION_DASHBOARD, 200));
+        return CorrectiveActionFragment.newInstance(getIntent().getLongExtra(RiskFileActivity.RISK_ID_TO_CORRECTIVE_ACTION_DASHBOARD, 200),
+                getIntent().getIntExtra(RiskFileActivity.PROCESSUS_STEP_TO_CORRECTIVE_ACTION_DASHBOARD, 0));
     }
 
     @Override
@@ -74,9 +75,10 @@ public class CorrectiveActionFileActivity extends BaseActivity implements Correc
 
     //BUTTON FRAGMENT
     @Override
-    public void correctiveAction_To_riskFile(View view, long riskId) {
+    public void correctiveAction_To_riskFile(View view, long riskId, int processusStep) {
         Intent intent = new Intent(this, RiskFileActivity.class);
         intent.putExtra(ProcessDashboardActivity.RISK_ID_TO_RISK_DASHBOARD, riskId);
+        intent.putExtra(ProcessDashboardActivity.PROCESSUS_STEP_TO_RISK_DASHBOARD, processusStep);
         startActivity(intent);
     }
 

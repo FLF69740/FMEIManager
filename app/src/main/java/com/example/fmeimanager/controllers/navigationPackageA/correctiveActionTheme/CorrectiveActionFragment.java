@@ -24,16 +24,19 @@ import butterknife.OnClick;
 public class CorrectiveActionFragment extends Fragment {
 
     private static final String BUNDLE_RISK_ID = "BUNDLE_RISK_ID";
+    private static final String BUNDLE_PROCESSUS_STEP = "BUNDLE_PROCESSUS_STEP";
 
     private View mView;
     private RiskViewModel mRiskViewModel;
     private long mRiskId;
+    private int mProcessusStepInteger;
 
     public CorrectiveActionFragment() {}
 
-    public static CorrectiveActionFragment newInstance(long riskId){
+    public static CorrectiveActionFragment newInstance(long riskId, int processusStep){
         CorrectiveActionFragment correctiveActionFragment = new CorrectiveActionFragment();
-        Bundle bundle = new Bundle(1);
+        Bundle bundle = new Bundle(2);
+        bundle.putInt(BUNDLE_PROCESSUS_STEP, processusStep);
         bundle.putLong(BUNDLE_RISK_ID, riskId);
         correctiveActionFragment.setArguments(bundle);
         return correctiveActionFragment;
@@ -45,6 +48,7 @@ public class CorrectiveActionFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_corrective_action, container, false);
         ButterKnife.bind(this, mView);
         mRiskId = getArguments().getLong(BUNDLE_RISK_ID, 100);
+        mProcessusStepInteger = getArguments().getInt(BUNDLE_PROCESSUS_STEP, 0);
 
         this.configureViewModel();
         this.getAdministrator(1);
@@ -54,7 +58,7 @@ public class CorrectiveActionFragment extends Fragment {
 
     @OnClick(R.id.corrective_action_first_link)
     public void correctiveAction_To_riskFile(){
-        mCallback.correctiveAction_To_riskFile(mView, mRiskId);
+        mCallback.correctiveAction_To_riskFile(mView, mRiskId, mProcessusStepInteger);
     }
 
     /**
@@ -63,7 +67,7 @@ public class CorrectiveActionFragment extends Fragment {
 
     // interface for button clicked
     public interface CorrectiveActionItemClickedListener{
-        void correctiveAction_To_riskFile(View view, long riskId);
+        void correctiveAction_To_riskFile(View view, long riskId, int processusStep);
     }
 
     //callback for button clicked

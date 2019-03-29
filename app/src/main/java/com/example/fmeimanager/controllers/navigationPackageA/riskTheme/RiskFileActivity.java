@@ -14,10 +14,12 @@ import com.example.fmeimanager.controllers.navigationPackageA.processusTheme.Pro
 public class RiskFileActivity extends BaseActivity implements RiskFileDescriptionFragment.RiskFileItemClickedListener {
 
     public static final String RISK_ID_TO_CORRECTIVE_ACTION_DASHBOARD = "RISK_ID_TO_CORRECTIVE_ACTION_DASHBOARD";
+    public static final String PROCESSUS_STEP_TO_CORRECTIVE_ACTION_DASHBOARD = "PROCESSUS_STEP_TO_CORRECTIVE_ACTION_DASHBOARD";
 
     @Override
     protected Fragment getFirstFragment() {
-        return RiskFileDescriptionFragment.newInstance(getIntent().getLongExtra(ProcessDashboardActivity.RISK_ID_TO_RISK_DASHBOARD, 200));
+        return RiskFileDescriptionFragment.newInstance(getIntent().getLongExtra(ProcessDashboardActivity.RISK_ID_TO_RISK_DASHBOARD, 200),
+                getIntent().getIntExtra(ProcessDashboardActivity.PROCESSUS_STEP_TO_RISK_DASHBOARD, 0));
     }
 
     @Override
@@ -56,10 +58,10 @@ public class RiskFileActivity extends BaseActivity implements RiskFileDescriptio
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.toolbar_photo:
-                Toast.makeText(this, "SEARCH", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "PHOTO", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.toolbar_save:
-                Toast.makeText(this, "SAVE", Toast.LENGTH_SHORT).show();
+                ((RiskFileDescriptionFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).saveRiskSelected();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -68,13 +70,17 @@ public class RiskFileActivity extends BaseActivity implements RiskFileDescriptio
 
     // BUTTON FRAGMENT
     @Override
-    public void riskFile_To_CorrectiveAction(View view, long riskId) {
+    public void riskFile_To_CorrectiveAction(View view, long riskId, int processusStepInteger) {
         Intent intent = new Intent(this, CorrectiveActionFileActivity.class);
         intent.putExtra(RISK_ID_TO_CORRECTIVE_ACTION_DASHBOARD, riskId);
+        intent.putExtra(PROCESSUS_STEP_TO_CORRECTIVE_ACTION_DASHBOARD, processusStepInteger);
         startActivity(intent);
     }
 
-
+    @Override
+    public void riskFileDelete(View view) {
+        finish();
+    }
 
 
 }

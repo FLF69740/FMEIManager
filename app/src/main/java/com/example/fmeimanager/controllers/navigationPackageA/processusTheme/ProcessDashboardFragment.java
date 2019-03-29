@@ -101,7 +101,8 @@ public class ProcessDashboardFragment extends Fragment {
         RecyclerItemClickSupport.addTo(mRecyclerView, R.layout.fragment_process_recyclerview_item)
                 .setOnItemClickListener((recyclerView, position, v) -> {
                     if (this.mProcessusPanelCreator.getProcessusPanels().get(position).getRiskId() != 0) {
-                        mCallback.processDashBoard_To_RiskFile(mView, this.mProcessusPanelCreator.getProcessusPanels().get(position).getRiskId(), mFmeiId);
+                        mCallback.processDashBoard_To_RiskFile(mView, this.mProcessusPanelCreator.getProcessusPanels().get(position).getRiskId(), mFmeiId,
+                                this.mProcessusPanelCreator.getProcessusPanels().get(position).getProcessusStep());
                     }
                 });
     }
@@ -112,7 +113,7 @@ public class ProcessDashboardFragment extends Fragment {
 
     // interface for button clicked
     public interface ItemClickedListener{
-        void processDashBoard_To_RiskFile(View view, long riskId, long parentId);
+        void processDashBoard_To_RiskFile(View view, long riskId, long parentId, int procesusStep);
         void processDashBoard_To_ProcessusBuilder(View view, long parentId);
     }
 

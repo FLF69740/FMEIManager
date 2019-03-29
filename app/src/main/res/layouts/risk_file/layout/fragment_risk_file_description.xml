@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/risk_file_textview_manager"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -44,7 +44,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toStartOf="@+id/risk_file_first_link"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintTop_toTopOf="@+id/imageView"/>
 
         <Button
             android:id="@+id/risk_file_first_link"
@@ -60,7 +60,7 @@
             android:text="@string/Risk_file_corrective_action_title"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toEndOf="@+id/risk_file_textview_manager"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- BODY -->
@@ -90,24 +90,25 @@
                     app:layout_constraintBottom_toBottomOf="@+id/fragment_risk_part_title"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/fragment_risk_processus_step" />
+                    app:layout_constraintTop_toTopOf="@+id/fragment_risk_traceability_name" />
 
-                <EditText
+                <TextView
                     android:id="@+id/fragment_risk_processus_step"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:hint="@string/Risk_file_corrective_processus_step"
-                    android:textColorHint="@color/colorAccentDark"
+                    android:text="@string/Risk_file_corrective_processus_step"
+                    android:gravity="center_vertical"
                     android:textColor="@color/background_light"
                     android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_risk_creation_date"
                     app:layout_constraintEnd_toStartOf="@+id/fragment_risk_traceability_name"
                     app:layout_constraintStart_toEndOf="@+id/fragment_risk_risk_id"
-                    app:layout_constraintTop_toBottomOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/fragment_risk_traceability_name"
@@ -127,17 +128,12 @@
                     android:id="@+id/fragment_risk_creation_date"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/colorAccent"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/background_light"
                     app:layout_constraintBottom_toBottomOf="@+id/fragment_risk_part_title"
                     app:layout_constraintEnd_toEndOf="@+id/fragment_risk_processus_step"
                     app:layout_constraintStart_toStartOf="@+id/fragment_risk_processus_step"
-                    app:layout_constraintTop_toBottomOf="@+id/fragment_risk_processus_step" />
+                    app:layout_constraintTop_toTopOf="@+id/fragment_risk_part_title" />
 
                 <EditText
                     android:id="@+id/fragment_risk_part_title"
@@ -329,6 +325,7 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
+                    android:gravity="center"
                     android:text="@string/Risk_file_corrective_severity"
                     android:textColor="@color/background_light"
                     android:textSize="14sp"
@@ -342,6 +339,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
+                    android:gravity="center"
                     android:text="@string/Risk_file_corrective_probability"
                     android:textColor="@color/background_light"
                     android:textSize="14sp"
@@ -355,6 +353,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
+                    android:gravity="center"
                     android:text="@string/Risk_file_corrective_detection"
                     android:textColor="@color/background_light"
                     android:textSize="14sp"
@@ -366,8 +365,6 @@
                     android:id="@+id/fragment_risk_severity_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/accentdark_border_table"
                     android:clickable="true"
@@ -379,18 +376,14 @@
                     android:textColor="@color/background_light"
                     android:textSize="14sp"
                     app:layout_constraintDimensionRatio="w,1:1"
-                    app:layout_constraintEnd_toStartOf="@+id/fragment_risk_probability_score"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/fragment_risk_severity_title"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_risk_severity_title"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_risk_severity_title" />
 
                 <TextView
                     android:id="@+id/fragment_risk_probability_score"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
                     android:background="@drawable/accentdark_border_table"
                     android:clickable="true"
                     android:drawableBottom="@mipmap/baseline_autorenew_white_24"
@@ -402,18 +395,14 @@
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/fragment_risk_severity_value"
                     app:layout_constraintDimensionRatio="w,1:1"
-                    app:layout_constraintEnd_toStartOf="@+id/fragment_risk_detection_score"
-                    app:layout_constraintStart_toEndOf="@+id/fragment_risk_severity_value"
+                    app:layout_constraintEnd_toEndOf="@+id/fragment_risk_probability_title"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_risk_probability_title"
                     app:layout_constraintTop_toTopOf="@+id/fragment_risk_severity_value" />
 
                 <TextView
                     android:id="@+id/fragment_risk_detection_score"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/accentdark_border_table"
                     android:clickable="true"
@@ -426,17 +415,17 @@
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/fragment_risk_probability_score"
                     app:layout_constraintDimensionRatio="w,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/fragment_risk_probability_score"
+                    app:layout_constraintEnd_toEndOf="@+id/fragment_risk_detection_title"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_risk_detection_title"
                     app:layout_constraintTop_toTopOf="@+id/fragment_risk_probability_score" />
 
                 <Button
                     android:id="@+id/fragment_risk_ask_btn"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:background="@color/colorAccent"
@@ -444,6 +433,23 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_risk_probability_score" />
+
+                <Button
+                    android:id="@+id/fragment_risk_delete_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/colorAccentDark"
+                    android:text="@string/Risk_file_corrective_delete"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_risk_ask_btn" />
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>

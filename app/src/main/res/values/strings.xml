@@ -13,7 +13,7 @@
     <!-- NAVIGATION DRAWER -->
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="Navigation_drawer_fmei_dashboard">FMEI DASHBOARD</string>
+    <string name="Navigation_drawer_fmei_dashboard">FMEA DASHBOARD</string>
     <string name="Navigation_drawer_human_resources">HUMAN RESOURCES</string>
     <string name="Navigation_drawer_team_fmei">TEAM FMEA</string>
     <string name="Navigation_drawer_profile_section">PROFILE SECTION</string>
@@ -66,7 +66,9 @@
     <string name="Risk_file_corrective_failing_title">FAILING TITLE</string>
     <string name="Risk_file_corrective_part">PART</string>
     <string name="Risk_file_corrective_identification">Identification</string>
-    <string name="Risk_file_corrective_processus_step">Processus step</string>
+    <string name="Risk_file_corrective_processus_step">STEP</string>
+    <string name="Risk_file_corrective_delete">DELETE</string>
+    <string name="Risk_file_corrective_save">DATAS SAVED</string>
 
     <!-- TEAM FMEI -->
     <string name="team_fmei_dashboard_title">TEAM FMEA</string>

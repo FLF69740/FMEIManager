@@ -15,6 +15,7 @@ import com.example.fmeimanager.controllers.navigationPackageA.fmeiTheme.FmeiDash
 public class ProcessDashboardActivity extends BaseActivity implements ProcessDashboardFragment.ItemClickedListener {
 
     public static final String RISK_ID_TO_RISK_DASHBOARD = "RISK_ID_TO_RISK_DASHBOARD";
+    public static final String PROCESSUS_STEP_TO_RISK_DASHBOARD = "PROCESSUS_STEP_TO_RISK_DASHBOARD";
     public static final String PROCESS_DASHBOARD_TO_PROCESS_BUILDER = "PROCESS_DASHBOARD_TO_PROCESS_BUILDER";
 
     private static final String SHARED_ID = "SHARED_ID";
@@ -86,10 +87,11 @@ public class ProcessDashboardActivity extends BaseActivity implements ProcessDas
 
     // BUTTON FRAGMENT
     @Override
-    public void processDashBoard_To_RiskFile(View view, long riskId, long parentId) {
+    public void processDashBoard_To_RiskFile(View view, long riskId, long parentId, int processusStep) {
         saveSharedPreferences(parentId);
         Intent intent = new Intent(this, RiskFileActivity.class);
         intent.putExtra(RISK_ID_TO_RISK_DASHBOARD, riskId);
+        intent.putExtra(PROCESSUS_STEP_TO_RISK_DASHBOARD, processusStep);
         startActivity(intent);
     }
 
