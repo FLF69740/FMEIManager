@@ -26,6 +26,7 @@ import com.example.fmeimanager.database.Risk;
 import com.example.fmeimanager.utils.Utils;
 import com.example.fmeimanager.viewmodels.RiskViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -61,7 +62,12 @@ public class RiskFileDescriptionFragment extends Fragment {
     private static final String BUNDLE_RISK_ID = "BUNDLE_RISK_ID";
     private static final String BUNDLE_PROCESSUS_STEP = "BUNDLE_PROCESSUS_STEP";
     public static final String BUNDLE_KEY_CRITERIA_SCORE = "BUNDLE_KEY_CRITERIA_SCORE";
+    public static final String BUNDLE_KEY_RISK_MANAGER = "BUNDLE_KEY_RISK_MANAGER";
+    public static final String BUNDLE_KEY_RISK_LIST_MANAGER_NAME = "BUNDLE_KEY_RISK_LIST_MANAGER_NAME";
+    public static final String BUNDLE_KEY_RISK_LIST_MANAGER_FORNAME = "BUNDLE_KEY_RISK_LIST_MANAGER_FORNAME";
+    public static final String BUNDLE_KEY_RISK_LIST_MANAGER_ID = "BUNDLE_KEY_RISK_LIST_MANAGER_ID";
     private static final int CRITERIA_SCORE_REQUEST_CODE = 987;
+    private static final int RISK_MANAGER_REQUEST_CODE = 654;
     private static final String SEVERITY = "SEVERITY";
     private static final String PROBABILITY = "PROBABILITY";
     private static final String DETECTION = "DETECTION";
@@ -71,6 +77,7 @@ public class RiskFileDescriptionFragment extends Fragment {
     private long mRiskId;
     private int mProcessusStepInteger;
     private Participant mParticipant;
+    private List<Participant> mParticipantList;
     private Risk mRisk;
 
     public RiskFileDescriptionFragment() {}
@@ -150,6 +157,20 @@ public class RiskFileDescriptionFragment extends Fragment {
     @OnClick(R.id.risk_file_textview_manager)
     public void changeParticipant(){
         Log.i(Utils.INFORMATION_LOG, "change participant , id : " + mParticipant.getId());
+        Intent intent = new Intent(getActivity(), RiskManagerChoiceActivity.class);
+        intent.putExtra(BUNDLE_KEY_RISK_MANAGER, mParticipant.getId());
+        ArrayList<String> participantListId = new ArrayList<>();
+        ArrayList<String> participantNameListString = new ArrayList<>();
+        ArrayList<String> participantFornameListString = new ArrayList<>();
+        for (int i = 0 ; i < mParticipantList.size(); i++){
+            participantListId.add(String.valueOf(mParticipantList.get(i).getId()));
+            participantNameListString.add(mParticipantList.get(i).getName());
+            participantFornameListString.add(mParticipantList.get(i).getForname());
+        }
+        intent.putExtra(BUNDLE_KEY_RISK_LIST_MANAGER_ID, participantListId);
+        intent.putExtra(BUNDLE_KEY_RISK_LIST_MANAGER_NAME, participantNameListString);
+        intent.putExtra(BUNDLE_KEY_RISK_LIST_MANAGER_FORNAME, participantFornameListString);
+        startActivityForResult(intent, RISK_MANAGER_REQUEST_CODE);
     }
 
     @OnClick(R.id.fragment_risk_severity_value)
@@ -226,6 +247,16 @@ public class RiskFileDescriptionFragment extends Fragment {
                     Integer.valueOf(mProbabilityScore.getText().toString())*
                     Integer.valueOf(mDetectionScore.getText().toString())));
         }
+        if (RISK_MANAGER_REQUEST_CODE == requestCode && RESULT_OK == resultCode){
+            long newId = data.getLongExtra(RiskManagerChoiceActivity.BUNDLE_NEW_MANAGER_ID, 1);
+            String newForname = data.getStringExtra(RiskManagerChoiceActivity.BUNDLE_NEW_MANAGER_FORNAME);
+            String newName = data.getStringExtra(RiskManagerChoiceActivity.BUNDLE_NEW_MANAGER_NAME);
+            String newCompleteName = newForname + " " + newName;
+            mManager.setText(newCompleteName);
+            Participant participant = new Participant(newName, newForname);
+            participant.setId(newId);
+            this.updateParticipant(participant);
+        }
     }
 
     /**
@@ -245,6 +276,11 @@ public class RiskFileDescriptionFragment extends Fragment {
     //GET risk selected
     private void getRiskSelected(long riskId){
         this.mRiskViewModel.getRisk(riskId).observe(this, this::updateRisk);
+    }
+
+    //GET all participant
+    private void getAllParticipant(){
+        this.mRiskViewModel.getAllParticipant().observe(this, this::updateAllParticipant);
     }
 
     //GET participant attached to selected risk
@@ -299,6 +335,7 @@ public class RiskFileDescriptionFragment extends Fragment {
             mRisk = risk;
             this.updateInformationsRiskPanel(risk);
             getRiskParticipant(risk.getParticipantId());
+            getAllParticipant();
             getRiskCorrectiveAction();
         }
     }
@@ -317,6 +354,13 @@ public class RiskFileDescriptionFragment extends Fragment {
         if (correctiveActionList != null){
         //    for (int)
 
+        }
+    }
+
+    //RECORD all participant
+    private void updateAllParticipant(List<Participant> participants){
+        if (participants != null){
+            mParticipantList = participants;
         }
     }
 

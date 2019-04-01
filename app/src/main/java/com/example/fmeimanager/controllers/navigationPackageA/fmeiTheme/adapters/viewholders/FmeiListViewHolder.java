@@ -9,6 +9,8 @@ import com.example.fmeimanager.R;
 import com.example.fmeimanager.database.Fmei;
 import com.example.fmeimanager.models.FmeiPanel;
 
+import java.text.DecimalFormat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -44,7 +46,10 @@ public class FmeiListViewHolder extends RecyclerView.ViewHolder {
         mParticipantNumber.setText(string);
         string = mItemView.getContext().getString(R.string.Fmei_dashboard_risks_amount) + " " +String.valueOf(fmeiPanel.getRiskAmount());
         mRiskNumber.setText(string);
-        string = mItemView.getContext().getString(R.string.Fmei_dashboard_risks_average) + " " +String.valueOf(fmeiPanel.getRiskRateAverage());
+        double average = fmeiPanel.getRiskRateAverage();
+        DecimalFormat decimalFormat = new DecimalFormat("#.###");
+        String averageString = decimalFormat.format(average);
+        string = mItemView.getContext().getString(R.string.Fmei_dashboard_risks_average) + " " + averageString;
         mRiskAverage.setText(string);
         string = mItemView.getContext().getString(R.string.Fmei_dashboard_risk_max) + " " +String.valueOf(fmeiPanel.getIPRMax());
         mIprMax.setText(string);

@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.navigationPackageA.riskTheme.IntKeyboardActivity"></activity>
+        <activity android:name=".controllers.navigationPackageA.riskTheme.RiskManagerChoiceActivity"></activity>
+        <activity android:name=".controllers.navigationPackageA.riskTheme.IntKeyboardActivity" />
         <activity
             android:name=".controllers.navigationPackageA.processusTheme.WriteFromProcessusBuilderActivity"
             android:label="@string/Process_builder_button_write_title"
