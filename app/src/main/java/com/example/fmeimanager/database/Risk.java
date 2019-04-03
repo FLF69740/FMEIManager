@@ -4,6 +4,9 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.fmeimanager.utils.Utils;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
@@ -13,7 +16,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         @ForeignKey(entity = Processus.class, parentColumns = "processus_id", childColumns = "risk_processusId", onDelete = CASCADE),
         @ForeignKey(entity = Participant.class, parentColumns = "participant_id", childColumns = "risk_participantId")
 })
-public class Risk {
+public class Risk implements Parcelable {
 
     @PrimaryKey (autoGenerate = true) @ColumnInfo(name = "risk_id") private long mId;
     private String mCreationDate;
@@ -79,4 +82,51 @@ public class Risk {
     public void setDetectability(int detectability) {mDetectability = detectability;}
     public void setParticipantId(long participantId) {mParticipantId = participantId;}
     public void setProcessusId(long processusId) {mProcessusId = processusId;}
+
+    protected Risk(Parcel in) {
+        mCreationDate = in.readString();
+        mParts = in.readString();
+        mIdentification = in.readString();
+        mRisk = in.readString();
+        mRiskEffect = in.readString();
+        mVerification = in.readString();
+        mPotentialCause = in.readString();
+        mUrlPictures = in.readString();
+        mGravity = in.readInt();
+        mFrequencies = in.readInt();
+        mDetectability = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mCreationDate);
+        dest.writeString(mParts);
+        dest.writeString(mIdentification);
+        dest.writeString(mRisk);
+        dest.writeString(mRiskEffect);
+        dest.writeString(mVerification);
+        dest.writeString(mPotentialCause);
+        dest.writeString(mUrlPictures);
+        dest.writeInt(mGravity);
+        dest.writeInt(mFrequencies);
+        dest.writeInt(mDetectability);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Risk> CREATOR = new Parcelable.Creator<Risk>() {
+        @Override
+        public Risk createFromParcel(Parcel in) {
+            return new Risk(in);
+        }
+
+        @Override
+        public Risk[] newArray(int size) {
+            return new Risk[size];
+        }
+    };
 }

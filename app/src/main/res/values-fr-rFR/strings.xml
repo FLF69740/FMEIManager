@@ -52,4 +52,11 @@
     <string name="Risk_file_corrective_processus_step">ETAPE</string>
     <string name="Risk_file_corrective_delete">EFFACER</string>
     <string name="Risk_file_corrective_save">DATAS SAUVEGARDEES</string>
+    <string name="activity_photo_modifier_validate">VALIDER</string>
+    <string name="activity_photo_modifier_cancel">ANNULER</string>
+    <string name="activity_photo_modifier_advertising_photo_name">Ce titre pour cette photo existe déjà</string>
+    <string name="activity_photo_modifier_advertising_empty_edittext">La photo doit avoir un titre</string>
+    <string name="activity_photo_modifier_advertising_forbidden_characteres">Caractères interdits : / !</string>
+    <string name="photo_viewpager_save_and_quit">SAUVEGARDER ET QUITTER</string>
+    <string name="photo_viewpager_send_to_the_trash">envoyé dans la corbeille</string>
 </resources>

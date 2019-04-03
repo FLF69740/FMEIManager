@@ -58,7 +58,7 @@ public class RiskFileActivity extends BaseActivity implements RiskFileDescriptio
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.toolbar_photo:
-                Toast.makeText(this, "PHOTO", Toast.LENGTH_SHORT).show();
+                ((RiskFileDescriptionFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).launchRiskPhotoActivity();
                 return true;
             case R.id.toolbar_save:
                 ((RiskFileDescriptionFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).saveRiskSelected();

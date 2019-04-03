@@ -26,6 +26,10 @@
     <string name="VALIDATE_Btn">VALIDATE</string>
     <string name="CANCEL_Btn">CANCEL</string>
 
+    <!-- PHOTO VIEWPAGER -->
+    <string name="photo_viewpager_save_and_quit">SAVE AND QUIT</string>
+    <string name="photo_viewpager_send_to_the_trash">send to the trash</string>
+
     <!-- MAIN ACTIVITY -->
     <string name="touch_screen">TOUCH SCREEN</string>
 
@@ -69,6 +73,11 @@
     <string name="Risk_file_corrective_processus_step">STEP</string>
     <string name="Risk_file_corrective_delete">DELETE</string>
     <string name="Risk_file_corrective_save">DATAS SAVED</string>
+    <string name="activity_photo_modifier_validate">VALIDATE</string>
+    <string name="activity_photo_modifier_cancel">CANCEL</string>
+    <string name="activity_photo_modifier_advertising_photo_name">This title for this photo already exists</string>
+    <string name="activity_photo_modifier_advertising_empty_edittext">Photo must have a title</string>
+    <string name="activity_photo_modifier_advertising_forbidden_characteres">Forbidden characteres : / !</string>
 
     <!-- TEAM FMEI -->
     <string name="team_fmei_dashboard_title">TEAM FMEA</string>

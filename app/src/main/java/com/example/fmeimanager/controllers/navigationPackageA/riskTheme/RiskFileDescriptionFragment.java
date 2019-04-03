@@ -4,7 +4,9 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,12 +19,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.database.CorrectiveAction;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.database.Risk;
+import com.example.fmeimanager.utils.BitmapStorage;
 import com.example.fmeimanager.utils.Utils;
 import com.example.fmeimanager.viewmodels.RiskViewModel;
 
@@ -61,11 +66,17 @@ public class RiskFileDescriptionFragment extends Fragment {
 
     private static final String BUNDLE_RISK_ID = "BUNDLE_RISK_ID";
     private static final String BUNDLE_PROCESSUS_STEP = "BUNDLE_PROCESSUS_STEP";
+    private static final String BUNDLE_KEY_RISK = "BUNDLE_KEY_RISK";
+    private static final String BUNDLE_KEY_RISK_STEP = "BUNDLE_KEY_RISK_STEP";
     public static final String BUNDLE_KEY_CRITERIA_SCORE = "BUNDLE_KEY_CRITERIA_SCORE";
     public static final String BUNDLE_KEY_RISK_MANAGER = "BUNDLE_KEY_RISK_MANAGER";
     public static final String BUNDLE_KEY_RISK_LIST_MANAGER_NAME = "BUNDLE_KEY_RISK_LIST_MANAGER_NAME";
     public static final String BUNDLE_KEY_RISK_LIST_MANAGER_FORNAME = "BUNDLE_KEY_RISK_LIST_MANAGER_FORNAME";
     public static final String BUNDLE_KEY_RISK_LIST_MANAGER_ID = "BUNDLE_KEY_RISK_LIST_MANAGER_ID";
+    public static final String BUNDLE_PHOTO_LIST_RISK = "BUNDLE_PHOTO_LIST_RISK";
+    public static final String BUNDLE_PHOTO_RISK_ID = "BUNDLE_PHOTO_RISK_ID";
+    private static final int RC_PHOTO_UPLOAD = 10;
+    private static final int RC_VIEWPAGER_UPLOAD = 151;
     private static final int CRITERIA_SCORE_REQUEST_CODE = 987;
     private static final int RISK_MANAGER_REQUEST_CODE = 654;
     private static final String SEVERITY = "SEVERITY";
@@ -91,21 +102,34 @@ public class RiskFileDescriptionFragment extends Fragment {
         return riskFileDescriptionFragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_risk_file_description, container, false);
         ButterKnife.bind(this, mView);
-        mRiskId = getArguments().getLong(BUNDLE_RISK_ID);
-        mProcessusStepInteger = getArguments().getInt(BUNDLE_PROCESSUS_STEP);
-        String processusStepTitle = mView.getContext().getString(R.string.Risk_file_corrective_processus_step) + " " + mProcessusStepInteger;
-        mStepProcessus.setText(processusStepTitle);
 
         this.configureViewModel();
         this.getAdministrator(1);
-        this.getRiskSelected(mRiskId);
+
+        if (savedInstanceState != null) {
+            mRisk = savedInstanceState.getParcelable(BUNDLE_KEY_RISK);
+            updateRisk(mRisk);
+            mProcessusStepInteger = savedInstanceState.getInt(BUNDLE_KEY_RISK_STEP);
+        }else {
+            mRiskId = getArguments().getLong(BUNDLE_RISK_ID);
+            this.getRiskSelected(mRiskId);
+            mProcessusStepInteger = getArguments().getInt(BUNDLE_PROCESSUS_STEP);
+        }
+        String processusStepTitle = mView.getContext().getString(R.string.Risk_file_corrective_processus_step) + " " + mProcessusStepInteger;
+        mStepProcessus.setText(processusStepTitle);
 
         return mView;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(BUNDLE_KEY_RISK, mRisk);
+        outState.putInt(BUNDLE_KEY_RISK_STEP, mProcessusStepInteger);
     }
 
     //BUILD IHM with risk information
@@ -130,16 +154,35 @@ public class RiskFileDescriptionFragment extends Fragment {
         if (!risk.getPotentialCause().equals(Utils.EMPTY)) {
             mRootCause.setText(risk.getPotentialCause());
         }
-/*
-        mImageView1
-                mImageView2
-        mImageView3
-                mImageViewPlusLogo
-*/
+        this.updatePhotoAeara();
         mIprScore.setText(String.valueOf(risk.getGravity()* risk.getFrequencies()* risk.getDetectability()));
         mSeverityScore.setText(String.valueOf(risk.getGravity()));
         mProbabilityScore.setText(String.valueOf(risk.getFrequencies()));
         mDetectionScore.setText(String.valueOf(risk.getDetectability()));
+    }
+
+    //Upadte photo aera
+    private void updatePhotoAeara(){
+        int visibility1 = BusinessRiskTheme.getAeraState(mRisk.getUrlPictures()) > 0 ? View.VISIBLE : View.INVISIBLE;
+        mImageView1.setVisibility(visibility1);
+        if (BusinessRiskTheme.getAeraState(mRisk.getUrlPictures()) > 0) {
+            Log.i(Utils.INFORMATION_LOG, BusinessRiskTheme.getPhotoList(mRisk.getUrlPictures()).get(0));
+            mImageView1.setImageBitmap(BitmapStorage.loadImage(getContext(), BusinessRiskTheme.getPhotoList(mRisk.getUrlPictures()).get(0)));
+        }
+        int visibility2 = BusinessRiskTheme.getAeraState(mRisk.getUrlPictures()) > 1 ? View.VISIBLE : View.INVISIBLE;
+        mImageView2.setVisibility(visibility2);
+        if (BusinessRiskTheme.getAeraState(mRisk.getUrlPictures()) > 1) {
+            Log.i(Utils.INFORMATION_LOG, BusinessRiskTheme.getPhotoList(mRisk.getUrlPictures()).get(1));
+            mImageView2.setImageBitmap(BitmapStorage.loadImage(getContext(), BusinessRiskTheme.getPhotoList(mRisk.getUrlPictures()).get(1)));
+        }
+        int visibility3 = BusinessRiskTheme.getAeraState(mRisk.getUrlPictures()) > 2 ? View.VISIBLE : View.INVISIBLE;
+        mImageView3.setVisibility(visibility3);
+        if (BusinessRiskTheme.getAeraState(mRisk.getUrlPictures()) > 2) {
+            Log.i(Utils.INFORMATION_LOG, BusinessRiskTheme.getPhotoList(mRisk.getUrlPictures()).get(2));
+            mImageView3.setImageBitmap(BitmapStorage.loadImage(getContext(), BusinessRiskTheme.getPhotoList(mRisk.getUrlPictures()).get(2)));
+        }
+        int visibilityNext = BusinessRiskTheme.getAeraState(mRisk.getUrlPictures()) > 3 ? View.VISIBLE : View.INVISIBLE;
+        mImageViewPlusLogo.setVisibility(visibilityNext);
     }
 
     /**
@@ -173,6 +216,7 @@ public class RiskFileDescriptionFragment extends Fragment {
         startActivityForResult(intent, RISK_MANAGER_REQUEST_CODE);
     }
 
+    //CHANGE severity value
     @OnClick(R.id.fragment_risk_severity_value)
     public void changeSeverityValue(){
         Intent intent = new Intent(getActivity(), IntKeyboardActivity.class);
@@ -180,6 +224,7 @@ public class RiskFileDescriptionFragment extends Fragment {
         startActivityForResult(intent, CRITERIA_SCORE_REQUEST_CODE);
     }
 
+    //CHANGE probability value
     @OnClick(R.id.fragment_risk_probability_score)
     public void changeProbabilityValue(){
         Intent intent = new Intent(getActivity(), IntKeyboardActivity.class);
@@ -187,11 +232,47 @@ public class RiskFileDescriptionFragment extends Fragment {
         startActivityForResult(intent, CRITERIA_SCORE_REQUEST_CODE);
     }
 
+    //CHANGE detection value
     @OnClick(R.id.fragment_risk_detection_score)
     public void changeDetectionValue(){
         Intent intent = new Intent(getActivity(), IntKeyboardActivity.class);
         intent.putExtra(BUNDLE_KEY_CRITERIA_SCORE, DETECTION);
         startActivityForResult(intent, CRITERIA_SCORE_REQUEST_CODE);
+    }
+
+    //GO to PhotoViewPager
+    @OnClick(R.id.fragment_risk_photo_case_1)
+    public void goToPhotoViewPager1(){
+        launchPhotoViewPager();
+    }
+
+    //GO to PhotoViewPager
+    @OnClick(R.id.fragment_risk_photo_case_2)
+    public void goToPhotoViewPager2(){
+        launchPhotoViewPager();
+    }
+
+    //GO to PhotoViewPager
+    @OnClick(R.id.fragment_risk_photo_case_3)
+    public void goToPhotoViewPager3(){
+        launchPhotoViewPager();
+    }
+
+    //LAUNCH viewpager
+    private void launchPhotoViewPager(){
+        this.updateRiskModel();
+        Intent intent = new Intent(getActivity(), RiskPhotoViewPagerActivity.class);
+        intent.putExtra(BUNDLE_PHOTO_LIST_RISK, mRisk.getUrlPictures());
+        startActivityForResult(intent, RC_VIEWPAGER_UPLOAD);
+    }
+
+    //GO TO photo activity
+    public void launchRiskPhotoActivity() {
+        this.updateRiskModel();
+        Intent intent = new Intent(getActivity(), PhotoRiskActivity.class);
+        intent.putExtra(BUNDLE_PHOTO_RISK_ID, mRiskId);
+        intent.putStringArrayListExtra(BUNDLE_PHOTO_LIST_RISK, BusinessRiskTheme.getPhotoList(mRisk.getUrlPictures()));
+        startActivityForResult(intent, RC_PHOTO_UPLOAD);
     }
 
     //GO TO Corrective action IHM
@@ -235,12 +316,15 @@ public class RiskFileDescriptionFragment extends Fragment {
             switch (sourceCriteria){
                 case SEVERITY:
                     mSeverityScore.setText(String.valueOf(newScore));
+                    mRisk.setGravity(newScore);
                     break;
                 case PROBABILITY:
                     mProbabilityScore.setText(String.valueOf(newScore));
+                    mRisk.setFrequencies(newScore);
                     break;
                 case DETECTION:
                     mDetectionScore.setText(String.valueOf(newScore));
+                    mRisk.setDetectability(newScore);
                     break;
             }
             mIprScore.setText(String.valueOf(Integer.valueOf(mSeverityScore.getText().toString())*
@@ -256,6 +340,17 @@ public class RiskFileDescriptionFragment extends Fragment {
             Participant participant = new Participant(newName, newForname);
             participant.setId(newId);
             this.updateParticipant(participant);
+        }
+        if (RC_PHOTO_UPLOAD == requestCode && resultCode == RESULT_OK){
+            String uri = data.getStringExtra(PhotoRiskActivity.BUNDLE_PHOTO_UPDATE);
+            Log.i(Utils.INFORMATION_LOG, "Photo import to fragment : " + uri);
+            mRisk.setUrlPictures(BusinessRiskTheme.getStringUrl(mRisk.getUrlPictures(), uri));
+            Log.i(Utils.INFORMATION_LOG, "Risk UrlPictures : " + mRisk.getUrlPictures());
+            updateInformationsRiskPanel(mRisk);
+        }
+        if (RC_VIEWPAGER_UPLOAD == requestCode && resultCode == RESULT_OK){
+            mRisk.setUrlPictures(data.getStringExtra(RiskPhotoViewPagerActivity.BUNDLE_LIST_TRANSFERT));
+            updateInformationsRiskPanel(mRisk);
         }
     }
 
@@ -297,6 +392,7 @@ public class RiskFileDescriptionFragment extends Fragment {
     public void saveRiskSelected(){
         mRisk.setParticipantId(mParticipant.getId());
         this.updateRiskModel();
+        BitmapStorage.purgePhotosInternalMemory(getContext(), mRisk.getUrlPictures(), mRiskId);
         this.mRiskViewModel.updateRisk(mRisk);
         Snackbar.make(mView, mView.getContext().getString(R.string.Risk_file_corrective_save), Snackbar.LENGTH_SHORT).show();
     }
@@ -309,12 +405,7 @@ public class RiskFileDescriptionFragment extends Fragment {
         mRisk.setRiskEffect(mEffect.getText().toString());
         mRisk.setVerification(mDetectionTool.getText().toString());
         mRisk.setPotentialCause(mRootCause.getText().toString());
-/*
-        mImageView1
-                mImageView2
-        mImageView3
-                mImageViewPlusLogo
-*/
+        this.updatePhotoAeara();
         mRisk.setGravity(Integer.valueOf(mSeverityScore.getText().toString()));
         mRisk.setFrequencies(Integer.valueOf(mProbabilityScore.getText().toString()));
         mRisk.setDetectability(Integer.valueOf(mDetectionScore.getText().toString()));

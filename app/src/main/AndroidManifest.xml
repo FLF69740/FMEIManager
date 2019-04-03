@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.fmeimanager">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.navigationPackageA.riskTheme.RiskManagerChoiceActivity"></activity>
+        <activity android:name=".controllers.navigationPackageA.riskTheme.RiskPhotoViewPagerActivity"/>
+        <activity android:name=".controllers.navigationPackageA.riskTheme.PhotoRiskActivity" />
+        <activity android:name=".controllers.navigationPackageA.riskTheme.RiskManagerChoiceActivity" />
         <activity android:name=".controllers.navigationPackageA.riskTheme.IntKeyboardActivity" />
         <activity
             android:name=".controllers.navigationPackageA.processusTheme.WriteFromProcessusBuilderActivity"
