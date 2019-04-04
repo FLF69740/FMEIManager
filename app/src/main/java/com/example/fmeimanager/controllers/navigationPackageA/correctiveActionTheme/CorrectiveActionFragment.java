@@ -10,10 +10,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.fmeimanager.R;
+import com.example.fmeimanager.database.CorrectiveAction;
+import com.example.fmeimanager.database.Risk;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.database.Participant;
+import com.example.fmeimanager.utils.Utils;
 import com.example.fmeimanager.viewmodels.RiskViewModel;
+
+import org.joda.time.DateTime;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,6 +35,7 @@ public class CorrectiveActionFragment extends Fragment {
     private RiskViewModel mRiskViewModel;
     private long mRiskId;
     private int mProcessusStepInteger;
+    private CorrectiveAction mCorrectiveAction;
 
     public CorrectiveActionFragment() {}
 
@@ -52,6 +58,7 @@ public class CorrectiveActionFragment extends Fragment {
 
         this.configureViewModel();
         this.getAdministrator(1);
+        this.getCorrectiveAction(mRiskId);
 
         return mView;
     }
@@ -97,12 +104,27 @@ public class CorrectiveActionFragment extends Fragment {
         this.mRiskViewModel.getParticipant(id).observe(this, this::updateAdministrator);
     }
 
+    //GET corrective action
+    private void getCorrectiveAction(long riskId){
+        this.mRiskViewModel.getCorrectiveActionsListForRisk(riskId).observe(this, this::updateCorrectiveAction);
+    }
+
     /**
      *  UI
      */
 
     private void updateAdministrator(Participant participant){
         Toast.makeText(getContext(), participant.getForname() + " " + participant.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    //LOAD corrective action (!ifExist : create a new one)
+    private void updateCorrectiveAction(CorrectiveAction correctiveAction) {
+        if (correctiveAction != null){
+            mCorrectiveAction = correctiveAction;
+        }else {
+            DateTime dateTime = new DateTime();
+            mCorrectiveAction = new CorrectiveAction(Utils.EMPTY, dateTime.toString("dd/MM/yyyy"), Utils.EMPTY, Utils.EMPTY, Utils.EMPTY, mRiskId, 1);
+        }
     }
 
 }

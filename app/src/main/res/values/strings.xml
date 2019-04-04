@@ -79,6 +79,13 @@
     <string name="activity_photo_modifier_advertising_empty_edittext">Photo must have a title</string>
     <string name="activity_photo_modifier_advertising_forbidden_characteres">Forbidden characteres : / !</string>
 
+    <!-- CORRECTIVE ACTION FILE -->
+    <string name="Risk_file_corrective_corrective_title">CORRECTIVE ACTION TITLE</string>
+    <string name="Risk_file_corrective_description">Description…</string>
+    <string name="Risk_file_corrective_deadline_title">DEAD LINE</string>
+    <string name="Risk_file_corrective_realisation_title">REALISATION DATE</string>
+    <string name="Risk_file_corrective_realisation_default">TO DEFINE</string>
+
     <!-- TEAM FMEI -->
     <string name="team_fmei_dashboard_title">TEAM FMEA</string>
     <string name="team_fmei_builder_title">CONFIGURATION TEAM FMEA</string>

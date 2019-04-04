@@ -59,4 +59,9 @@
     <string name="activity_photo_modifier_advertising_forbidden_characteres">Caractères interdits : / !</string>
     <string name="photo_viewpager_save_and_quit">SAUVEGARDER ET QUITTER</string>
     <string name="photo_viewpager_send_to_the_trash">envoyé dans la corbeille</string>
+    <string name="Risk_file_corrective_corrective_title">TITRE DE L\'ACTION CORRECTIVE</string>
+    <string name="Risk_file_corrective_description">Description...</string>
+    <string name="Risk_file_corrective_deadline_title">DATE LIMITE</string>
+    <string name="Risk_file_corrective_realisation_title">DATE DE REALISATION</string>
+    <string name="Risk_file_corrective_realisation_default">A DEFINIR</string>
 </resources>

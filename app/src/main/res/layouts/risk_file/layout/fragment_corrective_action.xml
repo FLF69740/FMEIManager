@@ -5,34 +5,447 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".controllers.navigationPackageA.correctiveActionTheme.CorrectiveActionFragment">
+    tools:context=".controllers.navigationPackageA.correctiveActionTheme.CorrectiveActionFragment"
+    android:background="@color/colorPrimary">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/Risk_file_corrective_action_title" />
+        <!-- EXTENSION -->
 
-        <Button
-            android:id="@+id/corrective_action_first_link"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/corrective_file_textview_manager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:drawableStart="@mipmap/baseline_how_to_reg_white_24"
+            android:drawableLeft="@mipmap/baseline_how_to_reg_white_24"
+            android:drawableTint="@color/colorAccent"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/corrective_action_first_link"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"/>
+
+        <Button
+            android:id="@+id/corrective_action_first_link"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorAccent"
             android:text="@string/Risk_file_description_title"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/risk_file_textview_manager"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- BODY -->
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fragment_corrective_action_traceability_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:hint="@string/Risk_file_corrective_identification"
+                    android:textColor="@color/background_light"
+                    android:textColorHint="@color/colorAccentDark"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_corrective_action_parts_name"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/fragment_corrective_action_parts_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:hint="@string/Risk_file_corrective_part"
+                    android:textColor="@color/background_light"
+                    android:textColorHint="@color/colorAccentDark"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/fragment_corrective_action_traceability_name"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_corrective_action_traceability_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_corrective_action_traceability_name" />
+
+                <EditText
+                    android:id="@+id/fragment_corrective_action_corrective_action_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:hint="@string/Risk_file_corrective_corrective_title"
+                    android:padding="5dp"
+                    android:textColor="@color/background_light"
+                    android:textColorHint="@color/background_light"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_corrective_action_parts_name" />
+
+                <EditText
+                    android:id="@+id/fragment_corrective_action_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:hint="@string/Risk_file_corrective_part"
+                    android:textColor="@color/background_light"
+                    android:textColorHint="@color/colorAccentDark"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_corrective_action_corrective_action_title" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_action_deadline_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/Risk_file_corrective_deadline_title"
+                    android:textColor="@color/background_light"
+                    android:textSize="14sp"
+                    android:padding="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_corrective_action_description" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_action_deadline_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/accentdark_border_table"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:textColor="@color/background_light"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/fragment_corrective_action_deadline_title"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_corrective_action_realisation_title"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_corrective_action_deadline_title" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_action_realisation_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="@string/Risk_file_corrective_realisation_title"
+                    android:textColor="@color/background_light"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_corrective_action_deadline_title" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_action_realisation_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/accentdark_border_table"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:text="@string/Risk_file_corrective_realisation_default"
+                    android:textColor="@color/background_light"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/fragment_corrective_action_realisation_title"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_corrective_action_realisation_title"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_corrective_action_realisation_title" />
+
+                <ImageView
+                    android:id="@+id/fragment_corrective_photo_supply"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@color/colorPrimaryDark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_corrective_action_realisation_title" />
+
+                <ImageView
+                    android:id="@+id/fragment_corrective_photo_case_1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/colorPrimary"
+                    android:scaleType="fitXY"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/fragment_corrective_photo_supply"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_corrective_photo_supply"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_corrective_photo_supply" />
+
+                <ImageView
+                    android:id="@+id/fragment_corrective_photo_case_2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@color/colorPrimary"
+                    android:scaleType="fitXY"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/fragment_corrective_photo_case_1"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_corrective_photo_case_3"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_corrective_photo_case_1"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_corrective_photo_case_1" />
+
+                <ImageView
+                    android:id="@+id/fragment_corrective_photo_case_3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@color/colorPrimary"
+                    android:scaleType="fitXY"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/fragment_corrective_photo_case_2"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_corrective_photo_case_plus"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_corrective_photo_case_2"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_corrective_photo_case_2" />
+
+                <ImageView
+                    android:id="@+id/fragment_corrective_photo_case_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@mipmap/baseline_more_white_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/fragment_corrective_photo_case_3"
+                    app:layout_constraintEnd_toEndOf="@+id/fragment_corrective_photo_supply" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_ipr_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/Risk_file_corrective_ipr_level"
+                    android:textColor="@color/background_light"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_corrective_photo_supply" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_ipr_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/Risk_file_corrective_default_ipr_score"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_corrective_ipr_title" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_severity_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:text="@string/Risk_file_corrective_severity"
+                    android:textColor="@color/background_light"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_corrective_probability_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_corrective_ipr_score" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_probability_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:text="@string/Risk_file_corrective_probability"
+                    android:textColor="@color/background_light"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_corrective_detection_title"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_corrective_severity_title"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_corrective_severity_title" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_detection_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:text="@string/Risk_file_corrective_detection"
+                    android:textColor="@color/background_light"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_corrective_probability_title"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_corrective_probability_title" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_severity_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/accentdark_border_table"
+                    android:clickable="true"
+                    android:drawableBottom="@mipmap/baseline_warning_white_24"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/Risk_file_corrective_default_score"
+                    android:textColor="@color/background_light"
+                    android:textSize="14sp"
+                    app:layout_constraintDimensionRatio="w,1:1"
+                    app:layout_constraintEnd_toEndOf="@+id/fragment_corrective_severity_title"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_corrective_severity_title"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_corrective_severity_title" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_probability_score"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/accentdark_border_table"
+                    android:clickable="true"
+                    android:drawableBottom="@mipmap/baseline_autorenew_white_24"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/Risk_file_corrective_default_score"
+                    android:textColor="@color/background_light"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/fragment_corrective_severity_value"
+                    app:layout_constraintDimensionRatio="w,1:1"
+                    app:layout_constraintEnd_toEndOf="@+id/fragment_corrective_probability_title"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_corrective_probability_title"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_corrective_severity_value" />
+
+                <TextView
+                    android:id="@+id/fragment_corrective_detection_score"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/accentdark_border_table"
+                    android:clickable="true"
+                    android:drawableBottom="@mipmap/baseline_control_camera_white_24"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/Risk_file_corrective_default_score"
+                    android:textColor="@color/background_light"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/fragment_corrective_probability_score"
+                    app:layout_constraintDimensionRatio="w,1:1"
+                    app:layout_constraintEnd_toEndOf="@+id/fragment_corrective_detection_title"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_corrective_detection_title"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_corrective_probability_score" />
+
+                <Button
+                    android:id="@+id/fragment_corrective_ask_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/colorAccent"
+                    android:text="@string/Risk_file_corrective_ask_btn"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_corrective_probability_score" />
+
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
 
     </android.support.constraint.ConstraintLayout>
 

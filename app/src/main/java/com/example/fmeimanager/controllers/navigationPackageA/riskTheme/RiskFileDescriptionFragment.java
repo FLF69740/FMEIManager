@@ -62,7 +62,7 @@ public class RiskFileDescriptionFragment extends Fragment {
     @BindView(R.id.fragment_risk_severity_value) TextView mSeverityScore;
     @BindView(R.id.fragment_risk_probability_score) TextView mProbabilityScore;
     @BindView(R.id.fragment_risk_detection_score) TextView mDetectionScore;
-    @BindView(R.id.fragment_risk_ask_btn) Button mAsk;
+ //   @BindView(R.id.fragment_risk_ask_btn) Button mAsk;
 
     private static final String BUNDLE_RISK_ID = "BUNDLE_RISK_ID";
     private static final String BUNDLE_PROCESSUS_STEP = "BUNDLE_PROCESSUS_STEP";
@@ -350,6 +350,9 @@ public class RiskFileDescriptionFragment extends Fragment {
         }
         if (RC_VIEWPAGER_UPLOAD == requestCode && resultCode == RESULT_OK){
             mRisk.setUrlPictures(data.getStringExtra(RiskPhotoViewPagerActivity.BUNDLE_LIST_TRANSFERT));
+            if (mRisk.getUrlPictures().equals("")){
+                mRisk.setUrlPictures(Utils.EMPTY);
+            }
             updateInformationsRiskPanel(mRisk);
         }
     }
