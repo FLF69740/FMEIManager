@@ -26,8 +26,7 @@ public class IntKeyboardFragment extends Fragment implements View.OnClickListene
     @BindView(R.id.seven_btn) TextView mSeven;
     @BindView(R.id.height_btn) TextView mHeight;
     @BindView(R.id.nine_btn) TextView mNine;
-    @BindView(R.id.zero_btn) TextView mZero;
-    @BindView(R.id.ten_btn) TextView mTen;
+    @BindView(R.id.zero_btn) TextView mTen;
 
     public IntKeyboardFragment() {}
 
@@ -49,7 +48,6 @@ public class IntKeyboardFragment extends Fragment implements View.OnClickListene
         mSeven.setOnClickListener(this);
         mHeight.setOnClickListener(this);
         mNine.setOnClickListener(this);
-        mZero.setOnClickListener(this);
         mTen.setOnClickListener(this);
 
         return view;

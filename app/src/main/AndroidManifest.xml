@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.navigationPackageA.riskTheme.RiskPhotoViewPagerActivity"/>
+        <activity android:name=".controllers.navigationPackageA.correctiveActionTheme.PhotoCorrectiveActivity"></activity>
+        <activity android:name=".controllers.navigationPackageA.riskTheme.RiskPhotoViewPagerActivity" />
         <activity android:name=".controllers.navigationPackageA.riskTheme.PhotoRiskActivity" />
         <activity android:name=".controllers.navigationPackageA.riskTheme.RiskManagerChoiceActivity" />
         <activity android:name=".controllers.navigationPackageA.riskTheme.IntKeyboardActivity" />

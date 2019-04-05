@@ -85,6 +85,7 @@
     <string name="Risk_file_corrective_deadline_title">DEAD LINE</string>
     <string name="Risk_file_corrective_realisation_title">REALISATION DATE</string>
     <string name="Risk_file_corrective_realisation_default">TO DEFINE</string>
+    <string name="Risk_file_corrective_advertising_photo">You must save your corrective action before</string>
 
     <!-- TEAM FMEI -->
     <string name="team_fmei_dashboard_title">TEAM FMEA</string>

@@ -4,6 +4,8 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.example.fmeimanager.utils.Utils;
 
@@ -13,7 +15,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         @ForeignKey(entity = Risk.class, parentColumns = "risk_id", childColumns = "corrective_riskId", onDelete = CASCADE),
         @ForeignKey(entity = Participant.class, parentColumns = "participant_id", childColumns = "corrective_participantId")
 })
-public class CorrectiveAction {
+public class CorrectiveAction implements Parcelable {
 
     @PrimaryKey (autoGenerate = true) @ColumnInfo(name = "corrective_id") private long mId;
     private String mCorrectiveAction;
@@ -41,6 +43,7 @@ public class CorrectiveAction {
         mCorrectiveDescription = Utils.EMPTY;
         mDeadLineDate = deadLineDate;
         mRealisationDate = Utils.EMPTY;
+        mUrlPictures = Utils.EMPTY;
         mNewGravity = 10;
         mNewFrequencies = 10;
         mNewDetectability = 10;
@@ -83,4 +86,53 @@ public class CorrectiveAction {
     public void setApprobationTL(boolean approbationTL) {mApprobationTL = approbationTL;}
     public void setRiskId(long riskId) {mRiskId = riskId;}
     public void setParticipantId(long participantId) {mParticipantId = participantId;}
+
+    protected CorrectiveAction(Parcel in) {
+        mCorrectiveAction = in.readString();
+        mCreationDate = in.readString();
+        mParts = in.readString();
+        mIdentification = in.readString();
+        mCorrectiveDescription = in.readString();
+        mDeadLineDate = in.readString();
+        mRealisationDate = in.readString();
+        mUrlPictures = in.readString();
+        mNewGravity = in.readInt();
+        mNewFrequencies = in.readInt();
+        mNewDetectability = in.readInt();
+        mApprobationTL = in.readByte() != 0x00;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mCorrectiveAction);
+        dest.writeString(mCreationDate);
+        dest.writeString(mParts);
+        dest.writeString(mIdentification);
+        dest.writeString(mCorrectiveDescription);
+        dest.writeString(mDeadLineDate);
+        dest.writeString(mRealisationDate);
+        dest.writeString(mUrlPictures);
+        dest.writeInt(mNewGravity);
+        dest.writeInt(mNewFrequencies);
+        dest.writeInt(mNewDetectability);
+        dest.writeByte((byte) (mApprobationTL ? 0x01 : 0x00));
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<CorrectiveAction> CREATOR = new Parcelable.Creator<CorrectiveAction>() {
+        @Override
+        public CorrectiveAction createFromParcel(Parcel in) {
+            return new CorrectiveAction(in);
+        }
+
+        @Override
+        public CorrectiveAction[] newArray(int size) {
+            return new CorrectiveAction[size];
+        }
+    };
 }

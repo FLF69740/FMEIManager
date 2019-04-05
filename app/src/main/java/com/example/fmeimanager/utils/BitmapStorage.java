@@ -64,17 +64,27 @@ public class BitmapStorage {
         Log.i(Utils.INFORMATION_LOG, "Exist : "+ String.valueOf(BitmapStorage.isFileExist(context, imageName)) + " - chemin : " + file.getAbsolutePath());
     }
 
-    // Organise real photo used
-    public static void purgePhotosInternalMemory(Context context, String source, long id){
+    // Organise real photo used for RISK
+    public static void purgePhotosInternalMemory(Context context, String source, long id, boolean corrective){
         Log.i(Utils.INFORMATION_LOG, "--> " + context.getFilesDir().getAbsolutePath());
         File directory = context.getFilesDir();
 
         File[] list = directory.listFiles();
-        for (File ff: list){
-            if (ff.getName().contains(String.valueOf(id) + PHOTO_JUNCTION_TITLE_URI) && !source.contains(ff.getName())) {
-                deleteImage(context, ff.getName());
-            }else {
-                Log.i(Utils.INFORMATION_LOG, "*** " + ff.getName() + " : SAFE !");
+        if (corrective){
+            for (File ff : list) {
+                if (ff.getName().contains("C" + String.valueOf(id) + PHOTO_JUNCTION_TITLE_URI) && !source.contains(ff.getName())) {
+                    deleteImage(context, ff.getName());
+                } else {
+                    Log.i(Utils.INFORMATION_LOG, "*** " + ff.getName() + " : SAFE !");
+                }
+            }
+        }else {
+            for (File ff : list) {
+                if (ff.getName().contains(String.valueOf(id) + PHOTO_JUNCTION_TITLE_URI) && !source.contains(ff.getName())) {
+                    deleteImage(context, ff.getName());
+                } else {
+                    Log.i(Utils.INFORMATION_LOG, "*** " + ff.getName() + " : SAFE !");
+                }
             }
         }
     }

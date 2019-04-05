@@ -152,7 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/Risk_file_corrective_failing_title"
-                    android:textColorHint="@color/background_light"
+                    android:textColorHint="@color/colorAccentDark"
                     android:padding="5dp"
                     android:textColor="@color/background_light"
                     android:textSize="14sp"

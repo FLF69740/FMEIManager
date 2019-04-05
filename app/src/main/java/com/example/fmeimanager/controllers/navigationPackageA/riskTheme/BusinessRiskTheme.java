@@ -5,6 +5,8 @@ import android.net.Uri;
 import com.example.fmeimanager.utils.BitmapStorage;
 import com.example.fmeimanager.utils.Utils;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -59,6 +61,17 @@ public class BusinessRiskTheme {
             }
         }
         return result.toString();
+    }
+
+    // Get Calendar date
+    public static DateTime getDateMemory(String date){
+        DateTime calendar = new DateTime();
+        if (!date.equals(Utils.EMPTY)) {
+            calendar = calendar.year().setCopy(Utils.getYear(date));
+            calendar = calendar.monthOfYear().setCopy(Utils.getMonth(date));
+            calendar = calendar.dayOfMonth().setCopy(Utils.getDayOfMonth(date));
+        }
+        return calendar;
     }
 
 }

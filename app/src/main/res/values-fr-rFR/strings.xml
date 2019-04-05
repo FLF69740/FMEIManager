@@ -64,4 +64,5 @@
     <string name="Risk_file_corrective_deadline_title">DATE LIMITE</string>
     <string name="Risk_file_corrective_realisation_title">DATE DE REALISATION</string>
     <string name="Risk_file_corrective_realisation_default">A DEFINIR</string>
+    <string name="Risk_file_corrective_advertising_photo">Vous devez sauvegarder avant de prendre des photos</string>
 </resources>

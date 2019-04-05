@@ -62,7 +62,6 @@ public class RiskFileDescriptionFragment extends Fragment {
     @BindView(R.id.fragment_risk_severity_value) TextView mSeverityScore;
     @BindView(R.id.fragment_risk_probability_score) TextView mProbabilityScore;
     @BindView(R.id.fragment_risk_detection_score) TextView mDetectionScore;
- //   @BindView(R.id.fragment_risk_ask_btn) Button mAsk;
 
     private static final String BUNDLE_RISK_ID = "BUNDLE_RISK_ID";
     private static final String BUNDLE_PROCESSUS_STEP = "BUNDLE_PROCESSUS_STEP";
@@ -395,7 +394,7 @@ public class RiskFileDescriptionFragment extends Fragment {
     public void saveRiskSelected(){
         mRisk.setParticipantId(mParticipant.getId());
         this.updateRiskModel();
-        BitmapStorage.purgePhotosInternalMemory(getContext(), mRisk.getUrlPictures(), mRiskId);
+        BitmapStorage.purgePhotosInternalMemory(getContext(), mRisk.getUrlPictures(), mRiskId, false);
         this.mRiskViewModel.updateRisk(mRisk);
         Snackbar.make(mView, mView.getContext().getString(R.string.Risk_file_corrective_save), Snackbar.LENGTH_SHORT).show();
     }

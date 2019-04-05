@@ -194,34 +194,15 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:text="0"
-            android:tag="0"
+            android:tag="10"
+            android:text="10"
             android:textColor="@color/background_light"
             android:textSize="50sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="@+id/seven_btn"
-            app:layout_constraintStart_toStartOf="@+id/seven_btn"
+            app:layout_constraintEnd_toEndOf="@+id/height_btn"
+            app:layout_constraintStart_toStartOf="@+id/height_btn"
             app:layout_constraintTop_toBottomOf="@+id/seven_btn" />
-
-        <TextView
-            android:id="@+id/ten_btn"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/accentdark_border_table"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="10"
-            android:tag="10"
-            android:textColor="@color/background_light"
-            android:textSize="50sp"
-            app:layout_constraintBottom_toBottomOf="@+id/zero_btn"
-            app:layout_constraintEnd_toEndOf="@+id/nine_btn"
-            app:layout_constraintStart_toStartOf="@+id/nine_btn"
-            app:layout_constraintTop_toTopOf="@+id/zero_btn" />
-
-
 
     </android.support.constraint.ConstraintLayout>
 

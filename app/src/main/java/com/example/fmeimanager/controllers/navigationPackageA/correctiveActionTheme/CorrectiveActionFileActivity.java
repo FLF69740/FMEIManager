@@ -63,10 +63,10 @@ public class CorrectiveActionFileActivity extends BaseActivity implements Correc
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.toolbar_photo:
-                Toast.makeText(this, "SEARCH", Toast.LENGTH_SHORT).show();
+                ((CorrectiveActionFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).launchCorrectivePhotoActivity();
                 return true;
             case R.id.toolbar_save:
-                Toast.makeText(this, "SAVE", Toast.LENGTH_SHORT).show();
+                ((CorrectiveActionFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).saveCorrectiveActionSelected();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
