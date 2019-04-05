@@ -17,11 +17,9 @@ import com.example.fmeimanager.viewmodels.ParticipantViewModel;
 
 public class ProfileActivity extends BaseActivity implements ProfileFragment.ProfileItemClickedListener{
 
-    private ParticipantViewModel mParticipantViewModel;
-
     @Override
     protected Fragment getFirstFragment() {
-        return ProfileFragment.newInstance();
+        return ProfileFragment.newInstance(getIntent().getLongExtra(ProfileSectionActivity.PARTICIPANT_ID_PROFILE_SECTION, 1));
     }
 
     @Override
@@ -49,13 +47,6 @@ public class ProfileActivity extends BaseActivity implements ProfileFragment.Pro
         return true;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.configureViewModel();
-        this.getAdministrator(1);
-    }
-
     // TOOLBAR
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -69,25 +60,5 @@ public class ProfileActivity extends BaseActivity implements ProfileFragment.Pro
         startActivity(new Intent(this, ProfileSectionActivity.class));
     }
 
-    /**
-     *  DATAS
-     */
 
-    private void configureViewModel(){
-        ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(this);
-        this.mParticipantViewModel = ViewModelProviders.of(this, viewModelFactory).get(ParticipantViewModel.class);
-        this.mParticipantViewModel.init(1);
-    }
-
-    private void getAdministrator(long id){
-        this.mParticipantViewModel.getParticipant(id).observe(this, this::updateAdministrator);
-    }
-
-    /**
-     *  UI
-     */
-
-    private void updateAdministrator(Participant participant){
-        Toast.makeText(this, participant.getForname() + " " + participant.getName() + "/ProfileActivity", Toast.LENGTH_SHORT).show();
-    }
 }

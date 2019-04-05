@@ -94,6 +94,11 @@
     <!-- PROFILE SECTION -->
     <string name="profile_section_title">PROFILE SECTION</string>
     <string name="profile_title">PROFILE</string>
+    <string name="profile_section_name">NAME :</string>
+    <string name="profile_section_job">JOB :</string>
+    <string name="profile_section_mail">MAIL :</string>
+    <string name="profile_section_default_forname" translatable="false">John</string>
+    <string name="profile_section_default_name" translatable="false">DOE</string>
 
     <!-- EXPORT DATAS -->
     <string name="Export_datas_title">EXPORT DATAS</string>

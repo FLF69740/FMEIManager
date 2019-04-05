@@ -36,7 +36,6 @@ public class RiskManagerChoiceActivity extends AppCompatActivity implements Risk
 
     @Override
     public void riskManagerChoiceValidate(View view, long resultId, String name, String forname) {
-     //   Toast.makeText(this, ""+resultId + " : " + forname + " " + name, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.putExtra(BUNDLE_NEW_MANAGER_ID, resultId);
         intent.putExtra(BUNDLE_NEW_MANAGER_NAME, name);

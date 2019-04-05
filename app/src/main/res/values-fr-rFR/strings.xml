@@ -65,4 +65,7 @@
     <string name="Risk_file_corrective_realisation_title">DATE DE REALISATION</string>
     <string name="Risk_file_corrective_realisation_default">A DEFINIR</string>
     <string name="Risk_file_corrective_advertising_photo">Vous devez sauvegarder avant de prendre des photos</string>
+    <string name="profile_section_name">NOM :</string>
+    <string name="profile_section_job">FONCTION :</string>
+    <string name="profile_section_mail">MAIL :</string>
 </resources>

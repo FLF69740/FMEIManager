@@ -90,29 +90,11 @@ public class RiskManagerChoiceFragment extends Fragment implements RadioGroup.On
             if (mUsersIdLong.get(i) == mStartUserId){
                 ((RadioButton) mRadioGroup.getChildAt(i)).setChecked(true);
                 mUserSelected = mUsersCompleteName.get(i);
-             //   mActiveTag = i + 1;
                 mActiveTag = mUsersIdLong.get(i);
                 mUserNameResult = mUsersName.get(i);
                 mUserFornameResult = mUsersForname.get(i);
             }
         }
-
-        // -------------- TEMP ------------------------
-    /*    mRadioGroup.addView(new RadioButton(getContext()),1);
-        ((RadioButton) mRadioGroup.getChildAt(1)).setText("USER_2");
-        mRadioGroup.getChildAt(1).setTag(1);
-        mRadioGroup.addView(new RadioButton(getContext()),2);
-        ((RadioButton) mRadioGroup.getChildAt(2)).setText("USER_3");
-        mRadioGroup.getChildAt(2).setTag(2);
-        mUsersForname.add("USER");
-        mUsersForname.add("USER");
-        mUsersName.add("_2");
-        mUsersName.add("_3");
-        mUsersCompleteName.add("USER_2");
-        mUsersCompleteName.add("USER_3");
-        mUsersIdLong.add((long) 2);
-        mUsersIdLong.add((long) 3);*/
-        // --------------------------------------------
 
         mRadioGroup.setOnCheckedChangeListener(this);
     }
@@ -121,11 +103,9 @@ public class RiskManagerChoiceFragment extends Fragment implements RadioGroup.On
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         RadioButton radioButton = getActivity().findViewById(checkedId);
         mUserSelected = radioButton.getText().toString();
-        Toast.makeText(getActivity(), mUserSelected, Toast.LENGTH_SHORT).show();
 
         for (int i = 0; i < mUsersCompleteName.size(); i++){
             if (mUsersCompleteName.get(i).equals(mUserSelected)){
-             //   mActiveTag = i +1;
                 mActiveTag = mUsersIdLong.get(i);
                 mUserNameResult = mUsersName.get(i);
                 mUserFornameResult = mUsersForname.get(i);

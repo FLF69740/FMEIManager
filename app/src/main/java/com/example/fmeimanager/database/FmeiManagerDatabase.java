@@ -15,6 +15,7 @@ import com.example.fmeimanager.database.dao.ParticipantDao;
 import com.example.fmeimanager.database.dao.ProcessusDao;
 import com.example.fmeimanager.database.dao.RiskDao;
 import com.example.fmeimanager.database.dao.TeamFmeiDao;
+import com.example.fmeimanager.utils.Utils;
 
 @Database(entities = {
         Fmei.class,
@@ -65,6 +66,10 @@ public abstract class FmeiManagerDatabase extends RoomDatabase {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("mName", DEFAULT_USER_NAME);
                 contentValues.put("mForname", DEFAULT_USER_FORNAME);
+                contentValues.put("mFunction", Utils.EMPTY);
+                contentValues.put("mUrlPicture", Utils.EMPTY);
+                contentValues.put("mMail", Utils.EMPTY);
+                contentValues.put("mTel", Utils.EMPTY);
                 db.insert("Participant", OnConflictStrategy.IGNORE, contentValues);
             }
         };
