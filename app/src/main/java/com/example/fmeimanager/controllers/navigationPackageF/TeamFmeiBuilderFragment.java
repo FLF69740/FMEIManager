@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.injection.Injection;
@@ -24,17 +25,24 @@ public class TeamFmeiBuilderFragment extends Fragment {
 
     private View mView;
     private TeamViewModel mTeamViewModel;
+    private static final String BUNDLE_TEAM_FMEI_ID = "BUNDLE_TEAM_FMEI_ID";
 
     public TeamFmeiBuilderFragment() {}
 
-    public static TeamFmeiBuilderFragment newInstance(){
-        return new  TeamFmeiBuilderFragment();
+    public static TeamFmeiBuilderFragment newInstance(long position){
+        TeamFmeiBuilderFragment teamFmeiBuilderFragment = new TeamFmeiBuilderFragment();
+        Bundle bundle = new Bundle(1);
+        bundle.putLong(BUNDLE_TEAM_FMEI_ID, position);
+        teamFmeiBuilderFragment.setArguments(bundle);
+        return teamFmeiBuilderFragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_team_fmei_builder, container, false);
         ButterKnife.bind(this, mView);
+        long teamFmeaId = getArguments().getLong(BUNDLE_TEAM_FMEI_ID, 1000);
+        Toast.makeText(getContext(), ""+teamFmeaId, Toast.LENGTH_LONG).show();
         return mView;
     }
 

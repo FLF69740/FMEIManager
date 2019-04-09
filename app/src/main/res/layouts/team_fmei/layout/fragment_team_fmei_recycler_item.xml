@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dip"
+    android:background="@color/colorPrimaryDark">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_vertical_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <TextView
+        android:id="@+id/fragment_team_fmei_title_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/primary_border_table"
+        android:padding="10dp"
+        android:text="@string/profile_section_fmea"
+        android:textColor="@color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_team_fmei_title_item" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_2"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
+        app:layout_constraintTop_toTopOf="@+id/fragment_team_fmei_photo_1" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_3"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_2"
+        app:layout_constraintTop_toTopOf="@+id/fragment_team_fmei_photo_2" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_3"
+        app:layout_constraintTop_toTopOf="@+id/fragment_team_fmei_photo_3" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_team_fmei_photo_1" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_2"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
+        app:layout_constraintTop_toTopOf="@+id/fragment_team_fmei_photo_5" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_3"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_2"
+        app:layout_constraintTop_toTopOf="@+id/fragment_team_fmei_photo_6" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_3"
+        app:layout_constraintTop_toTopOf="@+id/fragment_team_fmei_photo_7" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_team_fmei_photo_5" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_2"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
+        app:layout_constraintTop_toTopOf="@+id/fragment_team_fmei_photo_9" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_11"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_3"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_2"
+        app:layout_constraintTop_toTopOf="@+id/fragment_team_fmei_photo_10" />
+
+    <ImageView
+        android:id="@+id/fragment_team_fmei_photo_12"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/blank_profile_picture"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_3"
+        app:layout_constraintTop_toTopOf="@+id/fragment_team_fmei_photo_11" />
+
+</android.support.constraint.ConstraintLayout>

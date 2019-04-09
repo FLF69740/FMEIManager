@@ -19,7 +19,7 @@ public class TeamFmeiBuilderActivity extends BaseActivity implements TeamFmeiBui
 
     @Override
     protected Fragment getFirstFragment() {
-        return TeamFmeiBuilderFragment.newInstance();
+        return TeamFmeiBuilderFragment.newInstance(getIntent().getIntExtra(TeamFmeiDashBoardActivity.BUNDLE_TEAM_FMEI_FMEA_ID, 1));
     }
 
     @Override

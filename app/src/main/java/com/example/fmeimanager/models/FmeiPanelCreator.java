@@ -33,6 +33,11 @@ public class FmeiPanelCreator {
         }
     }
 
+    //GET fmeis number
+    public int getFmeiListSize(){
+        return mFmeiPanels.size();
+    }
+
     //RECORD all processus information into panel
     public void updateProcessusList(List<Processus> processusList){
         if (processusList != null){

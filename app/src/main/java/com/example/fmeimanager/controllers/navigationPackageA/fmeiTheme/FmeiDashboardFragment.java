@@ -4,6 +4,7 @@ package com.example.fmeimanager.controllers.navigationPackageA.fmeiTheme;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -47,8 +48,6 @@ public class FmeiDashboardFragment extends Fragment {
 
     private View mView;
     private GeneralViewModel mGeneralViewModel;
-
-    private List<Fmei> mFmeiList = new ArrayList<>();
     private long mAdministratorId;
     private FmeiPanelCreator mFmeiPanelCreator;
     private FmeiListAdapter mAdapter;
@@ -160,17 +159,11 @@ public class FmeiDashboardFragment extends Fragment {
 
     //CREATE FMEI
     public void createFmei(){
-        simulationCreateFmei();
-    }
-
-    //******* TEMP *******
-    private void simulationCreateFmei(){
-        Fmei fmei = new Fmei("FMEI " + String.valueOf(mFmeiList.size() + 1), mAdministratorId);
+        Fmei fmei = new Fmei("FMEI " + String.valueOf(mFmeiPanelCreator.getFmeiListSize() + 1), mAdministratorId);
         this.mGeneralViewModel.createFmei(fmei);
-        this.mGeneralViewModel.createTeamFmei(new TeamFmei((mFmeiList.size() + 1), mAdministratorId));
-        Toast.makeText(getContext(), " CREATE : " + fmei.getName(), Toast.LENGTH_SHORT).show();
+        this.mGeneralViewModel.createTeamFmei(new TeamFmei((mFmeiPanelCreator.getFmeiListSize() + 1), mAdministratorId));
+        Snackbar.make(mView, " CREATE : " + fmei.getName(), Snackbar.LENGTH_SHORT).show();
     }
-
 
     /**
      *  CLASS DEFINITION

@@ -4,34 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".controllers.navigationPackageF.TeamFmeiFragment">
+    tools:context=".controllers.navigationPackageF.TeamFmeiFragment"
+    android:background="@color/colorPrimary">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:id="@+id/textView"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_team_fmei_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/team_fmei_dashboard_title" />
-
-        <Button
-            android:id="@+id/team_fmei_dashboard_first_link"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/team_fmei_builder_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

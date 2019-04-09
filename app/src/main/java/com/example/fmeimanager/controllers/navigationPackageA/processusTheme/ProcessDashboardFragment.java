@@ -32,6 +32,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.fmeimanager.MainActivity.BUNDLE_KEY_ACTIVE_USER;
+import static com.example.fmeimanager.MainActivity.DEFAULT_USER_ID;
+import static com.example.fmeimanager.MainActivity.SHARED_MAIN_PROFILE_ID;
 
 public class ProcessDashboardFragment extends Fragment {
 
@@ -65,6 +69,7 @@ public class ProcessDashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_process_dashboard, container, false);
         ButterKnife.bind(this, mView);
+        mAdministratorId = getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID);
         mFmeiId = getArguments().getLong(BUNDLE_FMEI_ID);
         mProcessusPanelCreator = new ProcessusPanelCreator();
         this.configureRecyclerView();
@@ -177,7 +182,7 @@ public class ProcessDashboardFragment extends Fragment {
 
     private void CreateRiskFinalisation(long processusId){
         DateTime dt = new DateTime();
-        Risk risk = new Risk(dt.toString("dd/MM/yyyy"), Utils.EMPTY, Utils.EMPTY, Utils.EMPTY, processusId,mAdministratorId);
+        Risk risk = new Risk(dt.toString("dd/MM/yyyy"), Utils.EMPTY, Utils.EMPTY, Utils.EMPTY, processusId, mAdministratorId);
         this.mProcessusViewModel.createRisk(risk);
     }
 

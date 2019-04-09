@@ -23,6 +23,7 @@ import com.example.fmeimanager.controllers.navigationPackageG.ProfileSectionActi
 import com.example.fmeimanager.controllers.navigationPackageC.SettingsActivity;
 import com.example.fmeimanager.controllers.navigationPackageF.TeamFmeiDashBoardActivity;
 import com.example.fmeimanager.database.Participant;
+import com.example.fmeimanager.utils.BitmapStorage;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -111,12 +112,11 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     protected void updateHeader(Participant participant){
         String completeName = participant.getName() + " " + participant.getForname();
         mNavUserName.setText(completeName);
-/*        BitmapStorage.showImageInformations(this, user.getUrlPicture());
-        if (!user.getUrlPicture().equals(User.EMPTY_CASE) && BitmapStorage.isFileExist(this, user.getUrlPicture())) {
-            this.mNavUserPhoto.setImageBitmap(BitmapStorage.loadImage(this, user.getUrlPicture()));
-        } else {
-            this.mNavUserPhoto.setImageResource(R.drawable.bk_photo);
-        }*/
+        if (BitmapStorage.isFileExist(getApplication().getApplicationContext(), "P" + participant.getId())) {
+            mNavUserPhoto.setImageBitmap(BitmapStorage.loadImage(getApplication().getApplicationContext(), "P" + participant.getId()));
+        }else {
+            mNavUserPhoto.setImageResource(R.drawable.blank_profile_picture);
+        }
     }
 
     // Handle Navigation Item Click
