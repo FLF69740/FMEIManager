@@ -1,6 +1,8 @@
 <resources>
     <!-- GENERAL STRINGS -->
     <string name="app_name">FMEA Manager</string>
+    <string name="Doe" translatable="false">DOE</string>
+    <string name="John" translatable="false">John</string>
 
     <!-- TOOLBAR -->
     <string name="Toolbar_ADD" translatable="false">ADD</string>
@@ -95,10 +97,25 @@
     <string name="profile_section_title">PROFILE SECTION</string>
     <string name="profile_title">PROFILE</string>
     <string name="profile_section_name">NAME :</string>
+    <string name="profile_section_forname_hint">Forname</string>
+    <string name="profile_section_name_hint">Name</string>
+    <string name="profile_section_function_hint">Job</string>
+    <string name="profile_section_mail_hint" translatable="false">mail@business.com</string>
     <string name="profile_section_job">JOB :</string>
     <string name="profile_section_mail">MAIL :</string>
+    <string name="profile_section_tel">TEL :</string>
     <string name="profile_section_default_forname" translatable="false">John</string>
     <string name="profile_section_default_name" translatable="false">DOE</string>
+    <string name="profile_section_main_profile">MAIN PROFILE ACTIVATION</string>
+    <string name="profile_section_profile_desactivation">HIDE PROFILE</string>
+    <string name="profile_section_profile_reactivation">LOAD PROFILE</string>
+    <string name="profile_section_team_leader_mention">TEAM LEADER</string>
+    <string name="profile_section_fmea_participation_title">FMEA PARTICIPATION</string>
+    <string name="profile_section_fmea">FMEA</string>
+    <string name="profile_section_main_participant_advertising">Main user can\'t be desactivated</string>
+    <string name="profile_section_new_main_user">is the new main user.</string>
+    <string name="writte_profile_advertising_first_paragraph">You want to CHANGE this information</string>
+
 
     <!-- EXPORT DATAS -->
     <string name="Export_datas_title">EXPORT DATAS</string>

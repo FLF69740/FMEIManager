@@ -24,6 +24,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.fmeimanager.MainActivity.BUNDLE_KEY_ACTIVE_USER;
+import static com.example.fmeimanager.MainActivity.DEFAULT_USER_ID;
+import static com.example.fmeimanager.MainActivity.SHARED_MAIN_PROFILE_ID;
+
 public class ProfileSectionFragment extends Fragment {
 
     private View mView;
@@ -46,7 +51,7 @@ public class ProfileSectionFragment extends Fragment {
 
         this.configureViewModel();
 
-        this.getAdministrator(1);
+        this.getAdministrator(getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID));
         this.getAllParticipant();
 
         return mView;
@@ -57,12 +62,6 @@ public class ProfileSectionFragment extends Fragment {
         this.mAdapter = new ProfileListAdapter(this.mParticipantList);
         this.mRecyclerView.setAdapter(mAdapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter.notifyDataSetChanged();
-    }
-
-    //update recyclerView after other thread finalisation
-    private void updateRecycler(List<Participant> participants){
-        mAdapter.setParticipantList(participants);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -112,7 +111,7 @@ public class ProfileSectionFragment extends Fragment {
     private void configureViewModel(){
         ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(getContext());
         this.mParticipantViewModel = ViewModelProviders.of(this, viewModelFactory).get(ParticipantViewModel.class);
-        this.mParticipantViewModel.init(1);
+        this.mParticipantViewModel.init(getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID));
     }
 
     private void getAdministrator(long id){
@@ -137,8 +136,6 @@ public class ProfileSectionFragment extends Fragment {
         mParticipantList = participants;
         configureRecyclerView();
         this.configureOnClickRecyclerView();
-
-        //    this.updateRecycler(mParticipantList);
     }
 
 }

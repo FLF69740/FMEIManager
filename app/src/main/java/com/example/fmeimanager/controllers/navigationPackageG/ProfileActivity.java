@@ -1,21 +1,13 @@
 package com.example.fmeimanager.controllers.navigationPackageG;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
-import android.widget.Toast;
+import android.view.MenuItem;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.base.BaseActivity;
-import com.example.fmeimanager.injection.Injection;
-import com.example.fmeimanager.injection.ViewModelFactory;
-import com.example.fmeimanager.database.Participant;
-import com.example.fmeimanager.viewmodels.ParticipantViewModel;
 
-public class ProfileActivity extends BaseActivity implements ProfileFragment.ProfileItemClickedListener{
+public class ProfileActivity extends BaseActivity{
 
     @Override
     protected Fragment getFirstFragment() {
@@ -50,15 +42,24 @@ public class ProfileActivity extends BaseActivity implements ProfileFragment.Pro
     // TOOLBAR
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu_save_single, menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu_photo_single, menu);
         return true;
     }
 
-    //BUTTON FRAGMENT
     @Override
-    public void profile_To_SectionProfile(View view) {
-        startActivity(new Intent(this, ProfileSectionActivity.class));
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.toolbar_photo:
+                ((ProfileFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).createPhotoIdentity();
+                return true;
+            case R.id.toolbar_save:
+                ((ProfileFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).saveParticipant();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
+
 
 
 }

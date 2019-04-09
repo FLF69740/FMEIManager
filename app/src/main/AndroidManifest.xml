@@ -13,7 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.navigationPackageA.correctiveActionTheme.PhotoCorrectiveActivity"></activity>
+        <activity android:name=".controllers.navigationPackageG.PhotoProfileActivity"></activity>
+        <activity
+            android:name=".controllers.navigationPackageG.WriteFromProfileActivity"
+            android:label="@string/Process_builder_button_write_title"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity android:name=".controllers.navigationPackageA.correctiveActionTheme.PhotoCorrectiveActivity" />
         <activity android:name=".controllers.navigationPackageA.riskTheme.RiskPhotoViewPagerActivity" />
         <activity android:name=".controllers.navigationPackageA.riskTheme.PhotoRiskActivity" />
         <activity android:name=".controllers.navigationPackageA.riskTheme.RiskManagerChoiceActivity" />

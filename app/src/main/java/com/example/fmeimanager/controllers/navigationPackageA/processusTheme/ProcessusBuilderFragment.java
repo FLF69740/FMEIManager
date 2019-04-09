@@ -38,7 +38,6 @@ import static android.app.Activity.RESULT_OK;
 public class ProcessusBuilderFragment extends Fragment implements ProcessusBuilderAdapter.Listener{
 
     private View mView;
-    private long mAdministratorId;
     private long mFmeiId;
     private ProcessusViewModel mProcessusViewModel;
     private List<Processus> mProcessusList = new ArrayList<>();
@@ -68,7 +67,6 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
         mFmeiId = getArguments().getLong("MA KEY");
         this.configureRecyclerView();
         this.configureViewModel();
-        this.getAdministrator(1);
         this.getProcessusAboutFMEI(mFmeiId);
         return mView;
     }
@@ -119,10 +117,6 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
         this.mProcessusViewModel.init(1);
     }
 
-    private void getAdministrator(long id){
-        this.mProcessusViewModel.getParticipant(id).observe(this, this::updateAdministrator);
-    }
-
     //GET all processus for FMEI Id
     private void getProcessusAboutFMEI(long fmeiId){
         this.mProcessusViewModel.getProcessussListForFmei(fmeiId).observe(this, this::updateProcessusList);
@@ -146,10 +140,6 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
     /**
      *  CLASS DEFINITION
      */
-
-    private void updateAdministrator(Participant participant){
-        mAdministratorId = participant.getId();
-    }
 
     //RECORD all processus about the FMEI Id
     private void updateProcessusList(List<Processus> processuses) {

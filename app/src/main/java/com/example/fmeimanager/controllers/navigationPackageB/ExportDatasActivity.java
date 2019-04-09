@@ -4,8 +4,9 @@ import android.support.v4.app.Fragment;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.base.BaseActivity;
+import com.example.fmeimanager.database.Participant;
 
-public class ExportDatasActivity extends BaseActivity {
+public class ExportDatasActivity extends BaseActivity implements ExportDatasFragment.ExportDataListener {
 
     @Override
     protected Fragment getFirstFragment() {
@@ -37,5 +38,8 @@ public class ExportDatasActivity extends BaseActivity {
         return false;
     }
 
-
+    @Override
+    public void updateExportDataNavHeader(Participant participant) {
+        this.updateHeader(participant);
+    }
 }

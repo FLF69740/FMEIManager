@@ -19,92 +19,19 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline_middle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.55" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4" />
-
         <ImageView
             android:id="@+id/fragment_profile_photo_aera"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/blank_profile_picture"
-            app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_function"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_profile_mail_title"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_profile_name"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/fragment_profile_main_participant" />
-
-        <Button
-            android:id="@+id/fragment_profile_desactivation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@color/colorAccentDark"
-            android:text="@string/profile_section_profile_desactivation"
-            android:textColor="@color/background_light"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_up"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/fragment_profile_function"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginBottom="8dp"
-            android:hint="@string/profile_section_function_hint"
-            android:clickable="true"
-            android:focusable="true"
-            android:textColor="@color/background_light"
-            android:textColorHint="@color/colorAccentDark"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_profile_desactivation"
-            app:layout_constraintStart_toStartOf="@+id/guideline_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_profile_forname" />
-
-        <TextView
-            android:id="@+id/fragment_profile_forname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/profile_section_forname_hint"
-            android:clickable="true"
-            android:focusable="true"
-            android:textColor="@color/background_light"
-            android:textColorHint="@color/colorAccentDark"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_profile_function"
-            app:layout_constraintStart_toStartOf="@+id/fragment_profile_function"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_profile_name" />
-
-        <TextView
-            android:id="@+id/fragment_profile_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/profile_section_name_hint"
-            android:clickable="true"
-            android:focusable="true"
-            android:textColor="@color/background_light"
-            android:textColorHint="@color/colorAccentDark"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_profile_forname"
-            app:layout_constraintStart_toStartOf="@+id/fragment_profile_forname"
             app:layout_constraintTop_toBottomOf="@+id/fragment_profile_main_participant" />
 
         <Button
@@ -119,20 +46,98 @@
             android:background="@drawable/accentdark_border_table"
             android:text="@string/profile_section_main_profile"
             android:textColor="@color/background_light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fragment_profile_photo_aera"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/fragment_profile_desactivation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorAccentDark"
+            android:text="@string/profile_section_profile_desactivation"
+            android:textColor="@color/background_light"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/fragment_profile_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:hint="@string/profile_section_name_hint"
+            android:textColor="@color/background_light"
+            android:textColorHint="@color/colorAccentDark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_profile_forname"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+            app:layout_constraintStart_toEndOf="@+id/fragment_profile_photo_aera"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_profile_main_participant" />
+
+        <TextView
+            android:id="@+id/fragment_profile_forname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:hint="@string/profile_section_forname_hint"
+            android:textColor="@color/background_light"
+            android:textColorHint="@color/colorAccentDark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_profile_function"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+            app:layout_constraintStart_toEndOf="@+id/fragment_profile_photo_aera"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_profile_name" />
+
+        <TextView
+            android:id="@+id/fragment_profile_function"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:hint="@string/profile_section_function_hint"
+            android:textColor="@color/background_light"
+            android:textColorHint="@color/colorAccentDark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_profile_mail_information"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+            app:layout_constraintStart_toEndOf="@+id/fragment_profile_photo_aera"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_profile_forname" />
 
         <TextView
             android:id="@+id/fragment_profile_mail_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:text="@string/profile_section_mail"
             android:textColor="@color/background_light"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/fragment_profile_tel_title"
-            app:layout_constraintStart_toStartOf="@+id/fragment_profile_tel_title"
-            app:layout_constraintTop_toTopOf="@+id/guideline_up" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_profile_photo_aera" />
 
         <TextView
             android:id="@+id/fragment_profile_mail_information"
@@ -142,14 +147,14 @@
             android:layout_marginLeft="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:hint="@string/profile_section_mail_hint"
-            android:textColorHint="@color/colorAccentDark"
-            android:textColor="@color/background_light"
-            android:textSize="16sp"
             android:clickable="true"
             android:focusable="true"
+            android:hint="@string/profile_section_mail_hint"
+            android:textColor="@color/background_light"
+            android:textColorHint="@color/colorAccentDark"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_mail_title"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
             app:layout_constraintStart_toEndOf="@+id/fragment_profile_mail_title"
             app:layout_constraintTop_toTopOf="@+id/fragment_profile_mail_title" />
 
@@ -157,13 +162,13 @@
             android:id="@+id/fragment_profile_tel_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/profile_section_tel"
             android:textColor="@color/background_light"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_middle"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_profile_desactivation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_profile_mail_title" />
 
@@ -173,40 +178,44 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:textColor="@color/background_light"
-            android:textSize="16sp"
             android:clickable="true"
             android:focusable="true"
+            android:textColor="@color/background_light"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_tel_title"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
             app:layout_constraintStart_toStartOf="@+id/fragment_profile_mail_information"
             app:layout_constraintTop_toTopOf="@+id/fragment_profile_tel_title" />
 
         <TextView
             android:id="@+id/fragment_profile_fmea_participation_title"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:background="@color/colorPrimaryDark"
+            android:gravity="center"
             android:paddingBottom="10dp"
             android:text="@string/profile_section_fmea_participation_title"
             android:textColor="@color/background_light"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_main_participant"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline_middle" />
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical"
+            app:layout_constraintTop_toTopOf="@+id/fragment_profile_main_participant" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_profile_recycler_view_participation"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:background="@color/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_profile_fmea_participation_title"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/fragment_profile_fmea_participation_title"
             app:layout_constraintTop_toBottomOf="@+id/fragment_profile_fmea_participation_title" />
 

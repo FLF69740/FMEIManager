@@ -35,6 +35,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.fmeimanager.MainActivity.BUNDLE_KEY_ACTIVE_USER;
+import static com.example.fmeimanager.MainActivity.DEFAULT_USER_ID;
+import static com.example.fmeimanager.MainActivity.SHARED_MAIN_PROFILE_ID;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -66,7 +71,7 @@ public class FmeiDashboardFragment extends Fragment {
         this.configureRecyclerView();
         this.configureOnClickRecyclerView();
         this.configureViewModel();
-        this.getAdministrator(1);
+        this.getAdministrator(getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID));
         this.getAllFmei();
         return mView;
     }
@@ -120,7 +125,7 @@ public class FmeiDashboardFragment extends Fragment {
     private void configureViewModel(){
         ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(getContext());
         this.mGeneralViewModel = ViewModelProviders.of(this, viewModelFactory).get(GeneralViewModel.class);
-        this.mGeneralViewModel.init(1);
+        this.mGeneralViewModel.init(getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID));
     }
 
     //GET user hardware

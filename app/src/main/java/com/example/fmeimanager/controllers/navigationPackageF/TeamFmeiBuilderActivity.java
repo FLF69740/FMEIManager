@@ -17,8 +17,6 @@ import com.example.fmeimanager.viewmodels.TeamViewModel;
 
 public class TeamFmeiBuilderActivity extends BaseActivity implements TeamFmeiBuilderFragment.TeamFmeiBuilderItemClickedListener{
 
-    private TeamViewModel mTeamViewModel;
-
     @Override
     protected Fragment getFirstFragment() {
         return TeamFmeiBuilderFragment.newInstance();
@@ -49,13 +47,6 @@ public class TeamFmeiBuilderActivity extends BaseActivity implements TeamFmeiBui
         return true;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.configureViewModel();
-        this.getAdministrator(1);
-    }
-
     //TOOLBAR
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,31 +54,12 @@ public class TeamFmeiBuilderActivity extends BaseActivity implements TeamFmeiBui
         return true;
     }
 
-    //BUTTON FRAGMANT
+    //BUTTON FRAGMENT
     @Override
     public void teamFmeiBuilder_To_teamFmeiDashboard(View view) {
         startActivity(new Intent(this, TeamFmeiDashBoardActivity.class));
     }
 
-    /**
-     *  DATAS
-     */
 
-    private void configureViewModel(){
-        ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(this);
-        this.mTeamViewModel = ViewModelProviders.of(this, viewModelFactory).get(TeamViewModel.class);
-        this.mTeamViewModel.init(1);
-    }
 
-    private void getAdministrator(long id){
-        this.mTeamViewModel.getParticipant(id).observe(this, this::updateAdministrator);
-    }
-
-    /**
-     *  UI
-     */
-
-    private void updateAdministrator(Participant participant){
-        Toast.makeText(this, participant.getForname() + "/" + participant.getName() + "/builder", Toast.LENGTH_SHORT).show();
-    }
 }

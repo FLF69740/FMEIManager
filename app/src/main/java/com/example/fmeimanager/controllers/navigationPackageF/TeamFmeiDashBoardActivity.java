@@ -17,8 +17,6 @@ import com.example.fmeimanager.viewmodels.TeamViewModel;
 
 public class TeamFmeiDashBoardActivity extends BaseActivity implements TeamFmeiFragment.TeamFmeiItemClickedListener {
 
-    private TeamViewModel mTeamViewModel;
-
     @Override
     protected Fragment getFirstFragment() {
         return TeamFmeiFragment.newInstance();
@@ -49,13 +47,6 @@ public class TeamFmeiDashBoardActivity extends BaseActivity implements TeamFmeiF
         return false;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.configureViewModel();
-        this.getAdministrator(1);
-    }
-
     //TOOLBAR
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,26 +62,10 @@ public class TeamFmeiDashBoardActivity extends BaseActivity implements TeamFmeiF
         startActivity(new Intent(this, TeamFmeiBuilderActivity.class));
     }
 
-    /**
-     *  DATAS
-     */
-
-    private void configureViewModel(){
-        ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(this);
-        this.mTeamViewModel = ViewModelProviders.of(this, viewModelFactory).get(TeamViewModel.class);
-        this.mTeamViewModel.init(1);
-    }
-
-    private void getAdministrator(long id){
-        this.mTeamViewModel.getParticipant(id).observe(this, this::updateAdministrator);
-    }
-
-    /**
-     *  UI
-     */
-
-    private void updateAdministrator(Participant participant){
-        Toast.makeText(this, participant.getForname() + "/" + participant.getName(), Toast.LENGTH_SHORT).show();
+    @Override
+    public void updateTeamFmeiNavHeader(Participant participant) {
         this.updateHeader(participant);
     }
+
+
 }

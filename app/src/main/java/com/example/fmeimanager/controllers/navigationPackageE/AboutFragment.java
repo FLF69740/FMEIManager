@@ -15,6 +15,11 @@ import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.viewmodels.ParticipantViewModel;
 import butterknife.ButterKnife;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.fmeimanager.MainActivity.BUNDLE_KEY_ACTIVE_USER;
+import static com.example.fmeimanager.MainActivity.DEFAULT_USER_ID;
+import static com.example.fmeimanager.MainActivity.SHARED_MAIN_PROFILE_ID;
+
 public class AboutFragment extends Fragment {
 
     private View mView;
@@ -32,7 +37,7 @@ public class AboutFragment extends Fragment {
         ButterKnife.bind(this, mView);
 
         this.configureViewModel();
-        this.getAdministrator(1);
+        this.getAdministrator(getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID));
 
         return mView;
     }
@@ -43,7 +48,7 @@ public class AboutFragment extends Fragment {
 
     // interface for button clicked
     public interface AboutListener{
-        void updateNavHeader(Participant participant);
+        void updateAboutNavHeader(Participant participant);
     }
 
     //callback for button clicked
@@ -66,7 +71,7 @@ public class AboutFragment extends Fragment {
     private void configureViewModel(){
         ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(getContext());
         this.mParticipantViewModel = ViewModelProviders.of(this, viewModelFactory).get(ParticipantViewModel.class);
-        this.mParticipantViewModel.init(1);
+        this.mParticipantViewModel.init(getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID));
     }
 
     private void getAdministrator(long id){
@@ -79,7 +84,7 @@ public class AboutFragment extends Fragment {
 
     private void updateAdministrator(Participant participant){
         Toast.makeText(getContext(), participant.getForname() + " " + participant.getName() + "/AboutActivity", Toast.LENGTH_SHORT).show();
-        mCallback.updateNavHeader(participant);
+        mCallback.updateAboutNavHeader(participant);
     }
 
 

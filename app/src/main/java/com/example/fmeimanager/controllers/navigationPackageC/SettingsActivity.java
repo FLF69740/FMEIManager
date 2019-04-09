@@ -12,9 +12,7 @@ import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.viewmodels.ParticipantViewModel;
 
-public class SettingsActivity extends BaseActivity {
-
-    private ParticipantViewModel mParticipantViewModel;
+public class SettingsActivity extends BaseActivity implements SettingsFragment.SettingsListener {
 
     @Override
     protected Fragment getFirstFragment() {
@@ -47,32 +45,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.configureViewModel();
-        this.getAdministrator(1);
-    }
-
-    /**
-     *  DATAS
-     */
-
-    private void configureViewModel(){
-        ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(this);
-        this.mParticipantViewModel = ViewModelProviders.of(this, viewModelFactory).get(ParticipantViewModel.class);
-        this.mParticipantViewModel.init(1);
-    }
-
-    private void getAdministrator(long id){
-        this.mParticipantViewModel.getParticipant(id).observe(this, this::updateAdministrator);
-    }
-
-    /**
-     *  UI
-     */
-
-    private void updateAdministrator(Participant participant){
-        Toast.makeText(this, participant.getForname() + " " + participant.getName() + "/SettingsActivity", Toast.LENGTH_SHORT).show();
+    public void updateSettingsNavHeader(Participant participant) {
         this.updateHeader(participant);
     }
 }

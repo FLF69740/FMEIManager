@@ -46,7 +46,7 @@ public class AboutActivity extends BaseActivity implements AboutFragment.AboutLi
 
 
     @Override
-    public void updateNavHeader(Participant participant) {
+    public void updateAboutNavHeader(Participant participant) {
         this.updateHeader(participant);
     }
 

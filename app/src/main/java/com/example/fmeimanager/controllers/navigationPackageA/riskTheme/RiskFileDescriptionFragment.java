@@ -107,7 +107,6 @@ public class RiskFileDescriptionFragment extends Fragment {
         ButterKnife.bind(this, mView);
 
         this.configureViewModel();
-        this.getAdministrator(1);
 
         if (savedInstanceState != null) {
             mRisk = savedInstanceState.getParcelable(BUNDLE_KEY_RISK);
@@ -366,10 +365,6 @@ public class RiskFileDescriptionFragment extends Fragment {
         this.mRiskViewModel.init(1);
     }
 
-    private void getAdministrator(long id){
-        this.mRiskViewModel.getParticipant(id).observe(this, this::updateAdministrator);
-    }
-
     //GET risk selected
     private void getRiskSelected(long riskId){
         this.mRiskViewModel.getRisk(riskId).observe(this, this::updateRisk);
@@ -417,10 +412,6 @@ public class RiskFileDescriptionFragment extends Fragment {
     /**
      *  UI
      */
-
-    private void updateAdministrator(Participant participant){
-        //    Toast.makeText(this, participant.getForname() + " " + participant.getName(), Toast.LENGTH_SHORT).show();
-    }
 
     //RECORD risk
     private void updateRisk(Risk risk) {

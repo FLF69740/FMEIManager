@@ -27,7 +27,7 @@ import com.example.fmeimanager.utils.Utils;
 }, version = 1, exportSchema = false)
 public abstract class FmeiManagerDatabase extends RoomDatabase {
 
-    private static final String DEFAULT_USER_NAME = "Doe";
+    private static final String DEFAULT_USER_NAME = "DOE";
     public static final String DEFAULT_USER_FORNAME = "John";
 
     //SINGLETON
@@ -67,9 +67,9 @@ public abstract class FmeiManagerDatabase extends RoomDatabase {
                 contentValues.put("mName", DEFAULT_USER_NAME);
                 contentValues.put("mForname", DEFAULT_USER_FORNAME);
                 contentValues.put("mFunction", Utils.EMPTY);
-                contentValues.put("mUrlPicture", Utils.EMPTY);
                 contentValues.put("mMail", Utils.EMPTY);
                 contentValues.put("mTel", Utils.EMPTY);
+                contentValues.put("mActivated", true);
                 db.insert("Participant", OnConflictStrategy.IGNORE, contentValues);
             }
         };

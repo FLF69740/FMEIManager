@@ -68,4 +68,17 @@
     <string name="profile_section_name">NOM :</string>
     <string name="profile_section_job">FONCTION :</string>
     <string name="profile_section_mail">MAIL :</string>
+    <string name="profile_section_main_profile">DEFINIR PROFIL PRINCIPAL</string>
+    <string name="profile_section_profile_desactivation">MASQUER PROFIL</string>
+    <string name="profile_section_profile_reactivation">REACTIVATION PROFIL</string>
+    <string name="profile_section_team_leader_mention">TEAM LEADER</string>
+    <string name="profile_section_fmea_participation_title">PARTICIPATION FMEA</string>
+    <string name="profile_section_fmea">FMEA</string>
+    <string name="profile_section_tel">TEL :</string>
+    <string name="profile_section_forname_hint">Prénom</string>
+    <string name="profile_section_name_hint">Nom</string>
+    <string name="profile_section_function_hint">Fonction</string>
+    <string name="profile_section_main_participant_advertising">L\'utilisateur principal ne peut pas être désactivé</string>
+    <string name="profile_section_new_main_user">est l\'administrateur principal</string>
+    <string name="writte_profile_advertising_first_paragraph">Vous voulez CHANGER cette information</string>
 </resources>

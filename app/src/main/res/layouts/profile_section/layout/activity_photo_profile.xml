@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controllers.navigationPackageG.PhotoProfileActivity"
+    android:background="@color/colorPrimary">
+
+
+        <ImageView
+            android:id="@+id/profile_photo_button_modify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/accentdark_border_table"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="10dp"
+            android:src="@mipmap/baseline_insert_photo_black_24"
+            android:tint="@color/colorAccentDark"
+            app:layout_constraintEnd_toStartOf="@+id/profile_camera_button_modify"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/profile_camera_button_modify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/accentdark_border_table"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="10dp"
+            android:src="@mipmap/baseline_photo_camera_white_24"
+            android:tint="@color/colorAccentDark"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_photo_button_modify"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profile_photo_button_modify"
+            app:layout_constraintTop_toTopOf="@+id/profile_photo_button_modify" />
+
+        <ImageView
+            android:id="@+id/profile_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toTopOf="@+id/profile_validate_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_photo_button_modify" />
+
+        <Button
+            android:id="@+id/profile_validate_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/accentdark_border_table"
+            android:text="@string/activity_photo_modifier_validate"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/profile_cancel_btn"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/profile_cancel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/activity_photo_modifier_cancel"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/accentdark_border_table"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_validate_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profile_validate_btn"
+            app:layout_constraintTop_toTopOf="@+id/profile_validate_btn" />
+
+
+</android.support.constraint.ConstraintLayout>

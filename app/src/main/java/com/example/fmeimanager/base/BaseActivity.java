@@ -111,8 +111,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     protected void updateHeader(Participant participant){
         String completeName = participant.getName() + " " + participant.getForname();
         mNavUserName.setText(completeName);
-     /*   mNavUserName.setText(user.getUsername());
-        BitmapStorage.showImageInformations(this, user.getUrlPicture());
+/*        BitmapStorage.showImageInformations(this, user.getUrlPicture());
         if (!user.getUrlPicture().equals(User.EMPTY_CASE) && BitmapStorage.isFileExist(this, user.getUrlPicture())) {
             this.mNavUserPhoto.setImageBitmap(BitmapStorage.loadImage(this, user.getUrlPicture()));
         } else {

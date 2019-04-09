@@ -20,6 +20,7 @@ public class ProfileListViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.fragment_profile_section_name_item) TextView mName;
     @BindView(R.id.fragment_profile_section_function_item) TextView mFunction;
     @BindView(R.id.fragment_profile_section_mail_item) TextView mMail;
+    @BindView(R.id.frgament_profile_alpha_scale) ImageView mScale;
 
     private View mItemView;
 
@@ -44,11 +45,20 @@ public class ProfileListViewHolder extends RecyclerView.ViewHolder {
             mMail.setText(participant.getMail());
         }
 
-        if (participant.getUrlPicture().equals(Utils.EMPTY)) {
-            mPhoto.setImageResource(R.drawable.blank_profile_picture);
+        if (participant.isActivated()){
+            mScale.setVisibility(View.INVISIBLE);
         }else {
-            mPhoto.setImageBitmap(BitmapStorage.loadImage(mItemView.getContext(), participant.getUrlPicture()));
+            mScale.setVisibility(View.VISIBLE);
         }
+
+        if (BitmapStorage.isFileExist(mItemView.getContext(), "P" + participant.getId())) {
+            mPhoto.setImageBitmap(BitmapStorage.loadImage(mItemView.getContext(), "P" + participant.getId()));
+        }else {
+            mPhoto.setImageResource(R.drawable.blank_profile_picture);
+        }
+
+
+
     }
 
 

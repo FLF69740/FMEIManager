@@ -70,7 +70,6 @@ public class ProcessDashboardFragment extends Fragment {
         this.configureRecyclerView();
         this.configureOnClickRecyclerView();
         this.configureViewModel();
-        this.getAdministrator(1);
         this.getProcessusAboutFMEI(mFmeiId);
         return mView;
     }
@@ -140,8 +139,6 @@ public class ProcessDashboardFragment extends Fragment {
         this.mProcessusViewModel.init(1);
     }
 
-    private void getAdministrator(long id){ this.mProcessusViewModel.getParticipant(id).observe(this, this::updateAdministrator); }
-
     //GET all processus for FMEI Id
     private void getProcessusAboutFMEI(long fmeiId){ this.mProcessusViewModel.getProcessussListForFmei(fmeiId).observe(this, this::updateProcessusList); }
 
@@ -187,10 +184,6 @@ public class ProcessDashboardFragment extends Fragment {
     /**
      *  CLASS DEFINITION
      */
-
-    private void updateAdministrator(Participant participant){
-        mAdministratorId = participant.getId();
-    }
 
     //RECORD all processus about the FMEI Id
     private void updateProcessusList(List<Processus> processuses){

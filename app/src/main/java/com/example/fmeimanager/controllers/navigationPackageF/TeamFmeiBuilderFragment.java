@@ -1,6 +1,7 @@
 package com.example.fmeimanager.controllers.navigationPackageF;
 
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fmeimanager.R;
+import com.example.fmeimanager.injection.Injection;
+import com.example.fmeimanager.injection.ViewModelFactory;
+import com.example.fmeimanager.viewmodels.TeamViewModel;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -19,6 +23,7 @@ import butterknife.OnClick;
 public class TeamFmeiBuilderFragment extends Fragment {
 
     private View mView;
+    private TeamViewModel mTeamViewModel;
 
     public TeamFmeiBuilderFragment() {}
 
@@ -59,5 +64,20 @@ public class TeamFmeiBuilderFragment extends Fragment {
             throw new ClassCastException(e.toString() + " must implement ItemClickedListener");
         }
     }
+
+    /**
+     *  DATAS
+     */
+
+    private void configureViewModel(){
+        ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(getContext());
+        this.mTeamViewModel = ViewModelProviders.of(this, viewModelFactory).get(TeamViewModel.class);
+        this.mTeamViewModel.init(1);
+    }
+
+
+    /**
+     *  UI
+     */
 
 }

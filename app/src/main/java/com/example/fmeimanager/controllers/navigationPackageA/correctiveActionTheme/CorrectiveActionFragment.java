@@ -79,6 +79,9 @@ public class CorrectiveActionFragment extends Fragment {
     public static final String BUNDLE_KEY_CORRECTIVE_LIST_MANAGER_FORNAME = "BUNDLE_KEY_RISK_LIST_MANAGER_FORNAME";
     public static final String BUNDLE_PHOTO_CORRECTIVE_ID = "BUNDLE_PHOTO_RISK_ID";
     public static final String BUNDLE_PHOTO_LIST_CORRECTIVE = "BUNDLE_PHOTO_LIST_RISK";
+    private static final String BUNDLE_KEY_CORRECTIVE_PARCEL = "BUNDLE_KEY_CORRECTIVE_PARCEL";
+    private static final String BUNDLE_KEY_CORRECTIVE_TEMP_ID_PARCEL = "BUNDLE_KEY_CORRECTIVE_TEMP_ID_PARCEL";
+    private static final String BUNDLE_RISK_ID_PARCEL = "BUNDLE_RISK_ID_PARCEL";
     private static final int CORRECTIVE_MANAGER_REQUEST_CODE = 6654;
     private static final int CRITERIA_CORRECTIVE_SCORE_REQUEST_CODE = 9987;
     private static final int RC_VIEWPAGER_UPLOAD = 10151;
@@ -109,10 +112,7 @@ public class CorrectiveActionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_corrective_action, container, false);
         ButterKnife.bind(this, mView);
-
         this.configureViewModel();
-        this.getAdministrator(1);
-
         if (savedInstanceState != null){
             mCorrectiveAction = savedInstanceState.getParcelable(BUNDLE_KEY_CORRECTIVE_PARCEL);
             updateCorrectiveAction(mCorrectiveAction);
@@ -126,10 +126,6 @@ public class CorrectiveActionFragment extends Fragment {
 
         return mView;
     }
-
-    private static final String BUNDLE_KEY_CORRECTIVE_PARCEL = "BUNDLE_KEY_CORRECTIVE_PARCEL";
-    private static final String BUNDLE_KEY_CORRECTIVE_TEMP_ID_PARCEL = "BUNDLE_KEY_CORRECTIVE_TEMP_ID_PARCEL";
-    private static final String BUNDLE_RISK_ID_PARCEL = "BUNDLE_RISK_ID_PARCEL";
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -364,10 +360,6 @@ public class CorrectiveActionFragment extends Fragment {
         this.mRiskViewModel.init(1);
     }
 
-    private void getAdministrator(long id){
-        this.mRiskViewModel.getParticipant(id).observe(this, this::updateAdministrator);
-    }
-
     //GET corrective action
     private void getCorrectiveAction(long riskId){
         this.mRiskViewModel.getCorrectiveActionsListForRisk(riskId).observe(this, this::updateCorrectiveAction);
@@ -418,10 +410,6 @@ public class CorrectiveActionFragment extends Fragment {
     /**
      *  UI
      */
-
-    private void updateAdministrator(Participant participant){
-     //   Toast.makeText(getContext(), participant.getForname() + " " + participant.getName(), Toast.LENGTH_SHORT).show();
-    }
 
     //LOAD corrective action (!ifExist : create a new one)
     private void updateCorrectiveAction(CorrectiveAction correctiveAction) {
@@ -501,5 +489,4 @@ public class CorrectiveActionFragment extends Fragment {
                 mCalendarRealisation.getYear(), mCalendarRealisation.getMonthOfYear()-1, mCalendarRealisation.getDayOfMonth()).show());
 
     }
-
 }

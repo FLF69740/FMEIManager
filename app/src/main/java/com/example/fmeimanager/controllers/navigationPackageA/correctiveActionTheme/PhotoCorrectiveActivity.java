@@ -37,9 +37,9 @@ public class PhotoCorrectiveActivity extends AppCompatActivity {
     @BindView(R.id.corrective_Photo_name) EditText mPhotoName;
 
     private static final String IMAGE_PERMISSION = Manifest.permission.READ_EXTERNAL_STORAGE;
-    private static final int RC_CORRECTIVE_IMAGE_PERMS = 101;
-    private static final int RC_CORRECTIVE_CHOOSE_PHOTO = 102;
-    private static final int RC_CORRECTIVE_CAMERA_CAPTURE = 103;
+    private static final int RC_CORRECTIVE_IMAGE_PERMS = 1010;
+    private static final int RC_CORRECTIVE_CHOOSE_PHOTO = 1020;
+    private static final int RC_CORRECTIVE_CAMERA_CAPTURE = 1030;
 
     public static final String BUNDLE_CORRECTIVE_PHOTO_UPDATE = "BUNDLE_PHOTO_UPDATE";
     public static final String BUNDLE_CORRECTIVE_NAME_UPDATE = "BUNDLE_NAME_UPDATE";
