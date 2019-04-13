@@ -32,6 +32,7 @@ public class TeamFmeiAdapter extends RecyclerView.Adapter<TeamFmeiHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TeamFmeiHolder teamFmeiHolder, int i) {
+        teamFmeiHolder.setIsRecyclable(false);
         teamFmeiHolder.updateWithAdapterInformation(mTeamPanelList.get(i), i);
     }
 

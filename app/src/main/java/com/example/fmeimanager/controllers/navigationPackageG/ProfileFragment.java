@@ -51,11 +51,15 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.fragment_profile_main_participant) Button mMainProfile;
     @BindView(R.id.fragment_profile_mail_information) TextView mProfileMail;
     @BindView(R.id.fragment_profile_tel_information) TextView mProfileTel;
+    @BindView(R.id.fragment_profile_recycler_view_participation) RecyclerView mRecyclerView;
 
     private View mView;
     private GeneralViewModel mGeneralViewModel;
     private long mParticipantId;
     private Participant mParticipant;
+    private FmeaParticipantResumeAdapter mAdapter;
+    private boolean mMainProfileActivationTouch;
+    private long mSharedLongBus;
 
     private static final String BUNDLE_PARTICIPANT_ID = "BUNDLE_PARTICIPANT_ID";
     public static final String BUNDLE_KEY_DEFINITION = "BUNDLE_KEY_DEFINITION";
@@ -92,6 +96,9 @@ public class ProfileFragment extends Fragment {
             getParticipant(mParticipantId);
         }
 
+        mMainProfileActivationTouch = false;
+        mSharedLongBus = getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID);
+
         return mView;
     }
 
@@ -104,9 +111,6 @@ public class ProfileFragment extends Fragment {
         outState.putParcelable(BUNDLE_KEY_PARTICIPANT_PARCEL, mParticipant);
         outState.putLong(BUNDLE_KEY_PARTICIPANT_ID_PARCEL, mParticipantId);
     }
-
-    private FmeaParticipantResumeAdapter mAdapter;
-    @BindView(R.id.fragment_profile_recycler_view_participation) RecyclerView mRecyclerView;
 
     //CONFIGURE recyclerView
     private void configureRecyclerView(List<String> listFmea, List<Boolean> listIsTeamLeader){
@@ -129,7 +133,8 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.fragment_profile_desactivation)
     public void changeDesactivationProfile(){
-        if (mParticipantId != getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID)){
+        if (mParticipantId != getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID) &&
+        mParticipantId != mSharedLongBus){
             if (mParticipant.isActivated()) {
                 mParticipant.setActivated(false);
                 mDesactivation.setText(R.string.profile_section_profile_reactivation);
@@ -148,11 +153,10 @@ public class ProfileFragment extends Fragment {
     public void changeMainProfile(){
         if (mParticipantId != getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID) &&
         mParticipant.isActivated()) {
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE);
-            sharedPreferences.edit().putLong(BUNDLE_KEY_ACTIVE_USER, mParticipantId).apply();
+            mMainProfileActivationTouch = true;
+            mSharedLongBus = mParticipantId;
             Snackbar.make(mView, mParticipant.getForname() + " " + mParticipant.getName() + " " +
                     mView.getContext().getString(R.string.profile_section_new_main_user), Snackbar.LENGTH_SHORT).show();
-            saveParticipant();
         }
     }
 
@@ -329,6 +333,11 @@ public class ProfileFragment extends Fragment {
             mParticipant.setTel(Utils.EMPTY);
         }else {
             mParticipant.setTel(mProfileTel.getText().toString());
+        }
+
+        if (mMainProfileActivationTouch){
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE);
+            sharedPreferences.edit().putLong(BUNDLE_KEY_ACTIVE_USER, mParticipantId).apply();
         }
 
         mGeneralViewModel.updateParticipant(mParticipant);

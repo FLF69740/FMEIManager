@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String BUNDLE_KEY_ACTIVE_USER = "BUNDLE_KEY_ACTIVE_USER";
     public static final long DEFAULT_USER_ID = 1;
     public static final String SHARED_MAIN_PROFILE_ID = "SHARED_MAIN_PROFILE_ID";
+    public static final String BUNDLE_KEY_TEAM_LEADER_CATALOG_VIEWPAGER  = "BUNDLE_KEY_TEAM_LEADER_CATALOG_VIEWPAGER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

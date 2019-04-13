@@ -91,7 +91,10 @@
 
     <!-- TEAM FMEI -->
     <string name="team_fmei_dashboard_title">TEAM FMEA</string>
-    <string name="team_fmei_builder_title">CONFIGURATION TEAM FMEA</string>
+    <string name="team_fmei_builder_title">CONFIGURATION</string>
+    <string name="team_fmei_builder_participant">PARTICIPANT</string>
+    <string name="team_fmei_builder_still">participant (still</string>
+    <string name="team_fmei_builder_advertising_team_leader_must_be_participant">TEAM LEADER must be a participant</string>
 
     <!-- PROFILE SECTION -->
     <string name="profile_section_title">PROFILE SECTION</string>

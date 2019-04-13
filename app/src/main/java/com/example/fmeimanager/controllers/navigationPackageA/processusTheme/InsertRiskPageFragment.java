@@ -20,6 +20,8 @@ public class InsertRiskPageFragment extends Fragment implements View.OnClickList
     private static final String KEY_POSITION = "KEY_POSITION";
     private static final String KEY_PROCESSUS_ID_LIST  = "KEY_PROCESSUS_ID_LIST";
 
+    private int mPosition;
+
     public InsertRiskPageFragment() {}
 
     public static InsertRiskPageFragment newInstance(String processusStep, int position){
@@ -31,8 +33,6 @@ public class InsertRiskPageFragment extends Fragment implements View.OnClickList
 
         return processusIdPageFragment;
     }
-
-    private int mPosition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

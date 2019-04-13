@@ -39,13 +39,15 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:src="@drawable/blank_profile_picture"
-            app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_function"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_profile_desactivation"
             app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/fragment_profile_main_participant" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/fragment_profile_desactivation"
@@ -119,6 +121,7 @@
             android:background="@drawable/accentdark_border_table"
             android:text="@string/profile_section_main_profile"
             android:textColor="@color/background_light"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_profile_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/fragment_profile_photo_aera"
             app:layout_constraintTop_toTopOf="parent" />

@@ -1,25 +1,24 @@
 package com.example.fmeimanager.controllers.navigationPackageF;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
-import android.view.View;
-import android.widget.Toast;
-
+import android.view.MenuItem;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.base.BaseActivity;
-import com.example.fmeimanager.injection.Injection;
-import com.example.fmeimanager.injection.ViewModelFactory;
-import com.example.fmeimanager.database.Participant;
-import com.example.fmeimanager.viewmodels.TeamViewModel;
+import java.util.ArrayList;
 
-public class TeamFmeiBuilderActivity extends BaseActivity implements TeamFmeiBuilderFragment.TeamFmeiBuilderItemClickedListener{
+public class TeamFmeiBuilderActivity extends BaseActivity implements TeamFmeiBuilderFragment.TeamFmeiBuilderListener{
+
+    public static final String BUNDLE_LONG_LIST_NEW_FMEI_ID = "BUNDLE_LONG_LIST_NEW_FMEI_ID";
+    public static final String BUNDLE_LONG_LIST_NEW_PARTICIPANT_ID = "BUNDLE_LONG_LIST_NEW_PARTICIPANT_ID";
+    public static final String BUNDLE_LONG_LIST_TEAM_FMEI_ID_TO_DELETE = "BUNDLE_LONG_LIST_TEAM_FMEI_ID_TO_DELETE";
 
     @Override
     protected Fragment getFirstFragment() {
-        return TeamFmeiBuilderFragment.newInstance(getIntent().getIntExtra(TeamFmeiDashBoardActivity.BUNDLE_TEAM_FMEI_FMEA_ID, 1));
+        return TeamFmeiBuilderFragment.newInstance(getIntent().getIntExtra(TeamFmeiDashBoardActivity.BUNDLE_TEAM_FMEI_FMEA_ID, 1),
+                getIntent().getStringArrayListExtra(TeamFmeiDashBoardActivity.BUNDLE_TEAM_FMEI_PARTICIPANT_TEAM_ID),
+                getIntent().getLongExtra(TeamFmeiDashBoardActivity.BUNDLE_TEAM_FMEI_TEAM_LEADER_ID, 1));
     }
 
     @Override
@@ -54,12 +53,24 @@ public class TeamFmeiBuilderActivity extends BaseActivity implements TeamFmeiBui
         return true;
     }
 
-    //BUTTON FRAGMENT
     @Override
-    public void teamFmeiBuilder_To_teamFmeiDashboard(View view) {
-        startActivity(new Intent(this, TeamFmeiDashBoardActivity.class));
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.toolbar_save :
+                ((TeamFmeiBuilderFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).saveNewParticipant();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
-
-
+    @Override
+    public void updateTeamFmeiDatas(ArrayList<String> packageNewFmeiId, ArrayList<String> packageNewParticipantId, ArrayList<String> teamFmeiIdToDelete) {
+        Intent intent = new Intent();
+        intent.putExtra(BUNDLE_LONG_LIST_NEW_FMEI_ID, packageNewFmeiId);
+        intent.putExtra(BUNDLE_LONG_LIST_NEW_PARTICIPANT_ID, packageNewParticipantId);
+        intent.putExtra(BUNDLE_LONG_LIST_TEAM_FMEI_ID_TO_DELETE, teamFmeiIdToDelete);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 }

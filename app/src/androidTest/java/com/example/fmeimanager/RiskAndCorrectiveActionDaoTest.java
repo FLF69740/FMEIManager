@@ -229,9 +229,8 @@ public class RiskAndCorrectiveActionDaoTest {
 
     @Test
     public void getCorrectiveActionListWithProcessusIdTest() throws Exception {
-        List<CorrectiveAction> correctiveActionList = LiveDataTestUtil.getValue(this.mDatabase.mCorrectiveActionDao().getCorrectiveActionAboutRiskId(ID_5));
-        assertEquals(1, correctiveActionList.size());
-        assertTrue(correctiveActionList.get(0).getCorrectiveAction().equals("Corrective_action_title_5"));
+        CorrectiveAction correctiveAction = LiveDataTestUtil.getValue(this.mDatabase.mCorrectiveActionDao().getCorrectiveActionAboutRiskId(ID_5));
+        assertTrue(correctiveAction.getCorrectiveAction().equals("Corrective_action_title_5"));
     }
 
 

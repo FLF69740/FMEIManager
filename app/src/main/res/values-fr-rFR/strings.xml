@@ -15,7 +15,7 @@
     <string name="Navigation_drawer_human_resources">RESSOURCES HUMAINES</string>
     <string name="Navigation_drawer_profile_section">SECTION PROFIL</string>
     <string name="team_fmei_dashboard_title">EQUIPE AMDEC</string>
-    <string name="team_fmei_builder_title">CONFIGURATION TEAM AMDEC</string>
+    <string name="team_fmei_builder_title">CONFIGURATION</string>
     <string name="profile_section_title">SECTION PROFIL</string>
     <string name="profile_title">PROFIL</string>
     <string name="Export_datas_title">EXPORTER DONNEES</string>
@@ -81,4 +81,7 @@
     <string name="profile_section_main_participant_advertising">L\'utilisateur principal ne peut pas être désactivé</string>
     <string name="profile_section_new_main_user">est l\'administrateur principal</string>
     <string name="writte_profile_advertising_first_paragraph">Vous voulez CHANGER cette information</string>
+    <string name="team_fmei_builder_participant">PARTICIPANT</string>
+    <string name="team_fmei_builder_still">participant (encore</string>
+    <string name="team_fmei_builder_advertising_team_leader_must_be_participant">Le TEAM LEADER doit être un participant</string>
 </resources>

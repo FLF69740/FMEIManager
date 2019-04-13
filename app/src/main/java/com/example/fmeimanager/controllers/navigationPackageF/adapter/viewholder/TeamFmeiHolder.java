@@ -1,18 +1,15 @@
 package com.example.fmeimanager.controllers.navigationPackageF.adapter.viewholder;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.models.TeamPanel;
 import com.example.fmeimanager.utils.BitmapStorage;
-
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -33,7 +30,7 @@ public class TeamFmeiHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.fragment_team_fmei_photo_12) ImageView mPhoto12;
     private ImageView[] mImageViews = new ImageView[12];
 
-    View mItemView;
+    private View mItemView;
 
     public TeamFmeiHolder(@NonNull View itemView) {
         super(itemView);
@@ -48,6 +45,9 @@ public class TeamFmeiHolder extends RecyclerView.ViewHolder {
 
         for (int i = 0 ; i < teamPanel.getParticipantList().size() ; i++){
             mImageViews[i].setImageBitmap(BitmapStorage.loadImage(mItemView.getContext(), "P" + teamPanel.getParticipantList().get(i).getId()));
+            if (!teamPanel.getParticipantList().get(i).isActivated()){
+                mImageViews[i].setBackgroundColor(Color.TRANSPARENT);
+            }
         }
 
         for (int i = teamPanel.getParticipantList().size() ; i < mImageViews.length ; i++){

@@ -81,8 +81,8 @@ public class TeamViewModel extends ViewModel {
         return mTeamFmeiDataRepository.getTeamsWithLinkParticipant(participantId);
     }
 
-    public LiveData<List<TeamFmei>> getTeamsWithLinkFmei(long riskId) {
-        return mTeamFmeiDataRepository.getTeamsWithLinkFmei(riskId);
+    public LiveData<List<TeamFmei>> getTeamsWithLinkFmei(long fmeiId) {
+        return mTeamFmeiDataRepository.getTeamsWithLinkFmei(fmeiId);
     }
 
     public void createTeamFmei(TeamFmei TeamFmei){

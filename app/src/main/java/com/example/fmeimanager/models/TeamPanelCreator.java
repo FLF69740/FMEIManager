@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.example.fmeimanager.database.Fmei;
 import com.example.fmeimanager.database.Participant;
-import com.example.fmeimanager.database.Processus;
 import com.example.fmeimanager.database.TeamFmei;
 import com.example.fmeimanager.utils.Utils;
 
@@ -24,7 +23,7 @@ public class TeamPanelCreator {
     public void setFmeiList(List<Fmei> fmeiList){
         if (fmeiList != null){
             for (int i = 0; i < fmeiList.size(); i++) {
-                mTeamPanels.add(new TeamPanel(fmeiList.get(i).getId()));
+                mTeamPanels.add(new TeamPanel(fmeiList.get(i).getId(), fmeiList.get(i).getTeamLeader()));
                 Log.i(Utils.INFORMATION_LOG, "new TeamPanel " + mTeamPanels.get(i).getFmeaId());
             }
         }

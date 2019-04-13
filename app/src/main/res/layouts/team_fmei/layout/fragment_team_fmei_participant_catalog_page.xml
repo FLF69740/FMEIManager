@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/participant_catalog_guideline_vertical_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.333" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/participant_catalog_guideline_vertical_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.666" />
+
+        <ImageView
+            android:id="@+id/participant_catalog_photo_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/skin_primary_dark_border"
+            android:padding="7dp"
+            android:src="@drawable/blank_profile_picture"
+            android:scaleType="fitXY"
+            android:clickable="true"
+            android:focusable="true"
+            android:tag="0"
+            app:layout_constraintBottom_toTopOf="@+id/participant_catalog_photo_4"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/participant_catalog_guideline_vertical_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/participant_catalog_name_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/profile_section_name"
+            android:textColor="@color/background_light"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/participant_catalog_photo_1"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_photo_1"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_1" />
+
+        <ImageView
+            android:id="@+id/participant_catalog_photo_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/skin_primary_dark_border"
+            android:padding="7dp"
+            android:src="@drawable/blank_profile_picture"
+            android:scaleType="fitXY"
+            android:clickable="true"
+            android:focusable="true"
+            android:tag="1"
+            app:layout_constraintBottom_toTopOf="@+id/participant_catalog_photo_5"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/participant_catalog_guideline_vertical_2"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_guideline_vertical_1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/participant_catalog_name_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/profile_section_name"
+            android:textColor="@color/background_light"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/participant_catalog_photo_2"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_photo_2"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_2" />
+
+        <ImageView
+            android:id="@+id/participant_catalog_photo_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/skin_primary_dark_border"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="7dp"
+            android:src="@drawable/blank_profile_picture"
+            android:scaleType="fitXY"
+            android:tag="2"
+            app:layout_constraintBottom_toTopOf="@+id/participant_catalog_photo_6"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_guideline_vertical_2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/participant_catalog_name_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/profile_section_name"
+            android:textColor="@color/background_light"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/participant_catalog_photo_3"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_photo_3"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_3" />
+
+        <ImageView
+            android:id="@+id/participant_catalog_photo_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/skin_primary_dark_border"
+            android:padding="7dp"
+            android:src="@drawable/blank_profile_picture"
+            android:scaleType="fitXY"
+            android:clickable="true"
+            android:focusable="true"
+            android:tag="3"
+            app:layout_constraintBottom_toTopOf="@+id/participant_catalog_photo_7"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/participant_catalog_guideline_vertical_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_1" />
+
+        <TextView
+            android:id="@+id/participant_catalog_name_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/profile_section_name"
+            android:textColor="@color/background_light"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/participant_catalog_photo_4"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_photo_4"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_4" />
+
+        <ImageView
+            android:id="@+id/participant_catalog_photo_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/skin_primary_dark_border"
+            android:padding="7dp"
+            android:src="@drawable/blank_profile_picture"
+            android:scaleType="fitXY"
+            android:clickable="true"
+            android:focusable="true"
+            android:tag="4"
+            app:layout_constraintBottom_toTopOf="@+id/participant_catalog_photo_8"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/participant_catalog_guideline_vertical_2"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_guideline_vertical_1"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_2" />
+
+        <TextView
+            android:id="@+id/participant_catalog_name_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/profile_section_name"
+            android:textColor="@color/background_light"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/participant_catalog_photo_5"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_photo_5"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_5" />
+
+        <ImageView
+            android:id="@+id/participant_catalog_photo_6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/skin_primary_dark_border"
+            android:padding="7dp"
+            android:src="@drawable/blank_profile_picture"
+            android:scaleType="fitXY"
+            android:clickable="true"
+            android:focusable="true"
+            android:tag="5"
+            app:layout_constraintBottom_toTopOf="@+id/participant_catalog_photo_9"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_guideline_vertical_2"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_3" />
+
+        <TextView
+            android:id="@+id/participant_catalog_name_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/profile_section_name"
+            android:textColor="@color/background_light"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/participant_catalog_photo_6"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_photo_6"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_6" />
+
+        <ImageView
+            android:id="@+id/participant_catalog_photo_7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/skin_primary_dark_border"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="7dp"
+            android:src="@drawable/blank_profile_picture"
+            android:scaleType="fitXY"
+            android:tag="6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/participant_catalog_guideline_vertical_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_4" />
+
+        <TextView
+            android:id="@+id/participant_catalog_name_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/profile_section_name"
+            android:textColor="@color/background_light"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/participant_catalog_photo_7"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_photo_7"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_7" />
+
+        <ImageView
+            android:id="@+id/participant_catalog_photo_8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/skin_primary_dark_border"
+            android:padding="7dp"
+            android:src="@drawable/blank_profile_picture"
+            android:scaleType="fitXY"
+            android:clickable="true"
+            android:focusable="true"
+            android:tag="7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/participant_catalog_guideline_vertical_2"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_guideline_vertical_1"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_5" />
+
+        <TextView
+            android:id="@+id/participant_catalog_name_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/profile_section_name"
+            android:textColor="@color/background_light"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/participant_catalog_photo_8"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_photo_8"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_8" />
+
+        <ImageView
+            android:id="@+id/participant_catalog_photo_9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/skin_primary_dark_border"
+            android:padding="7dp"
+            android:src="@drawable/blank_profile_picture"
+            android:scaleType="fitXY"
+            android:clickable="true"
+            android:focusable="true"
+            android:tag="8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_guideline_vertical_2"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_6" />
+
+        <TextView
+            android:id="@+id/participant_catalog_name_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/profile_section_name"
+            android:textColor="@color/background_light"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/participant_catalog_photo_9"
+            app:layout_constraintStart_toStartOf="@+id/participant_catalog_photo_9"
+            app:layout_constraintTop_toBottomOf="@+id/participant_catalog_photo_9" />
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>
