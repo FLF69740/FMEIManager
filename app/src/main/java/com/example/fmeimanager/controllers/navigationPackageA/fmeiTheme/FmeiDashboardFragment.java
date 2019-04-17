@@ -38,8 +38,14 @@ import butterknife.ButterKnife;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.fmeimanager.MainActivity.BUNDLE_KEY_ACTIVE_USER;
+import static com.example.fmeimanager.MainActivity.BUNDLE_KEY_HIGH_VALUE;
+import static com.example.fmeimanager.MainActivity.BUNDLE_KEY_LOW_VALUE;
+import static com.example.fmeimanager.MainActivity.BUNDLE_KEY_MEDIUM_VALUE;
 import static com.example.fmeimanager.MainActivity.DEFAULT_USER_ID;
+import static com.example.fmeimanager.MainActivity.SHARED_HIGH_SCORE;
+import static com.example.fmeimanager.MainActivity.SHARED_LOW_SCORE;
 import static com.example.fmeimanager.MainActivity.SHARED_MAIN_PROFILE_ID;
+import static com.example.fmeimanager.MainActivity.SHARED_MEDIUM_SCORE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,8 +71,9 @@ public class FmeiDashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_fmei_dashboard, container, false);
         ButterKnife.bind(this, mView);
-        //------------------------------------ RATE risk to create newt line code -------------------------
-        mFmeiPanelCreator = new FmeiPanelCreator(200, 150, 100);
+        mFmeiPanelCreator = new FmeiPanelCreator(getActivity().getSharedPreferences(SHARED_HIGH_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_HIGH_VALUE, 200),
+                getActivity().getSharedPreferences(SHARED_MEDIUM_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_MEDIUM_VALUE, 150),
+                getActivity().getSharedPreferences(SHARED_LOW_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_LOW_VALUE, 100));
         this.configureRecyclerView();
         this.configureOnClickRecyclerView();
         this.configureViewModel();

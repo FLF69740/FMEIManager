@@ -3,9 +3,14 @@ package com.example.fmeimanager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.fmeimanager.controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity;
+import com.example.fmeimanager.utils.BitmapStorage;
+import com.example.fmeimanager.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +32,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ImageView logo = findViewById(R.id.main_logo_presentation);
+        TextView name = findViewById(R.id.main_business_name_presentation);
+
+        if (BitmapStorage.isFileExist(this, "LOGO")){
+            logo.setImageBitmap(BitmapStorage.loadImage(this, "LOGO"));
+        }else {
+            logo.setVisibility(View.INVISIBLE);
+        }
+
+        if (!getSharedPreferences(SHARED_BUSINESS_NAME, MODE_PRIVATE).getString(BUNDLE_KEY_BUSINESS_NAME, Utils.EMPTY).equals(Utils.EMPTY)){
+            name.setText(getSharedPreferences(SHARED_BUSINESS_NAME, MODE_PRIVATE).getString(BUNDLE_KEY_BUSINESS_NAME, Utils.EMPTY));
+        }else {
+            name.setVisibility(View.INVISIBLE);
+        }
 
         ImageButton imageButton = findViewById(R.id.run_touch_screen);
         imageButton.setOnClickListener(v -> startFirstActivity());
