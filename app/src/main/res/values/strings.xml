@@ -125,6 +125,12 @@
 
     <!-- SETTINGS -->
     <string name="Settings_title">SETTINGS</string>
+    <string name="Settings_business_title">NAME OF BUSINESS :</string>
+    <string name="Settings_business_hint">My business</string>
+    <string name="Settings_score_ladder">SCORE LADDER</string>
+    <string name="Settings_score_low">LOW</string>
+    <string name="Settings_score_medium">MEDIUM</string>
+    <string name="Settings_score_high">HIGH</string>
 
     <!-- HELP -->
     <string name="Help_title">HELP</string>

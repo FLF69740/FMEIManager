@@ -84,4 +84,10 @@
     <string name="team_fmei_builder_participant">PARTICIPANT</string>
     <string name="team_fmei_builder_still">participant (encore</string>
     <string name="team_fmei_builder_advertising_team_leader_must_be_participant">Le TEAM LEADER doit être un participant</string>
+    <string name="Settings_business_title">NOM DE SOCIETE :</string>
+    <string name="Settings_business_hint">Ma société</string>
+    <string name="Settings_score_ladder">PALIERS DES SCORES</string>
+    <string name="Settings_score_low">BAS</string>
+    <string name="Settings_score_medium">MOYEN</string>
+    <string name="Settings_score_high">ELEVE</string>
 </resources>

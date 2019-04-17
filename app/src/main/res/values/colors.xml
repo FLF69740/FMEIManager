@@ -15,4 +15,10 @@
 
     <!-- BUTTON -->
     <color name="button_favorite">#F06292</color>
+
+    <!-- SCORE -->
+    <color name="green_low_score">#76ff03</color>
+    <color name="orange_medium_score">#ff9100</color>
+    <color name="red_high_score">#ff1744</color>
+
 </resources>

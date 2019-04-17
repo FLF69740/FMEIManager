@@ -16,21 +16,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.1" />
+            app:layout_constraintGuide_percent="0.05" />
 
         <android.support.constraint.Guideline
             android:id="@+id/settings_guideline_vertical_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.4" />
+            app:layout_constraintGuide_percent="0.3" />
 
         <android.support.constraint.Guideline
             android:id="@+id/settings_guideline_vertical_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.9" />
+            app:layout_constraintGuide_percent="0.5" />
 
         <android.support.constraint.Guideline
             android:id="@+id/settings_guideline_horizontal_1"
@@ -44,14 +44,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.2" />
 
         <android.support.constraint.Guideline
             android:id="@+id/settings_guideline_horizontal_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.75" />
+            app:layout_constraintGuide_percent="0.6" />
 
 
         <ImageView
@@ -63,8 +63,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:clickable="true"
-            android:focusable="true"
             android:background="@drawable/accentdark_border_table"
             android:scaleType="fitXY"
             app:layout_constraintDimensionRatio="1:1"
@@ -85,10 +83,9 @@
             android:textColor="@color/background_light"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_settings_business_name"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/settings_guideline_vertical_3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frament_settings_logo" />
+            app:layout_constraintTop_toTopOf="@+id/settings_guideline_horizontal_3" />
 
         <TextView
             android:id="@+id/fragment_settings_business_name"
@@ -96,23 +93,26 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:textColor="@color/background_light"
             android:hint="@string/Settings_business_hint"
-            android:textColorHint="@color/colorAccentDark"
             android:clickable="true"
             android:focusable="true"
-            app:layout_constraintBottom_toTopOf="@+id/settings_guideline_horizontal_2"
+            android:textColor="@color/background_light"
+            android:textColorHint="@color/colorAccentDark"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textview_business_title"
             app:layout_constraintStart_toStartOf="@+id/textview_business_title"
             app:layout_constraintTop_toBottomOf="@+id/textview_business_title" />
 
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@color/colorAccentDark"
-            app:layout_constraintBottom_toTopOf="@+id/settings_guideline_horizontal_2"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/settings_guideline_vertical_3"
-            app:layout_constraintStart_toStartOf="@+id/settings_guideline_vertical_1" />
+            app:layout_constraintStart_toStartOf="@+id/settings_guideline_vertical_3"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textview_score_ladder_title"
@@ -120,16 +120,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/Settings_score_ladder"
             android:textColor="@color/background_light"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/settings_guideline_horizontal_3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/settings_guideline_horizontal_2" />
+            app:layout_constraintStart_toStartOf="@+id/settings_guideline_vertical_3"
+            app:layout_constraintTop_toTopOf="@+id/settings_guideline_horizontal_1" />
 
         <TextView
             android:id="@+id/textview_score_low"
@@ -138,21 +138,24 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/Settings_score_low"
             android:textColor="@color/background_light"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/settings_guideline_vertical_1"
-            app:layout_constraintTop_toTopOf="@+id/settings_guideline_horizontal_3" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/settings_guideline_vertical_3"
+            app:layout_constraintTop_toTopOf="@+id/settings_guideline_horizontal_2" />
 
         <TextView
             android:id="@+id/fragment_settings_low_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="100"
-            android:textColor="@color/green_low_score"
+            android:layout_marginTop="8dp"
             android:clickable="true"
             android:focusable="true"
+            android:text="100"
+            android:textColor="@color/green_low_score"
             app:layout_constraintEnd_toEndOf="@+id/textview_score_low"
             app:layout_constraintStart_toStartOf="@+id/textview_score_low"
             app:layout_constraintTop_toBottomOf="@+id/textview_score_low" />
@@ -164,22 +167,26 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/Settings_score_medium"
             android:textColor="@color/background_light"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/textview_score_high"
-            app:layout_constraintStart_toEndOf="@+id/textview_score_low"
-            app:layout_constraintTop_toTopOf="@+id/settings_guideline_horizontal_3" />
+            app:layout_constraintBottom_toTopOf="@+id/textview_score_high"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/settings_guideline_vertical_3"
+            app:layout_constraintTop_toBottomOf="@+id/textview_score_low" />
 
         <TextView
             android:id="@+id/fragment_settings_medium_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="150"
-            android:textColor="@color/orange_medium_score"
+            android:layout_marginTop="8dp"
             android:clickable="true"
             android:focusable="true"
+            android:text="150"
+            android:textColor="@color/orange_medium_score"
             app:layout_constraintEnd_toEndOf="@+id/textview_score_medium"
             app:layout_constraintStart_toStartOf="@+id/textview_score_medium"
             app:layout_constraintTop_toBottomOf="@+id/textview_score_medium" />
@@ -188,27 +195,30 @@
             android:id="@+id/textview_score_high"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/Settings_score_high"
             android:textColor="@color/background_light"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/settings_guideline_vertical_3"
-            app:layout_constraintTop_toTopOf="@+id/settings_guideline_horizontal_3" />
+            app:layout_constraintBottom_toTopOf="@+id/fragment_settings_high_score"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/settings_guideline_vertical_3" />
 
         <TextView
             android:id="@+id/fragment_settings_high_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="200"
-            android:textColor="@color/red_high_score"
+            android:layout_marginBottom="8dp"
             android:clickable="true"
             android:focusable="true"
+            android:text="200"
+            android:textColor="@color/red_high_score"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textview_score_high"
-            app:layout_constraintStart_toStartOf="@+id/textview_score_high"
-            app:layout_constraintTop_toBottomOf="@+id/textview_score_high" />
+            app:layout_constraintStart_toStartOf="@+id/textview_score_high" />
 
     </android.support.constraint.ConstraintLayout>
 

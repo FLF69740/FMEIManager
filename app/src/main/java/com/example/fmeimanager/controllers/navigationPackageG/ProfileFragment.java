@@ -64,6 +64,8 @@ public class ProfileFragment extends Fragment {
     private static final String BUNDLE_PARTICIPANT_ID = "BUNDLE_PARTICIPANT_ID";
     public static final String BUNDLE_KEY_DEFINITION = "BUNDLE_KEY_DEFINITION";
     public static final String BUNDLE_PHOTO_PROFILE_ID = "BUNDLE_PHOTO_PROFILE_ID";
+    private static final String BUNDLE_KEY_PARTICIPANT_PARCEL = "BUNDLE_KEY_PARTICIPANT_PARCEL";
+    private static final String BUNDLE_KEY_PARTICIPANT_ID_PARCEL = "BUNDLE_KEY_PARTICIPANT_ID_PARCEL";
     private static final int REQUEST_CODE_NEW_NAME = 181;
     private static final int REQUEST_CODE_NEW_FORNAME = 182;
     private static final int REQUEST_CODE_NEW_JOB = 183;
@@ -101,9 +103,6 @@ public class ProfileFragment extends Fragment {
 
         return mView;
     }
-
-    private static final String BUNDLE_KEY_PARTICIPANT_PARCEL = "BUNDLE_KEY_PARTICIPANT_PARCEL";
-    private static final String BUNDLE_KEY_PARTICIPANT_ID_PARCEL = "BUNDLE_KEY_PARTICIPANT_ID_PARCEL";
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
