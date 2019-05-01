@@ -114,13 +114,10 @@ public class FmeiPanelCreator {
         return mFmeiPanels;
     }
 
-    //////////////////////////
-
     //RECORD all fmeis into panel
     private FmeiPanel incubeFmeiIntoPanel(Fmei fmei){
         return new FmeiPanel(fmei.getName(), fmei.getId(), fmei.getTeamLeader());
     }
-
 
     //GET IPR average for a panel
     private double getRiskAverageIPR(List<Integer> IPRs){

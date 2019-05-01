@@ -19,10 +19,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackageG.adapter.FmeaParticipantResumeAdapter;
+import com.example.fmeimanager.database.Fmei;
 import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.database.TeamFmei;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
+import com.example.fmeimanager.models.ParticipantFmeiParticipation;
 import com.example.fmeimanager.utils.BitmapStorage;
 import com.example.fmeimanager.utils.Utils;
 import com.example.fmeimanager.viewmodels.GeneralViewModel;
@@ -138,10 +140,12 @@ public class ProfileFragment extends Fragment {
                 mParticipant.setActivated(false);
                 mDesactivation.setText(R.string.profile_section_profile_reactivation);
                 mPhotoProfile.setVisibility(View.INVISIBLE);
+                saveParticipant();
             } else {
                 mParticipant.setActivated(true);
                 mDesactivation.setText(R.string.profile_section_profile_desactivation);
                 mPhotoProfile.setVisibility(View.VISIBLE);
+                saveParticipant();
             }
         }else {
             Toast.makeText(getContext(), getString(R.string.profile_section_main_participant_advertising), Toast.LENGTH_LONG).show();
@@ -154,8 +158,9 @@ public class ProfileFragment extends Fragment {
         mParticipant.isActivated()) {
             mMainProfileActivationTouch = true;
             mSharedLongBus = mParticipantId;
-            Snackbar.make(mView, mParticipant.getForname() + " " + mParticipant.getName() + " " +
-                    mView.getContext().getString(R.string.profile_section_new_main_user), Snackbar.LENGTH_SHORT).show();
+            Toast.makeText(mView.getContext(), mParticipant.getForname() + " " + mParticipant.getName() + " " +
+                    mView.getContext().getString(R.string.profile_section_new_main_user), Toast.LENGTH_SHORT).show();
+            saveParticipant();
         }
     }
 
@@ -167,7 +172,7 @@ public class ProfileFragment extends Fragment {
     }
 
     @OnClick(R.id.fragment_profile_forname)
-    public void changeForame(){
+    public void changeForname(){
         Intent intent = new Intent(getActivity(), WriteFromProfileActivity.class);
         intent.putExtra(BUNDLE_KEY_DEFINITION, mProfileForname.getText().toString());
         startActivityForResult(intent, REQUEST_CODE_NEW_FORNAME);
@@ -204,30 +209,35 @@ public class ProfileFragment extends Fragment {
             if (data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION) != null){
                 mProfileName.setText(data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION));
                 mParticipant.setName(data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION));
+                saveParticipant();
             }
         }
         if (REQUEST_CODE_NEW_FORNAME == requestCode && RESULT_OK == resultCode){
             if (data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION) != null){
                 mProfileForname.setText(data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION));
                 mParticipant.setForname(data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION));
+                saveParticipant();
             }
         }
         if (REQUEST_CODE_NEW_JOB == requestCode && RESULT_OK == resultCode){
             if (data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION) != null){
                 mProfileFunction.setText(data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION));
                 mParticipant.setFunction(data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION));
+                saveParticipant();
             }
         }
         if (REQUEST_CODE_NEW_MAIL == requestCode && RESULT_OK == resultCode){
             if (data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION) != null){
                 mProfileMail.setText(data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION));
                 mParticipant.setMail(data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION));
+                saveParticipant();
             }
         }
         if (REQUEST_CODE_NEW_TEL == requestCode && RESULT_OK == resultCode){
             if (data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION) != null){
                 mProfileTel.setText(data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION));
                 mParticipant.setTel(data.getStringExtra(WriteFromProfileActivity.BUNDLE_PROFILE_WRITE_ACTIVITY_NEW_DEFINITION));
+                saveParticipant();
             }
         }
         if (REQUEST_CODE_NEW_PHOTO == requestCode && RESULT_OK == resultCode){
@@ -252,29 +262,37 @@ public class ProfileFragment extends Fragment {
         this.mGeneralViewModel.getParticipant(id).observe(this, this::updateParticipant);
     }
 
-    //GET fmea about the participant
+    //GET LIST OF ALL FMEA
+    private void getAllFmea(){
+        this.mGeneralViewModel.getAllFmei().observe(this, this::updateAllFmea);
+    }
+
+    //GET team fmea about the participant
     private void getFmeaParticipation(long participantId){
-        this.mGeneralViewModel.getTeamsWithLinkParticipant(participantId).observe(this, this::updateFmeaList);
+        this.mGeneralViewModel.getTeamsWithLinkParticipant(participantId).observe(this, this::updateTeamFmeaList);
     }
 
     /**
      *  UI
      */
 
-    //RECORD fmea list about the participant
-    private void updateFmeaList(List<TeamFmei> teamFmeiList){
-        List<String> fmeaListString = new ArrayList<>();
-        List<Boolean> booleanTeamLeaderList = new ArrayList<>();
-        if (teamFmeiList != null && teamFmeiList.size() != 0){
-            for (int i = 0 ; i < teamFmeiList.size() ; i++){
-                fmeaListString.add(getString(R.string.profile_section_fmea) + teamFmeiList.get(i).getFmeiId());
-                if (mParticipantId == teamFmeiList.get(i).getParticipantId()){
-                    booleanTeamLeaderList.add(true);
-                }else {
-                    booleanTeamLeaderList.add(false);
-                }
-            }
-            configureRecyclerView(fmeaListString, booleanTeamLeaderList);
+    ParticipantFmeiParticipation mParticipantModel = new ParticipantFmeiParticipation();
+
+    //RECORD all fmea
+    private void updateAllFmea(List<Fmei> fmeiList){
+        mParticipantModel.setFmeiList(fmeiList);
+        if (mParticipantModel.getFmeiList() != null && mParticipantModel.getTeamFmeiList() != null){
+            configureRecyclerView(mParticipantModel.getFmeaParticipation(mParticipantModel.getFmeiList()),
+                    mParticipantModel.getTeamLeaderParticipation(mParticipantId, mParticipantModel.getFmeiList()));
+        }
+    }
+
+    //RECORD team fmea list about the participant
+    private void updateTeamFmeaList(List<TeamFmei> teamFmeiList){
+        mParticipantModel.setTeamFmeiList(teamFmeiList);
+        if (mParticipantModel.getFmeiList() != null && mParticipantModel.getTeamFmeiList() != null){
+            configureRecyclerView(mParticipantModel.getFmeaParticipation(mParticipantModel.getFmeiList()),
+                    mParticipantModel.getTeamLeaderParticipation(mParticipantId, mParticipantModel.getFmeiList()));
         }
     }
 
@@ -303,6 +321,7 @@ public class ProfileFragment extends Fragment {
             mDesactivation.setText(R.string.profile_section_profile_reactivation);
             mPhotoProfile.setVisibility(View.INVISIBLE);
         }
+        getAllFmea();
         getFmeaParticipation(mParticipant.getId());
     }
 

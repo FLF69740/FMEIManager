@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/toolbar_photo"
+        android:icon="@mipmap/baseline_photo_camera_white_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/Toolbar_PHOTO">
+    </item>
+</menu>

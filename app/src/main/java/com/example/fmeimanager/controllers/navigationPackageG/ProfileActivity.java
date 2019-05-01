@@ -42,7 +42,7 @@ public class ProfileActivity extends BaseActivity{
     // TOOLBAR
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu_photo_single, menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu_photo, menu);
         return true;
     }
 
@@ -51,9 +51,6 @@ public class ProfileActivity extends BaseActivity{
         switch (item.getItemId()){
             case R.id.toolbar_photo:
                 ((ProfileFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).createPhotoIdentity();
-                return true;
-            case R.id.toolbar_save:
-                ((ProfileFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).saveParticipant();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
