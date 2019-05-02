@@ -15,10 +15,14 @@ import com.example.fmeimanager.controllers.navigationPackageA.processusTheme.Pro
 
 public class CorrectiveActionFileActivity extends BaseActivity implements CorrectiveActionFragment.CorrectiveActionItemClickedListener {
 
+    public static final String FMEI_ID_TO_RISK_DASHBOARD = "FMEI_ID_TO_RISK_DASHBOARD";
+
     @Override
     protected Fragment getFirstFragment() {
         return CorrectiveActionFragment.newInstance(getIntent().getLongExtra(RiskFileActivity.RISK_ID_TO_CORRECTIVE_ACTION_DASHBOARD, 200),
-                getIntent().getIntExtra(RiskFileActivity.PROCESSUS_STEP_TO_CORRECTIVE_ACTION_DASHBOARD, 0));
+                getIntent().getIntExtra(RiskFileActivity.PROCESSUS_STEP_TO_CORRECTIVE_ACTION_DASHBOARD, 0),
+                getIntent().getLongExtra(RiskFileActivity.FMEI_ID_TO_CORRECTIVE_ACTION_DASHBOARD, 0),
+                getIntent().getStringExtra(RiskFileActivity.RISK_NAME_TO_CORRECTIVE_ACTION_DASHBOARD));
     }
 
     @Override
@@ -75,10 +79,11 @@ public class CorrectiveActionFileActivity extends BaseActivity implements Correc
 
     //BUTTON FRAGMENT
     @Override
-    public void correctiveAction_To_riskFile(View view, long riskId, int processusStep) {
+    public void correctiveAction_To_riskFile(View view, long riskId, int processusStep, long fmeiId) {
         Intent intent = new Intent(this, RiskFileActivity.class);
         intent.putExtra(ProcessDashboardActivity.RISK_ID_TO_RISK_DASHBOARD, riskId);
         intent.putExtra(ProcessDashboardActivity.PROCESSUS_STEP_TO_RISK_DASHBOARD, processusStep);
+        intent.putExtra(FMEI_ID_TO_RISK_DASHBOARD, fmeiId);
         startActivity(intent);
     }
 

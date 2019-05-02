@@ -17,6 +17,7 @@ public class ProcessDashboardActivity extends BaseActivity implements ProcessDas
     public static final String RISK_ID_TO_RISK_DASHBOARD = "RISK_ID_TO_RISK_DASHBOARD";
     public static final String PROCESSUS_STEP_TO_RISK_DASHBOARD = "PROCESSUS_STEP_TO_RISK_DASHBOARD";
     public static final String PROCESS_DASHBOARD_TO_PROCESS_BUILDER = "PROCESS_DASHBOARD_TO_PROCESS_BUILDER";
+    public static final String FMEI_ID_TO_RISK_DASHBOARD = "FMEI_ID_TO_RISK_DASHBOARD";
 
     private static final String SHARED_ID = "SHARED_ID";
     private static final String BUNDLE_RESTORE_PARENT_ID = "BUNDLE_RESTORE_PARENT_ID";
@@ -89,7 +90,10 @@ public class ProcessDashboardActivity extends BaseActivity implements ProcessDas
     @Override
     public void processDashBoard_To_RiskFile(View view, long riskId, long parentId, int processusStep) {
         saveSharedPreferences(parentId);
+        long fmeiId = getIntent().getLongExtra(FmeiDashboardActivity.FMEI_ID_TO_PROCESSUS_DASHBOARD,
+                getSharedPreferences(SHARED_ID, MODE_PRIVATE).getLong(BUNDLE_RESTORE_PARENT_ID, 1000));
         Intent intent = new Intent(this, RiskFileActivity.class);
+        intent.putExtra(FMEI_ID_TO_RISK_DASHBOARD, fmeiId);
         intent.putExtra(RISK_ID_TO_RISK_DASHBOARD, riskId);
         intent.putExtra(PROCESSUS_STEP_TO_RISK_DASHBOARD, processusStep);
         startActivity(intent);

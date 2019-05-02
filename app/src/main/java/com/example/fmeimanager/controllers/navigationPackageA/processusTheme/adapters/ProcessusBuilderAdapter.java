@@ -31,10 +31,6 @@ public class ProcessusBuilderAdapter extends RecyclerView.Adapter<ProcessusBuild
         mProcessusList = processusList;
     }
 
-    public void setProcessusList(List<Processus> processusList){
-        mProcessusList = processusList;
-    }
-
     @NonNull
     @Override
     public ProcessusBuilderViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

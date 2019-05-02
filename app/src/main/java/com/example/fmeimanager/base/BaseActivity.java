@@ -46,7 +46,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentView());
-
         this.configureToolbar();
         this.configureFragment(savedInstanceState);
 
@@ -84,10 +83,12 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     // Handle back click to close menu
     @Override
     public void onBackPressed() {
-        if (this.mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            this.mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        if (this.mDrawerLayout != null) {
+            if (this.mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                this.mDrawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 

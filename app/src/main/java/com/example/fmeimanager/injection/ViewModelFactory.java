@@ -54,7 +54,7 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
             return (T) new ProcessusViewModel(mCorrectiveActionDataRepository, mParticipantDataRepository, mProcessusDataRepository, mRiskDataRepository, mExecutor);
         }
         if (modelClass.isAssignableFrom(RiskViewModel.class)){
-            return (T) new RiskViewModel(mRiskDataRepository, mCorrectiveActionDataRepository, mParticipantDataRepository, mExecutor);
+            return (T) new RiskViewModel(mRiskDataRepository, mCorrectiveActionDataRepository, mParticipantDataRepository, mTeamFmeiDataRepository, mExecutor);
         }
         if (modelClass.isAssignableFrom(TeamViewModel.class)){
             return (T) new TeamViewModel(mFmeiDataRepository, mParticipantDataRepository, mTeamFmeiDataRepository, mExecutor);

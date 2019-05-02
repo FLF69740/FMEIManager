@@ -7,9 +7,11 @@ import android.support.annotation.Nullable;
 import com.example.fmeimanager.database.CorrectiveAction;
 import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.database.Risk;
+import com.example.fmeimanager.database.TeamFmei;
 import com.example.fmeimanager.repositories.CorrectiveActionDataRepository;
 import com.example.fmeimanager.repositories.ParticipantDataRepository;
 import com.example.fmeimanager.repositories.RiskDataRepository;
+import com.example.fmeimanager.repositories.TeamFmeiDataRepository;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -20,17 +22,18 @@ public class RiskViewModel extends ViewModel {
     private final CorrectiveActionDataRepository mCorrectiveActionDataRepository;
     private final ParticipantDataRepository mParticipantDataRepository;
     private final Executor mExecutor;
-
+    private final TeamFmeiDataRepository mTeamFmeiDataRepository;
 
     //DATA
     @Nullable
     private LiveData<Participant> administrator;
 
     public RiskViewModel(RiskDataRepository riskDataRepository, CorrectiveActionDataRepository correctiveActionDataRepository,
-                         ParticipantDataRepository participantDataRepository, Executor executor) {
+                         ParticipantDataRepository participantDataRepository, TeamFmeiDataRepository teamFmeiDataRepository, Executor executor) {
         mRiskDataRepository = riskDataRepository;
         mCorrectiveActionDataRepository = correctiveActionDataRepository;
         mParticipantDataRepository = participantDataRepository;
+        mTeamFmeiDataRepository = teamFmeiDataRepository;
         mExecutor = executor;
     }
 
@@ -108,5 +111,32 @@ public class RiskViewModel extends ViewModel {
 
     public void deleteRisk(long RiskId){
         mExecutor.execute(()->mRiskDataRepository.deleteRisk(RiskId));
+    }
+
+    /**
+     *  TEAM FMEI
+     */
+
+    public LiveData<List<TeamFmei>> getAllTeamFmei() {return mTeamFmeiDataRepository.getAllTeamFmei();}
+    public LiveData<TeamFmei> getTeamFmei(long id) {return mTeamFmeiDataRepository.getTeamFmei(id);}
+
+    public LiveData<List<TeamFmei>> getTeamsWithLinkParticipant(long participantId) {
+        return mTeamFmeiDataRepository.getTeamsWithLinkParticipant(participantId);
+    }
+
+    public LiveData<List<TeamFmei>> getTeamsWithLinkFmei(long fmeiId) {
+        return mTeamFmeiDataRepository.getTeamsWithLinkFmei(fmeiId);
+    }
+
+    public void createTeamFmei(TeamFmei TeamFmei){
+        mExecutor.execute(()->mTeamFmeiDataRepository.createTeamFmei(TeamFmei));
+    }
+
+    public void updateTeamFmei(TeamFmei TeamFmei){
+        mExecutor.execute(()->mTeamFmeiDataRepository.updateTeamFmei(TeamFmei));
+    }
+
+    public void deleteTeamFmei(long TeamFmeiId){
+        mExecutor.execute(()->mTeamFmeiDataRepository.deleteTeamFmei(TeamFmeiId));
     }
 }

@@ -84,7 +84,7 @@ public class ProcessDashboardFragment extends Fragment {
      */
 
     private void updateFragmentScreen(long fmeiId){
-        String string = "FMEI " + String.valueOf(fmeiId);
+        String string = "FMEI " + fmeiId;
         mFmeiIndicator.setText(string);
     }
 

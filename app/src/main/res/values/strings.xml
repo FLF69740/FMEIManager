@@ -90,6 +90,17 @@
     <string name="Risk_file_corrective_realisation_title">REALISATION DATE</string>
     <string name="Risk_file_corrective_realisation_default">TO DEFINE</string>
     <string name="Risk_file_corrective_advertising_photo">You must save your corrective action before</string>
+    <string name="Risk_file_mail_subject_part_one">CORRECTIVE ACTION REQUEST about RISK</string>
+    <string name="Risk_file_mail_message_line_one">FMEA</string>
+    <string name="Risk_file_mail_message_line_two">IDENTIFIED RISK</string>
+    <string name="Risk_file_mail_message_line_three">CORRECTIVE ACTION</string>
+    <string name="Risk_file_mail_message_line_four">DEAD LINE :</string>
+    <string name="Risk_file_mail_message_line_five">REALISATION DATE :</string>
+    <string name="Risk_file_mail_message_line_six">relevant part</string>
+    <string name="Risk_file_mail_message_line_seven">track number :</string>
+    <string name="Risk_file_mail_message_line_height">part name :</string>
+    <string name="Risk_file_mail_message_line_nine">description of the corrective action taken :</string>
+    <string name="Risk_file_mail_message_line_ten">If necessary, put the photos as an attachment</string>
 
     <!-- TEAM FMEI -->
     <string name="team_fmei_dashboard_title">TEAM FMEA</string>

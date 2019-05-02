@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.database.CorrectiveAction;
+import com.example.fmeimanager.database.TeamFmei;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.database.Participant;
@@ -64,8 +65,10 @@ public class RiskFileDescriptionFragment extends Fragment {
     @BindView(R.id.fragment_risk_detection_score) TextView mDetectionScore;
 
     private static final String BUNDLE_RISK_ID = "BUNDLE_RISK_ID";
+    private static final String BUNDLE_FMEI_ID = "BUNDLE_FMEI_ID";
     private static final String BUNDLE_PROCESSUS_STEP = "BUNDLE_PROCESSUS_STEP";
     private static final String BUNDLE_KEY_RISK = "BUNDLE_KEY_RISK";
+    private static final String BUNDLE_KEY_FMEI = "BUNDLE_KEY_FMEI";
     private static final String BUNDLE_KEY_RISK_STEP = "BUNDLE_KEY_RISK_STEP";
     public static final String BUNDLE_KEY_CRITERIA_SCORE = "BUNDLE_KEY_CRITERIA_SCORE";
     public static final String BUNDLE_KEY_RISK_MANAGER = "BUNDLE_KEY_RISK_MANAGER";
@@ -85,6 +88,8 @@ public class RiskFileDescriptionFragment extends Fragment {
     private View mView;
     private RiskViewModel mRiskViewModel;
     private long mRiskId;
+    private long mFmeiId;
+    private List<Long> mTeamsParticipantId;
     private int mProcessusStepInteger;
     private Participant mParticipant;
     private List<Participant> mParticipantList;
@@ -92,11 +97,12 @@ public class RiskFileDescriptionFragment extends Fragment {
 
     public RiskFileDescriptionFragment() {}
 
-    public static RiskFileDescriptionFragment newInstance(long riskId, int processusStep){
+    public static RiskFileDescriptionFragment newInstance(long riskId, int processusStep, long fmeiId){
         RiskFileDescriptionFragment riskFileDescriptionFragment = new RiskFileDescriptionFragment();
-        Bundle bundle = new Bundle(2);
+        Bundle bundle = new Bundle(3);
         bundle.putLong(BUNDLE_RISK_ID, riskId);
         bundle.putInt(BUNDLE_PROCESSUS_STEP, processusStep);
+        bundle.putLong(BUNDLE_FMEI_ID, fmeiId);
         riskFileDescriptionFragment.setArguments(bundle);
         return riskFileDescriptionFragment;
     }
@@ -110,10 +116,12 @@ public class RiskFileDescriptionFragment extends Fragment {
 
         if (savedInstanceState != null) {
             mRisk = savedInstanceState.getParcelable(BUNDLE_KEY_RISK);
+            mFmeiId = savedInstanceState.getLong(BUNDLE_KEY_FMEI);
             updateRisk(mRisk);
             mProcessusStepInteger = savedInstanceState.getInt(BUNDLE_KEY_RISK_STEP);
         }else {
             mRiskId = getArguments().getLong(BUNDLE_RISK_ID);
+            mFmeiId = getArguments().getLong(BUNDLE_FMEI_ID);
             this.getRiskSelected(mRiskId);
             mProcessusStepInteger = getArguments().getInt(BUNDLE_PROCESSUS_STEP);
         }
@@ -128,6 +136,7 @@ public class RiskFileDescriptionFragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putParcelable(BUNDLE_KEY_RISK, mRisk);
         outState.putInt(BUNDLE_KEY_RISK_STEP, mProcessusStepInteger);
+        outState.putLong(BUNDLE_KEY_FMEI, mFmeiId);
     }
 
     //BUILD IHM with risk information
@@ -276,7 +285,7 @@ public class RiskFileDescriptionFragment extends Fragment {
     //GO TO Corrective action IHM
     @OnClick(R.id.risk_file_first_link)
     public void riskFile_To_CorrectiveAction(){
-        mCallback.riskFile_To_CorrectiveAction(mView, mRiskId, mProcessusStepInteger);
+        mCallback.riskFile_To_CorrectiveAction(mView, mRiskId, mProcessusStepInteger, mFmeiId, mRisk.getRisk());
     }
 
     /**
@@ -285,7 +294,7 @@ public class RiskFileDescriptionFragment extends Fragment {
 
     // interface for button clicked
     public interface RiskFileItemClickedListener{
-        void riskFile_To_CorrectiveAction(View view, long riskId, int processusStepInteger);
+        void riskFile_To_CorrectiveAction(View view, long riskId, int processusStepInteger, long fmeiId, String riskName);
         void riskFileDelete(View view);
     }
 
@@ -380,9 +389,9 @@ public class RiskFileDescriptionFragment extends Fragment {
         this.mRiskViewModel.getParticipant(id).observe(this, this::updateParticipant);
     }
 
-    //GET corrective action attached to selected risk
-    private void getRiskCorrectiveAction(){
-        this.mRiskViewModel.getAllCorrectiveAction().observe(this, this::updateCorrectiveAction);
+    //GET team fmei attached to the fmei Id
+    private void getTeamFmei(long fmeiId){
+        this.mRiskViewModel.getTeamsWithLinkFmei(fmeiId).observe(this, this::updateTeamFmei);
     }
 
     //SAVE risk
@@ -419,9 +428,17 @@ public class RiskFileDescriptionFragment extends Fragment {
             mRisk = risk;
             this.updateInformationsRiskPanel(risk);
             getRiskParticipant(risk.getParticipantId());
-            getAllParticipant();
-            getRiskCorrectiveAction();
+            getTeamFmei(mFmeiId);
         }
+    }
+
+    //LOAD TEAM FMEI
+    private void updateTeamFmei(List<TeamFmei> teamFmeiList){
+        mTeamsParticipantId = new ArrayList<>();
+        for (TeamFmei teamFmei : teamFmeiList){
+            mTeamsParticipantId.add(teamFmei.getParticipantId());
+        }
+        getAllParticipant();
     }
 
     //RECORD participant
@@ -433,18 +450,15 @@ public class RiskFileDescriptionFragment extends Fragment {
         }
     }
 
-    //RECORD corrective action
-    private void updateCorrectiveAction(List<CorrectiveAction> correctiveActionList){
-        if (correctiveActionList != null){
-        //    for (int)
-
-        }
-    }
-
     //RECORD all participant
     private void updateAllParticipant(List<Participant> participants){
-        if (participants != null){
-            mParticipantList = participants;
+        mParticipantList = new ArrayList<>();
+        for (Participant participant : participants){
+            for (long teamParticipantId : mTeamsParticipantId){
+                if (participant.getId() == teamParticipantId){
+                    mParticipantList.add(participant);
+                }
+            }
         }
     }
 

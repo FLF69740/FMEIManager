@@ -45,6 +45,7 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
 
     public static final String BUNDLE_KEY_PROCESSUS_NAME = "BUNDLE_KEY_PROCESSUS_NAME";
     public static final String BUNDLE_KEY_PROCESSUS_POSITION = "BUNDLE_KEY_PROCESSUS_POSITION";
+    private static final String BUNDLE_FMEI_ID_KEY = "BUNDLE_FMEI_ID_KEY";
     private static final int REQUEST_CODE_WRITE_ACTIVITY  = 10023;
 
     @BindView(R.id.fragment_processus_builder_recycler_view) RecyclerView mRecyclerView;
@@ -55,7 +56,7 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
     public static ProcessusBuilderFragment newInstance(long fmeid){
         ProcessusBuilderFragment processusBuilderFragment = new ProcessusBuilderFragment();
         Bundle bundle = new Bundle(1);
-        bundle.putLong("MA KEY", fmeid);
+        bundle.putLong(BUNDLE_FMEI_ID_KEY, fmeid);
         processusBuilderFragment.setArguments(bundle);
         return processusBuilderFragment;
     }
@@ -64,8 +65,7 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_processus_builder, container, false);
         ButterKnife.bind(this, mView);
-        mFmeiId = getArguments().getLong("MA KEY");
-        this.configureRecyclerView();
+        mFmeiId = getArguments().getLong(BUNDLE_FMEI_ID_KEY);
         this.configureViewModel();
         this.getProcessusAboutFMEI(mFmeiId);
         return mView;
@@ -78,38 +78,9 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    //update recyclerView after other thread finalisation
-    private void updateRecycler(List<Processus> processusList){
-        mAdapter.setProcessusList(processusList);
-        mAdapter.notifyDataSetChanged();
-    }
-
     /**
-     *  Callback
+     *  DATAS
      */
-
-    // interface for button clicked
-    public interface ProcessBuilderItemClickedListener{
-        void processusBuilder_To_ProcessDashBoard(long fmeiId);
-    }
-
-    //callback for button clicked
-    private ProcessBuilderItemClickedListener mCallback;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            mCallback = (ProcessBuilderItemClickedListener) getActivity();
-        } catch (ClassCastException e){
-            throw new ClassCastException(e.toString() + " must implement ItemClickedListener");
-        }
-    }
-
-
-        /**
-         *  DATAS
-         */
 
     private void configureViewModel(){
         ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(getContext());
@@ -122,18 +93,17 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
         this.mProcessusViewModel.getProcessussListForFmei(fmeiId).observe(this, this::updateProcessusList);
     }
 
-
+    //SAVE NEW RECORDS
     public void saveBuilder() {
         for (int i = 0 ; i < mProcessusList.size() ; i++){
             this.mProcessusViewModel.updateProcessus(mProcessusList.get(i));
         }
-        mCallback.processusBuilder_To_ProcessDashBoard(mFmeiId);
     }
 
     //ADD a new Processus
     public void addProcessus() {
-        Log.i(Utils.INFORMATION_LOG, "PROCESSUS BUILDER ADD - PROCESSUS STEP = " + String.valueOf(mProcessusList.size()+1));
-        Processus processus = new Processus("processus_" + String.valueOf(mProcessusList.size()+1), mFmeiId, mProcessusList.size()+1);
+        Log.i(Utils.INFORMATION_LOG, "PROCESSUS BUILDER ADD - PROCESSUS STEP = " + (mProcessusList.size()+1));
+        Processus processus = new Processus("processus_" + (mProcessusList.size()+1), mFmeiId, mProcessusList.size()+1);
         this.mProcessusViewModel.createProcessus(processus);
     }
 
@@ -146,7 +116,8 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
         updateFragmentScreen(mFmeiId);
         if (processuses != null && processuses.size() != 0){
             mProcessusList = BusinnessProcessusTheme.getProcessusByStepLadder(processuses);
-            this.updateRecycler(mProcessusList);
+       //     this.updateRecycler(mProcessusList);
+            this.configureRecyclerView();
         }
     }
 
@@ -166,7 +137,8 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
             mProcessusList.get(position).setStep(position);
             mProcessusList.get(position-1).setStep(position+1);
             mProcessusList = BusinnessProcessusTheme.getProcessusByStepLadder(mProcessusList);
-            this.updateRecycler(mProcessusList);
+         //   this.updateRecycler(mProcessusList);
+            this.saveBuilder();
         }else {
             Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) NO " + position);
         }
@@ -179,7 +151,8 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
             mProcessusList.get(position).setStep(position+2);
             mProcessusList.get(position+1).setStep(position+1);
             mProcessusList = BusinnessProcessusTheme.getProcessusByStepLadder(mProcessusList);
-            this.updateRecycler(mProcessusList);
+          //  this.updateRecycler(mProcessusList);
+            this.saveBuilder();
         }else {
             Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) NO " + position);
         }
@@ -198,14 +171,16 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
     public void onClickVisibleButton(int position) {
         Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) INVISIBLE " + position);
         mProcessusList.get(position).setVisible(false);
-        this.updateRecycler(mProcessusList);
+      //  this.updateRecycler(mProcessusList);
+        this.saveBuilder();
     }
 
     @Override
     public void onClickInvisibleButton(int position) {
         Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) VISIBLE " + position);
         mProcessusList.get(position).setVisible(true);
-        this.updateRecycler(mProcessusList);
+     //   this.updateRecycler(mProcessusList);
+        this.saveBuilder();
     }
 
     /**
@@ -220,7 +195,8 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
             if (name != null && position != 100000){
                 mProcessusList.get(position).setName(name);
             }
-            this.updateRecycler(mProcessusList);
+         //   this.updateRecycler(mProcessusList);
+            this.saveBuilder();
         }
     }
 }

@@ -26,6 +26,7 @@ import com.example.fmeimanager.controllers.navigationPackageA.riskTheme.RiskMana
 import com.example.fmeimanager.controllers.navigationPackageA.riskTheme.RiskPhotoViewPagerActivity;
 import com.example.fmeimanager.database.CorrectiveAction;
 import com.example.fmeimanager.database.Risk;
+import com.example.fmeimanager.database.TeamFmei;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.database.Participant;
@@ -68,6 +69,7 @@ public class CorrectiveActionFragment extends Fragment {
     @BindView(R.id.fragment_corrective_ask_btn) Button mAsk;
 
     private static final String BUNDLE_RISK_ID = "BUNDLE_RISK_ID";
+    private static final String BUNDLE_FMEI_ID = "BUNDLE_FMEI_ID";
     private static final String BUNDLE_PROCESSUS_STEP = "BUNDLE_PROCESSUS_STEP";
     public static final String BUNDLE_KEY_CORRECTIVE_CRITERIA_SCORE = "BUNDLE_KEY_CRITERIA_SCORE";
     private static final String SEVERITY = "SEVERITY";
@@ -81,6 +83,7 @@ public class CorrectiveActionFragment extends Fragment {
     public static final String BUNDLE_PHOTO_LIST_CORRECTIVE = "BUNDLE_PHOTO_LIST_RISK";
     private static final String BUNDLE_KEY_CORRECTIVE_PARCEL = "BUNDLE_KEY_CORRECTIVE_PARCEL";
     private static final String BUNDLE_KEY_CORRECTIVE_TEMP_ID_PARCEL = "BUNDLE_KEY_CORRECTIVE_TEMP_ID_PARCEL";
+    private static final String BUNDLE_KEY_FMEI_ID = "BUNDLE_KEY_FMEI_ID";
     private static final String BUNDLE_RISK_ID_PARCEL = "BUNDLE_RISK_ID_PARCEL";
     private static final int CORRECTIVE_MANAGER_REQUEST_CODE = 6654;
     private static final int CRITERIA_CORRECTIVE_SCORE_REQUEST_CODE = 9987;
@@ -90,6 +93,8 @@ public class CorrectiveActionFragment extends Fragment {
     private View mView;
     private RiskViewModel mRiskViewModel;
     private long mRiskId;
+    private String mRiskName;
+    private long mFmeiId;
     private long mCorrectiveId = 0;
     private int mProcessusStepInteger;
     private CorrectiveAction mCorrectiveAction;
@@ -98,11 +103,13 @@ public class CorrectiveActionFragment extends Fragment {
 
     public CorrectiveActionFragment() {}
 
-    public static CorrectiveActionFragment newInstance(long riskId, int processusStep){
+    public static CorrectiveActionFragment newInstance(long riskId, int processusStep, long fmeiId, String riskName){
         CorrectiveActionFragment correctiveActionFragment = new CorrectiveActionFragment();
-        Bundle bundle = new Bundle(2);
+        Bundle bundle = new Bundle(4);
         bundle.putInt(BUNDLE_PROCESSUS_STEP, processusStep);
         bundle.putLong(BUNDLE_RISK_ID, riskId);
+        bundle.putLong(BUNDLE_FMEI_ID, fmeiId);
+        bundle.putString("BUNDLE_KEY_RISK_NAME", riskName);
         correctiveActionFragment.setArguments(bundle);
         return correctiveActionFragment;
     }
@@ -115,11 +122,15 @@ public class CorrectiveActionFragment extends Fragment {
         this.configureViewModel();
         if (savedInstanceState != null){
             mCorrectiveAction = savedInstanceState.getParcelable(BUNDLE_KEY_CORRECTIVE_PARCEL);
+            mFmeiId = savedInstanceState.getLong(BUNDLE_KEY_FMEI_ID);
             updateCorrectiveAction(mCorrectiveAction);
             mRiskId = savedInstanceState.getLong(BUNDLE_RISK_ID_PARCEL);
+            mRiskName = savedInstanceState.getString("BUNDLE_KEY_RISK_NAME");
             mCorrectiveId = savedInstanceState.getLong(BUNDLE_KEY_CORRECTIVE_TEMP_ID_PARCEL);
         }else {
+            mFmeiId = getArguments().getLong(BUNDLE_FMEI_ID, 0);
             mRiskId = getArguments().getLong(BUNDLE_RISK_ID, 100);
+            mRiskName = getArguments().getString("BUNDLE_KEY_RISK_NAME");
             mProcessusStepInteger = getArguments().getInt(BUNDLE_PROCESSUS_STEP, 0);
             this.getCorrectiveAction(mRiskId);
         }
@@ -133,6 +144,8 @@ public class CorrectiveActionFragment extends Fragment {
         outState.putParcelable(BUNDLE_KEY_CORRECTIVE_PARCEL, mCorrectiveAction);
         outState.putLong(BUNDLE_KEY_CORRECTIVE_TEMP_ID_PARCEL, mCorrectiveId);
         outState.putLong(BUNDLE_RISK_ID_PARCEL, mRiskId);
+        outState.putLong(BUNDLE_KEY_FMEI_ID, mFmeiId);
+        outState.putString("BUNDLE_KEY_RISK_NAME", mRiskName);
     }
 
     //BUILD IHM with corrective action information
@@ -232,8 +245,6 @@ public class CorrectiveActionFragment extends Fragment {
         startActivityForResult(intent, CRITERIA_CORRECTIVE_SCORE_REQUEST_CODE);
     }
 
-
-
     //GO to PhotoViewPager
     @OnClick(R.id.fragment_corrective_photo_case_1)
     public void goToPhotoViewPager1(){
@@ -275,7 +286,20 @@ public class CorrectiveActionFragment extends Fragment {
 
     @OnClick(R.id.corrective_action_first_link)
     public void correctiveAction_To_riskFile(){
-        mCallback.correctiveAction_To_riskFile(mView, mRiskId, mProcessusStepInteger);
+        mCallback.correctiveAction_To_riskFile(mView, mRiskId, mProcessusStepInteger, mFmeiId);
+    }
+
+    @OnClick(R.id.fragment_corrective_ask_btn)
+    public void sendEmailFormulary(){
+        String[] mail = {mParticipant.getMail()};
+        String subject = getString(R.string.Risk_file_mail_subject_part_one) + " " + mRiskName;
+        String message = BusinessCorrectiveActionTheme.getStringRequest(getContext(), mFmeiId, mRiskName, mCorrectiveAction.getDeadLineDate());
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL, mail);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        intent.setType("message/rcf822");
+        startActivity(Intent.createChooser(intent, "choose"));
     }
 
     /**
@@ -284,7 +308,7 @@ public class CorrectiveActionFragment extends Fragment {
 
     // interface for button clicked
     public interface CorrectiveActionItemClickedListener{
-        void correctiveAction_To_riskFile(View view, long riskId, int processusStep);
+        void correctiveAction_To_riskFile(View view, long riskId, int processusStep, long fmeiId);
     }
 
     //callback for button clicked
@@ -365,6 +389,11 @@ public class CorrectiveActionFragment extends Fragment {
         this.mRiskViewModel.getCorrectiveActionsListForRisk(riskId).observe(this, this::updateCorrectiveAction);
     }
 
+    //GET team fmei attached to the fmei Id
+    private void getTeamFmei(long fmeiId){
+        this.mRiskViewModel.getTeamsWithLinkFmei(fmeiId).observe(this, this::updateTeamFmei);
+    }
+
     //GET all participant
     private void getAllParticipant(){
         this.mRiskViewModel.getAllParticipant().observe(this, this::updateAllParticipant);
@@ -426,7 +455,7 @@ public class CorrectiveActionFragment extends Fragment {
 
         this.editCalendars();
         this.updateInformationCorrectivePanel(mCorrectiveAction);
-        getAllParticipant();
+        getTeamFmei(mFmeiId);
     }
 
     //RECORD participant
@@ -438,10 +467,26 @@ public class CorrectiveActionFragment extends Fragment {
         }
     }
 
+    private List<Long> mTeamsParticipantId;
+
+    //RECORD team fmea about the current fmea
+    private void updateTeamFmei(List<TeamFmei> teamFmeiList){
+        mTeamsParticipantId = new ArrayList<>();
+        for (TeamFmei teamFmei : teamFmeiList){
+            mTeamsParticipantId.add(teamFmei.getParticipantId());
+        }
+        getAllParticipant();
+    }
+
     //RECORD all participant
     private void updateAllParticipant(List<Participant> participants){
-        if (participants != null){
-            mParticipantList = participants;
+        mParticipantList = new ArrayList<>();
+        for (Participant participant : participants){
+            for (long teamParticipantId : mTeamsParticipantId){
+                if (participant.getId() == teamParticipantId){
+                    mParticipantList.add(participant);
+                }
+            }
         }
     }
 

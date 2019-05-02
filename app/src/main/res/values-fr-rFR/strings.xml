@@ -90,4 +90,15 @@
     <string name="Settings_score_low">BAS</string>
     <string name="Settings_score_medium">MOYEN</string>
     <string name="Settings_score_high">ELEVE</string>
+    <string name="Risk_file_mail_subject_part_one">ACTION CORRECTIVE DEMANDEE au sujet du RISQUE</string>
+    <string name="Risk_file_mail_message_line_five">DATE DE REALISATION :</string>
+    <string name="Risk_file_mail_message_line_four">DEAD LINE :</string>
+    <string name="Risk_file_mail_message_line_height">nom de la pièce :</string>
+    <string name="Risk_file_mail_message_line_nine">description de l\'action corrective effectuée :</string>
+    <string name="Risk_file_mail_message_line_one">AMDEC</string>
+    <string name="Risk_file_mail_message_line_seven">identification :</string>
+    <string name="Risk_file_mail_message_line_six">nom de la pièce</string>
+    <string name="Risk_file_mail_message_line_ten">Si besoin, mettre les photos en pièce jointe.</string>
+    <string name="Risk_file_mail_message_line_three">ACTION CORRECTIVE</string>
+    <string name="Risk_file_mail_message_line_two">RISQUE IDENTIFIE</string>
 </resources>
