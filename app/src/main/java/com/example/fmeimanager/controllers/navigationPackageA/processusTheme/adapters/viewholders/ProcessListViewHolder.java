@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.models.ProcessusPanel;
+import com.example.fmeimanager.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +40,12 @@ public class ProcessListViewHolder extends RecyclerView.ViewHolder {
                 this.riskPanelGone();
             } else {
                 mProcessIdTitle.setVisibility(View.GONE);
-                String riskTitle = "RISK " + String.valueOf(processusPanel.getRiskId());
+                String riskTitle;
+                if (processusPanel.getTitleRisk().equals(Utils.EMPTY)){
+                    riskTitle = mItemView.getContext().getString(R.string.Risk_file_mail_message_line_two) + " " + processusPanel.getRiskId();
+                } else {
+                    riskTitle = processusPanel.getTitleRisk();
+                }
                 mRiskTitle.setText(riskTitle);
                 String correctiveTitle = "AC " + processusPanel.getCorrectiveIndicator();
                 mCorrectiveTitle.setText(correctiveTitle);

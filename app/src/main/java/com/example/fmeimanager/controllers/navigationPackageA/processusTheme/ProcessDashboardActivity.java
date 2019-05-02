@@ -72,9 +72,6 @@ public class ProcessDashboardActivity extends BaseActivity implements ProcessDas
             case R.id.toolbar_dashboard_new_slot_2:
                 ((ProcessDashboardFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).startCreateRisk();
                 return true;
-            case R.id.toolbar_search:
-                Toast.makeText(this, "SEARCH", Toast.LENGTH_SHORT).show();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

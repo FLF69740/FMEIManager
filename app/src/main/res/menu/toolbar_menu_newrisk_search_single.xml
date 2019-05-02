@@ -12,10 +12,4 @@
         app:showAsAction="ifRoom"
         android:title="@string/Toolbar_NEW_RISK">
     </item>
-    <item
-        android:id="@+id/toolbar_search"
-        android:icon="@mipmap/baseline_search_white_24"
-        app:showAsAction="ifRoom"
-        android:title="@string/Toolbar_SEARCH">
-    </item>
 </menu>
