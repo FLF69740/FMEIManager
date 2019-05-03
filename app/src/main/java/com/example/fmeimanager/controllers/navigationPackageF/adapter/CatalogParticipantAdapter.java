@@ -5,38 +5,35 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.example.fmeimanager.controllers.navigationPackageF.BusinnessTeamFmei;
 import com.example.fmeimanager.controllers.navigationPackageF.CatalogParticipantFragment;
 import com.example.fmeimanager.database.Participant;
 
 import java.util.ArrayList;
 
-public class CatalogParticipantAdapter extends FragmentStatePagerAdapter {
+public class CatalogParticipantAdapter extends FragmentPagerAdapter {
 
-    private ArrayList<ArrayList<Participant>> mListOfParticipantList;
+    private int mCatalogSize;
+    private ArrayList<Participant> mListOfParticipantList;
     private ArrayList<String> mListOfSelectedParticipantId;
+    private Long mTeamLeaderId;
 
-    public CatalogParticipantAdapter(FragmentManager fm, ArrayList<ArrayList<Participant>> listOfParticipantList, ArrayList<String> selectedParticipant) {
+    public CatalogParticipantAdapter(FragmentManager fm, ArrayList<Participant> listOfParticipantList, ArrayList<String> selectedParticipant, long teamLeaderId, int catalogSize) {
         super(fm);
         mListOfParticipantList = listOfParticipantList;
         mListOfSelectedParticipantId = selectedParticipant;
-    }
-
-    public void updateInformation(ArrayList<ArrayList<Participant>> listOfParticipantList, ArrayList<String> selectedParticipant){
-        mListOfParticipantList = listOfParticipantList;
-        mListOfSelectedParticipantId = selectedParticipant;
-    }
-
-    public int getItemPosition(Object object){
-        return POSITION_NONE;
+        mTeamLeaderId = teamLeaderId;
+        mCatalogSize = catalogSize;
     }
 
     @Override
     public Fragment getItem(int i) {
-        return CatalogParticipantFragment.newInstance(mListOfParticipantList.get(i), mListOfSelectedParticipantId, i);
+        return CatalogParticipantFragment.newInstance(mListOfParticipantList, mListOfSelectedParticipantId, mTeamLeaderId, i);
     }
 
     @Override
     public int getCount() {
-        return mListOfParticipantList.size();
+        return mCatalogSize;
     }
+
 }

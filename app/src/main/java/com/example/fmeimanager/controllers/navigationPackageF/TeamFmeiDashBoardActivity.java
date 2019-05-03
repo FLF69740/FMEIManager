@@ -84,14 +84,14 @@ public class TeamFmeiDashBoardActivity extends BaseActivity implements TeamFmeiF
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (RC_NEW_TEAM_FMEI == requestCode && RESULT_OK == resultCode){
+  /*      if (RC_NEW_TEAM_FMEI == requestCode && RESULT_OK == resultCode){
             ArrayList<String> packageNewFmeiId = data.getStringArrayListExtra(TeamFmeiBuilderActivity.BUNDLE_LONG_LIST_NEW_FMEI_ID);
             ArrayList<String> packageNewParticipantId = data.getStringArrayListExtra(TeamFmeiBuilderActivity.BUNDLE_LONG_LIST_NEW_PARTICIPANT_ID);
             ArrayList<String> teamFmeiIdToDelete = data.getStringArrayListExtra(TeamFmeiBuilderActivity.BUNDLE_LONG_LIST_TEAM_FMEI_ID_TO_DELETE);
 
             ((TeamFmeiFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).updateLists(packageNewFmeiId, packageNewParticipantId, teamFmeiIdToDelete);
 
-        }
+        }*/
     }
 
 

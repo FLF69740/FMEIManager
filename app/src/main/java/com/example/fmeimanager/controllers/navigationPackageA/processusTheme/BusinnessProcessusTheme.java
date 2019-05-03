@@ -48,9 +48,9 @@ public class BusinnessProcessusTheme {
 
         for (int i = 0 ; i < processusPanels.size() ; i++){
             if (i == 0){
-                result.add(String.valueOf(processusPanels.get(i).getProcessusStep()));
+                result.add(String.valueOf(processusPanels.get(i).getProcessusName()));
             }else if (processusPanels.get(i).getProcessusStep() != processusPanels.get(i - 1).getProcessusStep()) {
-                result.add(String.valueOf(processusPanels.get(i).getProcessusStep()));
+                result.add(String.valueOf(processusPanels.get(i).getProcessusName()));
             }
         }
 

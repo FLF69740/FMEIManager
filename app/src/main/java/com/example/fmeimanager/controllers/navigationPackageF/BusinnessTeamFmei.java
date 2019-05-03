@@ -11,6 +11,20 @@ import java.util.List;
 
 public class BusinnessTeamFmei {
 
+    //GET number of page catalog
+    public static int getNumberOfPages(int numberOfParticipant){
+        int loop = 1;
+
+        if (numberOfParticipant < 9){
+            return  1;
+        }else {
+            while (numberOfParticipant > (loop*9)){
+                loop++;
+            }
+            return loop;
+        }
+    }
+
     //GET catalog build
     public static List<ArrayList<Participant>> getCatalog(ArrayList<Participant> participants){
         ArrayList<ArrayList<Participant>> catalog = new ArrayList<>();

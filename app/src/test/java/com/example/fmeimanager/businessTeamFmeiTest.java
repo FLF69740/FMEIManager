@@ -122,4 +122,91 @@ public class businessTeamFmeiTest {
 
     }
 
+    /**
+     *  TEAM FMEI ID
+     */
+
+    private TeamFmei getTeamFmeaFile_one(){
+        TeamFmei teamFmei = new TeamFmei(1, 1);
+        teamFmei.setTeamFmeiId(1);
+        return teamFmei;
+    }
+
+    private TeamFmei getTeamFmeaFile_two(){
+        TeamFmei teamFmei = new TeamFmei(1, 3);
+        teamFmei.setTeamFmeiId(2);
+        return teamFmei;
+    }
+
+    private TeamFmei getTeamFmeaFile_three(){
+        TeamFmei teamFmei = new TeamFmei(1, 4);
+        teamFmei.setTeamFmeiId(3);
+        return teamFmei;
+    }
+
+    private TeamFmei getTeamFmeaFile_four(){
+        TeamFmei teamFmei = new TeamFmei(1, 7);
+        teamFmei.setTeamFmeiId(4);
+        return teamFmei;
+    }
+
+    private TeamFmei getTeamFmeaFile_five(){
+        TeamFmei teamFmei = new TeamFmei(2, 1);
+        teamFmei.setTeamFmeiId(5);
+        return teamFmei;    }
+
+    private TeamFmei getTeamFmeaFile_six(){
+        TeamFmei teamFmei = new TeamFmei(2, 4);
+        teamFmei.setTeamFmeiId(6);
+        return teamFmei;
+    }
+
+    private List<TeamFmei> getListTeamFmea(){
+        List<TeamFmei> teamFmei = new ArrayList<>();
+        teamFmei.add(getTeamFmeaFile_one());
+        teamFmei.add(getTeamFmeaFile_two());
+        teamFmei.add(getTeamFmeaFile_three());
+        teamFmei.add(getTeamFmeaFile_four());
+        teamFmei.add(getTeamFmeaFile_five());
+        teamFmei.add(getTeamFmeaFile_six());
+        return teamFmei;
+    }
+
+    @Test
+    public void testIfGoodFmeaIsChosen(){
+        List<TeamFmei> teamFmeiList = getListTeamFmea();
+
+        long fmeaId = 2;
+        long participantId = 1;
+        long answer = 0;
+
+        for (TeamFmei teamFmei : teamFmeiList){
+            if (teamFmei.getFmeiId() == fmeaId && teamFmei.getParticipantId() == participantId){
+                answer = teamFmei.getTeamFmeiId();
+            }
+        }
+
+        assertEquals(5, answer);
+    }
+
+    //BusinnesTeamFmei : getNumberOfPages
+    @Test
+    public void testIfGoodNumberOfPages(){
+        int participantNumber = 19;
+        int pages = BusinnessTeamFmei.getNumberOfPages(participantNumber);
+        assertEquals(3, pages);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

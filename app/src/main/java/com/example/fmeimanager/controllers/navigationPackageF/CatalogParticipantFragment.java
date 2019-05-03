@@ -2,19 +2,25 @@ package com.example.fmeimanager.controllers.navigationPackageF;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.utils.BitmapStorage;
+import com.example.fmeimanager.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
@@ -26,13 +32,11 @@ import static com.example.fmeimanager.MainActivity.SHARED_MAIN_PROFILE_ID;
 
 
 public class CatalogParticipantFragment extends Fragment implements View.OnClickListener {
-
-    private ArrayList<String> mSelectedParticipant;
-    private ArrayList<Participant> mParticipantList;
-
+    
     private static final String KEY_PARTICIPANT_LIST = "KEY_PARTICIPANT_LIST";
     private static final String KEY_SELECTED_PARTICIPANT_LIST = "KEY_SELECTED_PARTICIPANT_LIST";
     private static final String KEY_POSITION = "KEY_POSITION";
+    private static final String KEY_TEAM_LEADER_LIST = "KEY_TEAM_LEADER_LIST";
 
     @BindView(R.id.participant_catalog_photo_1) ImageView mPhoto1;
     @BindView(R.id.participant_catalog_name_1) TextView mName1;
@@ -55,54 +59,72 @@ public class CatalogParticipantFragment extends Fragment implements View.OnClick
 
     public CatalogParticipantFragment() {}
 
-    public static CatalogParticipantFragment newInstance(ArrayList<Participant> participantList, ArrayList<String> selectedParticipant, int position){
+    public static CatalogParticipantFragment newInstance(ArrayList<Participant> participantList, ArrayList<String> selectedParticipant, long teamLeaderId, int position){
         CatalogParticipantFragment catalogParticipantFragment = new CatalogParticipantFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList(KEY_PARTICIPANT_LIST, participantList);
         bundle.putStringArrayList(KEY_SELECTED_PARTICIPANT_LIST, selectedParticipant);
+        bundle.putLong(KEY_TEAM_LEADER_LIST, teamLeaderId);
         bundle.putInt(KEY_POSITION, position);
         catalogParticipantFragment.setArguments(bundle);
 
         return catalogParticipantFragment;
     }
 
+    private long mTeamLeaderId;
     private ImageView[] mImageViews;
     private TextView[] mNameAera;
-    private View mView;
     private int mPosition;
+    private ArrayList<String> mSelectedParticipant;
+    private ArrayList<Participant> mParticipantList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_team_fmei_participant_catalog_page, container, false);
-        ButterKnife.bind(this, mView);
+        View view = inflater.inflate(R.layout.fragment_team_fmei_participant_catalog_page, container, false);
+        ButterKnife.bind(this, view);
 
         mPosition = getArguments().getInt(KEY_POSITION, 0);
         mParticipantList = getArguments().getParcelableArrayList(KEY_PARTICIPANT_LIST);
         mSelectedParticipant = getArguments().getStringArrayList(KEY_SELECTED_PARTICIPANT_LIST);
+        mTeamLeaderId = getArguments().getLong(KEY_TEAM_LEADER_LIST);
 
         mImageViews = getTable();
         mNameAera = getNameAera();
 
-        this.globalStateVerification(mView);
+        this.globalStateVerification(view);
 
-        return mView;
+        return view;
     }
 
     //Verification of state of all image aera
     private void globalStateVerification(View view){
+        
+        ArrayList<Participant> pageParticipant = new ArrayList<>();
+        for (int i = 0 ; i < 9 ; i++){
+            if (mPosition != 0){
+                int j = mPosition * 9;
+                if (mParticipantList.size() > (j + i)) {
+                    pageParticipant.add(mParticipantList.get(j + i));
+                }
+            }else {
+                pageParticipant.add(mParticipantList.get(i));
+            }
+        }
+        
         for (int i = 0 ; i < 9 ; i++) {
-            if (mParticipantList.size() > i) {
-                if (BitmapStorage.isFileExist(view.getContext(), "P" + mParticipantList.get(i).getId())) {
-                    mImageViews[i].setImageBitmap(BitmapStorage.loadImage(view.getContext(), "P" + mParticipantList.get(i).getId()));
+            
+            if (pageParticipant.size() > i) {
+                
+                if (BitmapStorage.isFileExist(view.getContext(), "P" + pageParticipant.get(i).getId())) {
+                    mImageViews[i].setImageBitmap(BitmapStorage.loadImage(view.getContext(), "P" + pageParticipant.get(i).getId()));
                 } else {
                     mImageViews[i].setImageResource(R.drawable.blank_profile_picture);
                 }
-                this.imageStateVerification(mImageViews[i], mParticipantList.get(i),
-                        getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_TEAM_LEADER_CATALOG_VIEWPAGER, DEFAULT_USER_ID),
-                        mSelectedParticipant);
-                String fullName = mParticipantList.get(i).getForname() + " " + mParticipantList.get(i).getName();
+                this.imageStateVerification(mImageViews[i], pageParticipant.get(i), mTeamLeaderId, mSelectedParticipant);
+                String fullName = pageParticipant.get(i).getForname() + " " + pageParticipant.get(i).getName();
                 mNameAera[i].setText(fullName);
                 mImageViews[i].setOnClickListener(this);
+                
             }else {
                 mImageViews[i].setVisibility(View.INVISIBLE);
                 mImageViews[i].setClickable(false);
@@ -156,8 +178,25 @@ public class CatalogParticipantFragment extends Fragment implements View.OnClick
     //When imageView is clicked
     @Override
     public void onClick(View v) {
-        String result = v.getTag().toString();
-        mCallback.catalogSendTag(v, mParticipantList.get(Integer.valueOf(result)), mPosition);
+        int result = Integer.valueOf(v.getTag().toString());
+
+        if (mPosition != 0){
+            result += (mPosition * 9);
+        }
+
+
+        int tempOld = mSelectedParticipant.size();
+        Log.i(Utils.INFORMATION_LOG, ""+result + " - OLD " + mSelectedParticipant.size());
+
+        ArrayList<String> newList = BusinnessTeamFmei.participantListRealoaded(mParticipantList.get(result), mSelectedParticipant, mTeamLeaderId);
+
+        Log.i(Utils.INFORMATION_LOG, ""+result + " - " + newList.size() + " -> OLD " + tempOld);
+
+        boolean isParticipantAdded = newList.size() > tempOld;
+
+        if (mParticipantList.get(result).getId() != mTeamLeaderId) {
+            mCallback.catalogSendTag(mParticipantList.get(result), mPosition, isParticipantAdded);
+        }
     }
 
     /**
@@ -166,7 +205,7 @@ public class CatalogParticipantFragment extends Fragment implements View.OnClick
 
     // interface for button clicked
     public interface CatalogParticipantListener{
-        void catalogSendTag(View view, Participant participant, int position);
+        void catalogSendTag(Participant participant, int position, boolean addParticipant);
     }
 
     //callback for button clicked
@@ -176,9 +215,10 @@ public class CatalogParticipantFragment extends Fragment implements View.OnClick
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            mCallback = (CatalogParticipantListener) getParentFragment();
+            mCallback = (CatalogParticipantListener) getActivity();
         } catch (ClassCastException e){
             throw new ClassCastException(e.toString() + " must implement ItemClickedListener");
         }
     }
+
 }

@@ -32,8 +32,9 @@ import static com.example.fmeimanager.MainActivity.SHARED_MAIN_PROFILE_ID;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeamFmeiBuilderFragment extends Fragment implements CatalogParticipantFragment.CatalogParticipantListener {
-
+public class TeamFmeiBuilderFragment extends Fragment {
+        //implements CatalogParticipantFragment.CatalogParticipantListener {
+/*
     private View mView;
     private TeamViewModel mTeamViewModel;
     private ArrayList<String> mParticipantListID;
@@ -99,7 +100,7 @@ public class TeamFmeiBuilderFragment extends Fragment implements CatalogParticip
     /**
      *  ACTION
      */
-
+/*
     public void saveNewParticipant(){
         ArrayList<String> teamFmeiIdToDelete = new ArrayList<>();
         for (int i = 0 ; i < mTeamFmeiList.size() ; i++){
@@ -115,11 +116,11 @@ public class TeamFmeiBuilderFragment extends Fragment implements CatalogParticip
         mCallback.updateTeamFmeiDatas(packageNewFmeiId, packageNewParticipantId, teamFmeiIdToDelete);
         Snackbar.make(mView, "SAVED", Snackbar.LENGTH_SHORT).show();
     }
-
+*/
     /**
      *  Callback
      */
-
+/*
     // interface for button clicked
     public interface TeamFmeiBuilderListener{
         void updateTeamFmeiDatas(ArrayList<String> packageNewFmeiId, ArrayList<String> packageNewParticipantId, ArrayList<String> teamFmeiIdToDelete);
@@ -137,11 +138,11 @@ public class TeamFmeiBuilderFragment extends Fragment implements CatalogParticip
             throw new ClassCastException(e.toString() + " must implement ItemClickedListener");
         }
     }
-
+*/
     /**
      *  DATAS
      */
-
+/*
     private void configureViewModel(){
         ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(getContext());
         this.mTeamViewModel = ViewModelProviders.of(this, viewModelFactory).get(TeamViewModel.class);
@@ -162,11 +163,11 @@ public class TeamFmeiBuilderFragment extends Fragment implements CatalogParticip
     private void getAllParticipant(){
         this.mTeamViewModel.getAllParticipant().observe(this, this::updateAllParticipant);
     }
-
+*/
     /**
      *  UI
      */
-
+/*
     //RECORD team leader about fmea
     private void updateTeamLeaderName(Fmei fmei){
         mFmei = fmei;
@@ -204,5 +205,5 @@ public class TeamFmeiBuilderFragment extends Fragment implements CatalogParticip
         mAdapter.notifyDataSetChanged();
     }
 
-
+*/
 }
