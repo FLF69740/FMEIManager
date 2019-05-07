@@ -101,4 +101,16 @@
     <string name="Risk_file_mail_message_line_ten">Si besoin, mettre les photos en pièce jointe.</string>
     <string name="Risk_file_mail_message_line_three">ACTION CORRECTIVE</string>
     <string name="Risk_file_mail_message_line_two">RISQUE IDENTIFIE</string>
+    <string name="Export_data_speech">Choix de l\'amdec à exporter :</string>
+    <string name="Export_Risk_Date">DATE RETENUE</string>
+    <string name="Export_Risk_Root_cause">CAUSE RACINE</string>
+    <string name="Export_Risk_effect">EFFET DU RISQUE POTENTIEL</string>
+    <string name="Export_Risk_name">NOM DU RISQUE POTENTIEL</string>
+    <string name="Export_action_realised">ACTION</string>
+    <string name="Export_deadline">DEAD LINE</string>
+    <string name="Export_new_score">DATE DE REALISATION</string>
+    <string name="Export_verification_tool">MOYEN DE VERIFICATION</string>
+    <string name="Export_email_report_part_body">"voir pièce jointe pour le rapport AMDEC de la FMEA "</string>
+    <string name="Export_email_report_partsubject">"rapport AMDEC - "</string>
+    <string name="Fmei_dashboard_snacbar_create">"CREATION : "</string>
 </resources>

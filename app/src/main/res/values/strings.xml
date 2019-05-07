@@ -48,6 +48,7 @@
     <string name="Fmei_dashboard_high_risk_amount">RISK HIGH :</string>
     <string name="Fmei_dashboard_medium_risk_amount">RISK MEDIUM :</string>
     <string name="Fmei_dashboard_low_risk_amount">RISK LOW :</string>
+    <string name="Fmei_dashboard_snacbar_create">CREATE : </string>
 
     <!-- PROCESS DASHBOARD -->
     <string name="Process_dashboard_title">PROCESS</string>
@@ -135,6 +136,18 @@
 
     <!-- EXPORT DATAS -->
     <string name="Export_datas_title">EXPORT DATAS</string>
+    <string name="Export_data_speech">Choice of fmea number to export :</string>
+    <string name="Export_data_csv_title_btn" translatable="false">*.csv</string>
+    <string name="Export_Risk_name">POTENTIAL RISK NAME</string>
+    <string name="Export_Risk_effect">POTENTIAL RISK EFFECT</string>
+    <string name="Export_Risk_Date">DECLARATION DATE</string>
+    <string name="Export_Risk_Root_cause">ROOT CAUSE</string>
+    <string name="Export_verification_tool">VERIFICATION TOOL</string>
+    <string name="Export_deadline">DEAD LINE</string>
+    <string name="Export_action_realised">ACTION</string>
+    <string name="Export_new_score">REALISATION DATE</string>
+    <string name="Export_email_report_partsubject">FMEA report - </string>
+    <string name="Export_email_report_part_body">See attached file for FMEA report about </string>
 
     <!-- SETTINGS -->
     <string name="Settings_title">SETTINGS</string>
