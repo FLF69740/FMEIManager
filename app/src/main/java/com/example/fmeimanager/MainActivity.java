@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView logo = findViewById(R.id.main_logo_presentation);
         TextView name = findViewById(R.id.main_business_name_presentation);
+        MainCustomView customView = findViewById(R.id.main_drawing);
 
         if (BitmapStorage.isFileExist(this, "LOGO")){
             logo.setImageBitmap(BitmapStorage.loadImage(this, "LOGO"));
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         ImageButton imageButton = findViewById(R.id.run_touch_screen);
         imageButton.setOnClickListener(v -> startFirstActivity());
 
+     //   customView.animateLine();
+        customView.playAnimation();
     }
 
     private void startFirstActivity(){
