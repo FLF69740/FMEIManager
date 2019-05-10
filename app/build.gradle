@@ -78,4 +78,7 @@ dependencies {
 
     //EASY PERMISSIONS
     implementation 'pub.devrel:easypermissions:1.1.1'
+
+    // CARD VIEW
+    implementation 'com.android.support:cardview-v7:28.0.0'
 }

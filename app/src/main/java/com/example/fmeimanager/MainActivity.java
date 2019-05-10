@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         ImageButton imageButton = findViewById(R.id.run_touch_screen);
         imageButton.setOnClickListener(v -> startFirstActivity());
 
-     //   customView.animateLine();
         customView.playAnimation();
     }
 

@@ -15,6 +15,11 @@
 
     <!-- BUTTON -->
     <color name="button_favorite">#F06292</color>
+    
+    <!-- CARD VIEW -->
+    <color name="cardview_border_fmea">#efdcd5</color>
+    <color name="cardview_info_fmea">#bcaaa4</color>
+    <color name="cardview_title_fmea">#8c7b75</color>
 
     <!-- SCORE -->
     <color name="green_low_score">#76ff03</color>

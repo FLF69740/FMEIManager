@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Toast;
 
 import com.example.fmeimanager.R;
@@ -91,8 +93,13 @@ public class FmeiDashboardFragment extends Fragment {
 
     //update recyclerView after other thread finalisation
     private void updateRecycler(List<FmeiPanel> fmeiPanelList){
+        LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_fall_down);
+        this.mRecyclerView.setLayoutAnimation(controller);
+
         mAdapter.setFmeiList(fmeiPanelList);
         mAdapter.notifyDataSetChanged();
+        this.mRecyclerView.scheduleLayoutAnimation();
+
     }
 
     //itemView click from RecyclerView
