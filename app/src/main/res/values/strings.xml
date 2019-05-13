@@ -52,6 +52,7 @@
 
     <!-- PROCESS DASHBOARD -->
     <string name="Process_dashboard_title">PROCESS</string>
+    <string name="Process_dashboard_processus" translatable="false">PROCESSUS</string>
     <string name="Process_viewpager_close" translatable="false">X</string>
     <string name="Process_builder_title">PROCESSUS BUILDER</string>
     <string name="Process_builder_button_write_title">RENAME</string>
