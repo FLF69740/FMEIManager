@@ -121,6 +121,10 @@ public class ProcessDashCustomTitle extends View {
 
     }
 
+    /**
+     *  ACTUALISATION
+     */
+
     public void setTitle(String title){
         mTitle = title;
         invalidate();

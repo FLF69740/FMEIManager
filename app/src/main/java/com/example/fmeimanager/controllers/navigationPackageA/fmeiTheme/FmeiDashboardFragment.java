@@ -75,7 +75,7 @@ public class FmeiDashboardFragment extends Fragment {
         ButterKnife.bind(this, mView);
         mFmeiPanelCreator = new FmeiPanelCreator(getActivity().getSharedPreferences(SHARED_HIGH_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_HIGH_VALUE, 200),
                 getActivity().getSharedPreferences(SHARED_MEDIUM_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_MEDIUM_VALUE, 150),
-                getActivity().getSharedPreferences(SHARED_LOW_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_LOW_VALUE, 100));
+                getActivity().getSharedPreferences(SHARED_LOW_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_LOW_VALUE, 1));
         this.configureRecyclerView();
         this.configureOnClickRecyclerView();
         this.configureViewModel();

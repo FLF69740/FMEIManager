@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 import com.example.fmeimanager.R;
+import com.example.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.ProcessDashCustomBody;
 import com.example.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.ProcessDashCustomTitle;
 import com.example.fmeimanager.models.ProcessusPanel;
 import com.example.fmeimanager.utils.Utils;
@@ -25,6 +26,7 @@ public class ProcessListViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.fragment_process_detectability) TextView mDetectability;
     @BindView(R.id.fragment_process_correctiveItem_title) TextView mCorrectiveTitle;
     @BindView(R.id.fragment_process_title_mask) ProcessDashCustomTitle mTitleMask;
+    @BindView(R.id.fragment_process_body_mask) ProcessDashCustomBody mBodyMask;
 
     private View mItemView;
 
@@ -38,7 +40,9 @@ public class ProcessListViewHolder extends RecyclerView.ViewHolder {
         if (processusPanel.isProcessusVisible()){
             if (processusPanel.isATittle()) {
                 String processusTitle = processusPanel.getProcessusName();
-             //   mProcessIdTitle.setText(processusTitle);
+                // textview
+                mProcessIdTitle.setText(processusTitle);
+                // canvas
                 mTitleMask.setTitle(processusTitle);
                 this.riskPanelGone();
             } else {
@@ -49,6 +53,8 @@ public class ProcessListViewHolder extends RecyclerView.ViewHolder {
                 } else {
                     riskTitle = processusPanel.getTitleRisk();
                 }
+                mBodyMask.actualise(processusPanel.getGravivity(), processusPanel.getFrequencies(), processusPanel.getDetectability(), processusPanel.getCorrectiveIndicator(),
+                        processusPanel.getRiskId(), processusPanel.getTitleRisk(), processusPanel.getResponsableRisk());
                 mRiskTitle.setText(riskTitle);
                 String correctiveTitle = "AC " + processusPanel.getCorrectiveIndicator();
                 mCorrectiveTitle.setText(correctiveTitle);

@@ -73,7 +73,7 @@ public class SettingsFragment extends Fragment {
 
         mBusinessName.setText(getActivity().getSharedPreferences(SHARED_BUSINESS_NAME, MODE_PRIVATE).getString(BUNDLE_KEY_BUSINESS_NAME, ""));
 
-        mLowInt = getActivity().getSharedPreferences(SHARED_LOW_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_LOW_VALUE, 100);
+        mLowInt = getActivity().getSharedPreferences(SHARED_LOW_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_LOW_VALUE, 1);
         mLowScore.setText(String.valueOf(mLowInt));
 
         mMediumInt = getActivity().getSharedPreferences(SHARED_MEDIUM_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_MEDIUM_VALUE, 150);
