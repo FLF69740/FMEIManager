@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackageA.processusTheme.adapters.ProcessusBuilderAdapter;
+import com.example.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.ProcessBuilderBody;
 import com.example.fmeimanager.database.Processus;
 import com.example.fmeimanager.utils.Utils;
 
@@ -28,6 +29,7 @@ public class ProcessusBuilderViewHolder extends RecyclerView.ViewHolder implemen
     @BindView(R.id.fragment_processus_builder_item_writte) ImageButton mImageButtonWritte;
     @BindView(R.id.fragment_processus_builder_item_invisible) ImageButton mImageButtonInvisible;
     @BindView(R.id.fragment_processus_builder_item_visible) ImageButton mImageButtonVisible;
+    @BindView(R.id.fragment_processus_builder_canvas) ProcessBuilderBody mCustomView;
 
     public ProcessusBuilderViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -35,7 +37,7 @@ public class ProcessusBuilderViewHolder extends RecyclerView.ViewHolder implemen
         ButterKnife.bind(this, mItemView);
     }
 
-    public void updateWithAdapterInformation(Processus processus, ProcessusBuilderAdapter.Listener callback){
+    public void updateWithAdapterInformation(Processus processus, ProcessusBuilderAdapter.Listener callback, boolean red, boolean green){
         String processusTitle = processus.getName();
         this.mImageButtonDown.setOnClickListener(this);
         this.mImageButtonUp.setOnClickListener(this);
@@ -43,6 +45,15 @@ public class ProcessusBuilderViewHolder extends RecyclerView.ViewHolder implemen
         this.mImageButtonVisible.setOnClickListener(this);
         this.mImageButtonInvisible.setOnClickListener(this);
         this.mProcessusTitle.setText(processusTitle);
+        this.mCustomView.setTitleBody(processusTitle);
+
+        if (red){
+            mCustomView.setBarStatut(ProcessBuilderBody.FALL);
+            mCustomView.startTranslation();
+        }else if (green){
+            mCustomView.setBarStatut(ProcessBuilderBody.RISE);
+            mCustomView.startTranslation();
+        }
 
         this.mCallbackWeakRef = new WeakReference<>(callback);
 
@@ -74,14 +85,10 @@ public class ProcessusBuilderViewHolder extends RecyclerView.ViewHolder implemen
                 break;
             case "VISIBLE":
                 Log.i(Utils.INFORMATION_LOG,"VISIBLE");
-             //   mImageButtonVisible.setVisibility(View.INVISIBLE);
-             //   mImageButtonInvisible.setVisibility(View.VISIBLE);
                 if (callback != null) callback.onClickVisibleButton(getAdapterPosition());
                 break;
             case "INVISIBLE":
                 Log.i(Utils.INFORMATION_LOG,"INVISIBLE");
-             //   mImageButtonVisible.setVisibility(View.VISIBLE);
-             //   mImageButtonInvisible.setVisibility(View.INVISIBLE);
                 if (callback != null) callback.onClickInvisibleButton(getAdapterPosition());
                 break;
         }

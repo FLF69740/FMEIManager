@@ -6,6 +6,15 @@
     android:layout_height="wrap_content"
     android:padding="5dip">
 
+    <com.example.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.ProcessBuilderBody
+        android:id="@+id/fragment_processus_builder_canvas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_processus_builder_processus_step_title"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_processus_builder_processus_step_title"
+        app:layout_constraintStart_toStartOf="@+id/fragment_processus_builder_processus_step_title"
+        app:layout_constraintTop_toTopOf="@+id/fragment_processus_builder_processus_step_title" />
+
     <TextView
         android:id="@+id/fragment_processus_builder_processus_step_title"
         android:layout_width="0dp"
@@ -17,6 +26,9 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorAccent"
+        android:visibility="invisible"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fragment_processus_builder_item_up"
         app:layout_constraintStart_toStartOf="parent"

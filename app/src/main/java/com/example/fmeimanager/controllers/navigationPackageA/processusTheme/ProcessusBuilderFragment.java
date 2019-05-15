@@ -1,6 +1,10 @@
 package com.example.fmeimanager.controllers.navigationPackageA.processusTheme;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackageA.processusTheme.adapters.ProcessusBuilderAdapter;
+import com.example.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.ProcessBuilderBody;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.database.Participant;
@@ -35,7 +40,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProcessusBuilderFragment extends Fragment implements ProcessusBuilderAdapter.Listener{
+public class ProcessusBuilderFragment extends Fragment implements ProcessusBuilderAdapter.Listener {
 
     private View mView;
     private long mFmeiId;
@@ -100,6 +105,27 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
         }
     }
 
+    PropertyValuesHolder propertyRadius = PropertyValuesHolder.ofInt("PROPERTY_RADIUS", 0, 150);
+
+    //SAVE NEW RECORDS ----TRANSLATION-----
+    public void saveBuilderWithTranslation(int posUp, int posDown) {
+
+        mAdapter.pushLights(posUp, posDown);
+        mAdapter.notifyDataSetChanged();
+
+        ValueAnimator animator = new ValueAnimator();
+        animator.setValues(propertyRadius);
+        animator.setDuration(600);
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                endAnimation();
+            }
+        });
+        animator.start();
+    }
+
     //ADD a new Processus
     public void addProcessus() {
         Log.i(Utils.INFORMATION_LOG, "PROCESSUS BUILDER ADD - PROCESSUS STEP = " + (mProcessusList.size()+1));
@@ -116,7 +142,6 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
         updateFragmentScreen(mFmeiId);
         if (processuses != null && processuses.size() != 0){
             mProcessusList = BusinnessProcessusTheme.getProcessusByStepLadder(processuses);
-       //     this.updateRecycler(mProcessusList);
             this.configureRecyclerView();
         }
     }
@@ -126,7 +151,7 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
      */
 
     private void updateFragmentScreen(long fmeiId){
-        String string = "FMEI " + String.valueOf(fmeiId);
+        String string = "FMEA " + String.valueOf(fmeiId);
         mFmeiIndicator.setText(string);
     }
 
@@ -134,11 +159,12 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
     public void onClickUpButton(int position) {
         Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) UP " + position);
         if (position != 0){
+            this.saveBuilderWithTranslation(position, position-1);
+
             mProcessusList.get(position).setStep(position);
             mProcessusList.get(position-1).setStep(position+1);
             mProcessusList = BusinnessProcessusTheme.getProcessusByStepLadder(mProcessusList);
-         //   this.updateRecycler(mProcessusList);
-            this.saveBuilder();
+
         }else {
             Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) NO " + position);
         }
@@ -148,11 +174,12 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
     public void onClickDownButton(int position) {
         Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) DOWN " + position + "PROCESSUS LIST : " + mProcessusList.size());
         if (position != mProcessusList.size()-1){
+            this.saveBuilderWithTranslation(position, position+1);
+
             mProcessusList.get(position).setStep(position+2);
             mProcessusList.get(position+1).setStep(position+1);
             mProcessusList = BusinnessProcessusTheme.getProcessusByStepLadder(mProcessusList);
-          //  this.updateRecycler(mProcessusList);
-            this.saveBuilder();
+
         }else {
             Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) NO " + position);
         }
@@ -171,7 +198,6 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
     public void onClickVisibleButton(int position) {
         Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) INVISIBLE " + position);
         mProcessusList.get(position).setVisible(false);
-      //  this.updateRecycler(mProcessusList);
         this.saveBuilder();
     }
 
@@ -179,7 +205,11 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
     public void onClickInvisibleButton(int position) {
         Log.i(Utils.INFORMATION_LOG,"(FRAGMENT) VISIBLE " + position);
         mProcessusList.get(position).setVisible(true);
-     //   this.updateRecycler(mProcessusList);
+        this.saveBuilder();
+    }
+
+    // SAVE AFTER ANIMATION
+    public void endAnimation() {
         this.saveBuilder();
     }
 
@@ -195,8 +225,8 @@ public class ProcessusBuilderFragment extends Fragment implements ProcessusBuild
             if (name != null && position != 100000){
                 mProcessusList.get(position).setName(name);
             }
-         //   this.updateRecycler(mProcessusList);
             this.saveBuilder();
         }
     }
+
 }

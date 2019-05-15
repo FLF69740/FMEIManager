@@ -17,6 +17,7 @@ public class ProcessusBuilderAdapter extends RecyclerView.Adapter<ProcessusBuild
 
     private List<Processus> mProcessusList;
     private final Listener mCallback;
+    private int mRedLightPosition = -1 , mGreenLightPosition = -2;
 
     public interface Listener{
         void onClickUpButton(int position);
@@ -31,6 +32,11 @@ public class ProcessusBuilderAdapter extends RecyclerView.Adapter<ProcessusBuild
         mProcessusList = processusList;
     }
 
+    public void pushLights(int up, int down){
+        mGreenLightPosition = up;
+        mRedLightPosition = down;
+    }
+
     @NonNull
     @Override
     public ProcessusBuilderViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -42,7 +48,14 @@ public class ProcessusBuilderAdapter extends RecyclerView.Adapter<ProcessusBuild
 
     @Override
     public void onBindViewHolder(@NonNull ProcessusBuilderViewHolder processusBuilderViewHolder, int i) {
-        processusBuilderViewHolder.updateWithAdapterInformation(this.mProcessusList.get(i), this.mCallback);
+        boolean redLightOn = false, greenLightOn = false;
+        if (mRedLightPosition == i){
+            redLightOn = true;
+        }
+        if (mGreenLightPosition == i){
+            greenLightOn = true;
+        }
+        processusBuilderViewHolder.updateWithAdapterInformation(this.mProcessusList.get(i), this.mCallback, redLightOn, greenLightOn);
     }
 
     @Override
