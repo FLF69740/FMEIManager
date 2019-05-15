@@ -107,7 +107,9 @@ public class CatalogParticipantFragment extends Fragment implements View.OnClick
                     pageParticipant.add(mParticipantList.get(j + i));
                 }
             }else {
-                pageParticipant.add(mParticipantList.get(i));
+                if (mParticipantList.size() > i) {
+                    pageParticipant.add(mParticipantList.get(i));
+                }
             }
         }
         

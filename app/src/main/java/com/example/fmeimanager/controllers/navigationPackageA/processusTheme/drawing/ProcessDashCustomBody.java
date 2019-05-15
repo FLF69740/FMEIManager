@@ -9,7 +9,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -17,10 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
-
-import com.bumptech.glide.Glide;
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.utils.BitmapStorage;
 import com.example.fmeimanager.utils.Utils;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -103,7 +99,6 @@ public class ProcessDashCustomBody extends View {
         mPaint.setAntiAlias(true);
 
 
-            // ***** TEMP ******
         if (mCorrectiveScore != 0){
             setColorCriticalRates(mCorrectiveScore);
         }else {
@@ -153,7 +148,9 @@ public class ProcessDashCustomBody extends View {
 
         canvas.drawText(mTitle, Utils.getPixelPercent(50, getHeight()), Utils.getPixelPercent(15, getHeight()), mPaint);
         mPaint.setTypeface(Typeface.DEFAULT);
-        canvas.drawText(mTeamLeader, Utils.getPixelPercent(50, getHeight()), Utils.getPixelPercent(32, getHeight()), mPaint);
+        canvas.drawText(mTeamLeader,
+                Utils.getPixelPercent(50, getHeight()),
+                Utils.getPixelPercent(32, getHeight()), mPaint);
 
         //DRAW IPR section
         mPaint.setStyle(Paint.Style.FILL);
@@ -203,8 +200,6 @@ public class ProcessDashCustomBody extends View {
         //DRAW CORRECTIVE Lightning
         mPaint.setStyle(Paint.Style.FILL);
 
-
-            // ****** TEMP *******
         if (mCorrectiveScore == 0){
             mPaint.setColor(Color.GRAY);
         }else {

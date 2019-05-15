@@ -19,11 +19,7 @@ public class ProcessListViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.fragment_process_riskItem_title)TextView mRiskTitle;
     @BindView(R.id.fragment_process_riskItem_id) TextView mRiskId;
     @BindView(R.id.fragment_process_creation_date) TextView mCreationDate;
-    @BindView(R.id.fragment_process_participantItem_title) TextView mParticipantTitle;
     @BindView(R.id.fragment_process_ipr) TextView mIpr;
-    @BindView(R.id.fragment_process_gravity) TextView mGravity;
-    @BindView(R.id.fragment_process_frequency) TextView mFrequency;
-    @BindView(R.id.fragment_process_detectability) TextView mDetectability;
     @BindView(R.id.fragment_process_correctiveItem_title) TextView mCorrectiveTitle;
     @BindView(R.id.fragment_process_title_mask) ProcessDashCustomTitle mTitleMask;
     @BindView(R.id.fragment_process_body_mask) ProcessDashCustomBody mBodyMask;
@@ -58,13 +54,9 @@ public class ProcessListViewHolder extends RecyclerView.ViewHolder {
                 mRiskTitle.setText(riskTitle);
                 String correctiveTitle = "AC " + processusPanel.getCorrectiveIndicator();
                 mCorrectiveTitle.setText(correctiveTitle);
-                mParticipantTitle.setText(processusPanel.getResponsableRisk());
                 mRiskId.setText(String.valueOf(processusPanel.getRiskId()));
                 mCreationDate.setText(processusPanel.getCreationDateRisk());
                 mIpr.setText(String.valueOf(processusPanel.getIPR()));
-                mGravity.setText(String.valueOf(processusPanel.getGravivity()));
-                mFrequency.setText(String.valueOf(processusPanel.getFrequencies()));
-                mDetectability.setText(String.valueOf(processusPanel.getDetectability()));
             }
         }else {
             mProcessIdTitle.setVisibility(View.GONE);
@@ -75,13 +67,9 @@ public class ProcessListViewHolder extends RecyclerView.ViewHolder {
     private void riskPanelGone(){
         mRiskTitle.setVisibility(View.GONE);
         mCorrectiveTitle.setVisibility(View.GONE);
-        mParticipantTitle.setVisibility(View.GONE);
         mRiskId.setVisibility(View.GONE);
         mCreationDate.setVisibility(View.GONE);
         mIpr.setVisibility(View.GONE);
-        mGravity.setVisibility(View.GONE);
-        mFrequency.setVisibility(View.GONE);
-        mDetectability.setVisibility(View.GONE);
     }
 
 }
