@@ -30,7 +30,6 @@
         <activity android:name=".controllers.navigationPackageA.riskTheme.IntKeyboardActivity" />
         <activity
             android:name=".controllers.navigationPackageA.processusTheme.WriteFromProcessusBuilderActivity"
-            android:label="@string/Process_builder_button_write_title"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".controllers.navigationPackageA.processusTheme.ProcessusBuilderActivity"

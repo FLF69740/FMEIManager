@@ -89,6 +89,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             } else {
                 super.onBackPressed();
             }
+        }else {
+            super.onBackPressed();
         }
     }
 

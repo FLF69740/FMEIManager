@@ -43,37 +43,43 @@
             android:id="@+id/fragment_risk_manager_choice_ok_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginBottom="32dp"
-            android:text="OK"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
             android:background="@drawable/accentdark_border_table"
             android:clickable="true"
             android:focusable="true"
             android:padding="20dp"
+            android:text="@string/VALIDATE_Btn"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_risk_manager_choice_cancel_button"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_risk_manager_choice_cancel_button" />
 
         <TextView
             android:id="@+id/fragment_risk_manager_choice_cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="CANCEL"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:background="@drawable/accentdark_border_table"
             android:clickable="true"
             android:focusable="true"
             android:padding="20dp"
+            android:text="@string/CANCEL_Btn"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/fragment_risk_manager_choice_ok_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fragment_risk_manager_choice_ok_button"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_risk_manager_choice_ok_button"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/fragment_risk_manager_choice_ok_button" />
+
+        <com.example.fmeimanager.base.BorderTableCanvasModel
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

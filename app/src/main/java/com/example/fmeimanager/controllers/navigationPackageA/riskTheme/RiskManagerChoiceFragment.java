@@ -2,6 +2,9 @@ package com.example.fmeimanager.controllers.navigationPackageA.riskTheme;
 
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -86,6 +89,28 @@ public class RiskManagerChoiceFragment extends Fragment implements RadioGroup.On
             mRadioGroup.addView(new RadioButton(getContext()),i);
             ((RadioButton) mRadioGroup.getChildAt(i)).setText(mUsersCompleteName.get(i));
             mRadioGroup.getChildAt(i).setTag(i);
+            ((RadioButton) mRadioGroup.getChildAt(i)).setTextColor(getResources().getColor(R.color.background_light));
+            if(Build.VERSION.SDK_INT>=21)
+            {
+
+                ColorStateList colorStateList = new ColorStateList(
+                        new int[][]{
+
+                                new int[]{-android.R.attr.state_enabled}, //disabled
+                                new int[]{android.R.attr.state_enabled} //enabled
+                        },
+                        new int[] {
+
+                                Color.BLACK //disabled
+                                ,Color.WHITE //enabled
+
+                        }
+                );
+
+
+                ((RadioButton) mRadioGroup.getChildAt(i)).setButtonTintList(colorStateList);//set the color tint list
+                mRadioGroup.getChildAt(i).invalidate(); //could not be necessary
+            }
 
             if (mUsersIdLong.get(i) == mStartUserId){
                 ((RadioButton) mRadioGroup.getChildAt(i)).setChecked(true);
