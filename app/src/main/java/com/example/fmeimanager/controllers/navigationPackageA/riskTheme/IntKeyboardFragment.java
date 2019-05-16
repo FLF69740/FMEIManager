@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,8 @@ public class IntKeyboardFragment extends Fragment implements View.OnClickListene
     @BindView(R.id.height_btn) TextView mHeight;
     @BindView(R.id.nine_btn) TextView mNine;
     @BindView(R.id.zero_btn) TextView mTen;
+    @BindView(R.id.escape_btn) TextView mEscape;
+    @BindView(R.id.escape_logo) ImageView mEscapeLogo;
 
     public IntKeyboardFragment() {}
 
@@ -49,6 +52,8 @@ public class IntKeyboardFragment extends Fragment implements View.OnClickListene
         mHeight.setOnClickListener(this);
         mNine.setOnClickListener(this);
         mTen.setOnClickListener(this);
+        mEscape.setOnClickListener(this);
+        mEscapeLogo.setOnClickListener(this);
 
         return view;
     }

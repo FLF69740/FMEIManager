@@ -33,7 +33,11 @@ public class IntKeyboardActivity extends AppCompatActivity implements IntKeyboar
         Intent intent = new Intent();
         intent.putExtra(BUNDLE_KEYBOARD_SCORE, result);
         intent.putExtra(BUNDLE_KEYBOARD_SOURCE, mSourceCriteria);
-        setResult(RESULT_OK, intent);
+        if (result != 11) {
+            setResult(RESULT_OK, intent);
+        }else {
+            setResult(RESULT_CANCELED, intent);
+        }
         finish();
     }
 }
