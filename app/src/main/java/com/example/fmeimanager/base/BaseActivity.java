@@ -14,7 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.fmeimanager.EndDialogActivity;
 import com.example.fmeimanager.R;
+import com.example.fmeimanager.controllers.navigationPackageA.fmeiTheme.FmeiDashboardFragment;
 import com.example.fmeimanager.controllers.navigationPackageE.AboutActivity;
 import com.example.fmeimanager.controllers.navigationPackageB.ExportDatasActivity;
 import com.example.fmeimanager.controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity;
@@ -22,6 +26,7 @@ import com.example.fmeimanager.controllers.navigationPackageD.HelpActivity;
 import com.example.fmeimanager.controllers.navigationPackageG.ProfileSectionActivity;
 import com.example.fmeimanager.controllers.navigationPackageC.SettingsActivity;
 import com.example.fmeimanager.controllers.navigationPackageF.TeamFmeiDashBoardActivity;
+import com.example.fmeimanager.database.Fmei;
 import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.utils.BitmapStorage;
 
@@ -83,14 +88,16 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     // Handle back click to close menu
     @Override
     public void onBackPressed() {
-        if (this.mDrawerLayout != null) {
+        if (getFirstFragment() instanceof FmeiDashboardFragment){
+            startActivity(new Intent(this, EndDialogActivity.class));
+        }else if (this.mDrawerLayout != null) {
             if (this.mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
                 this.mDrawerLayout.closeDrawer(GravityCompat.START);
             } else {
                 super.onBackPressed();
             }
         }else {
-            super.onBackPressed();
+                super.onBackPressed();
         }
     }
 

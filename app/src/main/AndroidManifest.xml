@@ -14,9 +14,12 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".EndDialogActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+        <activity
             android:name=".controllers.navigationPackageC.WriteFromSettingsActivity"
             android:label="@string/Process_builder_button_write_title"
-            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity android:name=".controllers.navigationPackageC.PhotoLogoActivity" />
         <activity android:name=".controllers.navigationPackageG.PhotoProfileActivity" />
         <activity
@@ -118,7 +121,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fmeimanager.controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity;
 import com.example.fmeimanager.utils.BitmapStorage;
@@ -57,5 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void startFirstActivity(){
         startActivity(new Intent(this, FmeiDashboardActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, EndDialogActivity.class));
     }
 }

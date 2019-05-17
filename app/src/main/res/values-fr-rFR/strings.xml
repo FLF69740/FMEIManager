@@ -113,4 +113,5 @@
     <string name="Export_email_report_part_body">"voir pièce jointe pour le rapport AMDEC de la FMEA "</string>
     <string name="Export_email_report_partsubject">"rapport AMDEC - "</string>
     <string name="Fmei_dashboard_snacbar_create">"CREATION : "</string>
+    <string name="back_over">TERMINER MAINTENANT ?</string>
 </resources>

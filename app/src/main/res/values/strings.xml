@@ -5,6 +5,7 @@
     <string name="main_manager" translatable="false">MANAGER</string>
     <string name="Doe" translatable="false">DOE</string>
     <string name="John" translatable="false">John</string>
+    <string name="back_over">FINISH NOW ?</string>
 
     <!-- TOOLBAR -->
     <string name="Toolbar_ADD" translatable="false">ADD</string>
