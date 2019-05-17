@@ -45,10 +45,7 @@ public class RiskPhotoViewPagerActivity extends AppCompatActivity implements Ris
         viewPager.setAdapter(mAdapter);
 
         TextView close = findViewById(R.id.closePhotoViewPager);
-        close.setOnClickListener(v -> {
-            Toast.makeText(getApplication(), "GET list transfert", Toast.LENGTH_SHORT).show();
-            finish();
-        });
+        close.setOnClickListener(v -> finish());
 
         mSaveAndQuit = findViewById(R.id.photoViewPagerSaveAndQuit);
         mSaveAndQuit.setVisibility(mVisibilityStateBtn);
