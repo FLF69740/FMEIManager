@@ -21,7 +21,7 @@ public class InsertRiskPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        return InsertRiskPageFragment.newInstance(mListString.get(i), i);
+        return InsertRiskPageFragment.newInstance(mListString.get(i), i, mSize);
     }
 
     @Override

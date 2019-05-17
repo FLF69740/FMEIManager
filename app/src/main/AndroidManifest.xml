@@ -24,7 +24,6 @@
         <activity android:name=".controllers.navigationPackageG.PhotoProfileActivity" />
         <activity
             android:name=".controllers.navigationPackageG.WriteFromProfileActivity"
-            android:label="@string/Process_builder_button_write_title"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity android:name=".controllers.navigationPackageA.correctiveActionTheme.PhotoCorrectiveActivity" />
         <activity android:name=".controllers.navigationPackageA.riskTheme.RiskPhotoViewPagerActivity" />
@@ -42,7 +41,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controllers.navigationPackageA.processusTheme.ProcessDashboardActivity" />
         </activity>
-        <activity android:name=".controllers.navigationPackageA.processusTheme.InsertRiskViewPagerActivity" />
+        <activity
+            android:name=".controllers.navigationPackageA.processusTheme.InsertRiskViewPagerActivity" />
         <activity
             android:name=".controllers.navigationPackageE.AboutActivity"
             android:label="@string/About_title" />
