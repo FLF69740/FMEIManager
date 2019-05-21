@@ -30,16 +30,6 @@ public class SettingsActivity extends BaseActivity implements SettingsFragment.S
     }
 
     @Override
-    protected Fragment getSecondFragment() {
-        return null;
-    }
-
-    @Override
-    protected int getSecondFragmentLayout() {
-        return 0;
-    }
-
-    @Override
     protected boolean isAChildActivity() {
         return false;
     }

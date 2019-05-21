@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fmeimanager.R;
@@ -29,6 +30,7 @@ import com.example.fmeimanager.viewmodels.GeneralViewModel;
 
 import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +50,6 @@ public class ExportDatasFragment extends Fragment implements ExportViewPagerFrag
     private GeneralViewModel mGeneralViewModel;
     private String mFmeaTitle;
     private List<TeamFmei> mTeamFmea;
-    private Fmei mFmei;
     private String mEmailAdress;
     private List<Participant> mParticipants;
     private List<Processus> mProcessusList;
@@ -58,6 +59,7 @@ public class ExportDatasFragment extends Fragment implements ExportViewPagerFrag
     private long mFmeaId;
 
     @BindView(R.id.export_csv_btn) Button mCsvBtn;
+    @BindView(R.id.export_data_speech_2) TextView mTextViewInformation;
 
     public ExportDatasFragment() {}
 
@@ -75,6 +77,7 @@ public class ExportDatasFragment extends Fragment implements ExportViewPagerFrag
         this.configureViewModel();
         this.getAdministrator(getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID));
         mCsvBtn.setVisibility(View.INVISIBLE);
+        mTextViewInformation.setVisibility(View.INVISIBLE);
 
         getAllFmei();
         getAllParticipant();
@@ -87,6 +90,7 @@ public class ExportDatasFragment extends Fragment implements ExportViewPagerFrag
     @Override
     public void LoadingFmea(String title, long id) {
         mCsvBtn.setVisibility(View.VISIBLE);
+        mTextViewInformation.setVisibility(View.VISIBLE);
         mFmeaTitle = title;
         mFmeaId = id;
         String titleBtn = title + ".csv";
@@ -193,9 +197,8 @@ public class ExportDatasFragment extends Fragment implements ExportViewPagerFrag
 
     //RECORD selected fmea
     private void updateSelectedFmea(Fmei fmei){
-        mFmei = fmei;
-        if (mTeamFmea != null && mFmei != null && mProcessusList != null){
-            senEmail(BusinessExport.createReport(getContext(), mFmei, mTeamFmea, mParticipants, mProcessusList, mRiskList, mCorrectiveActionList), mFmei.getName());
+        if (mTeamFmea != null && fmei != null && mProcessusList != null){
+            senEmail(BusinessExport.createReport(getContext(), fmei, mTeamFmea, mParticipants, mProcessusList, mRiskList, mCorrectiveActionList), fmei.getName());
         }
     }
 
@@ -226,12 +229,12 @@ public class ExportDatasFragment extends Fragment implements ExportViewPagerFrag
 
     //SEND EMAIL REPORT
     private void senEmail(String body, String fmeaName){
-        StorageUtils.setTextInStorage(getContext().getFilesDir(), getContext(), "MYFILE.csv", "MYFOLDER", body);
+        StorageUtils.setTextInStorage(Objects.requireNonNull(getContext()).getFilesDir(), getContext(), "MYFILE.csv", "MYFOLDER", body);
 
         File imagePath = new File(getContext().getFilesDir(), "MYFOLDER");
         File newFile = new File(imagePath, "MYFILE.csv");
 
-        String mail[] = {mEmailAdress};
+        String[] mail = {mEmailAdress};
         String subject = getContext().getString(R.string.Export_email_report_partsubject) + fmeaName;
         String message = getContext().getString(R.string.Export_email_report_part_body) + fmeaName;
 

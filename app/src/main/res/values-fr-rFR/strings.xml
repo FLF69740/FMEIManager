@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FMEA Manager</string>
-    <string name="touch_screen">TOUCHER L\'ECRAN</string>
+    <string name="touch_screen">PDCA Concept</string>
     <string name="Fmei_dashboard_title">AMDEC TdB</string>
     <string name="Process_dashboard_title">PROCESS TdB</string>
-    <string name="Risk_file_description_title">DESCRIPTION DU RISQUE</string>
+    <string name="Risk_file_description_title">RISQUE</string>
     <string name="Risk_file_corrective_action_title">ACTION CORRECTIVE</string>
     <string name="Navigation_drawer_fmei_dashboard">AMDEC TdB</string>
     <string name="Navigation_drawer_export_data">EXPORTER DONNEES</string>
@@ -22,7 +22,7 @@
     <string name="Settings_title">REGLAGES</string>
     <string name="Help_title">AIDE</string>
     <string name="About_title">AU SUJET DE</string>
-    <string name="Process_builder_title">ORGANISATION PROCESSUS</string>
+    <string name="Process_builder_title">CARTE PROCESSUS</string>
     <string name="Process_builder_button_write_title">RENOMMER</string>
     <string name="writte_activity_advertising_first_paragraph">Vous souhaitez renommer l\'étape processus appelée</string>
     <string name="writte_activity_advertising_second_paragraph">par</string>
@@ -114,4 +114,6 @@
     <string name="Export_email_report_partsubject">"rapport AMDEC - "</string>
     <string name="Fmei_dashboard_snacbar_create">"CREATION : "</string>
     <string name="back_over">TERMINER MAINTENANT ?</string>
+    <string name="Settings_logo">LOGO</string>
+    <string name="Export_text_extension_explication">appuyer sur le bouton pour envoyer votre rapport csv à l\'adresse mail de l\'administrateur</string>
 </resources>

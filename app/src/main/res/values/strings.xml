@@ -36,7 +36,7 @@
     <string name="photo_viewpager_send_to_the_trash">send to the trash</string>
 
     <!-- MAIN ACTIVITY -->
-    <string name="touch_screen">TOUCH SCREEN</string>
+    <string name="touch_screen">PDCA Concept</string>
 
     <!-- FMEI DASHBOARD -->
     <string name="Fmei_dashboard_title">FMEA DASHBOARD</string>
@@ -62,7 +62,7 @@
     <string name="writte_activity_editext_hint">New Name</string>
 
     <!-- RISK FILE -->
-    <string name="Risk_file_description_title">RISK DESCRIPTION</string>
+    <string name="Risk_file_description_title">RISK</string>
     <string name="Risk_file_corrective_action_title">CORRECTIVE ACTION</string>
     <string name="Risk_file_corrective_ask_btn">ASK CORRECTIVE ACTION RESULTS</string>
     <string name="Risk_file_corrective_default_score" translatable="false">10</string>
@@ -139,6 +139,7 @@
     <!-- EXPORT DATAS -->
     <string name="Export_datas_title">EXPORT DATAS</string>
     <string name="Export_data_speech">Choice of fmea number to export :</string>
+    <string name="Export_text_extension_explication">Press button for sending your csv file to the administrator email address</string>
     <string name="Export_data_csv_title_btn" translatable="false">*.csv</string>
     <string name="Export_Risk_name">POTENTIAL RISK NAME</string>
     <string name="Export_Risk_effect">POTENTIAL RISK EFFECT</string>
@@ -153,6 +154,7 @@
 
     <!-- SETTINGS -->
     <string name="Settings_title">SETTINGS</string>
+    <string name="Settings_logo">LOGO</string>
     <string name="Settings_business_title">NAME OF BUSINESS :</string>
     <string name="Settings_business_hint">My business</string>
     <string name="Settings_score_ladder">SCORE LADDER</string>

@@ -16,14 +16,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.05" />
+            app:layout_constraintGuide_percent="0.15" />
 
         <android.support.constraint.Guideline
             android:id="@+id/settings_guideline_vertical_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.3" />
+            app:layout_constraintGuide_percent="0.35" />
 
         <android.support.constraint.Guideline
             android:id="@+id/settings_guideline_vertical_3"
@@ -51,7 +51,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.6" />
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/Settings_logo"
+            android:textColor="@color/background_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/settings_guideline_vertical_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/settings_guideline_horizontal_1" />
 
 
         <ImageView
@@ -68,7 +85,7 @@
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/settings_guideline_vertical_2"
             app:layout_constraintStart_toStartOf="@+id/settings_guideline_vertical_1"
-            app:layout_constraintTop_toTopOf="@+id/settings_guideline_horizontal_1" />
+            app:layout_constraintTop_toTopOf="@+id/settings_guideline_horizontal_2" />
 
         <TextView
             android:id="@+id/textview_business_title"
@@ -76,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/Settings_business_title"
@@ -85,7 +102,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/settings_guideline_vertical_3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/settings_guideline_horizontal_3" />
+            app:layout_constraintTop_toBottomOf="@+id/frament_settings_logo" />
 
         <TextView
             android:id="@+id/fragment_settings_business_name"
@@ -96,6 +113,8 @@
             android:hint="@string/Settings_business_hint"
             android:clickable="true"
             android:focusable="true"
+            android:background="@drawable/accentdark_border_table"
+            android:padding="10dp"
             android:textColor="@color/background_light"
             android:textColorHint="@color/colorAccentDark"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -156,6 +175,8 @@
             android:focusable="true"
             android:text="100"
             android:textColor="@color/green_low_score"
+            android:background="@drawable/low_border"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="@+id/textview_score_low"
             app:layout_constraintStart_toStartOf="@+id/textview_score_low"
             app:layout_constraintTop_toBottomOf="@+id/textview_score_low" />
@@ -187,6 +208,8 @@
             android:focusable="true"
             android:text="150"
             android:textColor="@color/orange_medium_score"
+            android:background="@drawable/medium_border"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="@+id/textview_score_medium"
             app:layout_constraintStart_toStartOf="@+id/textview_score_medium"
             app:layout_constraintTop_toBottomOf="@+id/textview_score_medium" />
@@ -216,6 +239,8 @@
             android:focusable="true"
             android:text="200"
             android:textColor="@color/red_high_score"
+            android:background="@drawable/high_border"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textview_score_high"
             app:layout_constraintStart_toStartOf="@+id/textview_score_high" />

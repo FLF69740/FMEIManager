@@ -27,16 +27,6 @@ public class ProfileSectionActivity extends BaseActivity implements ProfileSecti
     }
 
     @Override
-    protected Fragment getSecondFragment() {
-        return null;
-    }
-
-    @Override
-    protected int getSecondFragmentLayout() {
-        return 0;
-    }
-
-    @Override
     protected boolean isAChildActivity() {
         return false;
     }
@@ -44,9 +34,7 @@ public class ProfileSectionActivity extends BaseActivity implements ProfileSecti
     // TOOLBAR
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (getFirstFragment() instanceof ProfileSectionFragment && findViewById(getSecondFragmentLayout()) == null){
-            getMenuInflater().inflate(R.menu.toolbar_menu_add_single, menu);
-        }
+        getMenuInflater().inflate(R.menu.toolbar_menu_add_single, menu);
         return true;
     }
 

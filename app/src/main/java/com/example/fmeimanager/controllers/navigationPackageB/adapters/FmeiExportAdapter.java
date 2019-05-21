@@ -20,7 +20,7 @@ public class FmeiExportAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        return ExportViewPagerFragment.newInstance(mListFmei.get(i));
+        return ExportViewPagerFragment.newInstance(mListFmei.get(i), i, mListFmei.size());
     }
 
     @Override

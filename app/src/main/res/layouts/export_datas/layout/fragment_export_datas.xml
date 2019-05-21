@@ -16,14 +16,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.20"/>
+            app:layout_constraintGuide_percent="0.15" />
 
         <android.support.constraint.Guideline
             android:id="@+id/vertical_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.8"/>
+            app:layout_constraintGuide_percent="0.85" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/horizontal_middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6" />
 
         <TextView
             android:id="@+id/export_data_speech"
@@ -35,6 +42,9 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/Export_data_speech"
+            android:textColor="@color/background_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/export_data_viewpager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,12 +59,29 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/export_csv_btn"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/horizontal_middle"
             app:layout_constraintDimensionRatio="h,1:1"
             app:layout_constraintEnd_toStartOf="@+id/vertical_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/vertical_left"
             app:layout_constraintTop_toBottomOf="@+id/export_data_speech" />
+
+        <TextView
+            android:id="@+id/export_data_speech_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/Export_text_extension_explication"
+            android:textColor="@color/background_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/export_csv_btn"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_right"
+            app:layout_constraintStart_toStartOf="@+id/vertical_left"
+            app:layout_constraintTop_toTopOf="@+id/horizontal_middle" />
 
         <Button
             android:id="@+id/export_csv_btn"
@@ -66,14 +93,22 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/Export_data_csv_title_btn"
             android:background="@drawable/accentdark_border_table"
+            android:text="@string/Export_data_csv_title_btn"
+            android:textColor="@color/background_light"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/export_data_viewpager" />
+            app:layout_constraintTop_toTopOf="@+id/horizontal_middle" />
 
-
+        <com.example.fmeimanager.base.BorderTableCanvasModel
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/export_data_viewpager"
+            app:layout_constraintEnd_toEndOf="@+id/export_data_viewpager"
+            app:layout_constraintStart_toStartOf="@+id/export_data_viewpager"
+            app:layout_constraintTop_toTopOf="@+id/export_data_viewpager" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -1,6 +1,7 @@
 package com.example.fmeimanager;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String BUNDLE_KEY_HIGH_VALUE = "BUNDLE_KEY_LOW_VALUE";
     public static final String SHARED_BUSINESS_NAME = "SHARED_BUSINESS_NAME";
     public static final String BUNDLE_KEY_BUSINESS_NAME = "BUNDLE_KEY_BUSINESS_NAME";
+    public static final int SPLASH_TIME_OUT = 3600;
 
     public static final String BUNDLE_KEY_TEAM_LEADER_CATALOG_VIEWPAGER  = "BUNDLE_KEY_TEAM_LEADER_CATALOG_VIEWPAGER";
 
@@ -50,8 +52,13 @@ public class MainActivity extends AppCompatActivity {
             name.setVisibility(View.INVISIBLE);
         }
 
-        ImageButton imageButton = findViewById(R.id.run_touch_screen);
-        imageButton.setOnClickListener(v -> startFirstActivity());
+        new Handler().postDelayed(() -> {
+            startFirstActivity();
+            finish();
+        }, SPLASH_TIME_OUT);
+
+
+
 
         customView.playAnimation();
     }
@@ -62,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, EndDialogActivity.class));
+        int pid = android.os.Process.myPid();
+        android.os.Process.killProcess(pid);
     }
+
 }

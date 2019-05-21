@@ -16,28 +16,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.35"/>
+            app:layout_constraintGuide_percent="0.15" />
 
         <android.support.constraint.Guideline
             android:id="@+id/vertical_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.65"/>
+            app:layout_constraintGuide_percent="0.55" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/settings_vertical_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccentDark"
+            app:layout_constraintEnd_toStartOf="@+id/settings_vertical_right" />
 
         <TextView
             android:id="@+id/export_data_speech"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:gravity="center"
             android:text="@string/Export_data_speech"
+            android:textColor="@color/background_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/export_data_viewpager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_right"
+            app:layout_constraintStart_toStartOf="@+id/vertical_left"
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v4.view.ViewPager
@@ -49,12 +63,32 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/export_csv_btn"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="h,1:1"
             app:layout_constraintEnd_toStartOf="@+id/vertical_right"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/vertical_left"
             app:layout_constraintTop_toBottomOf="@+id/export_data_speech" />
+
+        <TextView
+            android:id="@+id/export_data_speech_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:text="@string/Export_text_extension_explication"
+            android:textColor="@color/background_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/export_csv_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/settings_vertical_right"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/export_csv_btn"
@@ -62,16 +96,25 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/Export_data_csv_title_btn"
+            android:background="@drawable/accentdark_border_table"
+            android:textColor="@color/background_light"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/export_data_viewpager" />
+            app:layout_constraintStart_toStartOf="@+id/settings_vertical_right"
+            app:layout_constraintTop_toBottomOf="@+id/export_data_speech_2" />
 
+        <com.example.fmeimanager.base.BorderTableCanvasModel
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/export_data_viewpager"
+            app:layout_constraintEnd_toEndOf="@+id/export_data_viewpager"
+            app:layout_constraintStart_toStartOf="@+id/export_data_viewpager"
+            app:layout_constraintTop_toTopOf="@+id/export_data_viewpager" />
 
 
     </android.support.constraint.ConstraintLayout>

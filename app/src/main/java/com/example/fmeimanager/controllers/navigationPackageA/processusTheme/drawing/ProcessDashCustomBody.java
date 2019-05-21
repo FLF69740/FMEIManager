@@ -123,7 +123,7 @@ public class ProcessDashCustomBody extends View {
         canvas.drawText(mRiskNumber, Utils.getPixelPercent(textCursor, getHeight()), Utils.getPixelPercent(25, getHeight()), mPaint);
 
         //DRAW window
-        mPaint.setStrokeWidth(5);
+        mPaint.setStrokeWidth(4);
 
         mPaint.setStyle(Paint.Style.FILL);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

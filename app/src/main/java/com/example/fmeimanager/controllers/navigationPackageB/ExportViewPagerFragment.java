@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fmeimanager.R;
+import com.example.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.InsertRiskCustomPos;
 import com.example.fmeimanager.database.Fmei;
 
 /**
@@ -20,16 +21,20 @@ public class ExportViewPagerFragment extends Fragment implements View.OnClickLis
 
     public static final String BUNDLE_FMEA_TITLE = "BUNDLE_FMEA_TITLE";
     public static final String BUNDLE_FMEA_ID = "BUNDLE_FMEA_ID";
+    public static final String BUNDLE_EXPORT_SIZE = "BUNDLE_EXPORT_SIZE";
+    public static final String BUNDLE_EXPORT_POS = "BUNDLE_EXPORT_POS";
     private String mTitle;
     private long mFmeaId;
 
     public ExportViewPagerFragment() {}
 
-    public static ExportViewPagerFragment newInstance(Fmei fmei){
+    public static ExportViewPagerFragment newInstance(Fmei fmei,int position, int size){
         ExportViewPagerFragment exportViewPagerFragment = new ExportViewPagerFragment();
-        Bundle bundle = new Bundle(2);
+        Bundle bundle = new Bundle(4);
         bundle.putString(BUNDLE_FMEA_TITLE, fmei.getName());
         bundle.putLong(BUNDLE_FMEA_ID, fmei.getId());
+        bundle.putInt(BUNDLE_EXPORT_POS, position);
+        bundle.putInt(BUNDLE_EXPORT_SIZE, size);
         exportViewPagerFragment.setArguments(bundle);
 
         return exportViewPagerFragment;
@@ -40,9 +45,20 @@ public class ExportViewPagerFragment extends Fragment implements View.OnClickLis
         View view = inflater.inflate(R.layout.fragment_export_view_pager, container, false);
 
         TextView textView = view.findViewById(R.id.export_viewpager_fmei_title);
+        InsertRiskCustomPos marker = view.findViewById(R.id.export_viewpager_custom_marker);
 
         mTitle = getArguments().getString(BUNDLE_FMEA_TITLE);
         mFmeaId = getArguments().getLong(BUNDLE_FMEA_ID);
+        int position = getArguments().getInt(BUNDLE_EXPORT_POS);
+        int size = getArguments().getInt(BUNDLE_EXPORT_SIZE);
+
+        if (position == 0 && size > 1){
+            marker.hideFirst();
+        }else if ((position + 1) == size && size > 1){
+            marker.hideLast();
+        }else if ((position + 1) == size && size < 2){
+            marker.onlyOne();
+        }
 
         textView.setText(mTitle);
 

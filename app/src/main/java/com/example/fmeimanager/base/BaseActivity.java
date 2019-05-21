@@ -35,7 +35,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
     protected Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
-    private View mViewHeader;
     private TextView mNavUserName;
     private ImageView mNavUserPhoto;
 
@@ -43,8 +42,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     protected abstract Fragment getFirstFragment();
     protected abstract int getContentView();
     protected abstract int getFragmentLayout();
-    protected abstract Fragment getSecondFragment();
-    protected abstract int getSecondFragmentLayout();
+  //  protected abstract Fragment getSecondFragment();
+  //  protected abstract int getSecondFragmentLayout();
     protected abstract boolean isAChildActivity();
 
     @Override
@@ -113,9 +112,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     private void configureNavigationView(){
         NavigationView mNavigationView = findViewById(R.id.general_nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
-        mViewHeader = mNavigationView.getHeaderView(0);
-        mNavUserName = mViewHeader.findViewById(R.id.nav_userName);
-        mNavUserPhoto = mViewHeader.findViewById(R.id.nav_userPhoto);
+        View viewHeader = mNavigationView.getHeaderView(0);
+        mNavUserName = viewHeader.findViewById(R.id.nav_userName);
+        mNavUserPhoto = viewHeader.findViewById(R.id.nav_userPhoto);
     }
 
     //Update header
