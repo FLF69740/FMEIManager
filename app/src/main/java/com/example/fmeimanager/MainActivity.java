@@ -1,5 +1,6 @@
 package com.example.fmeimanager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 import com.example.fmeimanager.controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity;
 import com.example.fmeimanager.utils.BitmapStorage;
 import com.example.fmeimanager.utils.Utils;
+
+import java.lang.ref.WeakReference;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,25 +55,33 @@ public class MainActivity extends AppCompatActivity {
             name.setVisibility(View.INVISIBLE);
         }
 
-        new Handler().postDelayed(() -> {
-            startFirstActivity();
-            finish();
-        }, SPLASH_TIME_OUT);
-
-
-
+        new LogoAnimationHandler(this).launchActivityAfterTimer();
 
         customView.playAnimation();
     }
 
     private void startFirstActivity(){
-        startActivity(new Intent(this, FmeiDashboardActivity.class));
+        Intent intent = new Intent(this, FmeiDashboardActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
-    @Override
-    public void onBackPressed() {
-        int pid = android.os.Process.myPid();
-        android.os.Process.killProcess(pid);
+   static class LogoAnimationHandler extends Handler{
+
+        private WeakReference<MainActivity> mWeakReference;
+
+        public LogoAnimationHandler(MainActivity activity){
+            mWeakReference = new WeakReference<>(activity);
+        }
+
+        void launchActivityAfterTimer(){
+            postDelayed(() -> {
+                if (mWeakReference.get() != null) {
+                    mWeakReference.get().startFirstActivity();
+                    mWeakReference.get().finish();
+                }
+            }, SPLASH_TIME_OUT);
+        }
     }
 
 }
