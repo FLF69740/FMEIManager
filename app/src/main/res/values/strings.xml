@@ -1,6 +1,6 @@
 <resources>
     <!-- GENERAL STRINGS -->
-    <string name="app_name">FMEA Manager</string>
+    <string name="app_name" translatable="false">FMEA Manager</string>
     <string name="main_fmea" translatable="false">FMEA</string>
     <string name="main_manager" translatable="false">MANAGER</string>
     <string name="Doe" translatable="false">DOE</string>

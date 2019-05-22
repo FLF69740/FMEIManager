@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FMEA Manager</string>
     <string name="touch_screen">PDCA Concept</string>
     <string name="Fmei_dashboard_title">AMDEC TdB</string>
     <string name="Process_dashboard_title">PROCESS TdB</string>
