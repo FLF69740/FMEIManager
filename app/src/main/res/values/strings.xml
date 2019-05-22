@@ -166,7 +166,8 @@
     <string name="Help_title">HELP</string>
 
     <!-- ABOUT -->
-    <string name="About_title">ABOUT</string>
+    <string name="About_title" translatable="false">FMEI MANAGER : v 1.0.0 \nbuilt : 2019/25/05 \nPowered with Android studio for : \nAndroid 4.4 and higher \n\ncreated by FLT Starcraft</string>
+    <string name="About_btn">CLOSE</string>
 
 
 </resources>

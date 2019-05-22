@@ -115,4 +115,5 @@
     <string name="back_over">TERMINER MAINTENANT ?</string>
     <string name="Settings_logo">LOGO</string>
     <string name="Export_text_extension_explication">appuyer sur le bouton pour envoyer votre rapport csv à l\'adresse mail de l\'administrateur</string>
+    <string name="About_btn">FERMER</string>
 </resources>

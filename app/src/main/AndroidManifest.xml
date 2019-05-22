@@ -46,7 +46,8 @@
             android:name=".controllers.navigationPackageA.processusTheme.InsertRiskViewPagerActivity" />
         <activity
             android:name=".controllers.navigationPackageE.AboutActivity"
-            android:label="@string/About_title" />
+            android:label="@string/About_title"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity
             android:name=".controllers.navigationPackageD.HelpActivity"
             android:label="@string/Help_title" />
