@@ -2,6 +2,7 @@ package com.example.fmeimanager.models;
 
 import com.example.fmeimanager.database.Processus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FmeiPanel {
@@ -24,6 +25,7 @@ public class FmeiPanel {
         mFmeiId = fmeiId;
         mFmeiTitle = fmeiTitle;
         mIPRMax = 0;
+        mProcessusList = new ArrayList<>();
     }
 
     /**

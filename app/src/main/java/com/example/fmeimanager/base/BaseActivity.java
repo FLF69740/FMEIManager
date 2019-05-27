@@ -87,16 +87,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     // Handle back click to close menu
     @Override
     public void onBackPressed() {
-        if (getFirstFragment() instanceof FmeiDashboardFragment){
-            startActivity(new Intent(this, EndDialogActivity.class));
-        }else if (this.mDrawerLayout != null) {
+        if (this.mDrawerLayout != null) {
             if (this.mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
                 this.mDrawerLayout.closeDrawer(GravityCompat.START);
             } else {
                 super.onBackPressed();
             }
         }else {
-                super.onBackPressed();
+            super.onBackPressed();
         }
     }
 

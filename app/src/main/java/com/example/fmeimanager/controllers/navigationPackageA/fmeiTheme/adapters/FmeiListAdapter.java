@@ -17,13 +17,8 @@ import java.util.List;
 public class FmeiListAdapter extends RecyclerView.Adapter<FmeiListViewHolder> {
 
     private List<FmeiPanel> mFmeiPanelList;
-    private int mSelectedFmei;
 
     public FmeiListAdapter(List<FmeiPanel> fmeiPanels) {
-        mFmeiPanelList = fmeiPanels;
-    }
-
-    public void setFmeiList(List<FmeiPanel> fmeiPanels) {
         mFmeiPanelList = fmeiPanels;
     }
 
@@ -38,22 +33,12 @@ public class FmeiListAdapter extends RecyclerView.Adapter<FmeiListViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FmeiListViewHolder fmeiListViewHolder, int i) {
-        boolean selected = mSelectedFmei == i;
-        fmeiListViewHolder.updateWithAdapterInformation(this.mFmeiPanelList.get(i), selected);
+        fmeiListViewHolder.updateWithAdapterInformation(this.mFmeiPanelList.get(i));
     }
 
     @Override
     public int getItemCount() {
         return this.mFmeiPanelList.size();
     }
-
-    public FmeiPanel getFmei(int position){
-        return mFmeiPanelList.get(position);
-    }
-
-    public void setSelectedFmei(int position){
-        mSelectedFmei = position;
-    }
-
 
 }

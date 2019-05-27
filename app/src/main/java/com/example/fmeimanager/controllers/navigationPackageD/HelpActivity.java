@@ -1,37 +1,21 @@
 package com.example.fmeimanager.controllers.navigationPackageD;
 
-import android.support.v4.app.Fragment;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import com.example.fmeimanager.R;
-import com.example.fmeimanager.base.BaseActivity;
-import com.example.fmeimanager.database.Participant;
+import com.github.barteksc.pdfviewer.PDFView;
 
-public class HelpActivity extends BaseActivity implements HelpFragment.HelpListener{
+public class HelpActivity extends AppCompatActivity{
 
-
-    @Override
-    protected Fragment getFirstFragment() {
-        return HelpFragment.newInstance();
-    }
+    private static final String BUNDLE_KEY_PDF_LINK = "helpsection.pdf";
 
     @Override
-    protected int getContentView() {
-        return R.layout.activity_help;
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_help);
 
-    @Override
-    protected int getFragmentLayout() {
-        return R.id.frame_layout_help;
-    }
-
-    @Override
-    protected boolean isAChildActivity() {
-        return false;
-    }
-
-
-    @Override
-    public void updateHelpNavHeader(Participant participant) {
-        this.updateHeader(participant);
+        PDFView pdfView = findViewById(R.id.pdfview);
+        pdfView.fromAsset(BUNDLE_KEY_PDF_LINK).load();
     }
 
 

@@ -35,7 +35,7 @@ public class FmeiListViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, mItemView);
     }
 
-    public void updateWithAdapterInformation(FmeiPanel fmeiPanel, boolean selectedFmei){
+    public void updateWithAdapterInformation(FmeiPanel fmeiPanel){
 
         mFmeiIdTitle.setText(fmeiPanel.getFmeiTitle());
         String string = mItemView.getContext().getString(R.string.Fmei_dashboard_processus_number) + " " + String.valueOf(fmeiPanel.getProcessusList().size());

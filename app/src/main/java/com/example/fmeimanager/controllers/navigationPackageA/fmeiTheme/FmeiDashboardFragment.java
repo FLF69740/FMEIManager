@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,33 +74,22 @@ public class FmeiDashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_fmei_dashboard, container, false);
         ButterKnife.bind(this, mView);
-        mFmeiPanelCreator = new FmeiPanelCreator(getActivity().getSharedPreferences(SHARED_HIGH_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_HIGH_VALUE, 200),
-                getActivity().getSharedPreferences(SHARED_MEDIUM_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_MEDIUM_VALUE, 150),
-                getActivity().getSharedPreferences(SHARED_LOW_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_LOW_VALUE, 1));
-        this.configureRecyclerView();
+        mFmeiPanelCreator = new FmeiPanelCreator();
         this.configureOnClickRecyclerView();
         this.configureViewModel();
         this.getAdministrator(getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID));
-        this.getAllFmei();
+        this.getAllFmea();
         return mView;
-    }
-
-    //configure recyclerView
-    private void configureRecyclerView(){
-        this.mAdapter = new FmeiListAdapter(this.mFmeiPanelCreator.getFmeiPanels());
-        this.mRecyclerView.setAdapter(mAdapter);
-        this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     //update recyclerView after other thread finalisation
     private void updateRecycler(List<FmeiPanel> fmeiPanelList){
+        this.mAdapter = new FmeiListAdapter(fmeiPanelList);
+        this.mRecyclerView.setAdapter(mAdapter);
+        this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_fall_down);
         this.mRecyclerView.setLayoutAnimation(controller);
-
-        mAdapter.setFmeiList(fmeiPanelList);
-        mAdapter.notifyDataSetChanged();
         this.mRecyclerView.scheduleLayoutAnimation();
-
     }
 
     //itemView click from RecyclerView
@@ -141,41 +131,24 @@ public class FmeiDashboardFragment extends Fragment {
         this.mGeneralViewModel.init(getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID));
     }
 
-    //GET user hardware
+    //GET user administrator
     private void getAdministrator(long id){
         this.mGeneralViewModel.getParticipant(id).observe(this, this::updateAdministrator);
     }
 
-    //GET all fmei
-    private void getAllFmei(){
-        this.mGeneralViewModel.getAllFmei().observe(this, this::updateFmeiList);
-    }
-
-    //GET all processus
-    private void getAllProcessus(){
-        this.mGeneralViewModel.getAllProcessus().observe(this, this::updateProcessusList);
-    }
-
-    //GET all risk
-    private void getAllRisk(){
-        this.mGeneralViewModel.getAllRisk().observe(this, this::updateRiskList);
-    }
-
-    //GET all team fmei
-    private void getAllTeamFmei(){
-        this.mGeneralViewModel.getAllTeamFmei().observe(this, this::updateTeamFmeiList);
-    }
-
-    //GET all participant
-    private void getAllParticipant(){
-        this.mGeneralViewModel.getAllParticipant().observe(this, this::updateParticipantList);
+    //GET all fmea
+    private void getAllFmea(){
+        this.mGeneralViewModel.getMediator_fmea(getActivity().getSharedPreferences(SHARED_HIGH_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_HIGH_VALUE, 200),
+                getActivity().getSharedPreferences(SHARED_MEDIUM_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_MEDIUM_VALUE, 150),
+                getActivity().getSharedPreferences(SHARED_LOW_SCORE, MODE_PRIVATE).getInt(BUNDLE_KEY_LOW_VALUE, 1)).observe(this, this::getMediator);
     }
 
     //CREATE FMEI
-    public void createFmei(){
+    public void createFmea(){
         Fmei fmei = new Fmei(getContext().getString(R.string.profile_section_fmea) + " " + String.valueOf(mFmeiPanelCreator.getFmeiListSize() + 1), mAdministratorId);
-        this.mGeneralViewModel.createFmei(fmei);
-        this.mGeneralViewModel.createTeamFmei(new TeamFmei((mFmeiPanelCreator.getFmeiListSize() + 1), mAdministratorId));
+        TeamFmei teamFmei = new TeamFmei((mFmeiPanelCreator.getFmeiListSize() + 1), mAdministratorId);
+        this.mGeneralViewModel.createFmei(fmei, teamFmei);
+     //   this.mGeneralViewModel.createTeamFmei(new TeamFmei((mFmeiPanelCreator.getFmeiListSize() + 1), mAdministratorId));
         Snackbar.make(mView, getContext().getString(R.string.Fmei_dashboard_snacbar_create) + fmei.getName(), Snackbar.LENGTH_SHORT).show();
     }
 
@@ -189,41 +162,12 @@ public class FmeiDashboardFragment extends Fragment {
         mCallback.updateNavHeader(participant);
     }
 
-    //RECORD all fmei information INTO panel
-    private void updateFmeiList(List<Fmei> fmeis) {
-        if (fmeis != null && fmeis.size() != 0) {
+    private void getMediator(List<FmeiPanel> panels){
+        if (panels != null && panels.size() != 0) {
             mFmeiPanelCreator.clear();
-            mFmeiPanelCreator.setFmeiList(fmeis);
-            this.getAllProcessus();
+            mFmeiPanelCreator.setFmeiPanelsWithFmeiLivedata(panels);
+            this.updateRecycler(mFmeiPanelCreator.getFmeiPanels());
         }
-    }
-
-    //RECORD all processus information INTO panel
-    private void updateProcessusList(List<Processus> processus) {
-        if (processus != null) {
-            mFmeiPanelCreator.updateProcessusList(processus);
-            this.getAllRisk();
-        }
-    }
-
-    //RECORD all risk information INTO panel
-    private void updateRiskList(List<Risk> risks) {
-        if (risks != null) {
-            mFmeiPanelCreator.updateRiskList(risks);
-            getAllTeamFmei();
-        }
-    }
-
-    //RECORD all team fmei information INTO panel
-    private void updateTeamFmeiList(List<TeamFmei> teams) {
-        mFmeiPanelCreator.updateTeamFmeiList(teams);
-        getAllParticipant();
-    }
-
-    //RECORD all participant information INTO panel
-    private void updateParticipantList(List<Participant> participants) {
-        mFmeiPanelCreator.updateParticipantList(participants);
-        this.updateRecycler(mFmeiPanelCreator.getFmeiPanels());
     }
 
 }

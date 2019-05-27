@@ -46,7 +46,7 @@ public class FmeiDashboardActivity extends BaseActivity implements FmeiDashboard
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.toolbar_dashboard_add :
-                ((FmeiDashboardFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).createFmei();
+                ((FmeiDashboardFragment) getSupportFragmentManager().findFragmentById(getFragmentLayout())).createFmea();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -23,8 +23,8 @@ public class ProcessusDataRepository {
     public LiveData<List<Processus>> getAllProcessus() {return this.mProcessusDao.getAllProcessus();}
     public LiveData<Processus> getProcessus(long id) {return this.mProcessusDao.getProcessus(id);}
 
-    public LiveData<List<Processus>> getProcessussListForFmei(long riskId) {
-        return this.mProcessusDao.getProcessusAboutFmeiId(riskId);
+    public LiveData<List<Processus>> getProcessussListForFmei(long fmeaId) {
+        return this.mProcessusDao.getProcessusAboutFmeiId(fmeaId);
     }
 
 
