@@ -21,7 +21,5 @@ public class TeamPanel {
     public long getTeamLeaderId() {return mTeamLeaderId;}
 
     //SETTER
-    public void setFmeaId(long fmeiad) {mFmeaId = fmeiad;}
     public void setParticipantList(List<Participant> participantList) {mParticipantList = participantList;}
-    public void setTeamLeaderId(long teamLeaderId) {mTeamLeaderId = teamLeaderId;}
 }

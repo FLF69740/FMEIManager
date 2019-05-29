@@ -137,7 +137,7 @@ public class ProcessDashboardFragment extends Fragment {
         this.mProcessusViewModel.init(1);
     }
 
-    private void getProcessusAboutFMEI(long fmeiId){ this.mProcessusViewModel.theFirstLiveData(fmeiId).observe(this, this::updateTheRisk); }
+    private void getProcessusAboutFMEI(long fmeiId){ this.mProcessusViewModel.theFirstLiveData(fmeiId).observe(this, this::updateProcessusPanels); }
 
     //LAUNCH PROCESSUS BUILDER
     public void createProcessus(){
@@ -173,7 +173,7 @@ public class ProcessDashboardFragment extends Fragment {
      *  CLASS DEFINITION
      */
 
-    private void updateTheRisk(List<ProcessusPanel> panels){
+    private void updateProcessusPanels(List<ProcessusPanel> panels){
         mProcessusPanelCreator.setProcessusPanels(panels);
         this.updateRecycler(panels);
     }

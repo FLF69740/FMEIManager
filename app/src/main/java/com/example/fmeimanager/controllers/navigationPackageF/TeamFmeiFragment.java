@@ -1,38 +1,25 @@
 package com.example.fmeimanager.controllers.navigationPackageF;
 
-
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.example.fmeimanager.R;
 import com.example.fmeimanager.controllers.navigationPackageF.adapter.TeamFmeiAdapter;
-import com.example.fmeimanager.database.Fmei;
 import com.example.fmeimanager.database.Participant;
-import com.example.fmeimanager.database.TeamFmei;
 import com.example.fmeimanager.injection.Injection;
 import com.example.fmeimanager.injection.ViewModelFactory;
 import com.example.fmeimanager.models.TeamPanel;
-import com.example.fmeimanager.models.TeamPanelCreator;
 import com.example.fmeimanager.utils.RecyclerItemClickSupport;
-import com.example.fmeimanager.utils.Utils;
 import com.example.fmeimanager.viewmodels.TeamViewModel;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.fmeimanager.MainActivity.BUNDLE_KEY_ACTIVE_USER;
 import static com.example.fmeimanager.MainActivity.DEFAULT_USER_ID;
@@ -43,8 +30,8 @@ public class TeamFmeiFragment extends Fragment {
 
     private View mView;
     private TeamViewModel mTeamViewModel;
-    private TeamPanelCreator mTeamPanelCreator;
 
+    @BindView(R.id.fragment_team_fmei_recycler_view) RecyclerView mRecyclerView;
 
     public TeamFmeiFragment() {}
 
@@ -59,45 +46,23 @@ public class TeamFmeiFragment extends Fragment {
 
          this.configureViewModel();
          this.getAdministrator(getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID));
-         mTeamPanelCreator = new TeamPanelCreator();
          this.getAllFmea();
-
 
         return mView;
     }
 
-    private TeamFmeiAdapter mAdapter;
-    @BindView(R.id.fragment_team_fmei_recycler_view) RecyclerView mRecyclerView;
-
     //Configure recyclerView
-    private void configureRecyclerView(){
-        this.mAdapter = new TeamFmeiAdapter(this.mTeamPanelCreator.getTeamPanels());
-        this.mRecyclerView.setAdapter(mAdapter);
+    private void configureRecyclerView(List<TeamPanel> teamPanels){
+        TeamFmeiAdapter adapter = new TeamFmeiAdapter(teamPanels);
+        this.mRecyclerView.setAdapter(adapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     //itemView click from RecyclerView
-    private void configureOnClickRecyclerView(){
+    private void configureOnClickRecyclerView(List<TeamPanel> teamPanels){
         RecyclerItemClickSupport.addTo(mRecyclerView, R.layout.fragment_fmei_recyclerview_item)
                 .setOnItemClickListener((recyclerView, position, v) -> mCallback.teamFmeiDashboard_To_teamFmeiBuilder(mView, position+1,
-                        mTeamPanelCreator.getTeamPanels().get(position).getParticipantList(), mTeamPanelCreator.getTeamPanels().get(position).getTeamLeaderId()));
-    }
-
-    public void updateLists(ArrayList<String> packageNewFmeiId, ArrayList<String> packageNewParticipantId, ArrayList<String> teamFmeiIdToDelete) {
-        String messageFmeiId = BusinnessTeamFmei.convertToListString(packageNewFmeiId, "2 - NEW FMEI LIST : ");
-        Log.i(Utils.INFORMATION_LOG, messageFmeiId);
-        String messageParticipantId = BusinnessTeamFmei.convertToListString(packageNewParticipantId, "2 - NEW PARTICIPANT LIST : ");
-        Log.i(Utils.INFORMATION_LOG, messageParticipantId);
-        String messageTeamFmeiToDelete = BusinnessTeamFmei.convertToListString(teamFmeiIdToDelete, "2 - FMEI TO DELETE LIST : ");
-        Log.i(Utils.INFORMATION_LOG, messageTeamFmeiToDelete);
-
-        for (int i = 0 ; i < teamFmeiIdToDelete.size() ; i++){
-            mTeamViewModel.deleteTeamFmei(Long.valueOf(teamFmeiIdToDelete.get(i)));
-        }
-
-        for (int i = 0 ; i < packageNewParticipantId.size() ; i++){
-            mTeamViewModel.createTeamFmei(new TeamFmei(Long.valueOf(packageNewFmeiId.get(i)),Long.valueOf(packageNewParticipantId.get(i))));
-        }
+                        teamPanels.get(position).getParticipantList(), teamPanels.get(position).getTeamLeaderId()));
     }
 
     /**
@@ -139,19 +104,9 @@ public class TeamFmeiFragment extends Fragment {
         this.mTeamViewModel.getParticipant(id).observe(this, this::updateAdministrator);
     }
 
-    //GET all fmea
+    //GET all TeamPanels
     private void getAllFmea(){
-        this.mTeamViewModel.getAllFmei().observe(this, this::updateAllFmea);
-    }
-
-    //GET all participant
-    private void getAllParticipant(){
-        this.mTeamViewModel.getAllParticipant().observe(this, this::updateAllParticipant);
-    }
-
-    //GET all team fmea
-    private void getAllTeamFmea(){
-        this.mTeamViewModel.getAllTeamFmei().observe(this, this::updateTeamFmea);
+        this.mTeamViewModel.theFirstTeamLiveData().observe(this, this::updateTeamPanels);
     }
 
     /**
@@ -163,23 +118,9 @@ public class TeamFmeiFragment extends Fragment {
         mCallback.updateTeamFmeiNavHeader(participant);
     }
 
-    //RECORD all fmea into this fragment
-    private void updateAllFmea(List<Fmei> fmeiList){
-        mTeamPanelCreator.setFmeiList(fmeiList);
-        getAllParticipant();
-    }
-
-    //RECORD all participant into this fragment
-    private void updateAllParticipant(List<Participant> participantList){
-        mTeamPanelCreator.setParticipantList(participantList);
-        getAllTeamFmea();
-    }
-
-    //RECORD all team fmea
-    private void updateTeamFmea(List<TeamFmei> teamFmeiList){
-            mTeamPanelCreator.setTeamFmeaList(teamFmeiList);
-            this.configureRecyclerView();
-            this.configureOnClickRecyclerView();
+    private void updateTeamPanels(List<TeamPanel> teamPanels){
+        this.configureRecyclerView(teamPanels);
+        this.configureOnClickRecyclerView(teamPanels);
     }
 
 }

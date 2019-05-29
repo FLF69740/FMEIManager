@@ -1,12 +1,8 @@
 package com.example.fmeimanager.models;
 
-import android.util.Log;
-
 import com.example.fmeimanager.database.Fmei;
 import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.database.TeamFmei;
-import com.example.fmeimanager.utils.Utils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,14 +15,8 @@ public class TeamPanelCreator {
         mTeamPanels = new ArrayList<>();
     }
 
-    //RECORD all fmeis into TeamPanelCreator
-    public void setFmeiList(List<Fmei> fmeiList){
-        if (fmeiList != null){
-            for (int i = 0; i < fmeiList.size(); i++) {
-                mTeamPanels.add(new TeamPanel(fmeiList.get(i).getId(), fmeiList.get(i).getTeamLeader()));
-                Log.i(Utils.INFORMATION_LOG, "new TeamPanel " + mTeamPanels.get(i).getFmeaId());
-            }
-        }
+    public void setTeamPanels(List<TeamPanel> teamPanels) {
+        mTeamPanels = teamPanels;
     }
 
     //RECORD all participants into TeamPanelCreator
@@ -34,32 +24,49 @@ public class TeamPanelCreator {
         mParticipantList = participantList;
     }
 
-    //CREATE list of TeamFmea
-    public void setTeamFmeaList(List<TeamFmei> teamFmeiList){
-        for (int i = 0 ; i < mTeamPanels.size() ; i++){
-            List<Participant> participants = new ArrayList<>();
-            for (int j = 0 ; j < teamFmeiList.size() ; j++){
-
-                if (teamFmeiList.get(j).getFmeiId() == mTeamPanels.get(i).getFmeaId()){
-                    for (int k = 0 ; k < mParticipantList.size() ; k++){
-                        if (mParticipantList.get(k).getId() == teamFmeiList.get(j).getParticipantId()){
-                            participants.add(mParticipantList.get(k));
-                            Log.i(Utils.INFORMATION_LOG, getParticipantAddInformation(mTeamPanels.get(i).getFmeaId(), mParticipantList.get(k)));
-                        }
-                    }
-                }
-            }
-            mTeamPanels.get(i).setParticipantList(participants);
-        }
-    }
-
-    //send complete information when a participant is added into TeamPanel
-    public String getParticipantAddInformation(long teamPanelId, Participant participant){
-        return "TEAM PANEL " + teamPanelId + " add Participant : " + participant.getName();
+    public List<Participant> getParticipantList() {
+        return mParticipantList;
     }
 
     public List<TeamPanel> getTeamPanels(){
         return mTeamPanels;
+    }
+
+    //RECORD all fmeis into TeamPanelCreator
+    public static TeamPanelCreator incubeFmeiIntoTeamPanel(List<TeamPanel> teamPanels, List<Fmei> fmeiList){
+        if (fmeiList != null){
+            for (int i = 0; i < fmeiList.size(); i++) {
+                teamPanels.add(new TeamPanel(fmeiList.get(i).getId(), fmeiList.get(i).getTeamLeader()));
+            }
+        }
+        TeamPanelCreator teamPanelCreator = new TeamPanelCreator();
+        teamPanelCreator.setTeamPanels(teamPanels);
+        return teamPanelCreator;
+    }
+
+    //RECORD all participants into TeamPanelCreator
+    public static TeamPanelCreator incubeParticipantIntoTeamPanel(TeamPanelCreator teamPanelCreator, List<Participant> participantList){
+        teamPanelCreator.setParticipantList(participantList);
+        return teamPanelCreator;
+    }
+
+    //CREATE list of TeamFmea
+    public static List<TeamPanel> incubeTeamFmeiIntoTeamPanel(List<TeamFmei> teamFmeiList, TeamPanelCreator teamPanelCreator){
+        for (int i = 0 ; i < teamPanelCreator.getTeamPanels().size() ; i++){
+            List<Participant> participants = new ArrayList<>();
+            for (int j = 0 ; j < teamFmeiList.size() ; j++){
+
+                if (teamFmeiList.get(j).getFmeiId() == teamPanelCreator.getTeamPanels().get(i).getFmeaId()){
+                    for (int k = 0 ; k < teamPanelCreator.getParticipantList().size() ; k++){
+                        if (teamPanelCreator.getParticipantList().get(k).getId() == teamFmeiList.get(j).getParticipantId()){
+                            participants.add(teamPanelCreator.getParticipantList().get(k));
+                        }
+                    }
+                }
+            }
+            teamPanelCreator.getTeamPanels().get(i).setParticipantList(participants);
+        }
+        return teamPanelCreator.getTeamPanels();
     }
 
 }
