@@ -1,15 +1,9 @@
 package com.example.fmeimanager.viewmodels;
 
-import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.Nullable;
-
-import com.example.fmeimanager.controllers.navigationPackageA.fmeiTheme.BusinessFmeaTheme;
 import com.example.fmeimanager.database.CorrectiveAction;
 import com.example.fmeimanager.database.Fmei;
 import com.example.fmeimanager.database.Participant;
@@ -30,29 +24,18 @@ import java.util.List;
 import java.util.concurrent.Executor;
 
 public class GeneralViewModel extends ViewModel {
-
+/*
     public MediatorLiveData<List<FmeiPanel>> getMediator_fmea(int high, int medium, int low){
-
-        LiveData<List<Fmei>> fmeiListLiveData = mFmeiDataRepository.getAllFmei();
-        LiveData<List<Processus>> processusListLiveData = mProcessusDataRepository.getAllProcessus();
-        LiveData<List<Risk>> riskListLiveData = mRiskDataRepository.getAllRisk();
-        LiveData<List<TeamFmei>> teamFmeaLiveData = mTeamFmeiDataRepository.getAllTeamFmei();
-        LiveData<List<Participant>> participantLiveDate = mParticipantDataRepository.getAllParticipant();
 
         List<FmeiPanel> panels = new ArrayList<>();
 
         final MediatorLiveData<List<FmeiPanel>> customSource = new MediatorLiveData<>();
-        customSource.addSource(fmeiListLiveData, new Observer<List<Fmei>>() {
-            @Override
-            public void onChanged(@Nullable List<Fmei> fmeiList) {
-                if (fmeiList != null) {
-                    for (Fmei fmei : fmeiList) {
-                        panels.add(new FmeiPanel(fmei.getName(), fmei.getId(), fmei.getTeamLeader()));
-                    }
-                }
-                customSource.setValue(panels);
-            }
-        });
+        customSource.addSource(mFmeiDataRepository.getAllFmei(), fmeiList -> customSource.setValue(FmeiPanelCreator.incubeFmeaIntoPanel(panels, fmeiList)));
+        customSource.addSource(mProcessusDataRepository.getAllProcessus(), processusList -> customSource.setValue(FmeiPanelCreator.incubeProcessusIntoPanel(panels, processusList)));
+        customSource.addSource(mRiskDataRepository.getAllRisk(), risks -> customSource.setValue(FmeiPanelCreator.incubeRiskIntoPanel(panels, risks, high, medium, low)));
+        customSource.addSource(mTeamFmeiDataRepository.getAllTeamFmei(), teamFmeiList -> customSource.setValue(FmeiPanelCreator.incubeTeamFmeaIntoPanel(panels, teamFmeiList)));
+        customSource.addSource(mParticipantDataRepository.getAllParticipant(), participants -> customSource.setValue(FmeiPanelCreator.incubeParticipantIntoPanel(panels, participants)));
+
 
         customSource.addSource(processusListLiveData, new Observer<List<Processus>>() {
             @Override
@@ -100,6 +83,7 @@ public class GeneralViewModel extends ViewModel {
             }
         });
 
+
         customSource.addSource(teamFmeaLiveData, new Observer<List<TeamFmei>>() {
             @Override
             public void onChanged(@Nullable List<TeamFmei> teams) {
@@ -136,7 +120,7 @@ public class GeneralViewModel extends ViewModel {
 
         return customSource;
     }
-
+*/
     //REPOSITORIES
     private final CorrectiveActionDataRepository mCorrectiveActionDataRepository;
     private final FmeiDataRepository mFmeiDataRepository;
@@ -167,6 +151,24 @@ public class GeneralViewModel extends ViewModel {
         }
         administrator = mParticipantDataRepository.getParticipant(administratorId);
     }
+
+    /**
+     *  FMEA PANELS
+     */
+
+    public MediatorLiveData<List<FmeiPanel>> getMediator_fmea(int high, int medium, int low){
+        List<FmeiPanel> panels = new ArrayList<>();
+        final MediatorLiveData<List<FmeiPanel>> customSource = new MediatorLiveData<>();
+        customSource.addSource(mFmeiDataRepository.getAllFmei(), fmeiList -> customSource.setValue(FmeiPanelCreator.incubeFmeaIntoPanel(panels, fmeiList)));
+        customSource.addSource(mProcessusDataRepository.getAllProcessus(), processusList -> customSource.setValue(FmeiPanelCreator.incubeProcessusIntoPanel(panels, processusList)));
+        customSource.addSource(mRiskDataRepository.getAllRisk(), risks -> customSource.setValue(FmeiPanelCreator.incubeRiskIntoPanel(panels, risks, high, medium, low)));
+        customSource.addSource(mTeamFmeiDataRepository.getAllTeamFmei(), teamFmeiList -> customSource.setValue(FmeiPanelCreator.incubeTeamFmeaIntoPanel(panels, teamFmeiList)));
+        customSource.addSource(mParticipantDataRepository.getAllParticipant(), participants -> customSource.setValue(FmeiPanelCreator.incubeParticipantIntoPanel(panels, participants)));
+        return customSource;
+    }
+
+
+
 
     /**
      *  CORRECTIVE ACTION

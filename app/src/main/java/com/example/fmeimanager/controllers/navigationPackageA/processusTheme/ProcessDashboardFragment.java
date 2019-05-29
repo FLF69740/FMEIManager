@@ -52,7 +52,6 @@ public class ProcessDashboardFragment extends Fragment {
     private long mAdministratorId;
     private long mFmeiId;
     private ProcessusPanelCreator mProcessusPanelCreator;
-    private ProcessListAdapter mAdapter;
 
     @BindView(R.id.fragment_process_recycler_view) RecyclerView mRecyclerView;
     @BindView(R.id.process_fmei_indicator_number) TextView mFmeiIndicator;
@@ -72,7 +71,7 @@ public class ProcessDashboardFragment extends Fragment {
         mAdministratorId = getActivity().getSharedPreferences(SHARED_MAIN_PROFILE_ID, MODE_PRIVATE).getLong(BUNDLE_KEY_ACTIVE_USER, DEFAULT_USER_ID);
         mFmeiId = getArguments().getLong(BUNDLE_FMEI_ID);
         mProcessusPanelCreator = new ProcessusPanelCreator();
-        this.configureRecyclerView();
+        updateFragmentScreen(mFmeiId);
         this.configureOnClickRecyclerView();
         this.configureViewModel();
         this.getProcessusAboutFMEI(mFmeiId);
@@ -84,20 +83,14 @@ public class ProcessDashboardFragment extends Fragment {
      */
 
     private void updateFragmentScreen(long fmeiId){
-        String string = "FMEA " + fmeiId;
+        String string = getString(R.string.profile_section_fmea) + " " + fmeiId;
         mFmeiIndicator.setText(string);
     }
 
-    //configure recyclerView
-    private void configureRecyclerView(){
-        this.mAdapter = new ProcessListAdapter(this.mProcessusPanelCreator.getProcessusPanels());
-        this.mRecyclerView.setAdapter(mAdapter);
-        this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }
-
     private void updateRecycler(List<ProcessusPanel> processusPanelList){
-        mAdapter.setProcessusList(processusPanelList);
-        mAdapter.notifyDataSetChanged();
+        ProcessListAdapter adapter = new ProcessListAdapter(processusPanelList);
+        this.mRecyclerView.setAdapter(adapter);
+        this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     //itemView click from RecyclerView
@@ -144,17 +137,7 @@ public class ProcessDashboardFragment extends Fragment {
         this.mProcessusViewModel.init(1);
     }
 
-    //GET all processus for FMEI Id
-    private void getProcessusAboutFMEI(long fmeiId){ this.mProcessusViewModel.getProcessussListForFmei(fmeiId).observe(this, this::updateProcessusList); }
-
-    //GET all risk
-    private void getAllRisk(){ this.mProcessusViewModel.getAllRisk().observe(this, this::updateRiskList); }
-
-    //GET all corrective action
-    private void getAllCorrectiveActions(){ this.mProcessusViewModel.getAllCorrectiveAction().observe(this, this::updateCorrectiveActionList); }
-
-    //GET all Participant
-    private void getAllParticipant(){ this.mProcessusViewModel.getAllParticipant().observe(this, this::updateParticipantList); }
+    private void getProcessusAboutFMEI(long fmeiId){ this.mProcessusViewModel.theFirstLiveData(fmeiId).observe(this, this::updateTheRisk); }
 
     //LAUNCH PROCESSUS BUILDER
     public void createProcessus(){
@@ -190,31 +173,9 @@ public class ProcessDashboardFragment extends Fragment {
      *  CLASS DEFINITION
      */
 
-    //RECORD all processus about the FMEI Id
-    private void updateProcessusList(List<Processus> processuses){
-        updateFragmentScreen(mFmeiId);
-        mProcessusPanelCreator.clear();
-        mProcessusPanelCreator.updateProcessusList(processuses);
-        getAllRisk();
-    }
-
-    //RECORD all risk INTO PANEL
-    private void updateRiskList(List<Risk> risks){
-        mProcessusPanelCreator.clear();
-        mProcessusPanelCreator.updateRiskList(risks);
-        getAllCorrectiveActions();
-    }
-
-    //RECORD all corrective action INTO PANEL
-    private void updateCorrectiveActionList(List<CorrectiveAction> correctiveActions){
-        mProcessusPanelCreator.updateCorrectiveActionList(correctiveActions);
-        getAllParticipant();
-    }
-
-    //RECORD participant INTO PANEL
-    private void updateParticipantList(List<Participant> participants){
-        mProcessusPanelCreator.updateParticipantList(participants);
-        this.updateRecycler(mProcessusPanelCreator.getProcessusPanels());
+    private void updateTheRisk(List<ProcessusPanel> panels){
+        mProcessusPanelCreator.setProcessusPanels(panels);
+        this.updateRecycler(panels);
     }
 
     /**

@@ -59,7 +59,6 @@ public class FmeiDashboardFragment extends Fragment {
     private GeneralViewModel mGeneralViewModel;
     private long mAdministratorId;
     private FmeiPanelCreator mFmeiPanelCreator;
-    private FmeiListAdapter mAdapter;
 
     @BindView(R.id.fragment_fmei_recycler_view) RecyclerView mRecyclerView;
 
@@ -84,8 +83,8 @@ public class FmeiDashboardFragment extends Fragment {
 
     //update recyclerView after other thread finalisation
     private void updateRecycler(List<FmeiPanel> fmeiPanelList){
-        this.mAdapter = new FmeiListAdapter(fmeiPanelList);
-        this.mRecyclerView.setAdapter(mAdapter);
+        FmeiListAdapter adapter = new FmeiListAdapter(fmeiPanelList);
+        this.mRecyclerView.setAdapter(adapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_fall_down);
         this.mRecyclerView.setLayoutAnimation(controller);
@@ -148,12 +147,11 @@ public class FmeiDashboardFragment extends Fragment {
         Fmei fmei = new Fmei(getContext().getString(R.string.profile_section_fmea) + " " + String.valueOf(mFmeiPanelCreator.getFmeiListSize() + 1), mAdministratorId);
         TeamFmei teamFmei = new TeamFmei((mFmeiPanelCreator.getFmeiListSize() + 1), mAdministratorId);
         this.mGeneralViewModel.createFmei(fmei, teamFmei);
-     //   this.mGeneralViewModel.createTeamFmei(new TeamFmei((mFmeiPanelCreator.getFmeiListSize() + 1), mAdministratorId));
         Snackbar.make(mView, getContext().getString(R.string.Fmei_dashboard_snacbar_create) + fmei.getName(), Snackbar.LENGTH_SHORT).show();
     }
 
     /**
-     *  CLASS DEFINITION
+     *  UI
      */
 
     //SHOW user hardware

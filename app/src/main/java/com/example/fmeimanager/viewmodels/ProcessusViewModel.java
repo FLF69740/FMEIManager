@@ -1,18 +1,21 @@
 package com.example.fmeimanager.viewmodels;
 
+import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.Nullable;
-
 import com.example.fmeimanager.database.CorrectiveAction;
 import com.example.fmeimanager.database.Participant;
 import com.example.fmeimanager.database.Processus;
 import com.example.fmeimanager.database.Risk;
+import com.example.fmeimanager.models.ProcessusPanel;
+import com.example.fmeimanager.models.ProcessusPanelCreator;
 import com.example.fmeimanager.repositories.CorrectiveActionDataRepository;
 import com.example.fmeimanager.repositories.ParticipantDataRepository;
 import com.example.fmeimanager.repositories.ProcessusDataRepository;
 import com.example.fmeimanager.repositories.RiskDataRepository;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -49,39 +52,15 @@ public class ProcessusViewModel extends ViewModel {
      *  CORRECTIVE ACTION
      */
 
-    public LiveData<List<CorrectiveAction>> getAllCorrectiveAction() {return mCorrectiveActionDataRepository.getAllCorrectiveAction();}
     public LiveData<CorrectiveAction> getCorrectiveAction(long id) {return mCorrectiveActionDataRepository.getCorrectiveAction(id);}
-
-    public LiveData<List<CorrectiveAction>> getCorrectiveActionsListForParticipant(long participantId) {
-        return mCorrectiveActionDataRepository.getCorrectiveActionsListForParticipant(participantId);
-    }
-
-    public LiveData<CorrectiveAction> getCorrectiveActionsListForRisk(long riskId) {
-        return mCorrectiveActionDataRepository.getCorrectiveActionsListForRisk(riskId);
-    }
-
-    public void createCorrectiveAction(CorrectiveAction correctiveAction){
-        mExecutor.execute(()->mCorrectiveActionDataRepository.createCorrectiveAction(correctiveAction));
-    }
-
-    public void updateCorrectiveAction(CorrectiveAction correctiveAction){
-        mExecutor.execute(()->mCorrectiveActionDataRepository.updateCorrectiveAction(correctiveAction));
-    }
-
-    public void deleteCorrectiveAction(long correctiveActionId){
-        mExecutor.execute(()->mCorrectiveActionDataRepository.deleteCorrectiveAction(correctiveActionId));
-    }
 
     /**
      *  PARTICIPANT
      */
 
     public LiveData<List<Participant>> getAllParticipant() {return mParticipantDataRepository.getAllParticipant();}
-    public LiveData<Participant> getParticipant(long id) {return mParticipantDataRepository.getParticipant(id);}
 
-    public void createParticipant(Participant Participant){
-        mExecutor.execute(()->mParticipantDataRepository.createParticipant(Participant));
-    }
+    public LiveData<Participant> getParticipant(long id) {return mParticipantDataRepository.getParticipant(id);}
 
     public void updateParticipant(Participant Participant){
         mExecutor.execute(()->mParticipantDataRepository.updateParticipant(Participant));
@@ -90,9 +69,6 @@ public class ProcessusViewModel extends ViewModel {
     /**
      *  PROCESSUS
      */
-
-    public LiveData<List<Processus>> getAllProcessus() {return mProcessusDataRepository.getAllProcessus();}
-    public LiveData<Processus> getProcessus(long id) {return mProcessusDataRepository.getProcessus(id);}
 
     public LiveData<List<Processus>> getProcessussListForFmei(long fmeiId) {
         return mProcessusDataRepository.getProcessussListForFmei(fmeiId);
@@ -106,34 +82,45 @@ public class ProcessusViewModel extends ViewModel {
         mExecutor.execute(()->mProcessusDataRepository.updateProcessus(Processus));
     }
 
-    public void deleteProcessus(long ProcessusId){
-        mExecutor.execute(()->mProcessusDataRepository.deleteProcessus(ProcessusId));
-    }
-
     /**
      *  RISK
      */
 
-    public LiveData<List<Risk>> getAllRisk() {return mRiskDataRepository.getAllRisk();}
     public LiveData<Risk> getRisk(long id) {return mRiskDataRepository.getRisk(id);}
-
-    public LiveData<List<Risk>> getRisksListForParticipant(long participantId) {
-        return mRiskDataRepository.getRisksListForParticipant(participantId);
-    }
-
-    public LiveData<List<Risk>> getRisksListForProcessus(long processusId) {
-        return mRiskDataRepository.getRisksListForProcessus(processusId);
-    }
 
     public void createRisk(Risk Risk){
         mExecutor.execute(()->mRiskDataRepository.createRisk(Risk));
     }
 
-    public void updateRisk(Risk Risk){
-        mExecutor.execute(()->mRiskDataRepository.updateRisk(Risk));
+    /**
+     *  PROCESSUS PANELS
+     */
+
+    //GET list of processus
+    public LiveData<List<ProcessusPanel>> theFirstLiveData(long id) {
+        return Transformations.switchMap(mProcessusDataRepository.getProcessussListForFmei(id), input ->
+                theSecondPanelLiveData(ProcessusPanelCreator.createCreator(input, new ProcessusPanelCreator())));
     }
 
-    public void deleteRisk(long RiskId){
-        mExecutor.execute(()->mRiskDataRepository.deleteRisk(RiskId));
+    //GET risk of designed processus
+    private LiveData<List<ProcessusPanel>> theSecondPanelLiveData(ProcessusPanelCreator creator) {
+        return Transformations.switchMap(mRiskDataRepository.getAllRisk(), new Function<List<Risk>, LiveData<List<ProcessusPanel>>>() {
+            @Override
+            public LiveData<List<ProcessusPanel>> apply(List<Risk> input) {
+                List<ProcessusPanel> processusPanels = new ArrayList<>();
+                return theThirdPanelLiveData(ProcessusPanelCreator.incubeRiskIntoPanel(processusPanels, creator.getProcessusList(), input));
+            }
+        });
+    }
+
+    //GET corrective action for each risk
+    private LiveData<List<ProcessusPanel>> theThirdPanelLiveData(List<ProcessusPanel> processusPanels){
+        return Transformations.switchMap(mCorrectiveActionDataRepository.getAllCorrectiveAction(), input ->
+                getMediator_panel(ProcessusPanelCreator.incubeCorrectiveIntoPanel(processusPanels, input)));
+    }
+
+    //GET manager for each risk
+    private LiveData<List<ProcessusPanel>> getMediator_panel(List<ProcessusPanel> processusPanels){
+        return Transformations.map(mParticipantDataRepository.getAllParticipant(), input -> ProcessusPanelCreator.incubeParticipantIntoPanel(processusPanels, input));
     }
 }
