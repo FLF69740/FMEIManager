@@ -33,23 +33,14 @@ public class CorrectiveAction implements Parcelable {
     @ColumnInfo (name = "corrective_riskId") private long mRiskId;
     @ColumnInfo (name = "corrective_participantId") private long mParticipantId;
 
-    public CorrectiveAction() {}
-
-    public CorrectiveAction(String correctiveAction, String creationDate, String parts, String identification, String deadLineDate, long riskId, long participantId) {
-        mCorrectiveAction = correctiveAction;
-        mCreationDate = creationDate;
-        mParts = parts;
-        mIdentification = identification;
+    public CorrectiveAction() {
         mCorrectiveDescription = Utils.EMPTY;
-        mDeadLineDate = deadLineDate;
         mRealisationDate = Utils.EMPTY;
         mUrlPictures = Utils.EMPTY;
         mNewGravity = 10;
         mNewFrequencies = 10;
         mNewDetectability = 10;
         mApprobationTL = false;
-        mRiskId = riskId;
-        mParticipantId = participantId;
     }
 
     // GETTER

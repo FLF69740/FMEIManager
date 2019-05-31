@@ -19,11 +19,7 @@ public class Participant implements Parcelable {
     private String mTel;
     private boolean mActivated;
 
-    public Participant() {}
-
-    public Participant(String name, String forname) {
-        mName = name;
-        mForname = forname;
+    public Participant() {
         mFunction = Utils.EMPTY;
         mMail = Utils.EMPTY;
         mTel = Utils.EMPTY;

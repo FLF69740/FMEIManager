@@ -165,7 +165,13 @@ public class ProcessDashboardFragment extends Fragment {
 
     private void CreateRiskFinalisation(long processusId){
         DateTime dt = new DateTime();
-        Risk risk = new Risk(dt.toString("dd/MM/yyyy"), Utils.EMPTY, Utils.EMPTY, Utils.EMPTY, processusId, mAdministratorId);
+        Risk risk = new Risk();
+        risk.setCreationDate(dt.toString("dd/MM/yyyy"));
+        risk.setParts(Utils.EMPTY);
+        risk.setIdentification(Utils.EMPTY);
+        risk.setRisk(Utils.EMPTY);
+        risk.setProcessusId(processusId);
+        risk.setParticipantId(mAdministratorId);
         this.mProcessusViewModel.createRisk(risk);
     }
 

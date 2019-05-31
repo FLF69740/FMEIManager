@@ -48,8 +48,19 @@ public class RiskAndCorrectiveActionDaoTest {
     private static final long ID_5 = 5;
 
     //FMEI
-    private static Fmei FMEI_DEMO_1(){return new Fmei(FMEI_1_NAME, 1);}
-    private static Fmei FMEI_DEMO_2(){return new Fmei(FMEI_2_NAME, 1);}
+    private static Fmei FMEI_DEMO_1(){
+        Fmei fmei = new Fmei();
+        fmei.setName(FMEI_1_NAME);
+        fmei.setTeamLeader(1);
+        return fmei;
+    }
+
+    private static Fmei FMEI_DEMO_2(){
+        Fmei fmei = new Fmei();
+        fmei.setName(FMEI_2_NAME);
+        fmei.setTeamLeader(1);
+        return fmei;
+    }
 
     //PROCESSUS
     private static Processus PROCESSUS_DEMO_1(){return new Processus("processus_step_1", ID_1, 1);}
@@ -59,34 +70,150 @@ public class RiskAndCorrectiveActionDaoTest {
     private static Processus PROCESSUS_DEMO_5(){return new Processus("processus_step_5", ID_1, 3);}
 
     //RISK
-    private static Risk RISK_DEMO_1(){return new Risk("12/02/2019", "Parts_One", "100145XD", "risk_one", ID_1, ID_1);}
-    private static Risk RISK_DEMO_2(){return new Risk("10/02/2019", "Parts_One", "100145XD", "risk_two", ID_2, ID_2);}
-    private static Risk RISK_DEMO_3(){return new Risk("15/02/2019", "Parts_Two", "178145IO", "risk_three", ID_3, ID_4);}
-    private static Risk RISK_DEMO_4(){return new Risk("17/02/2019", "Parts_Two", "178145IO", "risk_four", ID_5, ID_4);}
-    private static Risk RISK_DEMO_5(){return new Risk("18/02/2019", "Parts_Two", "178145IO", "risk_five", ID_5, ID_4);}
+    private static Risk RISK_DEMO_1(){
+        Risk risk = new Risk();
+        risk.setCreationDate("12/02/2019");
+        risk.setParts("Parts_One");
+        risk.setIdentification("100145XD");
+        risk.setRisk("risk_one");
+        risk.setProcessusId(ID_1);
+        risk.setParticipantId(ID_1);
+        return risk;
+    }
+
+    private static Risk RISK_DEMO_2(){
+        Risk risk = new Risk();
+        risk.setCreationDate("10/02/2019");
+        risk.setParts("Parts_One");
+        risk.setIdentification("100145XD");
+        risk.setRisk("risk_two");
+        risk.setProcessusId(ID_2);
+        risk.setParticipantId(ID_2);
+        return risk;
+    }
+
+    private static Risk RISK_DEMO_3(){
+        Risk risk = new Risk();
+        risk.setCreationDate("15/02/2019");
+        risk.setParts("Parts_Two");
+        risk.setIdentification("178145IO");
+        risk.setRisk("risk_three");
+        risk.setProcessusId(ID_3);
+        risk.setParticipantId(ID_4);
+        return risk;
+    }
+
+    private static Risk RISK_DEMO_4(){
+        Risk risk = new Risk();
+        risk.setCreationDate("17/02/2019");
+        risk.setParts("Parts_Two");
+        risk.setIdentification("178145IO");
+        risk.setRisk("risk_four");
+        risk.setProcessusId(ID_5);
+        risk.setParticipantId(ID_4);
+        return risk;
+    }
+
+    private static Risk RISK_DEMO_5(){
+        Risk risk = new Risk();
+        risk.setCreationDate("18/02/2019");
+        risk.setParts("Parts_Two");
+        risk.setIdentification("178145IO");
+        risk.setRisk("risk_five");
+        risk.setProcessusId(ID_5);
+        risk.setParticipantId(ID_4);
+        return risk;
+    }
 
     //CORRECTIVE ACTION
     private static CorrectiveAction CORRECTIVE_DEMO_1(){
-        return new CorrectiveAction("Corrective_action_title_1", "21/02/2019", "Parts_One", "100145XD", "01/03/2019", ID_1, ID_3);
+        CorrectiveAction correctiveAction = new CorrectiveAction();
+        correctiveAction.setCorrectiveAction("Corrective_action_title_1");
+        correctiveAction.setCreationDate("21/02/2019");
+        correctiveAction.setParts("Parts_One");
+        correctiveAction.setIdentification("100145XD");
+        correctiveAction.setDeadLineDate("01/03/2019");
+        correctiveAction.setRiskId(ID_1);
+        correctiveAction.setParticipantId(ID_3);
+        return correctiveAction;
     }
+
     private static CorrectiveAction CORRECTIVE_DEMO_2(){
-        return new CorrectiveAction("Corrective_action_title_2", "20/02/2019", "Parts_One", "100145XD", "08/03/2019", ID_2, ID_3);
+        CorrectiveAction correctiveAction = new CorrectiveAction();
+        correctiveAction.setCorrectiveAction("Corrective_action_title_2");
+        correctiveAction.setCreationDate("20/02/2019");
+        correctiveAction.setParts("Parts_One");
+        correctiveAction.setIdentification("100145XD");
+        correctiveAction.setDeadLineDate("08/03/2019");
+        correctiveAction.setRiskId(ID_2);
+        correctiveAction.setParticipantId(ID_3);
+        return correctiveAction;
     }
+
     private static CorrectiveAction CORRECTIVE_DEMO_3(){
-        return new CorrectiveAction("Corrective_action_title_3", "16/02/2019", "Parts_Two", "178145IO", "02/04/2019", ID_3, ID_2);
+        CorrectiveAction correctiveAction = new CorrectiveAction();
+        correctiveAction.setCorrectiveAction("Corrective_action_title_3");
+        correctiveAction.setCreationDate("16/02/2019");
+        correctiveAction.setParts("Parts_Two");
+        correctiveAction.setIdentification("178145IO");
+        correctiveAction.setDeadLineDate("02/04/2019");
+        correctiveAction.setRiskId(ID_3);
+        correctiveAction.setParticipantId(ID_2);
+        return correctiveAction;
     }
+
     private static CorrectiveAction CORRECTIVE_DEMO_4(){
-        return new CorrectiveAction("Corrective_action_title_4", "19/02/2019", "Parts_Two", "178145IO", "07/03/2019", ID_4, ID_3);
+        CorrectiveAction correctiveAction = new CorrectiveAction();
+        correctiveAction.setCorrectiveAction("Corrective_action_title_4");
+        correctiveAction.setCreationDate("19/02/2019");
+        correctiveAction.setParts("Parts_Two");
+        correctiveAction.setIdentification("178145IO");
+        correctiveAction.setDeadLineDate("07/03/2019");
+        correctiveAction.setRiskId(ID_4);
+        correctiveAction.setParticipantId(ID_3);
+        return correctiveAction;
     }
+
     private static CorrectiveAction CORRECTIVE_DEMO_5(){
-        return new CorrectiveAction("Corrective_action_title_5", "21/02/2019", "Parts_Two", "178145IO", "21/03/2019", ID_5, ID_3);
+        CorrectiveAction correctiveAction = new CorrectiveAction();
+        correctiveAction.setCorrectiveAction("Corrective_action_title_5");
+        correctiveAction.setCreationDate("21/02/2019");
+        correctiveAction.setParts("Parts_Two");
+        correctiveAction.setIdentification("178145IO");
+        correctiveAction.setDeadLineDate("21/03/2019");
+        correctiveAction.setRiskId(ID_5);
+        correctiveAction.setParticipantId(ID_3);
+        return correctiveAction;
     }
 
     //PARTICIPANT
-    private static Participant PARTICIPANT_DEMO_1(){return new Participant(PARTICIPANT_1_NAME, PARTICIPANT_1_FORNAME);}
-    private static Participant PARTICIPANT_DEMO_2(){return new Participant(PARTICIPANT_2_NAME, PARTICIPANT_2_FORNAME);}
-    private static Participant PARTICIPANT_DEMO_3(){return new Participant(PARTICIPANT_3_NAME, PARTICIPANT_3_FORNAME);}
-    private static Participant PARTICIPANT_DEMO_4(){return new Participant(PARTICIPANT_4_NAME, PARTICIPANT_4_FORNAME);}
+    private static Participant PARTICIPANT_DEMO_1(){
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_1_NAME);
+        participant.setForname(PARTICIPANT_1_FORNAME);
+        return participant;
+    }
+
+    private static Participant PARTICIPANT_DEMO_2(){
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_2_NAME);
+        participant.setForname(PARTICIPANT_2_FORNAME);
+        return participant;
+    }
+
+    private static Participant PARTICIPANT_DEMO_3(){
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_3_NAME);
+        participant.setForname(PARTICIPANT_3_FORNAME);
+        return participant;
+    }
+
+    private static Participant PARTICIPANT_DEMO_4(){
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_4_NAME);
+        participant.setForname(PARTICIPANT_4_FORNAME);
+        return participant;
+    }
 
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();

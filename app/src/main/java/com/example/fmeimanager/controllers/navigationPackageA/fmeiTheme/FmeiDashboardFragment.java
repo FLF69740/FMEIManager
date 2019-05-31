@@ -144,7 +144,9 @@ public class FmeiDashboardFragment extends Fragment {
 
     //CREATE FMEI
     public void createFmea(){
-        Fmei fmei = new Fmei(getContext().getString(R.string.profile_section_fmea) + " " + String.valueOf(mFmeiPanelCreator.getFmeiListSize() + 1), mAdministratorId);
+        Fmei fmei = new Fmei();
+        fmei.setName(requireContext().getString(R.string.profile_section_fmea) + " " + (mFmeiPanelCreator.getFmeiListSize() + 1));
+        fmei.setTeamLeader(mAdministratorId);
         TeamFmei teamFmei = new TeamFmei((mFmeiPanelCreator.getFmeiListSize() + 1), mAdministratorId);
         this.mGeneralViewModel.createFmei(fmei, teamFmei);
         Snackbar.make(mView, getContext().getString(R.string.Fmei_dashboard_snacbar_create) + fmei.getName(), Snackbar.LENGTH_SHORT).show();

@@ -344,7 +344,9 @@ public class RiskFileDescriptionFragment extends Fragment {
             String newName = data.getStringExtra(RiskManagerChoiceActivity.BUNDLE_NEW_MANAGER_NAME);
             String newCompleteName = newForname + " " + newName;
             mManager.setText(newCompleteName);
-            Participant participant = new Participant(newName, newForname);
+            Participant participant = new Participant();
+            participant.setName(newName);
+            participant.setForname(newForname);
             participant.setId(newId);
             this.updateParticipant(participant);
         }

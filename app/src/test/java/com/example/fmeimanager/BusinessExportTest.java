@@ -81,35 +81,45 @@ public class BusinessExportTest {
     //*****     PARTICIPANT     *****
 
     private static Participant getParticipant_one(){
-        Participant participant = new Participant(PARTICIPANT_NAME_1, PARTICIPANT_FORNAME_1);
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_NAME_1);
+        participant.setForname(PARTICIPANT_FORNAME_1);
         participant.setId(1);
         participant.setFunction(PARTICIPANT_JOB_1);
         return participant;
     }
 
     private static Participant getParticipant_two(){
-        Participant participant = new Participant(PARTICIPANT_NAME_2, PARTICIPANT_FORNAME_2);
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_NAME_2);
+        participant.setForname(PARTICIPANT_FORNAME_2);
         participant.setId(2);
         participant.setFunction(PARTICIPANT_JOB_2);
         return participant;
     }
 
     private static Participant getParticipant_three(){
-        Participant participant = new Participant(PARTICIPANT_NAME_3, PARTICIPANT_FORNAME_3);
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_NAME_3);
+        participant.setForname(PARTICIPANT_FORNAME_3);
         participant.setId(3);
         participant.setFunction(PARTICIPANT_JOB_3);
         return participant;
     }
 
     private static Participant getParticipant_four(){
-        Participant participant = new Participant(PARTICIPANT_NAME_4, PARTICIPANT_FORNAME_4);
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_NAME_4);
+        participant.setForname(PARTICIPANT_FORNAME_4);
         participant.setId(4);
         participant.setFunction(PARTICIPANT_JOB_4);
         return participant;
     }
 
     private static Participant getParticipant_five(){
-        Participant participant = new Participant(PARTICIPANT_NAME_5, PARTICIPANT_FORNAME_5);
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_NAME_5);
+        participant.setForname(PARTICIPANT_FORNAME_5);
         participant.setId(5);
         participant.setFunction(PARTICIPANT_JOB_5);
         return participant;
@@ -128,13 +138,17 @@ public class BusinessExportTest {
     //*****     FMEA     *****
 
     private static Fmei getFmea_one(){
-        Fmei fmei = new Fmei(FMEA_NAME_1, getParticipant_one().getId());
+        Fmei fmei = new Fmei();
         fmei.setId(1);
+        fmei.setName(FMEA_NAME_1);
+        fmei.setTeamLeader(getParticipant_one().getId());
         return fmei;
     }
 
     private static Fmei getFmea_two(){
-        Fmei fmei = new Fmei(FMEA_NAME_2, getParticipant_one().getId());
+        Fmei fmei = new Fmei();
+        fmei.setName(FMEA_NAME_2);
+        fmei.setTeamLeader(getParticipant_one().getId());
         fmei.setId(2);
         return fmei;
     }
@@ -245,7 +259,13 @@ public class BusinessExportTest {
     //*****     RISK & CORRECTIVES ACTIONS    *****
 
     private static Risk getRisk_one(){
-        Risk risk = new Risk(DATE_1,PART_1,IDENTIFICATION_1,RISK_NAME_1,getProcessus_one().getId(), getParticipant_one().getId());
+        Risk risk = new Risk();
+        risk.setCreationDate(DATE_1);
+        risk.setParts(PART_1);
+        risk.setIdentification(IDENTIFICATION_1);
+        risk.setRisk(RISK_NAME_1);
+        risk.setProcessusId(getProcessus_one().getId());
+        risk.setParticipantId(getParticipant_one().getId());
         risk.setId(1);
         risk.setGravity(9);
         risk.setDetectability(9);
@@ -254,7 +274,13 @@ public class BusinessExportTest {
     }
 
     private static Risk getRisk_two(){
-        Risk risk = new Risk(DATE_1,PART_1,IDENTIFICATION_1,RISK_NAME_2,getProcessus_two().getId(), getParticipant_one().getId());
+        Risk risk = new Risk();
+        risk.setCreationDate(DATE_1);
+        risk.setParts(PART_1);
+        risk.setIdentification(IDENTIFICATION_1);
+        risk.setRisk(RISK_NAME_2);
+        risk.setProcessusId(getProcessus_two().getId());
+        risk.setParticipantId(getParticipant_one().getId());
         risk.setGravity(8);
         risk.setDetectability(8);
         risk.setFrequencies(8);
@@ -263,7 +289,13 @@ public class BusinessExportTest {
     }
 
     private static Risk getRisk_three(){
-        Risk risk = new Risk(DATE_1,PART_1,IDENTIFICATION_1,RISK_NAME_3,getProcessus_three().getId(), getParticipant_one().getId());
+        Risk risk = new Risk();
+        risk.setCreationDate(DATE_1);
+        risk.setParts(PART_1);
+        risk.setIdentification(IDENTIFICATION_1);
+        risk.setRisk(RISK_NAME_3);
+        risk.setProcessusId(getProcessus_three().getId());
+        risk.setParticipantId(getParticipant_one().getId());
         risk.setId(3);
         risk.setGravity(7);
         risk.setDetectability(7);
@@ -272,7 +304,13 @@ public class BusinessExportTest {
     }
 
     private static Risk getRisk_four(){
-        Risk risk = new Risk(DATE_1,PART_1,IDENTIFICATION_1,RISK_NAME_4,getProcessus_three().getId(), getParticipant_one().getId());
+        Risk risk = new Risk();
+        risk.setCreationDate(DATE_1);
+        risk.setParts(PART_1);
+        risk.setIdentification(IDENTIFICATION_1);
+        risk.setRisk(RISK_NAME_4);
+        risk.setProcessusId(getProcessus_three().getId());
+        risk.setParticipantId(getParticipant_one().getId());
         risk.setId(4);
         risk.setGravity(1);
         risk.setDetectability(1);
@@ -281,7 +319,13 @@ public class BusinessExportTest {
     }
 
     private static Risk getRisk_five(){
-        Risk risk = new Risk(DATE_1,PART_1,IDENTIFICATION_1,RISK_NAME_5,getProcessus_four().getId(), getParticipant_one().getId());
+        Risk risk = new Risk();
+        risk.setCreationDate(DATE_1);
+        risk.setParts(PART_1);
+        risk.setIdentification(IDENTIFICATION_1);
+        risk.setRisk(RISK_NAME_5);
+        risk.setProcessusId(getProcessus_four().getId());
+        risk.setParticipantId(getParticipant_one().getId());
         risk.setId(5);
         risk.setGravity(6);
         risk.setDetectability(6);
@@ -290,7 +334,13 @@ public class BusinessExportTest {
     }
 
     private static Risk getRisk_six(){
-        Risk risk = new Risk(DATE_1,PART_1,IDENTIFICATION_1,RISK_NAME_6,getProcessus_one().getId(), getParticipant_one().getId());
+        Risk risk = new Risk();
+        risk.setCreationDate(DATE_1);
+        risk.setParts(PART_1);
+        risk.setIdentification(IDENTIFICATION_1);
+        risk.setRisk(RISK_NAME_6);
+        risk.setProcessusId(getProcessus_one().getId());
+        risk.setParticipantId(getParticipant_one().getId());
         risk.setId(6);
         risk.setGravity(1);
         risk.setDetectability(1);
@@ -299,7 +349,13 @@ public class BusinessExportTest {
     }
 
     private static Risk getRisk_seven(){
-        Risk risk = new Risk(DATE_2,PART_2,IDENTIFICATION_2,RISK_NAME_7,getProcessus_six().getId(), getParticipant_two().getId());
+        Risk risk = new Risk();
+        risk.setCreationDate(DATE_2);
+        risk.setParts(PART_2);
+        risk.setIdentification(IDENTIFICATION_2);
+        risk.setRisk(RISK_NAME_7);
+        risk.setProcessusId(getProcessus_six().getId());
+        risk.setParticipantId(getParticipant_two().getId());
         risk.setId(7);
         risk.setGravity(9);
         risk.setDetectability(9);
@@ -308,7 +364,13 @@ public class BusinessExportTest {
     }
 
     private static Risk getRisk_height(){
-        Risk risk = new Risk(DATE_2,PART_2,IDENTIFICATION_2,RISK_NAME_8,getProcessus_six().getId(), getParticipant_three().getId());
+        Risk risk = new Risk();
+        risk.setCreationDate(DATE_2);
+        risk.setParts(PART_2);
+        risk.setIdentification(IDENTIFICATION_2);
+        risk.setRisk(RISK_NAME_8);
+        risk.setProcessusId(getProcessus_six().getId());
+        risk.setParticipantId(getParticipant_three().getId());
         risk.setId(8);
         risk.setGravity(1);
         risk.setDetectability(1);
@@ -330,7 +392,14 @@ public class BusinessExportTest {
     }
 
     private static CorrectiveAction getCorrective_one(){
-        CorrectiveAction correctiveAction = new CorrectiveAction(CORRECTIVE_1, DATE_3, PART_1, IDENTIFICATION_1, DATE_3, getRisk_one().getId(), getParticipant_two().getId());
+        CorrectiveAction correctiveAction = new CorrectiveAction();
+        correctiveAction.setCorrectiveAction(CORRECTIVE_1);
+        correctiveAction.setCreationDate(DATE_3);
+        correctiveAction.setParts(PART_1);
+        correctiveAction.setIdentification(IDENTIFICATION_1);
+        correctiveAction.setDeadLineDate(DATE_3);
+        correctiveAction.setRiskId(getRisk_one().getId());
+        correctiveAction.setParticipantId(getParticipant_two().getId());
         correctiveAction.setId(1);
         correctiveAction.setNewGravity(2);
         correctiveAction.setNewDetectability(2);
@@ -340,7 +409,14 @@ public class BusinessExportTest {
     }
 
     private static CorrectiveAction getCorrective_two(){
-        CorrectiveAction correctiveAction = new CorrectiveAction(CORRECTIVE_2, DATE_3, PART_1, IDENTIFICATION_1, DATE_3, getRisk_two().getId(), getParticipant_two().getId());
+        CorrectiveAction correctiveAction = new CorrectiveAction();
+        correctiveAction.setCorrectiveAction(CORRECTIVE_2);
+        correctiveAction.setCreationDate(DATE_3);
+        correctiveAction.setParts(PART_1);
+        correctiveAction.setIdentification(IDENTIFICATION_1);
+        correctiveAction.setDeadLineDate(DATE_3);
+        correctiveAction.setRiskId(getRisk_two().getId());
+        correctiveAction.setParticipantId(getParticipant_two().getId());
         correctiveAction.setId(2);
         correctiveAction.setNewGravity(2);
         correctiveAction.setNewDetectability(2);
@@ -350,7 +426,14 @@ public class BusinessExportTest {
     }
 
     private static CorrectiveAction getCorrective_three(){
-        CorrectiveAction correctiveAction = new CorrectiveAction(CORRECTIVE_3, DATE_3, PART_1, IDENTIFICATION_1, DATE_3, getRisk_three().getId(), getParticipant_two().getId());
+        CorrectiveAction correctiveAction = new CorrectiveAction();
+        correctiveAction.setCorrectiveAction(CORRECTIVE_3);
+        correctiveAction.setCreationDate(DATE_3);
+        correctiveAction.setParts(PART_1);
+        correctiveAction.setIdentification(IDENTIFICATION_1);
+        correctiveAction.setDeadLineDate(DATE_3);
+        correctiveAction.setRiskId(getRisk_three().getId());
+        correctiveAction.setParticipantId(getParticipant_two().getId());
         correctiveAction.setId(3);
         correctiveAction.setNewGravity(2);
         correctiveAction.setNewDetectability(2);
@@ -360,7 +443,14 @@ public class BusinessExportTest {
     }
 
     private static CorrectiveAction getCorrective_four(){
-        CorrectiveAction correctiveAction = new CorrectiveAction(CORRECTIVE_4, DATE_3, PART_1, IDENTIFICATION_1, DATE_3, getRisk_five().getId(), getParticipant_two().getId());
+        CorrectiveAction correctiveAction = new CorrectiveAction();
+        correctiveAction.setCorrectiveAction(CORRECTIVE_4);
+        correctiveAction.setCreationDate(DATE_3);
+        correctiveAction.setParts(PART_1);
+        correctiveAction.setIdentification(IDENTIFICATION_1);
+        correctiveAction.setDeadLineDate(DATE_3);
+        correctiveAction.setRiskId(getRisk_five().getId());
+        correctiveAction.setParticipantId(getParticipant_two().getId());
         correctiveAction.setId(4);
         correctiveAction.setNewGravity(2);
         correctiveAction.setNewDetectability(2);
@@ -370,7 +460,14 @@ public class BusinessExportTest {
     }
 
     private static CorrectiveAction getCorrective_five(){
-        CorrectiveAction correctiveAction = new CorrectiveAction(CORRECTIVE_5, DATE_3, PART_2, IDENTIFICATION_2, DATE_3, getRisk_seven().getId(), getParticipant_two().getId());
+        CorrectiveAction correctiveAction = new CorrectiveAction();
+        correctiveAction.setCorrectiveAction(CORRECTIVE_5);
+        correctiveAction.setCreationDate(DATE_3);
+        correctiveAction.setParts(PART_2);
+        correctiveAction.setIdentification(IDENTIFICATION_2);
+        correctiveAction.setDeadLineDate(DATE_3);
+        correctiveAction.setRiskId(getRisk_seven().getId());
+        correctiveAction.setParticipantId(getParticipant_two().getId());
         correctiveAction.setId(5);
         correctiveAction.setNewGravity(2);
         correctiveAction.setNewDetectability(2);

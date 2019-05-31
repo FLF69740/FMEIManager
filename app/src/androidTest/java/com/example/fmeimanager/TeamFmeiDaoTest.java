@@ -41,13 +41,41 @@ public class TeamFmeiDaoTest {
     private static final long ID_5 = 5;
 
     //FMEI
-    private static Fmei FMEI_DEMO_1(){return new Fmei(FMEI_1_NAME, 1);}
-    private static Fmei FMEI_DEMO_2(){return new Fmei(FMEI_2_NAME, 1);}
+    private static Fmei FMEI_DEMO_1(){
+        Fmei fmei = new Fmei();
+        fmei.setName(FMEI_1_NAME);
+        fmei.setTeamLeader(1);
+        return fmei;
+    }
+
+    private static Fmei FMEI_DEMO_2(){
+        Fmei fmei = new Fmei();
+        fmei.setName(FMEI_2_NAME);
+        fmei.setTeamLeader(1);
+        return fmei;
+    }
 
     //PARTICIPANT
-    private static Participant PARTICIPANT_DEMO_1(){return new Participant(PARTICIPANT_1_NAME, PARTICIPANT_1_FORNAME);}
-    private static Participant PARTICIPANT_DEMO_2(){return new Participant(PARTICIPANT_2_NAME, PARTICIPANT_2_FORNAME);}
-    private static Participant PARTICIPANT_DEMO_3(){return new Participant(PARTICIPANT_3_NAME, PARTICIPANT_3_FORNAME);}
+    private static Participant PARTICIPANT_DEMO_1(){
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_1_NAME);
+        participant.setForname(PARTICIPANT_1_FORNAME);
+        return participant;
+    }
+
+    private static Participant PARTICIPANT_DEMO_2(){
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_2_NAME);
+        participant.setForname(PARTICIPANT_2_FORNAME);
+        return participant;
+    }
+
+    private static Participant PARTICIPANT_DEMO_3(){
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_3_NAME);
+        participant.setForname(PARTICIPANT_3_FORNAME);
+        return participant;
+    }
 
     //TEAM FMEI
     private static TeamFmei TF_DEMO_1(){return new TeamFmei(ID_1, ID_1);}

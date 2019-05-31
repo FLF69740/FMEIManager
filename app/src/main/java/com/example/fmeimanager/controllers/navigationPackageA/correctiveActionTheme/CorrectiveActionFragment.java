@@ -353,7 +353,9 @@ public class CorrectiveActionFragment extends Fragment {
             String newName = data.getStringExtra(RiskManagerChoiceActivity.BUNDLE_NEW_MANAGER_NAME);
             String newCompleteName = newForname + " " + newName;
             mManager.setText(newCompleteName);
-            Participant participant = new Participant(newName, newForname);
+            Participant participant = new Participant();
+            participant.setName(newName);
+            participant.setForname(newForname);
             participant.setId(newId);
             this.updateParticipant(participant);
         }
@@ -448,7 +450,14 @@ public class CorrectiveActionFragment extends Fragment {
             getCorrectiveParticipant(correctiveAction.getParticipantId());
         }else {
             DateTime dateTime = new DateTime();
-            mCorrectiveAction = new CorrectiveAction(Utils.EMPTY, dateTime.toString("dd/MM/yyyy"), Utils.EMPTY, Utils.EMPTY, dateTime.toString("dd/MM/yyyy"), mRiskId, 1);
+            mCorrectiveAction = new CorrectiveAction();
+            mCorrectiveAction.setCorrectiveAction(Utils.EMPTY);
+            mCorrectiveAction.setCreationDate(dateTime.toString("dd/MM/yyyy"));
+            mCorrectiveAction.setParts(Utils.EMPTY);
+            mCorrectiveAction.setIdentification(Utils.EMPTY);
+            mCorrectiveAction.setDeadLineDate(dateTime.toString("dd/MM/yyyy"));
+            mCorrectiveAction.setRiskId(mRiskId);
+            mCorrectiveAction.setParticipantId(1);
             mCorrectiveId = 0;
             getCorrectiveParticipant(1);
         }

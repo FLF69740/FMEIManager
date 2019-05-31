@@ -13,11 +13,6 @@ public class Fmei {
 
     public Fmei(){}
 
-    public Fmei(String name, long teamLeader) {
-        mName = name;
-        mTeamLeader = teamLeader;
-    }
-
     // GETTER
     public long getId() {return mId;}
     public String getName() {return mName;}

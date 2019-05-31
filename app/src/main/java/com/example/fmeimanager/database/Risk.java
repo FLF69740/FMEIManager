@@ -33,13 +33,7 @@ public class Risk implements Parcelable {
     @ColumnInfo (name = "risk_participantId") private long mParticipantId;
     @ColumnInfo (name = "risk_processusId") private long mProcessusId;
 
-    public Risk() {}
-
-    public Risk(String creationDate, String parts, String identification, String risk, long processusId, long participantId) {
-        mCreationDate = creationDate;
-        mParts = parts;
-        mIdentification = identification;
-        mRisk = risk;
+    public Risk() {
         mRiskEffect = Utils.EMPTY;
         mVerification = Utils.EMPTY;
         mPotentialCause = Utils.EMPTY;
@@ -47,8 +41,6 @@ public class Risk implements Parcelable {
         mGravity = 10;
         mFrequencies = 10;
         mDetectability = 10;
-        mParticipantId = participantId;
-        mProcessusId = processusId;
     }
 
     // GETTER

@@ -43,20 +43,20 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(GeneralViewModel.class)){
+        if (modelClass.isAssignableFrom(GeneralViewModel.class)) {
             return (T) new GeneralViewModel(mCorrectiveActionDataRepository, mFmeiDataRepository, mParticipantDataRepository,
                     mProcessusDataRepository, mRiskDataRepository, mTeamFmeiDataRepository, mExecutor);
         }
-        if (modelClass.isAssignableFrom(ParticipantViewModel.class)){
+        if (modelClass.isAssignableFrom(ParticipantViewModel.class)) {
             return (T) new ParticipantViewModel(mParticipantDataRepository, mExecutor);
         }
-        if (modelClass.isAssignableFrom(ProcessusViewModel.class)){
+        if (modelClass.isAssignableFrom(ProcessusViewModel.class)) {
             return (T) new ProcessusViewModel(mCorrectiveActionDataRepository, mParticipantDataRepository, mProcessusDataRepository, mRiskDataRepository, mExecutor);
         }
-        if (modelClass.isAssignableFrom(RiskViewModel.class)){
+        if (modelClass.isAssignableFrom(RiskViewModel.class)) {
             return (T) new RiskViewModel(mRiskDataRepository, mCorrectiveActionDataRepository, mParticipantDataRepository, mTeamFmeiDataRepository, mExecutor);
         }
-        if (modelClass.isAssignableFrom(TeamViewModel.class)){
+        if (modelClass.isAssignableFrom(TeamViewModel.class)) {
             return (T) new TeamViewModel(mFmeiDataRepository, mParticipantDataRepository, mTeamFmeiDataRepository, mExecutor);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");

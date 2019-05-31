@@ -22,10 +22,6 @@ public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListViewHold
         mParticipantList = participantList;
     }
 
-    public void setParticipantList(List<Participant> participantList) {
-        mParticipantList = participantList;
-    }
-
     @NonNull
     @Override
     public ProfileListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

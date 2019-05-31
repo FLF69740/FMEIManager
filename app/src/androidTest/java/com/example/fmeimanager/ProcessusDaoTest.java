@@ -46,19 +46,81 @@ public class ProcessusDaoTest {
     private static final long ID_5 = 5;
 
     //FMEI
-    private static Fmei FMEI_DEMO_1(){return new Fmei(FMEI_1_NAME, 1);}
-    private static Fmei FMEI_DEMO_2(){return new Fmei(FMEI_2_NAME, 1);}
+    private static Fmei FMEI_DEMO_1(){
+        Fmei fmei = new Fmei();
+        fmei.setName(FMEI_1_NAME);
+        fmei.setTeamLeader(1);
+        return fmei;
+    }
+
+    private static Fmei FMEI_DEMO_2(){
+        Fmei fmei = new Fmei();
+        fmei.setName(FMEI_2_NAME);
+        fmei.setTeamLeader(1);
+        return fmei;
+    }
 
     //PARTICIPANT
-    private static Participant PARTICIPANT_DEMO_1(){return new Participant(PARTICIPANT_1_NAME, PARTICIPANT_1_FORNAME);}
-    private static Participant PARTICIPANT_DEMO_2(){return new Participant(PARTICIPANT_2_NAME, PARTICIPANT_2_FORNAME);}
-    private static Participant PARTICIPANT_DEMO_3(){return new Participant(PARTICIPANT_3_NAME, PARTICIPANT_3_FORNAME);}
-    private static Participant PARTICIPANT_DEMO_4(){return new Participant(PARTICIPANT_4_NAME, PARTICIPANT_4_FORNAME);}
+    private static Participant PARTICIPANT_DEMO_1(){
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_1_NAME);
+        participant.setForname(PARTICIPANT_1_FORNAME);
+        return participant;
+    }
+
+    private static Participant PARTICIPANT_DEMO_2(){
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_2_NAME);
+        participant.setForname(PARTICIPANT_2_FORNAME);
+        return participant;
+    }
+
+    private static Participant PARTICIPANT_DEMO_3(){
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_3_NAME);
+        participant.setForname(PARTICIPANT_3_FORNAME);
+        return participant;
+    }
+
+    private static Participant PARTICIPANT_DEMO_4(){
+        Participant participant = new Participant();
+        participant.setName(PARTICIPANT_4_NAME);
+        participant.setForname(PARTICIPANT_4_FORNAME);
+        return participant;
+    }
 
     //RISK
-    private static Risk RISK_DEMO_1(){return new Risk("12/02/2019", "Parts_One", "100145XD", "risk_one", ID_1, ID_1);}
-    private static Risk RISK_DEMO_2(){return new Risk("10/02/2019", "Parts_One", "100145XD", "risk_two", ID_3, ID_2);}
-    private static Risk RISK_DEMO_3(){return new Risk("15/02/2019", "Parts_Two", "178145IO", "risk_three", ID_5, ID_4);}
+    private static Risk RISK_DEMO_1(){
+        Risk risk = new Risk();
+        risk.setCreationDate("12/02/2019");
+        risk.setParts("Parts_One");
+        risk.setIdentification("100145XD");
+        risk.setRisk("risk_one");
+        risk.setProcessusId(ID_1);
+        risk.setParticipantId(ID_1);
+        return risk;
+    }
+    private static Risk RISK_DEMO_2(){
+        Risk risk = new Risk();
+        risk.setCreationDate("10/02/2019");
+        risk.setParts("Parts_One");
+        risk.setIdentification("100145XD");
+        risk.setRisk("risk_two");
+        risk.setProcessusId(ID_3);
+        risk.setParticipantId(ID_2);
+        return risk;
+    }
+
+    private static Risk RISK_DEMO_3(){
+        Risk risk = new Risk();
+        risk.setCreationDate("15/02/2019");
+        risk.setParts("Parts_Two");
+        risk.setIdentification("178145IO");
+        risk.setRisk("risk_three");
+        risk.setProcessusId(ID_5);
+        risk.setParticipantId(ID_4);
+        return risk;
+    }
 
     //PROCESSUS
     private static Processus PROCESSUS_DEMO_1(){return new Processus("processus_step_1", ID_1, 1);}

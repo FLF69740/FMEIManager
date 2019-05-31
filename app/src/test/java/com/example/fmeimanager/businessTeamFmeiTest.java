@@ -19,19 +19,25 @@ public class businessTeamFmeiTest {
     }
 
     private Participant getParticipantOne(){
-        Participant participant = new Participant("RED", "Axel");
+        Participant participant = new Participant();
+        participant.setName("RED");
+        participant.setForname("Axel");
         participant.setId(10);
         return participant;
     }
 
     private Participant getParticipantTwo(){
-        Participant participant = new Participant("MARTIN", "John");
+        Participant participant = new Participant();
+        participant.setName("MARTIN");
+        participant.setForname("John");
         participant.setId(1);
         return participant;
     }
 
     private Participant getParticipantThree(){
-        Participant participant = new Participant("DUPONT", "Henry");
+        Participant participant = new Participant();
+        participant.setName("DUPONT");
+        participant.setForname("Henry");
         participant.setId(5);
         return participant;
     }

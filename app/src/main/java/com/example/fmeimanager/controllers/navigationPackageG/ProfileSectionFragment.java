@@ -34,7 +34,6 @@ public class ProfileSectionFragment extends Fragment {
     private View mView;
     private ParticipantViewModel mParticipantViewModel;
     private List<Participant> mParticipantList;
-    private ProfileListAdapter mAdapter;
 
     @BindView(R.id.fragment_profile_section_recycler_view) RecyclerView mRecyclerView;
 
@@ -58,11 +57,11 @@ public class ProfileSectionFragment extends Fragment {
     }
 
     //configure recyclerView
-    private void configureRecyclerView(){
-        this.mAdapter = new ProfileListAdapter(this.mParticipantList);
-        this.mRecyclerView.setAdapter(mAdapter);
+    private void configureRecyclerView(List<Participant> participants){
+        ProfileListAdapter adapter = new ProfileListAdapter(participants);
+        this.mRecyclerView.setAdapter(adapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 
     /**
@@ -70,8 +69,9 @@ public class ProfileSectionFragment extends Fragment {
      */
 
     public void createProfile() {
-        Participant participant = new Participant(getString(R.string.profile_section_default_name) + " (" + mParticipantList.size() + ")",
-                getString(R.string.profile_section_default_forname));
+        Participant participant = new Participant();
+        participant.setName(getString(R.string.profile_section_default_name) + " (" + mParticipantList.size() + ")");
+        participant.setForname(getString(R.string.profile_section_default_forname));
         this.mParticipantViewModel.createParticipant(participant);
     }
 
@@ -134,7 +134,7 @@ public class ProfileSectionFragment extends Fragment {
     //RECORD all participant information INTO panel
     private void updateParticipantList(List<Participant> participants) {
         mParticipantList = participants;
-        configureRecyclerView();
+        configureRecyclerView(participants);
         this.configureOnClickRecyclerView();
     }
 
