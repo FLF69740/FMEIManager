@@ -108,7 +108,7 @@
             app:layout_constraintStart_toStartOf="@+id/settings_vertical_right"
             app:layout_constraintTop_toBottomOf="@+id/export_data_speech_2" />
 
-        <com.example.fmeimanager.base.BorderTableCanvasModel
+        <com.FMEA.fmeimanager.base.BorderTableCanvasModel
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/export_data_viewpager"

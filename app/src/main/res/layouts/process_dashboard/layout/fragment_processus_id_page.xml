@@ -43,7 +43,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/participant_catalog_guideline_horizontal_1" />
 
-        <com.example.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.InsertRiskCustomPos
+        <com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.InsertRiskCustomPos
             android:id="@+id/risk_viewpager_custom_marker"
             android:layout_width="0dp"
             android:layout_height="0dp"

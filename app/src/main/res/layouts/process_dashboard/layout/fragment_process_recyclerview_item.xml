@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:padding="5dip">
 
-    <com.example.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.ProcessDashCustomTitle
+    <com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.ProcessDashCustomTitle
         android:id="@+id/fragment_process_title_mask"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -106,7 +106,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_process_ipr" />
 
-    <com.example.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.ProcessDashCustomBody
+    <com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.drawing.ProcessDashCustomBody
         android:id="@+id/fragment_process_body_mask"
         android:layout_width="0dp"
         android:layout_height="0dp"

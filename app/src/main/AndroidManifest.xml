@@ -2,7 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.fmeimanager">
+    package="com.FMEA.fmeimanager">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -15,99 +15,99 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".EndDialogActivity"
+            android:name="com.FMEA.fmeimanager.EndDialogActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity
-            android:name=".controllers.navigationPackageC.WriteFromSettingsActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageC.WriteFromSettingsActivity"
             android:label="@string/Process_builder_button_write_title"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
-        <activity android:name=".controllers.navigationPackageC.PhotoLogoActivity" />
-        <activity android:name=".controllers.navigationPackageG.PhotoProfileActivity" />
+        <activity android:name="com.FMEA.fmeimanager.controllers.navigationPackageC.PhotoLogoActivity" />
+        <activity android:name="com.FMEA.fmeimanager.controllers.navigationPackageG.PhotoProfileActivity" />
         <activity
-            android:name=".controllers.navigationPackageG.WriteFromProfileActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageG.WriteFromProfileActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
-        <activity android:name=".controllers.navigationPackageA.correctiveActionTheme.PhotoCorrectiveActivity" />
-        <activity android:name=".controllers.navigationPackageA.riskTheme.RiskPhotoViewPagerActivity" />
-        <activity android:name=".controllers.navigationPackageA.riskTheme.PhotoRiskActivity" />
-        <activity android:name=".controllers.navigationPackageA.riskTheme.RiskManagerChoiceActivity" />
-        <activity android:name=".controllers.navigationPackageA.riskTheme.IntKeyboardActivity" />
+        <activity android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.correctiveActionTheme.PhotoCorrectiveActivity" />
+        <activity android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.riskTheme.RiskPhotoViewPagerActivity" />
+        <activity android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.riskTheme.PhotoRiskActivity" />
+        <activity android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.riskTheme.RiskManagerChoiceActivity" />
+        <activity android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.riskTheme.IntKeyboardActivity" />
         <activity
-            android:name=".controllers.navigationPackageA.processusTheme.WriteFromProcessusBuilderActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.WriteFromProcessusBuilderActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
-            android:name=".controllers.navigationPackageA.processusTheme.ProcessusBuilderActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.ProcessusBuilderActivity"
             android:label="@string/Process_builder_title"
-            android:parentActivityName=".controllers.navigationPackageA.processusTheme.ProcessDashboardActivity">
+            android:parentActivityName="com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.ProcessDashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.navigationPackageA.processusTheme.ProcessDashboardActivity" />
+                android:value="com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.ProcessDashboardActivity" />
         </activity>
         <activity
-            android:name=".controllers.navigationPackageA.processusTheme.InsertRiskViewPagerActivity" />
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.InsertRiskViewPagerActivity" />
         <activity
-            android:name=".controllers.navigationPackageE.AboutActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageE.AboutActivity"
             android:label="@string/About_title"
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity
-            android:name=".controllers.navigationPackageD.HelpActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageD.HelpActivity"
             android:label="@string/Help_title" />
         <activity
-            android:name=".controllers.navigationPackageC.SettingsActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageC.SettingsActivity"
             android:label="@string/Settings_title" />
         <activity
-            android:name=".controllers.navigationPackageB.ExportDatasActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageB.ExportDatasActivity"
             android:label="@string/Export_datas_title" />
         <activity
-            android:name=".controllers.navigationPackageG.ProfileActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageG.ProfileActivity"
             android:label="@string/profile_title"
-            android:parentActivityName=".controllers.navigationPackageG.ProfileSectionActivity">
+            android:parentActivityName="com.FMEA.fmeimanager.controllers.navigationPackageG.ProfileSectionActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.navigationPackageG.ProfileSectionActivity" />
+                android:value="com.FMEA.fmeimanager.controllers.navigationPackageG.ProfileSectionActivity" />
         </activity>
         <activity
-            android:name=".controllers.navigationPackageG.ProfileSectionActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageG.ProfileSectionActivity"
             android:label="@string/profile_section_title" />
         <activity
-            android:name=".controllers.navigationPackageF.TeamFmeiBuilderActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageF.TeamFmeiBuilderActivity"
             android:label="@string/team_fmei_builder_title"
-            android:parentActivityName=".controllers.navigationPackageF.TeamFmeiDashBoardActivity">
+            android:parentActivityName="com.FMEA.fmeimanager.controllers.navigationPackageF.TeamFmeiDashBoardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.navigationPackageF.TeamFmeiDashBoardActivity" />
+                android:value="com.FMEA.fmeimanager.controllers.navigationPackageF.TeamFmeiDashBoardActivity" />
         </activity>
         <activity
-            android:name=".controllers.navigationPackageF.TeamFmeiDashBoardActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageF.TeamFmeiDashBoardActivity"
             android:label="@string/team_fmei_dashboard_title" />
         <activity
-            android:name=".controllers.navigationPackageA.correctiveActionTheme.CorrectiveActionFileActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.correctiveActionTheme.CorrectiveActionFileActivity"
             android:label="@string/Risk_file_corrective_action_title"
-            android:parentActivityName=".controllers.navigationPackageA.processusTheme.ProcessDashboardActivity">
+            android:parentActivityName="com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.ProcessDashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.navigationPackageA.processusTheme.ProcessDashboardActivity" />
+                android:value="com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.ProcessDashboardActivity" />
         </activity>
         <activity
-            android:name=".controllers.navigationPackageA.riskTheme.RiskFileActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.riskTheme.RiskFileActivity"
             android:label="@string/Risk_file_description_title"
-            android:parentActivityName=".controllers.navigationPackageA.processusTheme.ProcessDashboardActivity">
+            android:parentActivityName="com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.ProcessDashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.navigationPackageA.processusTheme.ProcessDashboardActivity" />
+                android:value="com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.ProcessDashboardActivity" />
         </activity>
         <activity
-            android:name=".controllers.navigationPackageA.processusTheme.ProcessDashboardActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.processusTheme.ProcessDashboardActivity"
             android:label="@string/Process_dashboard_title"
-            android:parentActivityName=".controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity">
+            android:parentActivityName="com.FMEA.fmeimanager.controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity" />
+                android:value="com.FMEA.fmeimanager.controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity" />
         </activity>
         <activity
-            android:name=".controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity"
+            android:name="com.FMEA.fmeimanager.controllers.navigationPackageA.fmeiTheme.FmeiDashboardActivity"
             android:label="@string/Fmei_dashboard_title" >
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.FMEA.fmeimanager.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -117,7 +117,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.fmeimanager"
+            android:authorities="com.FMEA.fmeimanager"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

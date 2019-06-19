@@ -59,7 +59,7 @@
         app:layout_constraintStart_toStartOf="@+id/run_touch_screen"
         app:layout_constraintTop_toBottomOf="@+id/main_logo_presentation" />
 
-    <com.example.fmeimanager.MainCustomView
+    <com.FMEA.fmeimanager.MainCustomView
         android:id="@+id/main_drawing"
         android:layout_width="0dp"
         android:layout_height="0dp"

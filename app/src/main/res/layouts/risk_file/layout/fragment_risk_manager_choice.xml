@@ -73,7 +73,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/fragment_risk_manager_choice_ok_button" />
 
-        <com.example.fmeimanager.base.BorderTableCanvasModel
+        <com.FMEA.fmeimanager.base.BorderTableCanvasModel
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
